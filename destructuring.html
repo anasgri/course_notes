@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Destructuring</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Destructuring</h2>
+    <p>
+      In the example below the new list is assigned to be equal to fruits, now
+      if we call <code> console.log(first); </code> it gives apple.
+    </p>
+    <pre><code class = "language-javascript">
+const fruits = ["apple", "banana", "cherry"];
+const [first, second, third] = fruits;
+console.log(first);  // "apple"
+console.log(second); // "banana"
+    </code></pre>
+    <p>
+      Below is the example how can you assigns object properties to variables
+      with matching names.
+    </p>
+    <pre><code class = "language-javascript">
+const user = {
+  name: "Alice",
+  age: 25,
+  city: "New York"
+};
+const { name, age, city } = user;
+console.log(name); // "Alice"
+console.log(age);  // 25
+    </code></pre>
+    <p>Destructuring can be used for nested arrays and objects</p>
+    <pre><code class = "language-javascript">
+const person = {
+  name: "John",
+  address: {
+    city: "London",
+    country: "UK"
+  }
+};
+const { name, address: { city, country } } = person;
+console.log(city); // "London"
+</code></pre>
+    <h3>The spread operator (...)</h3>
+    <p>This is the way how to combine the two arrays.</p>
+    <pre><code class = "language-javascript">
+const numbers = [1, 2, 3];
+const newNumbers = [...numbers, 4, 5];
+console.log(newNumbers); // [1, 2, 3, 4, 5]
+    </code></pre>
+    <p>
+      More examples how you can use spread operators to merge arrays and
+      opbjects
+    </p>
+    <pre><code class = "language-javascript">
+    // Merge arrays
+const arr1 = [1, 2];
+const arr2 = [3, 4];
+const mergedArray = [...arr1, ...arr2];
+console.log(mergedArray);
+
+// Merge objects
+const obj1 = { a: 1, b: 2 };
+const obj2 = { c: 3, d: 4 };
+const mergedObject = { ...obj1, ...obj2 };
+console.log(mergedObject);
+</code></pre>
+    <h3>Rest operator for unpacking the array</h3>
+    <p>
+      The rest operator (...) collects remaining elements into an array or
+      object.
+    </p>
+    <pre><code class = "language-javascript">
+const [first, second, ...rest] = [10, 20, 30, 40, 50];
+console.log(first);  // 10
+console.log(second); // 20
+console.log(rest);   // [30, 40, 50]</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>html tables</title>
+    <!-- Prism.js CSS (choose a theme, e.g. "okaidia") -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      table.mytab {
+        table-layout: fixed;
+        width: 50%;
+      }
+      #mytab1 { table-layout: fixed;
+  width: 50%;
+  border-collapse: collapse;
+}
+#mytab2 table {
+  table-layout: fixed;
+  width: 50%;
+  border-collapse: collapse;
+}
+
+#mytab2 th, td {
+  padding: 10px;
+  border: 1px solid #3b2424;
+}
+
+.button_back { background-color: dodgerblue;
+  color:aliceblue;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  margin-bottom: 100px;
+
+}
+
+
+.button_back:hover {
+  background-color: rgb(11, 90, 169);
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+    </style>
+  </head>
+  <body>
+    <h3>Tables</h3>
+    <p>The basic syntaxis for the table is shown below</p>
+    <pre><code class = "language-html">
+&lt;table&gt; 
+&lt;tr&gt;
+    &lt;th&gt;Header contents 1&lt;/th&gt;&lt;th&gt;Header contents 2&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;cell contents 1&lt;/td&gt;&lt;td&gt;cell contents 2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+    <p>
+      The table starts with the <code>&lt;table&gt;</code> tag and closes with
+      the <code>&lt;/table&gt;</code> tag.
+    </p>
+    <p>
+      The <code>&lt;tr&gt;</code> and <code>&lt;/tr&gt;</code> tags are used to
+      make the table row.
+    </p>
+    <p>
+      The <code>&lt;th&gt;</code> and <code>&lt;/th&gt;</code> tags are used to
+      make the heading cells.
+    </p>
+    <p>
+      The <code>&lt;td&gt;</code> and <code>&lt;/td&gt;</code> tags are used to
+      make the normal cells.
+    </p>
+    <p><strong>Example table:</strong></p>
+    <table>
+      <tr>
+        <th>Header contents 1</th>
+        <th>Header contents 2</th>
+      </tr>
+      <tr>
+        <td>cell contents 1</td>
+        <td>cell contents 2</td>
+      </tr>
+    </table>
+
+    <h3>&lt;thead&gt;, &lt;tbody&gt; and &lt;tfoot&gt; tags</h3>
+    <p>
+      These tags do not change the representation of the table by themselves,
+      but divide the table in the meaningfull parts
+    </p>
+    <pre><code class="language-html">
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+    &lt;th&gt;Month&lt;/th&gt;
+    &lt;th&gt;Savings&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+    &lt;td&gt;January&lt;/td&gt;
+    &lt;td&gt;$100&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td&gt;February&lt;/td&gt;
+    &lt;td&gt;$80&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
+&lt;tr&gt;
+    &lt;td&gt;Sum&lt;/td&gt;
+    &lt;td&gt;$180&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tfoot&gt;
+&lt;/table&gt;
+    </code></pre>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Savings</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>January</td>
+          <td>$100</td>
+        </tr>
+        <tr>
+          <td>February</td>
+          <td>$80</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>Sum</td>
+          <td>$180</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <h3>scope attribute</h3>
+    <p>
+      Scope attribute is also used to group some rows and tables together. It
+      <strong>does not change the appearance</strong> but adds meaning to the
+      table. It spefifies what is the meaning for the header cells.
+    </p>
+
+    <p>There are three possible values that scope attribute can take</p>
+    <ul>
+      <li>col - Specifies that the cell is a header for a column</li>
+      <li>row - Specifies that the cell is a header for a row</li>
+      <li>
+        colgroup - Specifies that the cell is a header for a group of columns
+      </li>
+      <li>
+        rowgroup - Specifies that the cell is a header for a group of rows
+      </li>
+    </ul>
+
+    <pre><code class = "language-html">
+&lt;table border="1"&gt;
+  &lt;caption&gt;Contact Information&lt;/caption&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;th scope="col"&gt;Name&lt;/th&gt;
+    &lt;th scope="col"&gt;Phone#&lt;/th&gt;
+    &lt;th scope="col"&gt;Fax#&lt;/th&gt;
+    &lt;th scope="col"&gt;City&lt;/th&gt;
+  &lt;/tr&gt;&lt;tr&gt;
+    &lt;td&gt;1.&lt;/td&gt;
+    &lt;th scope="row"&gt;Joel Garner&lt;/th&gt;
+    &lt;td&gt;412-212-5421&lt;/td&gt;
+    &lt;td&gt;412-212-5400&lt;/td&gt;
+    &lt;td&gt;Pittsburgh&lt;/td&gt;
+  &lt;/tr&gt;&lt;tr&gt;
+    &lt;td&gt;2.&lt;/td&gt;
+    &lt;th scope="row"&gt;Clive Lloyd&lt;/th&gt;
+    &lt;td&gt;410-306-1420&lt;/td&gt;
+    &lt;td&gt;410-306-5400&lt;/td&gt;
+    &lt;td&gt;Baltimore&lt;/td&gt;
+  &lt;/tr&gt;&lt;tr&gt;
+    &lt;td&gt;3.&lt;/td&gt;
+    &lt;th scope="row"&gt;Gordon Greenidge&lt;/th&gt;
+    &lt;td&gt;281-564-6720&lt;/td&gt;
+    &lt;td&gt;281-511-6600&lt;/td&gt;
+    &lt;td&gt;Houston&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt; 
+</code></pre>
+
+    <table border="1">
+      <caption>
+        Contact Information
+      </caption>
+      <tr>
+        <td></td>
+        <th scope="col">Name</th>
+        <th scope="col">Phone#</th>
+        <th scope="col">Fax#</th>
+        <th scope="col">City</th>
+      </tr>
+      <tr>
+        <td>1.</td>
+        <th scope="row">Joel Garner</th>
+        <td>412-212-5421</td>
+        <td>412-212-5400</td>
+        <td>Pittsburgh</td>
+      </tr>
+      <tr>
+        <td>2.</td>
+        <th scope="row">Clive Lloyd</th>
+        <td>410-306-1420</td>
+        <td>410-306-5400</td>
+        <td>Baltimore</td>
+      </tr>
+      <tr>
+        <td>3.</td>
+        <th scope="row">Gordon Greenidge</th>
+        <td>281-564-6720</td>
+        <td>281-511-6600</td>
+        <td>Houston</td>
+      </tr>
+    </table>
+    <p>There is also a caption attribute that specifies what table is about</p>
+
+    <h3>HTML table colspan and rowspan attributes</h3>
+    <p>
+      The colspan and rowspan attributes defines how many cells the cell takes.
+      This is similar to having the merged cells
+    </p>
+    <pre><code class = "language-html">
+&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2"&gt;Name&lt;/th&gt;
+    &lt;th&gt;Age&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Jill&lt;/td&gt;
+    &lt;td&gt;Smith&lt;/td&gt;
+    &lt;td&gt;43&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Eve&lt;/td&gt;
+    &lt;td&gt;Jackson&lt;/td&gt;
+    &lt;td&gt;57&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+    <table border="1">
+      <tr>
+        <th colspan="2">Name</th>
+        <th>Age</th>
+      </tr>
+      <tr>
+        <td>Jill</td>
+        <td>Smith</td>
+        <td>43</td>
+      </tr>
+      <tr>
+        <td>Eve</td>
+        <td>Jackson</td>
+        <td>57</td>
+      </tr>
+    </table>
+
+    <h3>Table Styling with CSS</h3>
+    <h4>Layout and Spacing</h4>
+    <p><strong>Setting equal column width</strong></p>
+    <p>
+      Fixed Layout – Use <code>table-layout: fixed</code> and width: 50% to set
+      even column widths, that going to take up 50% of the availabel space.
+    </p>
+    <pre><code class="language-html">
+  &lt;style&gt;
+  table {
+  table-layout: fixed;
+  width: 50%;
+}
+&lt;/style&gt;
+
+&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Company&lt;/th&gt;
+    &lt;th&gt;Contact&lt;/th&gt;
+    &lt;th&gt;Country&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Alfreds Futterkiste&lt;/td&gt;
+    &lt;td&gt;Maria Anders&lt;/td&gt;
+    &lt;td&gt;Germany&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Centro comercial Moctezuma&lt;/td&gt;
+    &lt;td&gt;Francisco Chang&lt;/td&gt;
+    &lt;td&gt;Mexico&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+    <table class="mytab" border="1">
+      <tr>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Country</th>
+      </tr>
+      <tr>
+        <td>Alfreds Futterkiste</td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+      </tr>
+      <tr>
+        <td>Centro comercial Moctezuma</td>
+        <td>Francisco Chang</td>
+        <td>Mexico</td>
+      </tr>
+    </table>
+    <p><strong>Using border collapse or separate</strong></p>
+    <p>
+      Border Collapsing – Use border-collapse: collapse to merge borders. Use
+      border-spacing with border-collapse: separate to add gaps.
+    </p>
+    <pre><code class = "language-html">
+&lt;style&gt;
+  table {
+  table-layout: fixed;
+  width: 50%;
+  border-collapse: collapse;
+}
+&lt;/style&gt;
+
+&lt;table border="1"&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Company&lt;/th&gt;
+    &lt;th&gt;Contact&lt;/th&gt;
+    &lt;th&gt;Country&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Alfreds Futterkiste&lt;/td&gt;
+    &lt;td&gt;Maria Anders&lt;/td&gt;
+    &lt;td&gt;Germany&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Centro comercial Moctezuma&lt;/td&gt;
+    &lt;td&gt;Francisco Chang&lt;/td&gt;
+    &lt;td&gt;Mexico&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+
+<table border="1" id = "mytab1">
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+</table>
+</code></pre>
+
+<p><strong>Padding and border styling</strong></p>
+<p>Cell Padding – Add padding to <code>&lt;td&gt;</code> and <code>&lt;th&gt;</code> to improve readability.</p>
+<pre><code class = "language-html">
+&lt;style&gt;
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+&lt;/style&gt;
+
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Company&lt;/th&gt;
+    &lt;th&gt;Contact&lt;/th&gt;
+    &lt;th&gt;Country&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Alfreds Futterkiste&lt;/td&gt;
+    &lt;td&gt;Maria Anders&lt;/td&gt;
+    &lt;td&gt;Germany&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Centro comercial Moctezuma&lt;/td&gt;
+    &lt;td&gt;Francisco Chang&lt;/td&gt;
+    &lt;td&gt;Mexico&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+<table id = "mytab2">
+  <tr>
+    <th>Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+</table>
+    
+    <p>Example of the styled table:</p>
+    <pre><code class = "language-html">
+&lt;table style = "border:solid"&gt;
+&lt;tr&gt;
+&lt;td style = "border:solid"&gt;Cell 1&lt;/td&gt;&lt;td&gt;Cell 2&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+    <table style="border: solid">
+      <tr>
+        <td style="border: solid">Cell 1</td>
+        <td>Cell 2</td>
+      </tr>
+    </table>
+<br/>
+  <button onclick="window.location.href='index.html'" class="button_back">Back</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+  </body>
+</html>

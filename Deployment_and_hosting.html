@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deployment and hosting</title>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Web hosting and deployment</h1>
+    <p>
+      When you build a website, you create files like HTML, CSS, JavaScript, and
+      images.
+    </p>
+    <p>
+      But for other people to see your site, those files must be stored
+      somewhere online and served to their browsers when they visit your site’s
+      address.
+    </p>
+    <p>
+      That’s the job of a web hosting service — it stores your files and makes
+      them accessible to the internet 24/7.
+    </p>
+
+    <p>
+      There are many types of hosting, but for this course, we focus on
+      <strong>static hosting.</strong> This means we are hosting only the
+      front-end, files like .html, .css, and .js, not back-end code or databases
+    </p>
+    <h3>How to deploy the website using netlify</h3>
+    <h5>Manually</h5>
+    <ul>
+      <li>Go to https://www.netlify.com/ and register</li>
+      <li>
+        select the deply manually option and upload the folder that has
+        index.html and your files.
+      </li>
+    </ul>
+    <h5>From github</h5>
+    <ul>
+      <li>In your netlify account press add new project</li>
+      <li>Select load from github repository</li>
+      <li>Follow the keys</li>
+    </ul>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

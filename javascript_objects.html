@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Objects</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>JavaScript Objects</h2>
+    <p>The JavaScript object is the equivalent of the python dictionary</p>
+    <pre><code class = "language-javascript">
+        let person = {
+            name: "Alice", 
+            age: 25,
+            isStudent: true
+        };
+        // the values can be accesed, either using dot notation or the bracket notation. 
+    console.log(person.name);
+    console.log(person["age"])
+    </code></pre>
+    <p>Addind the properties can be done just by dot notation.</p>
+    <pre><code class = "language-javascript">
+        let car = {
+        brand: "Toyota",
+        model: "Corolla"
+            }
+        car.year = 2022;
+        </code></pre>
+    <p>You can also delete properies by using the below shown way</p>
+    <pre><code class = "language-javascript">
+let car = {
+brand: "Toyota",
+model: "Corolla"}
+
+delete car.brand;
+console.log(car)
+
+    </code></pre>
+    <h3>How to store the function in the object</h3>
+    <pre><code class = "language-javascript">
+const person = {
+name: "Alice",
+age: 29,
+grades: [10, 10, 9, 9],
+greeting: function () {
+    console.log("Hello " + this.name + "!");
+}
+    }
+person.greeting();
+    </code></pre>
+    <p>
+      In the example above to call the person object within the person object
+      itself we use <code>this</code>, so we have <code>this.name</code> instead
+      of <code>person.name</code>
+    </p>
+    <p>Another more advanced function</p>
+    <pre><code class = "language-javascript">
+const person = {
+  name: "Alice",
+  age: 29,
+  grades: [10, 10, 9, 9],
+  birthday: function () {
+    this.age += 1;
+    console.log(
+      "Happy birthday " + this.name + " you are " + this.age + " years old!",
+    );
+  },
+};
+person.birthday();
+
+</code></pre>
+    <h3>Object methods</h3>
+    <p>
+      Objects can have methods (functions attached to an object). Methods in
+      objects are like buttons on a calculator. Pressing the button (calling the
+      method) triggers a specific function, such as adding or subtracting
+      numbers.
+    </p>
+    <pre><code class = "language-javascript">
+  let calculator = {
+  add: function(a, b) {
+    return a + b;
+  },
+  subtract(a, b) {
+    return a - b;
+  }
+};
+
+console.log(calculator.add(5, 3));      // 8
+console.log(calculator.subtract(10, 4)); // 6
+</code></pre>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

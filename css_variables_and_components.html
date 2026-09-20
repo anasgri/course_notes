@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Css variables</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Css variables and custom properties</h1>
+    <p>
+      The css varaibles are the way how youn can save the information that yoiu
+      reuse in the css
+    </p>
+    <p>Below is the example:</p>
+    <pre><code class = "language-css">
+        :root {
+            --primary-color: #3498db;
+            --secondsry-color: #2cbd00;
+            --font-size: 16px;
+        }
+    </code></pre>
+
+    <p>Using variable names</p>
+    <pre><code class = "language-css">
+        h1 { 
+            color: var(--primary-color, #0000); /*Using fallback in case if variable is inaccessible */
+            font-size : var(--font-size);
+        }
+    </code></pre>
+
+    <h3>Variable scoping</h3>
+    <p>
+      Variables can be scoped to individual elements. The local varaible
+      overrides the grobal one
+    </p>
+    <pre><code class = "language-css">
+        .card {
+            --card-padding: 2rem;
+            padding: var(--card-padding)
+        }
+    </code></pre>
+    <p>Importantly, it has no effect outside the card class.</p>
+    <h3>Rules for variables</h3>
+    <ul>
+      <li>use :root t for global variables.</li>
+      <li>Organize variables by type (colors, fonts, spacing).</li>
+      <li>Use semantic names (e.g., --primary-color, not --blue)</li>
+      <li>Avoid too many variables; keep it manageable.</li>
+      <li>Use variables for reusable values (padding, margin).</li>
+    </ul>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handling API errors</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h1>Handling API errors</h1>
+    <h3>Common API errors</h3>
+    <ul>
+      <li>Network Errors: Internet connection issues.</li>
+      <li>Server Errors (5xx): Something went wrong on the server.</li>
+      <li>Client Errors (4xx): Usually due to bad requests from your app.</li>
+      <li>Invalid JSON or Data Format: Server sends unexpected or broken da</li>
+    </ul>
+    <h3>Steps to follow</h3>
+    <p>Check the HTTP status code with .ok before parsing the response.</p>
+    <pre><code class = "language-javascript">
+fetch('https://api.example.com/data')
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+    return response.json()
+  })
+  .then((data) => console.log(data))
+  .catch((error) => console.error('Error:', error))
+</code></pre>
+    <p>
+      response.ok returns true if status code is between
+      <strong>200–299.</strong>
+    </p>
+    <p>Helps catch bad status responses early.</p>
+    <h3>Catching Network Errors with catch()</h3>
+    <p>Network errors are caught using the .catch() method</p>
+    <pre><code class = "language-javascript">
+fetch('https://api.example.com/data')
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error('Network error:', error))
+</code></pre>
+    <p>Handles situations like no internet connection or invalid domains.</p>
+    <h3>Try...Catch with Async/Await</h3>
+    <p>Using try...catch with async/await provides cleaner error handling</p>
+    <pre><code class = "language-javascript">
+    async function fetchData() {
+  try {
+    let response = await fetch('https://api.example.com/data')
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`)
+    }
+    let data = await response.json()
+    console.log(data)
+  } catch (error) {
+    console.error('Fetch failed:', error)
+  }
+}
+
+fetchData()
+</code></pre>
+    <h3>Treat some specific error differently</h3>
+    <p>Below is the example how the 404 error gets handled</p>
+    <pre><code class = "language-javascript">
+    try {
+        // main code }
+        catch (error) {
+            if (error.message.includes("404")) {
+                alert("resource not found");
+            } else {
+                alert("unexpected error");
+            }
+        }
+</code></pre>
+    <h3>Add retry logic using the for loop</h3>
+    <p>In this example we have three attempts.</p>
+    <pre><code class = "language-javascript">
+    async function fetchWithRetry(url, attempts = 3) {
+  for (let i = 0; i < attempts; i++) {
+    try {
+      const response = await fetch(url)
+      if (!response.ok) throw new Error()
+      return await response.json()
+    } catch (e) {
+      if (i === attempts - 1) throw e
+    }
+  }
+}
+</code></pre>
+    <h3>
+      Give users helpful feedback instead of technical errors using
+      <code>showError</code>
+    </h3>
+    <pre><code class = "language-javascript">
+function showError(message) {
+  let errorBox = document.getElementById('errorBox')
+  errorBox.innerText = message
+  errorBox.style.display = 'block'
+}
+
+showError('Unable to load data. Please try again later.')
+    </code></pre>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

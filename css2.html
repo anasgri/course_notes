@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS notes continued</title>
+
+    <!-- Prism.js CSS (choose a theme, e.g. "okaidia") -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>The specificity hirerarchy (Highest to Lowest)</h3>
+    <ol>
+      <li>
+        🏆 Inline Styles (Score: 1-0-0-0) – Applied directly inside the HTML tag
+        using style="".
+      </li>
+
+      <li>
+        ID Selectors 👑 (Score: 0-1-0-0) – Targets a unique element using a
+        hashtag, like #nav or #header.
+      </li>
+      <li>
+        Class, Attribute, and Pseudo-classes (Score: 0-0-1-0) – Includes classes
+        like .nav, attributes like [type="text"], and states like :hover.
+      </li>
+
+      <li>
+        Element (Type) and Pseudo-elements (Score: 0-0-0-1) – Targets raw HTML
+        tags like div, p, or a.
+      </li>
+      <li>
+        Universal Selector (Score: 0-0-0-0) – Matches everything using * but
+        carries no specificity weigh.
+      </li>
+    </ol>
+
+    <h3>Some common properties, that can be used to style text</h3>
+    <ul>
+      <li>color: sets the text color.</li>
+      <li>background-color: sets the background color.</li>
+
+      <li>font-size: defines the size of the text.</li>
+      <li>text-align: aligns text (left, center, right).</li>
+      <li>margin: space outside an element.</li>
+      <li>padding: space inside an element.</li>
+      <li>border: adds outlines to elements.</li>
+    </ul>
+
+    <p>CSS can be added to HTML documents in 3 ways:</p>
+    <ul>
+      <li>Inline - by using the style attribute inside HTML elements</li>
+      <li>Internal - by using a "style" element in the head section</li>
+      <li>
+        External - by using a link element to link to an external CSS file
+      </li>
+    </ul>
+    <p>The examples of the inline CSS have been already covered</p>
+    <pre><code class="language-html">
+	&lt;p style="color:red;"&gt;A red paragraph.&lt;/p&gt;
+</code></pre>
+    <p style="color: red">A red paragraph.</p>
+    <br />
+    <p>Below is the example of the internal html</p>
+    <pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;
+body {background-color: powderblue;}
+h1   {color: blue;}
+p    {color: red;}
+
+&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;This is a heading&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+  </code></pre>
+
+    <br />
+    <p>
+      In case of the <b>external stylesheet </b>, there is one document with
+      html, that has extension .html
+    </p>
+    and another one with the css that has extension <b>.css</b>
+
+    <pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel = "stylesheet" href = "styles.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;This is a heading&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+  </code></pre>
+
+    <p>Below is how the <b>.css stylesheet</b> should look like</p>
+
+    <pre><code class="language-css">
+	body {
+  background-color: powderblue;
+}
+h1 {
+  color: blue;
+}
+p {
+  color: red;
+}
+</code></pre>
+
+    <p>
+      Below is the example of the html that uses <b>internal stylesheet</b>,
+    </p>
+    <p>font-family and font-size properties</p>
+    <br />
+    <pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;
+h1 {
+  color: blue;
+  font-family: verdana;
+  font-size: 300%;
+}
+p {
+  color: red;
+  font-family: courier;
+  font-size: 160%;
+}
+
+&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;This is a heading&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+  </code></pre>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

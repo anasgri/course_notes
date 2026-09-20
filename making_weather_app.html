@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather_app</title>
+    <link rel="stylesheet" href="weather_style.css" />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <div class="weather_app">
+      <h1>Weather Checker</h1>
+      <form id="weatherform">
+        <input
+          type="text"
+          id="cityInput"
+          placeholder="Enter city name"
+          required
+        />
+        <button type="submit">Get weather</button>
+      </form>
+      <div id="weatherResult" class="weather-result hidden"></div>
+    </div>
+    <!-- westher app div closure-->
+    <script src="weather_api.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

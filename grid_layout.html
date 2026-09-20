@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h3>Grid Layout</h3>
+    <pre><code class = "language-css">
+.container {
+    display: grid; /* activates the grid layout */
+    grid-template-columns: repeat(3, 1fr); /* defines the grid, in this case repeats 3 times 1 fraction */
+    gap : 20px;   
+}
+</code></pre>
+
+    <h4>Another example</h4>
+
+    <pre><code class = "language-css">
+.grid-container {
+    display: grid; /* activates the grid layout */
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: auto 100px;
+    gap : 20px;   
+}
+</code></pre>
+<p><strong>Columns</strong></p>
+<p>First column will have the fixed width of 200px.</p>
+<p>Second column: 1fr takes up the remaining space in the grid container (total width minus 200px minus any gap).</p>
+<p>
+If the container is 1000px wide, the gap is 20px, the second column gets 1000 - 200 - 20 = 780px.</p>
+</code></pre>
+<p><strong>Rows</strong></p>
+<p>auto means the row's height is sized based on its content — specifically, it grows to fit the tallest/largest content placed in that row (subject to the content's own min/max constraints). It's not a fixed value; it expands or shrinks depending on what you put inside it.
+</p>
+<p>The second row will be exactly 100px.</p>
+<p>Thus this container is going to be 2x2 layout. </p>
+<h3>Adding items to the grid</h3>
+<p>Below is the example how the item is getting added to the grid. </p>
+<p>1/3 means span from column 1 to column 3</p>
+<pre><code class = "language-css">
+.item1 {
+    grid-column: 1/3;
+    grid-row: 1/3;
+}
+</code></pre>
+
+<p>Example</p>
+<pre><code class = "language-css">
+    
+</code></pre>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

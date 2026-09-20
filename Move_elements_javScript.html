@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Creating and Removing Elements Dynamically</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h1>Creating and Removing Elements Dynamically</h1>
+    <p><code>createElement()</code> creates a new DOM element.</p>
+    <pre><code class = "language-javascript">
+    let newPara = document.createElement("p");
+    newPara.innerText = "This is a new paragraph.";
+    </code></pre>
+    <ul>
+      <li>
+        createElement() creates an element but does not add it to the DOM.
+      </li>
+      <li>
+        Use innerText or innerHTML to set content, even if you do it it still
+        not added to the DOM
+      </li>
+    </ul>
+    <h3>Adding Elements to the DOM</h3>
+    <p>
+      To add elements to the DOM, use <code>appendChild()</code> or
+      <code>insertBefore()</code>.
+    </p>
+    <pre><code class = "language-javascript">
+        // Select parent element
+let container = document.getElementById("container");
+
+// Add element to the end
+container.appendChild(newPara);
+
+// Insert before another element
+let reference = document.getElementById("reference");
+container.insertBefore(newPara, reference);
+    </code></pre>
+    <ul>
+      <li>appendChild() adds the element at the end.</li>
+      <li>insertBefore() adds the element before a reference element</li>
+      <li>append() can add multiple elements or text at once</li>
+    </ul>
+    <pre><code class = "language-javascript">
+let div = document.createElement("div");
+div.innerText = "I am a div";
+let span = document.createElement("span");
+span.innerText = "I am a span";
+
+// Add multiple elements
+document.body.append(div, span);
+    </code></pre>
+    <h3>Setting attribute dynamically</h3>
+    <p>Use setAttribute() to add or modify attributes.</p>
+    <pre><code class ="language-javascript">
+    let link = document.createElement("a");
+link.innerText = "Visit Website";
+link.setAttribute("href", "https://www.example.com");
+link.setAttribute("target", "_blank");
+document.body.appendChild(link);
+</code></pre>
+    <ul>
+      <li>
+        <code>setAttribute()</code> adds or modifies attributes dynamically.
+      </li>
+      <li>Useful for adding links, classes, or other attributes</li>
+    </ul>
+    <h3>Removing elements from the DOM</h3>
+    <p>The remove() method deletes an element from the DOM.</p>
+    <pre><code class = "language-javascript">
+let para = document.getElementById("para");
+para.remove();
+    </code></pre>
+    <h3>Removing Child Elements with <code>removeChild()</code></h3>
+    <p>To remove a specific child element, use <code>removeChild()</code></p>
+    <pre><code class = "language-javascript">
+let parent = document.getElementById("container");
+let child = document.getElementById("item");
+parent.removeChild(child);
+    </code></pre>
+    <ul>
+      <li><code>removeChild()</code> removes a child node from its parent.</li>
+      <li>Use when you need to remove a specific element.</li>
+    </ul>
+    <h3>Replace the element with the new one</h3>
+    <p>
+      <code>replaceChild()</code> replaces an existing element with a new one
+    </p>
+    <pre><code class = "language-javascript">
+        let parent = document.getElementById("container");
+let oldChild = document.getElementById("old");
+let newChild = document.createElement("div");
+newChild.innerText = "This is a new element.";
+
+parent.replaceChild(newChild, oldChild);
+    </code></pre>
+    <p>
+      Below is the example how you can create and remove multiple elements using
+      the loop.
+    </p>
+    <pre><code class = "language-javascript">
+        // Create multiple elements
+for (let i = 0; i < 5; i++) {
+  let item = document.createElement("li");
+  item.innerText = `Item ${i + 1}`;
+  document.getElementById("list").appendChild(item);
+}
+
+// Remove all items
+let list = document.getElementById("list");
+while (list.firstChild) {
+  list.removeChild(list.firstChild);
+}
+    </code></pre>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic elements</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+<style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="font-size: 30px; color: #590b2a">HTML cheat sheet</h1>
+    <br />
+    <pre><code class="language-html">
+	&lt;h1&gt;Heading 1&lt;/h1&gt;
+</code></pre>
+    <h1>Heading 1</h1>
+    <pre><code class="language-html">
+	&lt;h2&gt;Heading 2&lt;/h2&gt;
+</code></pre>
+    <h2>Heading 2</h2>
+    <pre><code class="language-html">
+	&lt;h3&gt;Heading 3&lt;/h3&gt;
+</code></pre>
+    <h3>Heading 3</h3>
+    <pre><code class="language-html">
+	&lt;h4&gt;Heading 4&lt;/h4&gt;
+</code></pre>
+    <h4>Heading 4</h4>
+    <pre><code class="language-html">
+	&lt;h5&gt;Heading 5&lt;/h5&gt;
+</code></pre>
+    <h5>Heading 5</h5>
+    <pre><code class="language-html">
+	&lt;h6&gt;Heading 6&lt;/h6&gt;
+</code></pre>
+    <h6>Heading 6</h6>
+    <pre><code class="language-html">
+	&lt;p&gt;This is a simple paragraph.&lt;/p&gt;
+</code></pre>
+    <p>This is a simple paragraph.</p>
+
+    <p>Below is the break tag, it is a self-closing tag</p>
+    <pre><code class="language-html">
+	&lt;br&gt;
+</code></pre>
+    <br />
+
+    <!-- HTML formating tags -->
+    <section>
+      <p style="font-size: 20px">
+        The next section is about differnt formating tags
+      </p>
+      <pre><code class="language-html">
+	&lt;b&gt;Bold text&lt;/b&gt;
+</code></pre>
+      <p><b> Bold text </b></p>
+      <pre><code class="language-html">
+	&lt;strong&gt;Important text&lt;/strong&gt;
+</code></pre>
+      <p><strong>Important text </strong></p>
+      <pre><code class="language-html">
+	&lt;i&gt;Italic text&lt;/i&gt;
+</code></pre>
+      <p><i> - Italic text </i></p>
+      <pre><code class="language-html">
+	&lt;em&gt;Emphasized text&lt;/em&gt;
+</code></pre>
+      <p><em>Emphasized text</em></p>
+      <pre><code class="language-html">
+	&lt;mark&gt;Marked text&lt;/mark&gt;
+</code></pre>
+
+      <p><mark>Marked text</mark></p>
+      <pre><code class="language-html">
+	&lt;small&gt;Smaller text &lt;/small&gt;
+</code></pre>
+      <p><small>Smaller text </small></p>
+      <pre><code class="language-html">
+	&lt;del&gt;Deleted text&lt;/del&gt;
+</code></pre>
+      <p><del>Deleted text</del></p>
+
+      <pre><code class="language-html">
+	&lt;ins&gt;Inserted text&lt;/ins&gt;
+</code></pre>
+      <p><ins> - Inserted text </ins></p>
+
+      <pre><code class="language-html">
+	&lt;sub&gt;Subscript text&lt;/sub&gt;
+</code></pre>
+      <p><sub>Subscript text</sub></p>
+      <pre><code class="language-html">
+	&lt;sup&gt;Superscript text&lt;/sup&gt;
+</code></pre>
+      <p><sup>Superscript text</sup></p>
+      <br />
+    </section>
+    <p style="font-size: 20px">The next section is about the quatation</p>
+
+    <p>Below is the blockquote</p>
+    <pre><code class="language-html">
+	&lt;blockquote cite="http://www.worldwildlife.org/who/index.html"&gt;For 60 years, WWF has worked to help people and nature thrive. As the world's leading conservation organization, WWF works in nearly 100 countries. <p>At every level, we collaborate with people around the world to develop and deliver innovative solutions that protect communities,</p> wildlife, and the places in which they live.&lt;/blockquote&gt;
+</code></pre>
+
+    <blockquote cite="http://www.worldwildlife.org/who/index.html">
+      <!--The style attribute can be used to alter the properties of the text-->
+      For 60 years, WWF has worked to help people and nature thrive. As the
+      world's leading conservation organization, WWF works in nearly 100
+      countries. At every level, we collaborate with people around the world to
+      develop and deliver innovative solutions that protect communities,
+      wildlife, and the places in which they live.
+    </blockquote>
+    <p>Below is short quotation, browsers automaticaly put quote marks</p>
+    <pre><code class="language-html">
+	&lt;q&gt;Short quotation&lt;/q&gt;
+</code></pre>
+    <q>Short quotation</q>
+
+    <p>Below is use of the abbreviation tag</p>
+    #
+    <pre><code class="language-html">
+	The &lt;abbr title="World Health Organization"&gt;WHO&lt;/abbr&gt; was founded in 1948
+</code></pre>
+    <p>
+      The <abbr title="World Health Organization">WHO</abbr> was founded in
+      1948.
+    </p>
+    <p>Below is the address tag</p>
+
+    <pre><code class="language-html">
+	&lt;address&gt;High street 55, Cambridge, Cherry Hinton&lt;/address&gt;
+</code></pre>
+
+    <address>High street 55, Cambridge, Cherry Hinton</address>
+    <p>Below is citation tag</p>
+    <pre><code class="language-html">
+	The &lt;cite&gt;The Scream&lt;/cite&gt; by Edvard Munch. Painted in 1893.
+</code></pre>
+    <p><cite>The Scream</cite> by Edvard Munch. Painted in 1893.</p>
+    <!--Cite tag-->
+    <p>
+      If your browser supports bi-directional override (bdo), the next line will
+      be written from right to left (rtl):
+    </p>
+    <pre><code class="language-html">
+	&lt;bdo dir="rtl"&gt;This line will be written from right to left&lt;/bdo&gt;
+</code></pre>
+    <bdo dir="rtl">This line will be written from right to left</bdo>
+    <!-- this is how you can write right to left -->
+
+    <h3>HTML semantic tags</h3>
+    <h4>Structural Tags</h4>
+    <ul>
+      <li>&lt;header&gt;: For top sections like logos and navigation.</li>
+      <li>&lt;nav&gt;: For navigation menus.</li>
+      <li>&lt;section&gt;: For grouping related content.</li>
+      <li>&lt;footer&gt;: For bottom sections like contact info.</li>
+    </ul>
+
+    <h4>Content tags</h4>
+    <ul>
+      <li>&lt;article&gt;: For independent pieces of content.</li>
+      <li>&lt;aside&gt;: For sidebars or related info.</li>
+      <li>&lt;figure&gt; and &lt;figcaption&gt;: For images and captions.</li>
+      <li>&lt;main&gt;: For main content of the page.</li>
+    </ul>
+
+    <h3>Non-semantic tags</h3>
+    <h4><code>&lt;div&gt;&lt;/div&gt;</code> tag</h4>
+    <p><code>&lt;div&gt;&lt;/div&gt;</code> tag is the non-semantic tag</p>
+    <p>It dividees the text into the sections, but does not have meaning</p>
+    <pre><code class = "language-html">
+        &lt;div&gt;
+    </pre></code>
+
+    <h4>span tag</h4>
+    <p>Another non-semantic tag is span. It can be used to style the fraction of the text.</p>
+
+    <pre><code class = "language-html">
+      &lt;p&gt;My mother has &lt;span style="color:blue"&gt;blue&lt;/span&gt; eyes.&lt;/p&gt;
+    </code></pre>
+    <p>My mother has <span style="color:blue">blue</span> eyes.</p>
+
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+  </body>
+</html>

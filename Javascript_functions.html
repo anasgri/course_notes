@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript functions</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h1>JavaScript functions</h1>
+    <pre><code class = "language-javascript">
+      function greet() {
+        console.log("Hello!");
+      }
+      greet();
+    </code></pre>
+    <p>The function above does not have any parameters</p>
+    <p>Below is another function with paremeters</p>
+    <pre><code class = "language-javascript">
+      function greet(name) {
+        console.log("Hello! " + name);
+      }
+      greet("Alice");
+    </code></pre>
+    <p>functions can return the areguments</p>
+    <pre><code class = "language-javascript">
+  function add(a, b) {
+    return a + b;
+  }
+  let sum = add(5, 3);
+  console.log(sum);
+
+</code></pre>
+    <h3>Arrow functions</h3>
+    <p>This is just the shorter syntaxis for writing functions.</p>
+    <pre><code class = "language-javascript">
+      const multiply = (a, b) => {
+        return a*b;
+      };
+      console.log(multiply(2, 4));
+    </code></pre>
+    <p>
+      When the function has only one statement in its body, the
+      <code>{}</code> brackers can be omitted.
+    </p>
+    <pre><code class = "language-javascript">
+      const multiply = (a, b) => a*b;
+      console.log( multiply(2, 3)); // 6
+    </code></pre>
+    <h3>Deafult parameters</h3>
+    <p>
+      The defaulkt parameter, is what function uses when the user does not
+      specify parameters when calling function.
+    </p>
+    <pre><code class = "language-javascript">
+      function greet(name = "stranger") {
+        console.log("Hello" + name);
+      }
+      greet(); // Hello stranger
+      greet("Alice"); // Hello Alice
+    </code></pre>
+    <h3>Rest parameters</h3>
+    <p>Rest parameters is equivalent to <code>**args</code> in python</p>
+    <pre><code class = "language-javascript">
+      function sum(...numbers) {
+        return numbers.reduce((total, num) => total + num, 0);
+      }
+      console.log(sum(1, 2, 3, 4));
+    </code></pre>
+    <p>
+      we use <code>...numbers</code> when we are nut sure how many arguments
+      there will be
+    </p>
+    <p>The incoming value is the array.</p>
+
+    <h3>Note on the <code>return</code> statement</h3>
+   <p>Once one <code>return</code> statement is executed, the function stos.</p>
+
+    </code></pre>
+    <h3>Math functions Javascript</h3>
+    <p>JavaScript has in-build function module that can help to do maths.</p>
+    <pre><code class = "language-javascript">
+      console.log(Math.max(2, 3, 4))
+    </code></pre>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

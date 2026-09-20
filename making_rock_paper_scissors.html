@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock paper scissors</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Tilt+Warp&display=swap');
+        button {
+            background-color:  #6495ED;
+            color: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 20px;
+            border-style: none;
+
+        }
+        button:hover {
+            transform: scale(1.2);
+        }
+
+        .hammersmith-one-regular {
+  font-family: "Hammersmith One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.game-container {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2rem;
+    color:  #6495ED;
+    font-family: "Hammersmith One", sans-serif;
+}
+
+
+    
+.btnback {
+  background-color: #6495ed; /* Green */
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 100px;
+}
+.btnback:hover {
+  background-color: #4169e1;
+}
+</style>
+  </head>
+  <body>
+    <h1 class = "hammersmith-one-regular">Rock Paper Scissors</h1>
+    <div class = "game-container">
+        <div class = "button-container">
+            <button id = "rock"><span class = "hammersmith-one-regular">Rock 🪨</span></button>
+            <button id = "paper"><span class = "hammersmith-one-regular">Paper📄</span></button>
+            <button id = "scissors"><span class = "hammersmith-one-regular">Scissors ✂️</span></button>
+
+        </div> <!-- button container-->
+        <div id = "results-messsage"></div> <!---- result>
+    </div> <!-- game container -->
+<script>
+const rockButton = document.getElementById("rock");
+const paperButton = document.getElementById("paper");
+const scissorButton = document.getElementById("scissors");
+const resultMessage = document.getElementById("results-messsage");
+
+function playGame(playerInput) {
+    // console.log(`player inpur ${playerInput}`)
+    const choices = ["rock", "paper", "scissors"];
+    const computerHand = choices[Math.floor(Math.random() *3)]; // gives the number between 0 qnd 2
+    let result = "";
+    if (playerInput === computerHand) {
+        result = "It's a tie";
+    } else if (
+        (playerInput === "rock" && computerHand === "scissors") ||
+        (playerInput === "paper" && computerHand === "rock") ||
+        (playerInput === "scissors" && computerHand === "paper")
+    ) {
+        result = `You won ${playerInput} beats ${computerHand}`;
+    } else if (
+        (playerInput === "rock" && computerHand === "paper") ||
+        (playerInput === "paper" && computerHand === "scissors") ||
+        (playerInput === "scissors" && computerHand === "rock")
+    ) {
+        result = `You lost ${playerInput} is beaten by ${computerHand}`}
+        
+    resultMessage.textContent = result;
+
+    }
+
+rockButton.addEventListener("click", () => playGame("rock"));
+paperButton.addEventListener("click", () => playGame("paper"));
+scissorButton.addEventListener("click", () => playGame("scissors"));
+</script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

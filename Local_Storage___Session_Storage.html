@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Storage & Session Storage</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+  <style>
+
+table tr td {
+  border: 1px, solid, black;
+  border-collapse: collapse;
+}
+table th {
+  background-color: azure;
+  border: 2px, solid, black;
+  border-collapse: collapse;
+}
+  
+.btnback {
+  background-color: #6495ed; /* Green */
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 100px;
+}
+.btnback:hover {
+  background-color: #4169e1;
+}
+</style>
+  </head>
+
+  <body>
+    <h1>Local Storage & Session Storage</h1>
+    <h3>Local and Session Storage</h3>
+    <p>Maintains State: Keeps data available between page reloads.</p>
+    <p>Improves User Experience: Saves preferences and settings.</p>
+    <p>Reduces Server Load: Minimizes unnecessary API calls.</p>
+    <p>
+      Local Storage and Session Storage are like a locker. Local Storage is a
+      permanent locker, while Session Storage is a temporary one that gets
+      cleared when you leave
+    </p>
+    <h3>What is Local Storage?</h3>
+    <ul>
+        <li>Local Storage stores data persistently with no expiration.</li>
+Data is available even after the browser is closed and reopened.
+Stores key-value pairs</li>
+    </ul>
+  <h3>Using Local Storage</h3>
+  <p>The localStorage object allows you to save key/value pairs in the browser.</p>
+  <pre><code class = "language-JavaScript">
+    // Store data
+localStorage.setItem("username", "JohnDoe");
+
+// Retrieve data
+let username = localStorage.getItem("username");
+console.log(username); // "JohnDoe"
+
+// Remove data
+localStorage.removeItem("username");
+
+// Clear all data
+localStorage.clear();
+  </code></pre>
+<ul>
+  <li><code>setItem()</code> adds data to Local Storage.</li>
+  <li><code>getItem()</code>retrieves stored data</li>
+  <li><code>removeItem()</code> deletes a specific item.</li>
+  <li><code>clear()</code> removes all data</li>
+</ul>
+<p>Examle below is the javaScript code that correspons to the form. </p>
+<pre><code class = "language-JavaScript">
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;form id="form"&gt;
+      &lt;label for="name"&gt;Name:&lt;/label&gt;
+      &lt;input type="text" id="name" name="Name" required /&gt;
+      &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;script&gt;
+      const form = document.getElementById("form");
+      const nameInput = document.querySelector("#name");
+
+      form.addEventListener("submit", (event) =&gt; {
+        event.preventDefault();
+
+        const name = nameInput.value;
+
+        if (name) {
+          localStorage.setItem("name", name);
+          alert("Name saved to local storage!");
+          nameInput.value = "";
+        } else {
+          alert("Please enter a name.");
+        }
+      });
+    
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+</code></pre>
+<p>After you save the code above as HTML file and use the form then go to Devtoools, press + if necessary, applications and on the local side panel you get Local storage and name you submitted going to be saved. </p>
+<h3>What is Session Storage?</h3>
+<ul>
+  <li>Session Storage stores data temporarily.</li>
+<li>Data is cleared when the page is closed.</li>
+<li>Stores key-value pairs like Local Storage</li>
+</ul>
+<p>Session Storage works similarly to Local
+Storage.</p>
+<ul>
+  <li><code>setItem()</code> adds data to Session Storage.</li>
+  <li><code>getItem()</code>retrieves stored data</li>
+  <li><code>removeItem()</code> deletes a specific item.</li>
+  <li><code>clear()</code> removes all data</li>
+</ul>
+<pre><code class = "language-JavaScript">
+  // Store data
+sessionStorage.setItem("sessionID", "12345");
+
+// Retrieve data
+let sessionID = sessionStorage.getItem("sessionID");
+console.log(sessionID); // "12345"
+
+// Remove data
+sessionStorage.removeItem("sessionID");
+
+// Clear all data
+sessionStorage.clear();
+</code></pre>
+<table class = "maytable">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Local Storage</th>
+      <th>Session Storage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Persistence</td>
+      <td>Data remains after browser is closed</td>
+      <td>Data is cleared after closing the browser</td>
+    </tr>
+    <tr>
+      <td>Expiry</td>
+      <td>No expiry</td>
+      <td>Clears on session end</td>
+    </tr>
+    <tr>
+      <td>Storage Limit</td>
+      <td>5MB per domain</td>
+      <td>5MB per domain</td>
+    </tr>
+    <tr>
+      <td>Use Cases</td>
+      <td>Save user preferences, theme, etc.</td>
+      <td>Store temporary data like form inputs</td>
+    </tr>
+  </tbody>
+</table>
+<p>Local and Session Storage can only store strings.</p>
+<p> Use <code>JSON.stringify()</code> and <code>JSON.parse()</code> to store and retrieve objects.</p>
+<pre><code class = "language-JavaScript">
+let user = { name: "Alice", age: 30 };
+
+// Store object
+localStorage.setItem("user", JSON.stringify(user));
+
+// Retrieve object
+let retrievedUser = JSON.parse(localStorage.getItem("user"));
+console.log(retrievedUser.name); // "Alice"
+</code></pre>
+<p><code>JSON.stringify()</code> converts objects to strings</p>
+<p><code>JSON.parse()</code> converts strings back to objects.
+</p>
+<h3>Checking if data exists (was previously saved in the storage)</h3>
+<pre><code class = "language-JavaScript">
+ let storedData = localStorage.getItem("username");
+if (storedData) {
+  console.log(`Welcome back, ${storedData}`);
+} else {
+  console.log("No user data found.");
+}
+  </code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

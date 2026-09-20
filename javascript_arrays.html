@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript arrays</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>JavaScript arrays</h2>
+    <p>
+      The arrays are defined in the same way as in python, there is just
+      <code>;</code> at the end.
+    </p>
+    <pre><code class = "language-javascript">
+let fruits = ["apple", "banana", "cherry"];
+</code></pre>
+    <p>You can access the specific element by index;</p>
+    <pre><code class = "language-javascript">
+console.log(fruits[0]);
+console.log(fruits[1]);
+</code></pre>
+    <p>You can do the same using <code>at</code></p>
+    <pre><code class = "language-javascript">
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let fruit = fruits.at(2);
+</code></pre>
+
+    <h3>Array methods, javascript</h3>
+    <p>The length property returns the length (size) of an array</p>
+    <pre><code class = "language-javascript">
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let size = fruits.length;
+</code></pre>
+    <p>
+      The <code>length</code> property can be also used to set the size of the
+      array, in this case, the array is cut from the beginning to match the
+      specified number.
+    </p>
+    <pre><code class = "language-javascript">
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.length = 2; // ["Banana", "Orange"];
+</code></pre>
+    <p>he pop() method removes the last element from an array:</p>
+    <pre><code class = "language-javascript">
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.pop();
+</code></pre>
+    <p>The pop() method returns the value that was "popped out":</p>
+    <pre><code class = "language-javascript">
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let fruit = fruits.pop();
+</code></pre>
+    <h4>Adding the elements to the array</h4>
+    <p>The push() method adds a new element to an array (at the end):</p>
+    <pre><code class = "language-javascript">
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.push("Kiwi");
+</code></pre>
+    <p>The push() method returns the new array length:</p>
+    <pre><code class = "language-javascript">
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let length = fruits.push("Kiwi");
+</code></pre>
+
+    <p>Inserting the element inside the array by index</p>
+    <pre><code class = "language-javascript">
+const fruits = ['Apple', 'Banana', 'Date'];
+
+// Insert 'Cherry' at index 2
+fruits.splice(2, 0, 'Cherry');
+
+</code></pre>
+    <p>
+      array.splice(index, 0, element). Passing 0 as the second argument ensures
+      that no elements are deleted, turning the operation into a pure insertion.
+    </p>
+    <h3>Removing elements from the lists</h3>
+    <p>
+      The <code>shift()</code> method removes the first array element and
+      "shifts" all other elements to a lower index.
+    </p>
+    <pre><code class = "language-javascript">
+  const fruits = ["Banana", "Orange", "Apple", "Mango"];
+  fruits.shift();
+    </code></pre>
+    <p>
+      You can declare arrays with <code>const</code>, despite being modified,
+      the array is saved in the same place.
+    </p>
+
+    <h3>Different ways how to loop through the array</h3>
+    <p>Using the conventional loop</p>
+    <pre><code class = "language-javascript">
+let animals = ["dog", "cat", "rabbit"];
+
+// Using for loop
+for (let i = 0; i < animals.length; i++) {
+  console.log(animals[i]);
+}
+</code></pre>
+    <p>Using the arrow function</p>
+    <pre><code class = "language-javascript">
+let animals = ["dog", "cat", "rabbit"];
+// Using forEach
+animals.forEach(animal => console.log(animal));
+</code></pre>
+    <p>Using for of</p>
+    <pre><code class = "language-javascript">
+let animals = ["dog", "cat", "rabbit"];
+for (let animal of animals) {
+  console.log(animal);
+}
+    </code></pre>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

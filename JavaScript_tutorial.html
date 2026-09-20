@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript tutorial</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h1>JavaScript tutorial</h1>
+    <h3>Declaration of the variables in JavaScript</h3>
+    <pre><code class = "language-javascript">
+    let name = "john";
+    let age = 25;
+</code></pre>
+    <ul>
+      <li>let creates a variable that can be reassigned.</li>
+      <li>const creates a variable that cannot be reassigned.</li>
+      <li>var (older syntax) should generally be avoided</li>
+    </ul>
+    <h3>Datatypes in JavaScript</h3>
+    <ul>
+      <li>String – Text, surrounded by quotes</li>
+      <li>Number – Any numeric value</li>
+      <li>Boolean – True or false values</li>
+      <li>Object – Collection of key-value pairs</li>
+      <li>Array – Ordered list of items</li>
+      <li>Undefined – Variable declared but not assigned</li>
+      <li>Null – Represents an empty or non-existent value</li>
+    </ul>
+    <pre><code class = "language-javascript">
+        // String
+let name = "Alice";
+
+// Number
+let score = 95;
+
+// Boolean
+let isOnline = true;
+
+// Object
+let person = {
+  name: "John",
+  age: 30
+};
+
+// Array
+let colors = ["red", "blue", "green"];
+
+// Undefined
+let x;
+
+// Null
+let emptyValue = null;
+    </code></pre>
+    <h3>Checking the type of the certain variable</h3>
+    <pre><code class = "language-javascript">
+console.log(typeof name);      // "string"
+console.log(typeof score);     // "number"
+console.log(typeof isOnline);  // "boolean"
+</code></pre>
+    <ul>
+      <li>Variable names are case-sensitive.</li>
+      <li>They must begin with a letter, $, or _.</li>
+      <li>Cannot be a reserved JavaScript keyword</li>
+      <li>Use camel-case</li>
+    </ul>
+    <br />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

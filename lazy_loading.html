@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lazy loading</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h1>Lazy loading</h1>
+    <p>
+      Lazy loading means delaying the loading of resources (like images) until
+      they’re needed, typically when they appear on screen.
+    </p>
+    <pre><code class = "language-css">
+        &lt;img src = "photo.jpg" loading="lazy" alt = "A scienic view"&gt;
+    </code></pre>
+
+    <ul>
+      <li>Use modern formats like .webp or .avif</li>
+      <li>Compress images using tools like TinyPNG</li>
+      <li>Resize images to the max display size</li>
+      <li>Always add width/height attributes to avoid layout shifts</li>
+    </ul>
+
+    <h3>Minifying your CSS</h3>
+    <ul>
+      <li>Minifying = removing spaces, comments, and extra characters</li>
+      <li>Reduces file size and speeds up loading</li>
+      <li>Use tools like CSSNano or online compressors</li>
+    </ul>
+    <pre><code class = "language-css">
+        /* Original */
+body {
+  background-color: white;
+}
+/* Minified */
+body{background-color:#fff}
+    </code></pre>
+    <h3>Load CSS efficiently</h3>
+    <ul>
+        <li>Place &lt;link&gt; to your stylesheet in the &gt;head&lt;</li>
+<li>Avoid using @import inside CSS files — it's slower</li>
+<li>Consider splitting CSS for large projects: critical styles first, the rest
+later</li>
+</li>
+    </ul>
+    <p>Use tools like:</p>
+    <ul>
+    <li>Google Lighthouse</li>
+<li>PageSpeed Insights</li>
+<li>WebPageTest</li>
+</ul>
+<p>These tools give tips for improving speed and performance.</p>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

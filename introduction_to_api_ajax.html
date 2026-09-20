@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API and Ajax</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <p>
+      An API is a set of rules that allows one application to communicate with
+      another
+    </p>
+    <p>
+      <strong>Web APIs:</strong> Allow communication between client-side
+      applications and server-side resources.
+    </p>
+    <p>
+      Data Exchange: Uses formats like JSON or XML. These are the formats of the
+      data that are exchanged.
+    </p>
+    <p>
+      This process follows the Request/Response Model: Client sends a request,
+      and the server responds with data.
+    </p>
+    <h3>Example if the JSON format</h3>
+    <pre><code class = "language-javascript">
+{
+  "name": "Alice",
+  "age": 30,
+  "city": "New York"
+}
+    </code></pre>
+    <h3>Example if the XML format</h3>
+    <pre><code class = "language-html">
+&lt;user&gt;
+  &lt;name&gt;Alice&lt;/name&gt;
+  &lt;age&gt;30&lt;/age&gt;
+  &lt;city&gt;New York&lt;/city&gt;
+&lt;/user&gt;
+</code></pre>
+    <h3>AJAX</h3>
+    <p>
+      AJAX is a technique used to send and receive data asynchronously without
+      refreshing the page.
+    </p>
+    <p>It is basically asynchronous JavaScript</p>
+    <ul>
+      <li>Asynchronous Communication: Allows background data exchange.</li>
+      <li>Uses XMLHttpRequest or Fetch API: Sends and retrieves data.</li>
+      <li>
+        Improves User Experience: Dynamically updates the webpage without a full
+        reload.
+      </li>
+    </ul>
+    <h3>How AJAX works</h3>
+    <ol>
+        <li>User Action: An event (e.g., button click) triggers a request.</li>
+        <li>Request Sent: JavaScript sends a request to the server.</li>
+        <li>Server Processes: The server processes the request and returns data.</li>
+        <li>Response Received: JavaScript processes the returned data.</li>
+        <li>Page Updated: Content is dynamically updated without reloading.</li>
+</li>
+    </ol>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

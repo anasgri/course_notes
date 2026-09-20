@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1; /* Darker green on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Rounding Methods</h3>
+    <pre><code class = "language-javascript">
+console.log(Math.round(4.5));   // 5   → rounds to nearest integer
+console.log(Math.round(4.4));   // 4
+
+console.log(Math.ceil(4.1));    // 5   → rounds UP
+console.log(Math.floor(4.9));   // 4   → rounds DOWN
+
+console.log(Math.trunc(4.9));   // 4   → removes decimal part (no rounding)
+console.log(Math.trunc(-4.9));  // -4
+    </code></pre>
+    <h3>Min / Max</h3>
+    <pre><code class = "language-javascript">
+        console.log(Math.max(3, 7, 1, 9)); // 9  → largest value
+console.log(Math.min(3, 7, 1, 9)); // 1  → smallest value
+
+// With an array, use spread
+let nums = [4, 8, 2, 6];
+console.log(Math.max(...nums)); // 8
+    </code></pre>
+    <h3>Power & Roots</h3>
+    <pre><code class = "language-javascript">
+console.log(Math.pow(2, 3));   // 8   → 2 to the power of 3
+console.log(2 ** 3);           // 8   → same thing, modern syntax
+
+console.log(Math.sqrt(16));    // 4   → square root
+console.log(Math.cbrt(27));    // 3   → cube root
+</code></pre>
+
+    <h3>Absolute Value</h3>
+    <pre><code class = "language-javascript">
+console.log(Math.abs(-5));  // 5
+console.log(Math.abs(5));   // 5
+</code></pre>
+    <h3>Random numbers</h3>
+    <pre><code class = "language-javascript">
+console.log(Math.random()); // random decimal between 0 (inclusive) and 1 (exclusive)
+
+// Random integer between 1 and 10
+let randomNum = Math.floor(Math.random() * 10) + 1;
+console.log(randomNum);
+
+// Random integer in a range (min to max, inclusive)
+function randomInRange(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+console.log(randomInRange(5, 15));
+</code></pre>
+    <h3>Trigonometry</h3>
+    <pre><code class = "language-javascript">
+    console.log(Math.sin(Math.PI / 2)); // 1
+console.log(Math.cos(0));           // 1
+console.log(Math.tan(0));           // 0
+</code></pre>
+    <h3>Logarithms</h3>
+    <pre><code class = "language-javascript">
+console.log(Math.log(1));    // 0    → natural log (base e)
+console.log(Math.log2(8));   // 3    → log base 2
+console.log(Math.log10(100)); // 2   → log base 10
+    </code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

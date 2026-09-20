@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript loops</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>JavaScript loops</h2>
+    <p>The loop below logs to console the numbers from 0 to 4.</p>
+    <pre><code class = "language-javascript">
+        for (let i = 0; i < 5; i++) {
+            console.log(i)
+        }
+    </code></pre>
+    <p><code>i++</code> means adding 1</p>
+    <p>You can also do something else</p>
+    <pre><code class = "language-javascript">
+        for (let i = 0; i < 5; i*= 2) {
+            console.log(i)
+        }
+    </code></pre>
+
+    <h4>basic syntaxis</h4>
+    <pre><code class = "language-javascript">
+        for (initialization; condition; increment) {
+            code to run
+        }
+    </code></pre>
+    <pre><code class = "language-javascript">
+for (let i = 0; i < 7; i++) {
+    if (i%2 === 0) {
+        console.log("Even");
+    }
+    else {
+        console.log("Odd");
+    }
+}
+</code></pre>
+    <h3>The while loop</h3>
+    <pre><code class = "language-javascript">
+        while (condition) {
+            do something
+        }
+    </code></pre>
+    <p>Specific example</p>
+    <pre><code class = "language-javascript">
+let count = 0;
+while (count < 3) {
+  console.log("Count: " + count);
+  count++;
+}
+</code></pre>
+    <h4>Password validation using the while loop</h4>
+    <pre><code class = "language-javascript">
+const password = "1234";
+let inputPassw = "";
+
+while (password != inputPassw) {
+  inputPassw = prompt("Input password");
+}
+</code></pre>
+    <h3>do while loop</h3>
+    <p>
+      This loop is going to do action one time and then evaluate the condition.
+    </p>
+    <pre><code class = "language-javascript">
+let num = 0;
+do {
+  console.log("Number: " + num);
+  num++;
+} while (num < 3);
+    </code></pre>
+    <h3>forEach() loop</h3>
+    <p>
+      This loop runs through an array and applies the function at each
+      iteration.
+    </p>
+    <pre><code class = "language-javascript">
+        array.forEach(function(item, index) {
+            // do something;
+        })
+    </code></pre>
+    <h3>for of loop</h3>
+    <pre><code class = "language-javascript">
+let fruits = ["apple", "banana", "cherry"];
+    for (let fruit of fruits) {
+        console.log(fruit);
+}
+    </code></pre>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

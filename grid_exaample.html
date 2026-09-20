@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .main_container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        border: 2px solid black;
+      }
+
+      .item1 {
+        grid-column: 1/2;
+        grid-row: 1/1;
+        background-color: lightskyblue;
+        border-radius: 20px;
+        border: 2px solid black;
+      }
+
+      .item2 {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        background-color: green;
+        border-radius: 20px;
+        border: 2px solid black;
+      }
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main_container">
+      <p class="item1">This is item 1</p>
+      <p class="item2">This is item 2</p>
+    </div>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

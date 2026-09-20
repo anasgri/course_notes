@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript annd DOM cotinued</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>JavaScript annd DOM cotinued</h2>
+    <p>
+      You can select the element by <code>getElementById()</code> and then
+      modify its attruibutes and change styles.
+    </p>
+    <ul>
+      <li>innerText changes the visible text.</li>
+      <li>style modifies CSS properties.</li>
+      <li>setAttribute() updates attributes dynamically</li>
+    </ul>
+    <pre><code class = "language-javascript">
+let title = document.getElementById("title");
+
+// Change content
+title.innerText = "New Title";
+
+// Change styles
+title.style.color = "blue";
+title.style.fontSize = "24px";
+
+// Change attributes
+title.setAttribute("class", "highlight");
+    </code></pre>
+
+    <h3><code>querySelector</code></h3>
+    <p>
+      <code>querySelector</code>uses CSS selectors to target elements (#id,
+      .class, tag).
+    </p>
+    <p>Returns the first matching element</p>
+
+    <pre><code class = "language-javascript">
+// Select first element with class 'item'
+let item = document.querySelector(".item");
+console.log(item.innerText);
+</code></pre>
+    <p>Like getElementById(), querySelector() can modify content and styles</p>
+    <pre><code class = "language-javascript">
+let subtitle = document.querySelector(".subtitle");
+
+// Change content
+subtitle.innerText = "Updated Subtitle";
+
+// Add a new CSS class
+subtitle.classList.add("bold");
+
+// Remove a CSS class
+subtitle.classList.remove("italic");
+</code></pre>
+    <h3><code>querySelectorAll()</code></h3>
+    <p>
+      <code>querySelectorAll()</code> returns a NodeList of all matching
+      elements. And then you can loop through them.
+    </p>
+    <pre><code class = "language-javascript">
+  // Select all elements with class 'item'
+let items = document.querySelectorAll(".item");
+
+// Loop through and modify each item
+items.forEach(function(item) {
+  item.style.color = "green";
+});
+</code></pre>
+    <ul>
+      <li>getElementsByClassName() returns an HTMLCollection.</li>
+      <li>getElementsByTagName() selects elements by tag name.</li>
+    </ul>
+    <h3><code>getElementsByClassName() and getElementsByTagName()</code></h3>
+    <p>These methods return collections of elements by class or tag name</p>
+    <pre><code class = "language-javascript">
+  // Select all elements with class 'item'
+let items = document.getElementsByClassName("item");
+
+// Select all &lt;p&gt; elements
+let paragraphs = document.getElementsByTagName("p");
+
+</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

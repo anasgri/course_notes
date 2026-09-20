@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h3>HTML images</h3>
+    <p>
+      The src and the alt attributes are compulsory. If you specify both width
+      and height attrinutes the image might get stretched
+    </p>
+    <p>
+      If you specify only one of these attributes e.g with only, the second one
+      gets updated
+    </p>
+    <p>
+      title attribute provides the tooltip, the sign that appears when you hover
+      over image
+    </p>
+
+    <pre><code class="language-html">
+	&lt;img src="https://i.ytimg.com/vi/2r2cUrzQBIo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCZCXM0QRzXrs9lTKgJ6b0XgdAofg" 
+	width="500" alt = "picture" title = "Pigmy_hippo"/&gt;
+</code></pre>
+    <img
+      src="https://i.ytimg.com/vi/2r2cUrzQBIo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLCZCXM0QRzXrs9lTKgJ6b0XgdAofg"
+      width="500"
+      alt="picture"
+      title="Pigmy_hippo"
+    />
+    <pre><code class="language-html">
+	&lt;img src="img_girl.jpg" width="500" height="600" alt = "picture"/&gt;
+</code></pre>
+
+    <p><img src="img_girl.jpg" width="500" height="600" alt="picture" /></p>
+    <!--The img tag has attributes width hight-->
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

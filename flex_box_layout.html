@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flex-box layout</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+        .container {
+  display: flex;
+  background-color: DodgerBlue;
+}
+
+.container div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.container1 {
+  display: flex;
+  background-color: skyblue;
+  flex-direction: row-reverse;
+
+}
+
+.container1 div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.container2 {
+  display: flex;
+  background-color: aquamarine;
+  flex-direction: column;
+
+}
+
+.container2 div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.container3 {
+  display: flex;
+  background-color: rgb(132, 184, 230);
+  flex-direction: column-reverse;
+
+}
+
+.container3 div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+div.card {background-color: #F2F3F5;
+border: solid 2px black;
+border-radius: 50px;
+margin: 20px;
+font-size: 2rem;
+height: 100px;
+width: 100px;
+}
+div.card:hover {background-color: #BFBFBF;
+border: solid 2px grey;
+border-radius: 50px;
+margin: 20px;
+font-size: 2rem;
+height: 100px;
+width: 100px;
+-webkit-box-shadow:0px 0px 64px 45px rgba(46,91,255,0.9);
+-moz-box-shadow: 0px 0px 64px 45px rgba(46,91,255,0.9);
+box-shadow: 0px 0px 64px 45px rgba(46,91,255,0.9);
+}
+
+.btnback {
+  background-color: #6495ed; /* Green */
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 100px;
+}
+.btnback:hover {
+  background-color: #4169e1;
+}
+
+p.selected {
+font-family: "Arvo", serif;
+font-weight: 500;
+font-style: normal;
+position: relative;
+top: 4px;
+text-align: center;
+}
+.parent_container {
+display:flex;
+flex-direction: column;
+gap: 1;
+justify-content: space-between;
+flex-wrap: wrap;
+height: 500px;
+}
+
+.container4 {
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+}
+.square1 {
+  flex: 1;
+  background-color: #D3D3D3;
+border: solid 1px black;
+}
+.square2 {
+  flex: 3;
+  background-color: #FFFCC9;
+border: solid 1px black;
+
+}
+
+    </style>
+  </head>
+  <body>
+    <h1>Flexbox layout</h1>
+    <p>
+      <strong>Flexbox</strong> is a powerful CSS layout module that makes it
+      easier to design flexible and responsive layout structures without using
+      floats or complicated positioning. It helps align and distribute space
+      among items in a container
+    </p>
+    <p>
+      To use the Flexbox add the <code>display:flex</code> to the container.
+    </p>
+    <p>
+      All children elements within this container are automatically positioned.
+    </p>
+    <p>The default direction is horizontal (row).</p>
+    <h3>Note on the display property.</h3>
+    <p>The display property is defining how the item is displayed.</p>
+    <p>The most common values arr <code>inline, block and none</code></p>
+    <p>
+      <strong>none</strong> - means hidden, the document looks like the element
+      does not exist.
+    </p>
+    <p>
+      <strong>block</strong> - the element is going to take all the width of the
+      parent container.
+    </p>
+    <p><strong>inline</strong>- Displays an element as an inline element (like <span>). Any height and width properties will have no effect. This is default.</p>
+    <p><strong>inline-block</strong> - Displays an element as an inline-level block container. The element itself is formatted as an inline element, but you can apply height and width values.</p>
+<h3>Basic Flexbox example</h3>
+<pre><code class = "language-html">
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+.container {
+  display: flex;
+  background-color: DodgerBlue;
+}
+
+.container div {
+  background-color: #f1f1f1;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+  &lt;div&gt;Item 1&lt;/div&gt;
+  &lt;div&gt;Item 2&lt;/div&gt;
+  &lt;div&gt;Item 3&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<div class="container">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+<h3>Flex direction</h3>
+<p>Flex direction can take several values.</p>
+<ul>
+    <li>flex-direction: row;</li>
+    <li>flex-direction: row-reverse;</li>
+    <li>flex-direction: column;</li>
+    <li>flex-direction: column-reverse;</li>
+</ul>
+<p>Row is the default ditrection (already shown ablove)</p>
+<p><code>flex-direction: row-reverse;</code></p>
+<div class="container1">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+<p><code>flex-direction: column;</code></p>
+<div class="container2">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+<p><code>flex-direction: column-reverse;</code></p>
+<div class="container3">
+  <div>Item 1</div>
+  <div>Item 2</div>
+  <div>Item 3</div>
+</div>
+<p>There is also a <strong><code>gap</code></strong> property, that adds the gap between the items.</p>
+<p>Flexbox has two axes:</p>
+<ul>
+<li>
+<strong>Main axis</strong>: the direction in which flex items are laid out (default is left to right).</li>
+<li>
+<strong>Cross axis</strong>: perpendicular to the main axis.
+</li></ul>
+<h3>Using <code>justify-content</code> that aligns items to the main axis</h3>
+<p><code>justify-content</code> options:</p>
+<ul>
+    <li>
+        flex-start;
+    </li>
+    <li>
+        flex-end;
+    </li>
+    <li>
+        center;
+    </li>
+    <li>
+        space-between;
+    </li>
+    <li>
+        space-around;
+    </li>
+    <li>
+        space-evenly;
+    </li>
+</ul>
+<p>Overview of the layouts is below:</p>
+<p>In the example below, the main axes is <strong>horizontal</strong>, flex-direction:row</p>
+<img src = "overview_layouts.png" alt = layout_overview width = 500>
+<h3>Align-items</h3>
+<p>Align-items aligns items along the cross axis.</p>
+<ul>
+<li>stretch (default)</li>
+<li>flex-start</li>
+<li>flex-end</li>
+<li>center</li>
+<li>baseline</li>
+</ul>
+<img src = "overview_layouts_sup_ax.png" alt = layout_second_axes width = 500/>
+<h3>Flex-wrap</h3>
+<p>By default the wrapping us wrapped in the single line.</p>
+<p>You can use flex-wrap to aloow the wrapping. </p>
+<ul>
+<li>nowrap (default)</li>
+<li>wrap</li>
+<li>wrap-reverse</li>
+</ul>
+<h4>How the flex wrap works</h4>
+<ul>
+<li>flex-direction: row + flex-wrap: wrap → items fill left-to-right, then wrap into new rows stacked downward.</li>
+<li>flex-direction: column + flex-wrap: wrap → items fill top-to-bottom, then wrap into new columns extending rightward.</li>
+</ul>
+<p>
+  The condition that has to be true either way: the container needs a <strong>bounded size</strong> on the axis items are flowing along, or there's nothing for the browser to "run out of." 
+  For row, that's a bounded width (or the items' total width exceeding the container's width). 
+  For column, that's a bounded height. For <code>flex-direction: column + flex-wrap</code> to work, the container should have the set finite height.
+</p>
+<pre><code class = "language-html">
+&lt;!doctype = html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Nice cards amino acids
+&lt;/title&gt;&lt;/head&gt;
+&lt;style&gt;
+div.card {background-color: #F2F3F5;
+border: solid 2px black;
+border-radius: 50px;
+margin: 20px;
+font-size: 2rem;
+height: 100px;
+width: 100px;
+}
+div.card:hover {background-color: #BFBFBF;
+border: solid 2px grey;
+border-radius: 50px;
+margin: 20px;
+font-size: 2rem;
+height: 100px;
+width: 100px;
+-webkit-box-shadow:0px 0px 64px 45px rgba(46,91,255,0.9);
+-moz-box-shadow: 0px 0px 64px 45px rgba(46,91,255,0.9);
+box-shadow: 0px 0px 64px 45px rgba(46,91,255,0.9);
+}
+
+p.selected {
+font-family: "Arvo", serif;
+font-weight: 500;
+font-style: normal;
+position: relative;
+top: 4px;
+text-align: center;
+}
+.parent_container {
+display:flex;
+flex-direction: column; /* The flex-warp value is set to wrap*/
+gap: 1;
+justify-content: space-between;
+flex-wrap: wrap; /* The flex-warp value is set to wrap*/
+height: 500px;
+}
+&lt;/style&gt;
+&lt;body&gt;
+&lt;h1&gt;Flash cards&lt;/h1&gt;
+&lt;div class = "parent_container"&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;1&lt;/p&gt;&lt;/div&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;2&lt;/p&gt;&lt;/div&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;3&lt;/p&gt;&lt;/div&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;4&lt;/p&gt;&lt;/div&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;5&lt;/p&gt;&lt;/div&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;6&lt;/p&gt;&lt;/div&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;7&lt;/p&gt;&lt;/div&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;8&lt;/p&gt;&lt;/div&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;9&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;10&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class = "card"&gt;
+&lt;p class = "selected"&gt;11&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<div class = "parent_container">
+<div class = "card">
+<p class = "selected">1</p></div>
+<div class = "card">
+<p class = "selected">2</p></div>
+<div class = "card">
+<p class = "selected">3</p></div>
+<div class = "card">
+<p class = "selected">4</p></div>
+<div class = "card">
+<p class = "selected">5</p></div>
+<div class = "card">
+<p class = "selected">6</p></div>
+<div class = "card">
+<p class = "selected">7</p></div>
+<div class = "card">
+<p class = "selected">8</p></div>
+<div class = "card">
+<p class = "selected">9</p></div>
+</div>
+<div class = "card">
+<p class = "selected">10</p></div>
+</div>
+<div class = "card">
+<p class = "selected">11</p></div>
+</div>
+<h3>Flex-flow</h3>
+<p>The two properties flex-direction and flex-wrap are used so often together that the shorthand property flex-flow was created to combine them. 
+  This shorthand property accepts the value of the two properties separated by a space.</p>
+  <pre><code class="language-css">
+.pond {
+display: flex;
+flex-flow: column wrap;
+}
+  </code></pre>
+<h3>align-content</h3>
+<p>The align-content property aligns the flex lines. It only has effect when flex items <strong>wrap onto multiple lines.</strong></p>
+<p>This property can have one of the following values:</p>
+<ul><li>stretch (default)</li>
+<li>center</li>
+<li>flex-start</li>
+<li>flex-end</li>
+<li>space-between</li>
+<li>space-around</li>
+<li>space-evenly</li>
+</ul>
+<h3>Controlling Item Size with flex</h3>
+<pre><code class = "language-css">
+  .item {
+    flex: 1;
+  }
+</code></pre>
+<p>Flex is applied to the indivisual items. Not the container. It controls what proportion of the available space the item can take.</p>
+<pre><code class = "language-html">
+&lt;!doctype html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Flex Squares&lt;/title&gt;&lt;/head&gt;
+&lt;style&gt;
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+}
+.square1 {
+  flex: 1;
+  background-color: #D3D3D3;
+border: solid 1px black;
+}
+.square2 {
+  flex: 3;
+  background-color: #FFFCC9;
+border: solid 1px black;
+
+}
+&lt;/style&gt;
+&lt;body&gt;
+&lt;div class="container"&gt;
+  &lt;div class="square1"&gt;Square with flex 1&lt;/div&gt;
+  &lt;div class="square2"&gt;Square with flex 3&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<div class="container4">
+  <div class="square1">Square with flex 1</div>
+  <div class="square2">Square with flex 3</div>
+</div>
+<h2>Other properties that are applied to the children elements (not the container)</h2>
+<h3>flex-shrink property</h3>
+<p><code><strong>The flex-shrink property</strong></code> specifies how the item will shrink relative to the rest of the flexible items inside the same container.</code></p>
+<pre><code class = "language-css">
+  div:nth-of-type(2) {
+  flex-shrink: 3;
+}
+</code></pre>
+
+<h3>flex-grow</h3>
+<p>The flex-grow CSS property specifies how much a flex item will grow relative to the other flex items inside the same container when extra free space is available.</p>
+<pre><code class = "language-css">
+div:nth-of-type(1) {flex-grow: 1;}
+div:nth-of-type(2) {flex-grow: 3;}
+div:nth-of-type(3) {flex-grow: 1;}
+</code></pre>
+<h3>order</h3>
+<p><code><strong>order</strong></code> - Specifies the display order of the flex items inside the flex container. Default is 0; higher numbers appear later</p>
+<pre><code class = "language-html">
+&lt;div class="flex-container"&gt;
+&lt;div style="order: 3"&gt;1&lt;/div&gt;
+&lt;div style="order: 2"&gt;2&lt;/div&gt;
+&lt;div style="order: 4"&gt;3&lt;/div&gt;
+&lt;div style="order: 1"&gt;4&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<img src = "order_demo.png" alt = "order_demo"/>
+<h3>align-self property</h3>
+<p>The align-self property specifies the alignment in the block direction for the selected item inside a flexbox or grid container.</p>
+<p>For pages in English, block direction is downward and inline direction is left to right.</p>
+
+<p>💡 To align a grid item in the inline direction instead of the block direction, use justify-self or justify-items properties.</p>
+<p><code>align-self</code> overrides align-items for individual
+items.</p>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

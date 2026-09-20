@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=#, initial-scale=1.0" />
+    <title>JavaScript conditionals</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>JavaScript conditionals</h2>
+    <p>
+      Conditionals allow your code to respond to different situations. You can
+      run different blocks of code depending on whether a condition is true or
+      false
+    </p>
+    <pre><code class = "language-javascript">
+if (age >= 18) { 
+    console.log("You can enter"); } else 
+{ 
+    console.log("You can not enter"); 
+}
+</code></pre>
+
+    <h4>General synatxis</h4>
+    <pre><code class = "language-javascript">
+if (condition) {
+    do something;
+} else 
+{
+    do something else;
+}
+    </code></pre>
+    <h4>Basic example</h4>
+    <pre><code class = "language-javascript">
+  let raining = true;
+  if (raining) {
+    console.log("Its raining");
+  }
+  else {
+    console.log("Its not raining");
+  }
+</code></pre>
+    <h4>Example with multiple conditions</h4>
+
+    <pre><code class = "language-javascript">
+let raining = true;
+let haveUnmbrella = true;
+  if (raining && haveUnmbrella) {
+    console.log("Its raining. but you can come out");
+  }
+  else {
+    console.log("Its not raining");
+  }
+</code></pre>
+    <h4>You can use <code>else if</code> if to test multiple conditions</h4>
+    <pre><code class = "language-javascript">
+let grade = 85;
+if (grade >= 90) {
+  console.log("Excellent");
+}
+else if (grade >= 80) {
+  console.log("very good");
+}
+else if (grade >= 70) {
+  console.log("good");
+}
+else {
+  console.log("pass");
+}
+</code></pre>
+
+    <h3>Switch statement</h3>
+    <pre><code class = "language-javascript">
+  switch(expression) {
+  case x:
+    // code block
+    break;
+  case y:
+    // code block
+    break;
+  default:
+    // code block
+}
+</code></pre>
+    <h4>Example:</h4>
+    <pre><code class = "language-javascript">
+let day = 3;
+switch (day) {
+  case 1:
+  console.log("Monday");
+  break;
+
+  case 2:
+  console.log("Tuesday");
+  break;
+
+  case 3: 
+  console.log("Wednesday");
+  break;
+
+  case 4: 
+  console.log("Thursday");
+  break;
+
+  default:
+  console.log("non-working day");
+
+}
+</code></pre>
+
+    <h3>Shorthand for the <code>if else</code> <code>?</code></h3>
+    <p>
+      The <code>?</code> is going to evaluate the condition and set it ti the
+      first value if condition is true, to the second if it is false
+    </p>
+    <pre><code class = "language-javascript">
+let isMember = true;
+let price = isMember ? "$10": "$20";
+console.log(price)
+</code></pre>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

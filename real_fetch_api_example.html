@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real fetch API instruction</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h1>These are instructions how to use real sample API</h1>
+    <ul>
+      <li>Create the empty html file</li>
+      <li><a href = https://sampleapis.com/api-list/coffee>The link to the coffee API</a></li>
+      <li>Go to this link and copy the actual link ti api from there. </li>
+    </ul>
+    <p>The full code is below. That needs to be comnnected to the html via script tag</p>
+    <pre><code class = "language-javascript">
+        async function fetchData() {
+  try {
+    let response = await fetch("https://api.sampleapis.com/coffee/hot");
+    if (!response.ok) {
+      throw new Error(
+        `Something not right with the response ${response.status}`,
+      );
+    }
+
+    let data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+fetchData();
+    </code></pre>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

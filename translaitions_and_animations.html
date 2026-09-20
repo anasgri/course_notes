@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transitions and animations</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      .button {
+        background-color: blue;
+        transition: background-color 1s ease;
+      }
+      .button:hover {
+        background-color: green;
+      }
+
+      button.sel {
+        background-color: blue;
+        transition: all 1s ease 0s;
+      }
+
+      button.sel:hover {
+        background-color: green;
+        transform: scale(1.2);
+      }
+    
+.btnback {
+  background-color: #6495ed; /* Green */
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 100px;
+}
+.btnback:hover {
+  background-color: #4169e1;
+}
+</style>
+  </head>
+  <body>
+    <h1>Transitions and animations</h1>
+    <p>Below is the example of the animated button</p>
+    <pre><code class = "language-css">
+.button {
+    background-color: blue;
+    transition: background-color 1s ease;
+}
+.button:hover {
+    background-color: green;
+}
+    </code></pre>
+    <button class="button">This is that button</button>
+    <p>The actual syntaxis of the transition.</p>
+    <p><code>transition: property duration timing function delay</code></p>
+    <p>Example:</p>
+    <pre><code class = "language-css">
+transition: all 0.5s ease-in-out 0s;
+    </code></pre>
+    <ul>
+      <li>all = what properties to animate</li>
+      <li>0.5s = how long it lasts</li>
+      <li>ease-in-out = speed curve</li>
+      <li>0s = delay before starting</li>
+    </ul>
+    <pre><code class = "language-css">
+      button {
+        background-color: blue;
+        transition: all 1s ease 0s;
+      }
+
+      button:hover {
+        background-color: green;
+        transform: scale(1.2);
+      }
+    </code></pre>
+    <button class="sel">Example button</button>
+    <h3>Different timing functios</h3>
+    <img
+      src="css_timing_functions_small_multiples.svg"
+      alt="timing_functions"
+      width="500px"
+    />
+    <p>You can transition changes in:</p>
+    <ul>
+      <li>Colors (background-color, color)</li>
+      <li>Position (left, top)</li>
+      <li>Size (width, height)</li>
+      <li>Opacity</li>
+      <li>Transform (scale, rotate)</li>
+    </ul>
+    <h3>Css animations</h3>
+    <ul>
+      <li>@keyframes define stages of the animation</li>
+      <li>animation property controls timing and behaviour</li>
+    </ul>
+    <pre><code class = "language-css">
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.box {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+    </code></pre>
+    <h3>Animation synatax</h3>
+    <code
+      >animation: name duration timing-function delay iteration-count direction
+      fill-mode;
+    </code>
+    <p>Example:</p>
+    <pre><code class = "language-css">
+      animation: bounce 1s ease 0s infinite alternate both
+    </code></pre>
+    <ul>
+      <li>bounce = name of the keyframe animation</li>
+      <li>1s = duration of the animation</li>
+      <li>ease = timing function (speed curve)</li>
+      <li>0s = delay before starting</li>
+      <li>infinite = number of times it repeats</li>
+      <li>alternate = direction of the animation (reverses every cycle)</li>
+      <li>both = fill mode (retains styles before and after animation)</li>
+    </ul>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

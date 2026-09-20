@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fetch Api</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>Fetch API</h2>
+    <p>
+      The Fetch API is a modern JavaScript interface that allows you to make
+      HTTP requests to servers and handle responses easily. It simplifies
+      working with APIs by using Promises and provides a cleaner alternative to
+      XMLHttpRequest.
+    </p>
+    <p>
+      Using the Fetch API is like ordering food through an app. You request the
+      order (GET), send special instructions (POST), and get a response when
+      your food is ready.
+    </p>
+    <h3>Basic synatxis of the Fetch API</h3>
+    <pre><code class = "language-javascript">
+fetch(url, options)
+  .then((response) => {
+    // Handle response
+  })
+  .catch((error) => {
+    // Handle errors
+  });
+    </code></pre>
+    <ul>
+      <li>
+        url: The endpoint where the request is sent. on the same website you
+        might have different urls for different actions, based on what do you
+        want to do.
+      </li>
+      <li>
+        options specify, if you are doing get, post request and if you need any
+        aditiona information like API key.
+      </li>
+      <li>Returns a Promise that resolves to a Response object.</li>
+    </ul>
+    <h3>The example how fetch can be used to retrieve data from the server</h3>
+    <pre><code class = "language-javascript">
+fetch('https://api.example.com/data')
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json(); // here the function ends
+  })
+  .then((data) => console.log(data))
+  .catch((error) => console.error('Error:', error));
+    </code></pre>
+    <p>
+      The synataxis is the following
+      <code>fetch('url').then((response) => {...})</code>
+    </p>
+    <p>where the response is the variable that stoires the Response Object.</p>
+    <p>
+      Within the function we check if the response is ok or not. That is if the
+      promis is fulfilled or not.
+    </p>
+    <p>
+      The key rule: whatever a .then() callback returns becomes the value the
+      next .then() receives.
+    </p>
+    <p>Thus data in this example stores <code>response.json()</code></p>
+    <p>
+      <code>.catch((error) => console.error('Error:', error));</code> returns
+      whatever errors that happens in the process.
+    </p>
+    <h3>The example how the fetch can be used to send POST request</h3>
+    <pre><code class = "language-javascript">
+      fetch('https://api.example.com/addUser', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    name: 'Alice',
+    email: 'alice@example.com',
+  }),
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(`Error! Status: ${response.status}`)
+    }
+    return response.json()
+  })
+  .then((data) => console.log('User added:', data))
+  .catch((error) => console.error('Error:', error))
+    </code></pre>
+    <p>To make a post request, you need the information to send.</p>
+    <p>https://api.example.com/addUser - is where the information gets sent</p>
+    <p><strong>headers</strong> specify the type if the informstion</p>
+    <p>
+      <strong>body</strong> contains the JSON data that will be sent to the
+      server.
+    </p>
+    <h3>Using Async/Await with Fetch API</h3>
+    <pre><code class = "language-javascript">
+      async function fetchData() {
+  try {
+    let response = await fetch('https://api.example.com/data')
+    if (!response.ok) {
+      throw new Error(`Error! Status: ${response.status}`)
+    }
+    let data = await response.json()
+    console.log(data)
+  } catch (error) {
+    console.error('Error:', error)
+  }
+}
+
+fetchData()
+    </code></pre>
+    <h3>Step by syep going through this function</h3>
+    <ul>
+      <li>
+        <code>async function fetchData()</code> - ensures that the function is
+        asynchronous, it does not wait for other JavaScript code
+      </li>
+      <li>
+        <pre><code class = "language-javascript">
+    try {
+    let response = await fetch('https://api.example.com/data')
+    if (!response.ok) {
+      throw new Error(`Error! Status: ${response.status}`)
+    }
+  </code></pre>
+        <p>
+          This checks the response. await means we might have to wait for
+          response. Mandatory with async.
+        </p>
+      </li>
+      <li>
+        <code>throw new Error</code> - this code lets user to create a custom
+        error.
+      </li>
+      <li>
+        <code>let data = await response.json() console.log(data)</code> - saves
+        the response.json in data variable.
+      </li>
+      <li>catch section cates the errors</li>
+    </ul>
+    <h3>Sending POST request using FormData</h3>
+    <pre><code class = "language-javascript">
+let formData = new FormData()
+formData.append('username', 'JohnDoe')
+formData.append('age', 30)
+
+fetch('https://api.example.com/upload', {
+  method: 'POST',
+  body: formData,
+})
+  .then((response) => response.json())
+  .then((data) => console.log('Data uploaded:', data))
+  .catch((error) => console.error('Error:', error))
+  </code></pre>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

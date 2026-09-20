@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customizing files created with bootstrap</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Customizing files created with bootstrap</h1>
+    <p>
+      If you add another stylesheet after importing the bootstrap CDN, then your
+      stylesheet is going to overwrite the bootstrap styles.
+    </p>
+    <p>
+      You can also overwrite any class from bootstrap, by creating the class
+      with the same name in your css.
+    </p>
+    <p>Example: change the style of a .btn-primary button.</p>
+    <pre><code class = "language-css">
+.btn-primary {
+background-color: #222;
+border-color: #222;
+font-weight: bold;
+}
+    </code></pre>
+    <h3>What not to use: <code>!important</code> tag</h3>
+    <p>
+      First, the <code>!important</code> rule is used to give the value of a
+      specific property the highest priority.
+    </p>
+    <p>
+      The <code>!important</code> rule will override ALL previous styling rules
+      for that specific property on that element!
+    </p>
+    <p>
+      The <code>!important</code> keyword is added to the end of a CSS
+      declaration, before the semicolon.
+    </p>
+    <pre><code class = "language-css">
+selector {
+  property: value !important;
+}
+    </code></pre>
+    <p>
+      Ideally do not use the <code>!important</code> tag, because nothing is
+      that important. You can reach the same effect by adding your stylesheet
+      after bootstrap CDN.
+    </p>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

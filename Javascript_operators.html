@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>JavaScript operators</h2>
+    <h3>Arithmetic Operators</h3>
+    <pre><code class = "language-javascript">
+let a = 10, b = 3;
+
+console.log(a + b);   // 13  → Addition
+console.log(a - b);   // 7   → Subtraction
+console.log(a * b);   // 30  → Multiplication
+console.log(a / b);   // 3.333... → Division
+console.log(a % b);   // 1   → Modulus (remainder)
+console.log(a ** b);  // 1000 → Exponentiation
+
+let c = 5;
+console.log(c++);  // 5 (then c becomes 6) → Increment
+console.log(c--);  // 6 (then c becomes 5) → Decrement
+    </code></pre>
+    <h3>Assignment Operators</h3>
+    <pre><code class = "language-javascript">
+let x = 10;
+x += 5;   // x = x + 5  → x is now 15
+x -= 3;   // x = x - 3  → x is now 12
+x *= 2;   // x = x * 2  → x is now 24
+x /= 4;   // x = x / 4  → x is now 6
+x %= 4;   // x = x % 4  → x is now 2
+x **= 3;  // x = x ** 3 → x is now 8
+
+</code></pre>
+    <h3>Comparison Operators</h3>
+    <pre><code class = "language-javascript">
+let m = 5, n = "5";
+console.log(m == n);   // true  → Equal (loose, checks value only)
+console.log(m === n);  // false → Strict equal (checks value + type)
+console.log(m != n);   // false → Not equal
+console.log(m !== n);  // true  → Strict not equal
+console.log(m > 3);    // true  → Greater than
+console.log(m < 3);    // false → Less than
+console.log(m >= 5);   // true  → Greater than or equal
+console.log(m <= 4);   // false → Less than or equal
+
+</code></pre>
+    <h3>Logical Operators</h3>
+    <pre><code class = "language-javascript">
+let age = 25;
+let hasID = true;
+
+console.log(age >= 18 && hasID);   // true  → AND (both must be true)
+console.log(age < 18 || hasID);    // true  → OR (at least one true)
+console.log(!hasID);               // false → NOT (flips the boolean)
+
+</code></pre>
+    <br />
+    <h3>Some aspects of the operators</h3>
+    <p>
+      If you type to the console <code>23 + "2"</code> the result is going to be
+      <code>"232"</code> of type string.
+    </p>
+
+    <p>If you type <code>23 - "2"</code> you get 21 of type number.</p>
+    <p><code>"23" - "2"</code> will yield 21 of type number</p>
+    <p><code>"Hello " + "World"</code> will yield <code>Hello World</code></p>
+    <p><code>"Hello " - "World"</code> will result in the error.</p>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

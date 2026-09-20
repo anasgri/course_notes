@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript scope</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>JavaScript scope</h2>
+    <p>
+      Scope defines the area in which a variable is accessible. JavaScript has
+      three types of scope:
+    </p>
+    <ul>
+      <li>
+        <strong>Global Scope:</strong> Variables declared outside any function
+        are accessible anywhere in the program.
+      </li>
+      <li>
+        <strong>Function Scope:</strong> Variables declared inside a function
+        are accessible only within that function.
+      </li>
+      <li>
+        <strong>Block Scope:</strong> Variables declared with let and const
+        inside a block ({}) are accessible only within that block.
+      </li>
+    </ul>
+    <h3>What is this?</h3>
+    <ul>
+      <li>this refers to the object that is executing the current function.</li>
+      <li>In a method, this refers to the object calling the method.</li>
+      <li>
+        In a regular function, this refers to the global object (window in
+        browsers).
+      </li>
+      <li>In an arrow function, this is inherited from the parent scope</li>
+    </ul>
+
+    <p>If you run the function below, it shows the window object</p>
+    <pre><code class = "language-javascript">
+function showThis() {
+    console.log(this);
+}
+showThis()
+</code></pre>
+
+    <p>
+      Arrow functions are anonymous functions. Thus, if you call the this
+      fuuction through arrow function it returns undefined.
+    </p>
+    <pre><code class = "language-javascript">
+let personArrow = {
+name: "Bob",
+greet: () => {
+console.log("Hello, " + this.name);
+  }
+};
+
+personArrow.greet(); // "Hello, undefined"
+</code></pre>
+    <h3>Closures</h3>
+    <p>
+      A closure is created when a function remembers and accesses variables from
+      its outer scope, even after that scope has finished executing.
+    </p>
+    <p>
+      Closures are like a backpack that carries items (variables) from one place
+      (outer scope) to another (inner function), even after leaving the original
+      location
+    </p>
+    <p>
+      In the example below, once the return statement is executed the
+      outerFunction stops, but you can still acess the outervar, because it is
+      withing the scope of the inner function.
+    </p>
+    <pre><code class = "language-javascript">
+function outerFunction(outerVar) {
+  return function innerFunction(innerVar) {
+    console.log(`Outer: ${outerVar}, Inner: ${innerVar}`);
+  };
+}
+
+const newFunction = outerFunction("outside");
+newFunction("inside");
+// Output: Outer: outside, Inner: inside
+</code></pre>
+    <h3>Where the closeures are necessaery.</h3>
+    <p>
+      Lets suppose we have a counter and the function that adds 1 to the
+      counter.
+    </p>
+
+    <pre><code class = "language-javascript">
+    // Initiate counter
+let counter = 0;
+
+// Function to increment counter
+function add() {
+  counter += 1;
+}
+
+// Call add() 3 times
+add();
+add();
+add();
+
+// The counter should now be 3
+</code></pre>
+    <p>
+      But in this case the variable <code>let counter = 0;</code> is not private
+      and can be modified outside tne function.
+    </p>
+    <p>The correct way how to keep it private is below:</p>
+    <pre><code class = "language-javascript">
+    function myCounter() {
+  let counter = 0;
+  return function() {
+    counter++;
+    return counter;
+  };
+}
+const add = myCounter();
+add();
+add();
+add();
+
+// the counter is now 3
+</code></pre>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

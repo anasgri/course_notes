@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Event listeners</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+<style>
+.btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+	margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1; /* Darker green on hover */
+</style>
+  </head>
+  <body>
+    <h2>Adding the event listeners to the page</h2>
+    <h3>Click event</h3>
+    <pre><code class = "language-javascript">
+let button = document.getElementById("myButton");
+button.addEventListener("click", function() {
+  alert("Button clicked!");
+});
+</code></pre>
+    <p>Below is the example with the arrow function.</p>
+    <pre><code class = "language-javascript">
+    let btn = document.getElementById("btn");
+btn.addEventListener("click", () => {
+  console.log("Button was clicked!");
+});
+</code></pre>
+    <p>
+      The code below can be used to make a button that changes the colour of the
+      background
+    </p>
+    <pre><code class = "language-javascript">
+      const button = document.querySelector("button");
+      button.addEventListener("click", function (e) {
+        console.log("You clicked me");
+        if (document.body.style.backgroundColor === "blue") {
+          document.body.style.backgroundColor = "white";
+        } else {
+          document.body.style.backgroundColor = "blue";
+        }
+      });
+
+      </code></pre>
+    <h3>Keydown event</h3>
+    <pre><code class = "language-javascript">
+document.addEventListener("keydown", function(event) {
+console.log(`Key pressed: ${event.key}`);
+});
+      </code></pre>
+    <p>The example above saves the keys that the user presses.</p>
+    <p>
+      Below is the example of the html document with the element moving up and
+      down
+    </p>
+    <pre><code class = "language-javascript">
+    &lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;keydown demo&lt;/title&gt;
+    &lt;style&gt;
+      .character {
+        width: 200px;
+        height: 100px;
+        position: relative;
+        top: 100px;
+        background-color: blue;
+        border-radius: 100px;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Keydown demo&lt;/h1&gt;
+    &lt;div class="character" id="main"&gt;&lt;/div&gt;
+    &lt;script&gt;
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "ArrowDown") {
+          let char = document.getElementById("main");
+          let currentTop = parseInt(char.style.top) || 0; // convert "10px" -&gt; 10
+          char.style.top = currentTop + 10 + "px"; // move down by 10px
+        } else if (event.key === "ArrowUp") {
+          let char = document.getElementById("main");
+          let currentTop = parseInt(char.style.top) || 0; // convert "10px" -&gt; 10
+          char.style.top = currentTop - 10 + "px"; // move down by 10px
+        }
+      });
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    <h3>Mouseover events</h3>
+    <pre><code class = "language-javascript">
+let box = document.getElementById("box");
+box.addEventListener("mouseover", () => {
+  box.style.backgroundColor = "lightblue";
+});
+</code></pre>
+    <ul>
+      <li>Can be used to change styles dynamically.</li>
+      <li>Ideal for creating hover effects</li>
+    </ul>
+    <h3>Input events</h3>
+    <pre><code class = "language-javascript">
+    let inputField = document.getElementById("name");
+inputField.addEventListener("input", function(event) {
+  console.log(`Current value: ${event.target.value}`);
+});
+</code></pre>
+    <ul>
+      <li>Captures user input in real time.</li>
+      <li>Useful for form validation and live updates</li>
+    </ul>
+    <h3>Event object and properties</h3>
+    <pre><code class = "language-javascript">
+        let btn = document.getElementById("btn");
+btn.addEventListener("click", function(event) {
+  console.log(event.type);     // "click"
+  console.log(event.target.id); // "btn"
+});
+    </code></pre>
+    <ul>
+      <li>event.type – Type of event.</li>
+      <li>event.target – The element that triggered the event</li>
+    </ul>
+    <h3><code>this</code> and the event handling</h3>
+    <p>
+      Inside an event handler, this refers to the element that received the
+      event.
+    </p>
+    <pre><code class = "language-javascript">
+let button = document.getElementById("myButton");
+button.addEventListener("click", function() {
+  console.log(this.innerText);
+});</code></pre>
+    <ul>
+      <li>Arrow functions do not bind this.</li>
+      <li>
+        Use regular functions when you need this to refer to the target element.
+      </li>
+    </ul>
+    <h3>Use <code>removeEventListener()</code> to detach an event listener</h3>
+    <p>Example how do you remove the EventListener is shown below.</p>
+    <pre><code class = "language-javascript">
+    function handleClick() {
+  console.log("Button clicked");
+}
+
+let btn = document.getElementById("btn");
+btn.addEventListener("click", handleClick);
+
+// Remove the event listener
+btn.removeEventListener("click", handleClick);
+</code></pre>
+<button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+
+  </body>
+</html>

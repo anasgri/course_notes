@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typography</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+      h3.special {
+        font-family: "Arvo", Arial, serif;
+      }
+
+      p.overline {
+        text-decoration-line: overline;
+      }
+
+      p.underline {
+        text-decoration-line: underline;
+      }
+
+      p.line-through {
+        text-decoration-line: line-through;
+      }
+
+      p.overline-underline {
+        text-decoration-line: overline underline;
+      }
+
+      p.example1 {
+        text-decoration: underline overline dotted red;
+      }
+
+      p.example2 {
+        text-decoration: underline wavy blue 5px;
+      }
+    
+.btnback {
+  background-color: #6495ed; /* Green */
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 100px;
+}
+.btnback:hover {
+  background-color: #4169e1;
+}
+</style>
+  </head>
+  <body>
+    <h3>Typography</h3>
+    <p>The very basic way of defining the font family is shown below:</p>
+    <pre><code class = "language-css">
+.p1 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.p2 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.p3 {
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+</code></pre>
+    <h3>Note on why some values are in brackets</h3>
+    <p>
+      <strong>A specific font name</strong> ("Lucida Console", "Courier New") —
+      these get quoted only because they contain spaces. Quoting isn't required
+      for font names generally; it's required when the name has spaces, numbers
+      at the start, or special characters that would otherwise confuse the CSS
+      parser. A single-word font like Arial doesn't need quotes: font-family:
+      Arial, sans-serif; is valid.
+    </p>
+    <p>
+      <strong>A generic family keyword</strong> (serif, sans-serif, monospace,
+      cursive, fantasy, system-ui) — these are reserved CSS keywords, not actual
+      font names. Quoting a keyword would turn it into a literal string the
+      browser tries to match against an installed font named "monospace", which
+      doesn't exist as such. So generic keywords are never quoted.
+    </p>
+    <h3>Adding the custom fonts to your documents.</h3>
+    <ol>
+      <li>Go to https://fonts.google.com/</li>
+      <li>Choose the fint yiu want to use</li>
+      <li>Go to embed and select import</li>
+      <li>Copy the link in the css document or in the style tag</li>
+      <li>
+        For it to work the <code>font-family</code> needs to be set to exactly
+        mach thefot name in Google pages.
+      </li>
+    </ol>
+
+    <pre><code class = "language-html">
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+&lt;title&gt;Typography&lt;/title&gt;
+&lt;style&gt;
+@import url("https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+h3.special {
+font-family: "Arvo", Arial, serif;
+}
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h3 class="special"&gt;example heading styled&lt;/h3&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    <h3 class="special">example heading styled</h3>
+    <h3>Common text properties</h3>
+    <ul>
+      <li>color: Changes text color.</li>
+      <li>font-size: Adjusts text size.</li>
+      <li>font-family: Sets font type.</li>
+      <li>text-align: Aligns text (left, right, center).</li>
+      <li>text-decoration: Adds effects (underline, line-through).</li>
+      <li>font-weight: Adjusts text boldness</li>
+      <li>line-height: defines the distance between the lines</li>
+      <li>
+        text-transform - controls how an element's text capitalization is styled
+        and displayed on a webpage without changing the original HTML source.
+      </li>
+    </ul>
+    <p>for <strong>text-align</strong> the permitted propreties are:</p>
+    <ul>
+      <li>left: Content aligns along the left side.</li>
+      <li>right: Content aligns along the right side.</li>
+      <li>center: Content is centered between the left and right edges.</li>
+      <li>
+        justify: Content spaces out to fill the full width of the container.
+      </li>
+      <li>
+        start: Aligns to the start edge based on text direction (left for LTR,
+        right for RTL).
+      </li>
+      <li>end: Aligns to the end edge based on text direction.</li>
+      <li>
+        match-parent: Inherits the alignment from the parent element's
+        direction.
+      </li>
+    </ul>
+    <h4>line-height property.</h4>
+    <p>
+      You can use the unitless numbers or pixels. The example is shown below.
+    </p>
+    <pre><code class="language-css">
+    p {
+        line-height: 1.5;
+    }
+</code></pre>
+
+    <pre><code class="language-css">
+    p {
+        line-height: 24px;
+    }
+</code></pre>
+    <h4>text-transform property</h4>
+    <p>Common values for the text transform:</p>
+    <li>
+      <strong>uppercase:</strong> Converts every letter in the element to
+      capital letters
+    </li>
+    <li>
+      <strong>lowercase:</strong> Converts every letter in the element to small
+      letters.
+    </li>
+    <li>
+      <strong>capitalize:</strong> Changes the very first letter of every word
+      into a capital letter.
+    </li>
+    <pre><code class = "language-css">
+      .uppercase_text {
+        text-transform: uppercase;
+    }
+    </code></pre>
+    <h4>text decoration property</h4>
+    <p>
+      Text decoration property has four parameters. First one is line, the other
+      three are optional.
+    </p>
+    <ul>
+      <li>text-decoration-line (required)</li>
+      <li>text-decoration-color</li>
+      <li>text-decoration-style</li>
+      <li>text-decoration-thickness</li>
+    </ul>
+    <pre><code class = "language-css">
+p.overline {
+  text-decoration-line: overline;
+}
+
+p.underline {
+  text-decoration-line: underline;
+}
+
+p.line-through {
+  text-decoration-line: line-through;
+}
+
+p.overline-underline {
+  text-decoration-line: overline underline;
+}
+</code></pre>
+    <p>There might be multiple lines like in the last variant.</p>
+    <p class="overline">This is overline statement.</p>
+    <p class="underline">This is underlined statement.</p>
+    <p class="line-through">This is line-through statement.</p>
+    <p class="overline-underline">This is double line statement</p>
+
+    <h3>
+      Below is the example of how the text decoration with all properties.
+    </h3>
+    <pre><code class = "language-css">
+       p.example1 {
+        text-decoration: underline overline dotted red;
+      }
+
+      p.example2 {
+        text-decoration: underline wavy blue 5px;
+      }
+    </code></pre>
+    <p class="example1">This is example 1</p>
+    <p class="example2">This is example 2</p>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

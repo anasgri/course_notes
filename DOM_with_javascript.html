@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Understanding the DOM and How Browsers Render Pages</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+    
+    <style>
+      .allert {
+        background-color: #d9edf7;
+        border: solid 2px black;
+        border-radius: 10px;
+        padding: 10px;
+      }
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  
+  </head>
+  <body>
+    <h2>Interactivity and DOM (document object model)</h2>
+    <div class="allert">
+      DOM: Represents the HTML document as objects and nodes that can be
+      manipulated
+    </div>
+    <p>Rendering a web page involves several steps:</p>
+    <ol>
+      <li>Parsing HTML: The browser parses HTML and creates the DOM.</li>
+      <li>Parsing CSS: CSS rules are applied to corresponding elements.</li>
+      <li>
+        Constructing the Render Tree: Combines the DOM and CSS to determine how
+        elements will appear.
+      </li>
+      <li>Layout: Calculates the exact position of each element.</li>
+      <li>Painting: Renders the visual elements to the screen</li>
+    </ol>
+    <p>
+      DOM is created each time the page renders, the JavaScript modifies the
+      DOM, not the original HTML.
+    </p>
+    <p>JavaScript</p>
+    <ul>
+        <li>getElementById() returns a single element.</li>
+<li>querySelector() returns the first matching element.</li>
+<li>querySelectorAll() returns a NodeList of all matching elements.</li>
+</li>
+    </ul>
+    <p>You can also grab a container and point at its child or parent elements. </p>
+    <pre><code class = "language-javascript">
+let parent = document.getElementById("content").parentNode; // points to the parent element
+let children = document.getElementById("content").children; // points to the children of the selected container
+let firstChild = document.getElementById("content").firstElementChild; // selects first child element
+let firstChild = document.getElementById("content").lastElementChild; // selects the last child element
+    </code></pre>
+<p>After you get the element, you can save the element in the variable. </p>
+<p>And then manipulate the element.</p>
+<p><code>.innerText</code> - modifies a text</p>
+<p><code>.createElement();</code> - creates a new element and adds it to DOM</p>
+<p><code>.appendChild();</code> adds element to the DOM</p>
+<p><code>.remove();</code>- removes an element.</p>
+<pre><code class = "language-javascript">
+  // Change content
+let heading = document.getElementById("title");
+heading.innerText = "New Title";
+
+// Create a new element
+let newPara = document.createElement("p");
+newPara.innerText = "This is a new paragraph.";
+document.body.appendChild(newPara);
+
+// Remove an element
+let item = document.getElementById("item1");
+item.remove();
+</code></pre>
+<p>You can also include Event listeners to buttons</p>
+<pre><code class = "language-javascript">
+  let button = document.getElementById("btn");
+button.addEventListener("click", function() {
+  alert("Button clicked!");
+});
+</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

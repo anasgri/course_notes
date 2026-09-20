@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The CSS units</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      p.absolute {
+        font-size: 16px;
+      }
+
+      p.relative-em {
+        font-size: 2em;
+      }
+
+      p.relative-rem {
+        font-size: 1.5rem;
+      }
+
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>The units used in CSS</h3>
+    <p>There are different types of the units used in the CSS</p>
+    <ul>
+      <li>px: Absolute pixels, fixed size regardless of screen.</li>
+      <li>
+        em: Relative to the font-size of the parent element. If em is used for
+        margin, not for font it is relative to the font size of the element
+        itself.
+      </li>
+      <li>
+        rem: Relative to the root (html) font size, consistent across all
+        elements
+      </li>
+      <li>
+        %: Relative to the size of the parent container.
+        <b>% for font-size</b> behaves identically to em — both resolve against
+        the parent's computed font-size and compound when nested.
+      </li>
+    </ul>
+    <p>It is preferred to use the <code>rem</code></p>
+    <pre><code class = "language-html">
+        &lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;The CSS units&lt;/title&gt;
+&lt;style&gt;
+* {
+  box-sizing: border-box;
+}
+p.absolute {
+font-size: 16px;
+}
+
+p.relative-em {
+font-size: 2em;
+}
+
+p.relative-rem {
+font-size: 1.5rem;
+}
+
+
+&lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+&lt;p class = "absolute"&gt;This is the absolute sized text&lt;/p&gt;
+&lt;p&gt; Outer text
+&lt;p class = "relative-em"&gt;This is text re-sized with 2 em&lt;/p&gt;&lt;/p&gt;
+&lt;p class = "relative-rem"&gt;This is text re-sized with 1.5 rem&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+
+<p class = "absolute">This is the absolute sized text</p>
+<p> Outer text
+<p class = "relative-em">This is text re-sized with 2 em</p></p>
+<p class = "relative-rem">This is text re-sized with 1.5 rem</p>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

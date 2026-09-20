@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML forms</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+</head>
+  <body>
+
+    <h3>HTML forms</h3>
+<p> The basic synthaxis of the form is shown below</p>
+<pre><code class ="language-html">
+&lt;form&gt;
+Form elements
+&lt;/form&gt;</code></pre>
+
+<p>Sometimes the <code>&lt;form&gt;&lt;/form&gt;</code> tags come with attributes</p>
+<pre><code class = "language-html">
+	&lt;form action="/action_page.php" method="get" enctype='multipart/form-data'&gt;&lt;/form&gt;
+</code></pre>
+<ul>
+	<li>action attribute - specifies where the data will be sent in this case, to a file named "action_page.php"</li>
+	<li>method can be <code>get</code> or <code>post</code>
+		<li><b>Notes on GET:</b></li>
+
+			<li>Appends form-data into the URL in name/value pairs</li>
+			<li>The length of a URL is limited (about 3000 characters)</li>
+			<li>Never use GET to send sensitive data! (will be visible in the URL)</li>
+			<li>Useful for form submissions where a user wants to bookmark the result</li>
+			<li>GET is better for non-secure data, like query strings in Google</li>
+		<li><b>Notes on POST:</b></li>
+
+			<li>Appends form-data inside the body of the HTTP request (data is not shown in URL)</li>
+			<li>Has no size limitations</li>
+			</li>Form submissions with POST cannot be bookmarked</li>
+	</li>
+</ul>
+
+<p> The form can have <code>&lt;input&gt;</code> elements.</p>
+<p> The input element can be displayed in diffferent ways based on its <code>type</code> attribute</p>
+<p> The full list of the attribute types is shown below: </p>
+
+<pre><code class = "language-html">
+&lt;input type="button"&gt;
+&lt;input type="checkbox"&gt;
+&lt;input type="color"&gt;
+&lt;input type="date"&gt;
+&lt;input type="datetime-local"&gt;
+&lt;input type="email"&gt;
+&lt;input type="file"&gt;
+&lt;input type="hidden"&gt;
+&lt;input type="image"&gt;
+&lt;input type="month"&gt;
+&lt;input type="number"&gt;
+&lt;input type="password"&gt;
+&lt;input type="radio"&gt;
+&lt;input type="range"&gt;
+&lt;input type="reset"&gt;
+&lt;input type="search"&gt;
+&lt;input type="submit"&gt;
+&lt;input type="tel"&gt;
+&lt;input type="text"&gt;
+&lt;input type="time"&gt;
+&lt;input type="url"&gt;
+&lt;input type="week"&gt;
+
+&lt;form action="/action_page.php"&gt;
+ &lt;fieldset&gt;
+  &lt;legend&gt;Personalia:&lt;/legend&gt;
+  &lt;label for="fname"&gt;First name:&lt;/label&gt;
+  &lt;input type="text" id="fname" name="fname"&gt;&lt;br&gt;&lt;br&gt;
+  &lt;label for="lname"&gt;Last name:&lt;/label&gt;
+  &lt;input type="text" id="lname" name="lname"&gt;&lt;br&gt;&lt;br&gt;
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email"&gt;&lt;br&gt;&lt;br&gt;
+  &lt;label for="birthday"&gt;Birthday:&lt;/label&gt;
+  &lt;input type="date" id="birthday" name="birthday"&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="submit" value="Submit"&gt;
+ &lt;/fieldset&gt;
+&lt;/form&gt;
+</pre></code>
+<p><input type="button"></p>
+<p><input type="checkbox"></p>
+<p><input type="color"></p>
+<p><input type="date"></p>
+<p><input type="datetime-local"></p>
+<p><input type="email"></p>
+<p><input type="file"></p>
+<p><input type="hidden"></p>
+<p><input type="image"></p>
+<p><input type="month"></p>
+<p><input type="number"></p>
+<p><input type="password"></p>
+<p><input type="radio"></p>
+<p><input type="range"></p>
+<p><input type="reset"></p>
+<p><input type="search"></p>
+<p><input type="submit"></p>
+<p><input type="tel"></p>
+<p><input type="text"></p>
+<p><input type="time"></p>
+<p><input type="url"></p>
+<p><input type="week"></p>
+
+<form action="https://formspree.io/f/mlgqwbor" method = "post">
+ <fieldset>
+  <legend>Personalia:</legend>
+  <label for="fname">First name:</label>
+  <input type="text" id="fname" name="fname"><br><br>
+  <label for="lname">Last name:</label>
+  <input type="text" id="lname" name="lname"><br><br>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  <label for="birthday">Birthday:</label>
+  <input type="date" id="birthday" name="birthday"><br><br>
+  <input type="submit" value="Submit">
+ </fieldset>
+</form>
+
+<h3>label, id and for attributes in the form elements</h3>
+
+<p>It's considered a very good practice to connect the label to the input elements with the use of for and id attributes.</p>
+<pre><code class = "language-html">
+&lt;input type="text", id = "my_text"&gt;
+</code></pre>
+<p>The id attributes need to be unique, that means that there can be only one element with <code>id = "my_text" per document</code></p>
+<p>You might need to add the label to the input elements, just to tell user what to do with the input element </p>
+<pre><code class = "language-html">
+&lt;label for = "my_text"&gt;Input your name:&lt;/label"&gt;
+&lt;input type="text", id = "my_text"&gt;
+</code></pre>
+<label for = "my_text">Input your name:</label">
+<input type="text", id = "my_text">
+
+<p>there is <code>for</code> attribute which dictates, to wrich element the label belongs</p>
+
+<h3> name and value attributes in forms </h3>
+
+<blockquote>
+The value attribute specifies the value of an <code>&lt;input&gt;</code> element. The value attribute is used differently for different input types: For "button", "reset", and "submit" - it defines the text on the button. For "text", "password", and "hidden" - it defines the initial (default) value of the input field.
+
+</blockquote>
+
+<p> Let's look at the hypothetical form that has a text field and the submit element </p>
+
+<pre><code class = "language-html">
+&lt;label for = "my_text1"&gt;Input your name:&lt;/label"&gt;
+&lt;input type="text", id = "my_text1", name = "names"&gt;
+&lt;input type="submit"&gt;
+</code></pre>
+
+<label for = "my_text1">Input your name:</label">
+<input type="text", id = "my_text1", name = "names">
+<input type="submit">
+
+<p>currently, this form is not connected to any database, but if it would be, the <b>name</b>
+	attribute would be telling where to store that data that user inputs, it would be stored in the column called 
+names</p>
+
+<p><b>placeholder attribute</b></p>
+<p>placeholder attribure displayes the placeholder text</p>
+<pre><code class = "language-html">
+&lt;label for = "my_text1"&gt;Input your name:&lt;/label"&gt;
+&lt;input type="text", id = "my_text1", name = "names" placeholder = "input your text"&gt;
+&lt;input type="submit"&gt;	
+</code></pre>
+
+<label for = "my_text1">Input your name:</label">
+<input type="text", id = "my_text1", name = "names" placeholder = "input your text">
+<input type="submit">	
+
+<h4>Form validation attributes</h4>
+<p><strong>the required option</strong></p>
+<p>The input can also have the required in the input, this makes the input required</p>
+
+<pre><code class = "language-html">
+&lt;label for = "my_text1"&gt;Input your name:&lt;/label"&gt;
+&lt;input type="text", id = "my_text1", name = "names" placeholder = "input your text" required&gt;
+&lt;input type="submit"&gt;	
+</code></pre>
+
+<label for = "my_text1">Input your name:</label">
+<input type="text", id = "my_text1", name = "names" placeholder = "input your text" required>
+<input type="submit">
+
+<p><b>minlength and maxlength</b></p>
+<p>These attributes dictate the minimum and maiximum length of the form inputs</p>
+
+<pre><code class = "language-html">
+&lt;form action="/action_page.php"&gt;
+  &lt;label for="password"&gt;Password:&lt;/label&gt;
+  &lt;input type="password" id="password" name="password" minlength="8" maxlength="50"&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;
+</pre></code>
+
+<form action="/action_page.php">
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" minlength="8" maxlength="50"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>There also might be a pattern attribute that contains the <strong>regex expression</strong></p>
+<pre><code class = "language-html">
+&lt;form action="/action_page.php"&gt;
+  &lt;label for="country_code"&gt;Country code:&lt;/label&gt;
+  &lt;input type="text" id="country_code" name="country_code"
+  pattern="[A-Za-z]{3}" title="Three letter country code"&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="submit"&gt;
+&lt;/form&gt;
+</code></pre>
+
+<form action="/action_page.php">
+  <label for="country_code">Country code:</label>
+  <input type="text" id="country_code" name="country_code"
+  pattern="[A-Za-z]{3}" title="Three letter country code"><br><br>
+  <input type="submit">
+</form>
+
+
+<p><b>There is input type reset</b></p>
+<p>This clears the information from the form. If you press reset button reset the form is cleared</p>
+<pre><code class = "language-html">
+&lt;form action="/action_page.php"&gt;
+  &lt;label for="country_code"&gt;Country code:&lt;/label&gt;
+  &lt;input type="text" id="country_code" name="country_code"
+  pattern="[A-Za-z]{3}" title="Three letter country code"&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="submit"&gt;
+  &lt;input type = "reset"&gt;
+</form>
+</code></pre>
+
+<form action="/action_page.php">
+  <label for="country_code">Country code:</label>
+  <input type="text" id="country_code" name="country_code"
+  pattern="[A-Za-z]{3}" title="Three letter country code"><br><br>
+  <input type="submit">
+  <input type = "reset">
+</form>
+
+<p><b>value attribute</b></p>
+<p>let's suppose we have an input of <code>type = "radio"</code> radiobutton</p>
+<p> in this case the <code>value</code> attribute is needed to interpret users choice as value</p>
+<pre><code class = "language-html">
+&lt;label for = "my_radio"&gt;Cash&lt;/label"&gt;
+&lt;input type="radio", id = "my_radio", name = "payment_method", value = "cash"&gt;
+&lt;label for = "my_radio1"&gt;Card&lt;/label"&gt;
+&lt;input type="radio", id = "my_radio1", name = "payment_method", value = "card"&gt;
+</code></pre>
+
+<label for = "my_radio">Cash</label">
+<input type="radio", id = "my_radio" name = "payment_method", value = "cash">
+<label for = "my_radio1">Card</label">
+<input type="radio", id = "my_radio1", name = "payment_method", value = "card">
+
+<p> In this case, the attribute vcalue defines what value gets sent to database, when the option gets selected</p>
+<p> and the attribute name defines where in the database the value gets saved</p>
+
+<h3>Drop down menus</h3>
+<p>The basic synthatxis of the dropdoiwn menus is shown below</p>
+<pre><code class = "language-html">&lt;select&gt;
+dropdown elements
+&lt;/select&gt;
+</code></pre>
+
+<p>Below is more detailed example</p>
+<pre><code class = "language-html">
+&lt;select&gt;
+&lt;option&gt;Opt 1&lt;/option&gt;
+&lt;option&gt;Opt 2&lt;/option&gt;
+&lt;option&gt;Opt 3&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+
+<select>
+<option>Opt 1</option>
+<option>Opt 2</option>
+<option>Opt 3</option>
+</select>
+
+
+<p> similar to the form elements you can add <code>value</code> attribute to the selected option</p>
+<pre><code class = "language-html">&lt;form&gt;
+&lt;select name="pet"&gt;
+&lt;option value="cat"&gt;Opt 1&lt;/option&gt;
+&lt;option value="dog"&gt;Opt 2&lt;/option&gt;
+&lt;/select&gt;
+&lt;/form&gt;
+</code></pre>
+
+
+<form>
+<select name="pet">
+<option value="cat">Opt 1</option>
+<option value="dog">Opt 2</option>
+</select>
+</form>
+
+<p> In the case above if option 2 is selected the form will send the value "dog" to database and store it under the column "pet"</p>
+<p>The form tags are needed to ensure that this is an input element</p>
+
+<p>The selected attribute creates a drop-down menu with a pre-selected option. The pre-selected option will be displayed first, even if it not first in order</p>
+<pre><code class = "language-html">
+&lt;form&gt;
+&lt;select name = "colors"&gt;
+&lt;option value = "blue"&gt;Blue&lt;/option&gt;
+&lt;option value = "red" selected&gt;Red&lt;/option&gt;
+&lt;/select&gt;
+&lt;/form&gt;
+</code></pre>
+<form>
+<select name = "colors">
+<option value = "blue">Blue</option>
+<option value = "red" selected>Red</option>
+</select>
+</form>
+<p>You can also add label to the dropdown menu</p>
+<pre><code class = "language-html">
+&lt;form&gt;
+&lt;label&gt;Vehicle type:&lt;/label&gt;
+&lt;select name="vehicle"&gt;
+&lt;option value="car"&gt;Car&lt;/option&gt;
+&lt;option value="bus"&gt;Bus&lt;/option&gt;
+&lt;/select&gt;
+&lt;/form&gt;
+</code></pre>
+<form>
+<label>Vehicle type:</label>
+<select name="vehicle">
+<option value="car">Car</option>
+<option value="bus">Bus</option>
+</select>
+</form>
+<p> the labels can be connected to the dropdown menus using for tag, like with any other element</p>
+<pre><code class = "language-html">
+&lt;form&gt;
+&lt;label for = "vehtype"&gt;Vehicle type:&lt;/label&gt;
+&lt;select id = "vehtype", name="vehicle"&gt;
+&lt;option value="car"&gt;Car&lt;/option&gt;
+&lt;option value="bus"&gt;Bus&lt;/option&gt;
+&lt;/select&gt;
+&lt;/form&gt;
+</code></pre>
+
+<form>
+<label for = "vehtype">Vehicle type:</label>
+<select id = "vehtype", name="vehicle">
+<option value="car">Car</option>
+<option value="bus">Bus</option>
+</select>
+</form>
+
+ <button type="button" class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+    
+</body>
+</html>

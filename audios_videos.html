@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <title>Audio and video links</title>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Music, audio and video</h3>
+
+    <pre><code class = "language-html">
+&lt;video&gt;
+video file
+&lt;/video&gt;
+</code></pre>
+
+    <pre><code class = "language-html">
+&lt;video&gt;
+&lt;source src="ostrich_bald.mp4", type="video/mp4"&gt;
+&lt;/video&gt;
+</code></pre>
+
+    <video>
+      <source src="ostrich_bald.mp4" , type="video/mp4" />
+    </video>
+    <br />
+    <p>
+      Different media formats are needed for compatibility with different
+      browsers and devices. The &lt;source&gt; tag allows you to add multiple
+      files.
+    </p>
+
+    <pre><code class = "language-html">&lt;video&gt;
+&lt;source src="file.mp4" type="video/mp4"&gt;
+&lt;source src="file.webm" type="video/webm"&gt;
+&lt;/video&gt;
+</code></pre>
+    <p>
+      When different &lt;source&gt; options are included, the browser will
+      choose the first one it supports.
+    </p>
+
+    <p>
+      You can add text between the &lt;video&gt; tags. The text will only be
+      displayed in browsers that don’t support the video element.
+    </p>
+    <pre><code class = "language-html">
+&lt;video&gt;
+&lt;source src="videofile.mp4" type="video/mp4"&gt;
+&lt;source src="videofile.webm" type="video/webm"&gt;
+Video not supported
+&lt;/video&gt;
+</code></pre>
+    <br />
+    <p>
+      You can display play/pause, volume and other video controls with the
+      controls attribute.
+    </p>
+    <pre><code class = "language-html">
+&lt;video controls&gt;
+&lt;source src="ostrich_bald.mp4", type="video/mp4"&gt;
+&lt;/video&gt;
+</code></pre>
+    <video controls>
+      <source src="ostrich_bald.mp4" , type="video/mp4" />
+    </video>
+
+    <p>
+      If you want to add external video or audio you can add it using the
+      <code>iframe</code>tag
+    </p>
+    <pre><code class = "language-html">
+	&lt;iframe width = "560" height = "400" src = "https://www.youtube.com/embed/QDzKL6SyPcw allowfullscreen&gt;&lt;/iframe&gt;
+</code></pre>
+
+    <iframe
+      width="560"
+      height="400"
+      src="https://www.youtube.com/embed/QDzKL6SyPcw"
+      allowfullscreen
+    ></iframe>
+    <p>
+      To do this you need to right click the video on youtibe and click copy the
+      embedded code
+    </p>
+    <br />
+
+    <h3>Audio files</h3>
+    <p>
+      the way how audio files are embedded in the document is very similar to
+      video
+    </p>
+    <pre><code class = "language-html">
+&lt;audio controls&gt;
+&lt;source src="audiofile.mp3", type="audio/mpeg"&gt;
+&lt;source src="audiofile.ogg", type="audio/ogg"&gt;
+Audio not supported
+&lt;/audio&gt;
+</code></pre>
+    <br />
+    <p>
+      You can also make audio or video to start as page loads. For that you
+      should use <b>autoplay</b> attribute
+    </p>
+    <pre><code class = "language-html">
+&lt;audio autoplay&gt;
+&lt;source src="audiofile.mp3", type="audio/mpeg"&gt;
+&lt;source src="audiofile.ogg", type="audio/ogg"&gt;
+Audio not supported
+&lt;/audio&gt;
+</code></pre>
+    <br />
+    <p>
+      below is the exaample of the video that will start playing as file loads
+      but will be muted
+    </p>
+    <pre><code class = "language-html">
+&lt;video autoplay muted&gt;
+&lt;source src="videofile.mp4", type="video/mp4"&gt;
+&lt;source src="videofile.ogg", type="video/ogg"&gt;
+&lt;/video&gt;
+</code></pre>
+    <br />
+    <p>below is the example of the audio that will loop</p>
+
+    <pre><code class = "language-html">
+&lt;audio loop&gt;
+&lt;source src="audiofile.mp3", type="audio/mpeg"&gt;
+&lt;source src="audiofile.ogg", type="audio/ogg"&gt;
+&lt;/audio&gt;
+</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+  </body>
+</html>

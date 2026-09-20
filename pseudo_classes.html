@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <title>Pseudo classes</title>
+    <style>
+      .card::before {
+        content: "★ ";
+        color: gold;
+      }
+
+      .card::after {
+        content: " ✨";
+        color: lightblue;
+      }
+
+      button:hover {
+        background-color: #222;
+        color: white;
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      button::after {
+        content: " →";
+        color: #555;
+      }
+    
+.btnback {
+  background-color: #6495ed; /* Green */
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 100px;
+}
+.btnback:hover {
+  background-color: #4169e1;
+}
+</style>
+  </head>
+  <body>
+    <h1>Pseudo elements and pseudo classes</h1>
+    <p>
+      Pseudo-elements and pseudo-classes let you style parts of an element or
+      apply styles based on state or structure. These are powerful tools for
+      adding interactivity and polish without changing your HTML.
+    </p>
+    <h3>Common psudoclasses</h3>
+    <ul>
+      <li>:hover – when the mouse is over an element</li>
+      <li>:active – when the element is being clicked</li>
+      <li>:focus – when the element is focused (e.g., input field)</li>
+      <li>:nth-child() – targets elements by their position in a list</li>
+      <li>:first-child, :last-child – first or last child of a parent</li>
+    </ul>
+    <h3>Pseudoclass</h3>
+    <p>A pseudo-element lets you style a specific part of an element</p>
+    <ul>
+      <li>
+        Common pseudo-elements: ::before – inserts content before an element
+      </li>
+      <li>::after – inserts content after an element</li>
+      <li>::first-line – targets the first line of text</li>
+      <li>::first-letter – targets the first letter of text</li>
+    </ul>
+
+    <p>In the example below the first line will be made bold</p>
+
+    <pre><code class = "language-css">
+        p::first-line {
+            font-weight: bold;
+        }
+    </code></pre>
+    <p>
+      <strong><code>::before</code></strong> and
+      <strong><code>::after</code></strong>
+    </p>
+    <p>These are often used to add decorative content:</p>
+    <p>content is required to make ::before and ::after visible.</p>
+    <p>You can style them like any other element</p>
+
+    <pre><code class = "language-css">
+.card::before {
+  content: "★ ";
+  color: gold;
+}
+
+.card::after {
+  content: " ✨";
+  color: lightblue;
+}
+    </code></pre>
+    <p class="card">This is card class paragraph</p>
+    <pre><code class = "language-css">
+button:hover {
+background-color: #222;
+color: white;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button::after {
+  content: " →";
+  color: #555;
+}
+</code></pre>
+    <button>This is button</button>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

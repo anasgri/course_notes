@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Working with JSON</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>Working with JSON</h2>
+    <ul>
+      <li>JSON uses key-value pairs and supports different data types</li>
+      <li>JSON iteslf is a string but there are the ways to convert it</li>
+    </ul>
+    <p>Example how can you convert the JSON string into JavaScript Object</p>
+    <pre><code class = "language-javascript">
+let jsonString = '{ "name": "Alice", "age": 30 }';
+let user = JSON.parse(jsonString);
+console.log(user.name); // "Alice"
+console.log(user.age);  // 30
+    </code></pre>
+    <p>
+      Always use <code>try catch</code>statement when converting JSON into
+      object.
+    </p>
+    <p>There is a chance that the string is formatted incorrectly.</p>
+    <pre><code class = "language-javascript">
+let jsonString = '{ "name": "Alice", "age": 30 }';
+try {
+  let user = JSON.parse(jsonString);
+  console.log(user.name);
+} catch (error) {
+  console.error("Invalid JSON format!", error);
+}
+    </code></pre>
+    <h3>
+      Converting from object into the string using <code>JSON.stringify()</code>
+    </h3>
+    <pre><code class = "language-javascript">
+let user = {
+name: "Alice",
+age: 30,
+isMember: true
+};
+let jsonString = JSON.stringify(user);
+console.log(jsonString);
+// Output: {"name":"Alice","age":30,"isMember":true}
+    </code></pre>
+    <p>Use the second parameter of JSON.stringify() to format JSON.</p>
+
+    <pre><code class = "language-javascript">
+let user = {
+  name: "Alice",
+  age: 30,
+  isMember: true
+};
+let formattedJSON = JSON.stringify(user, null, 2);
+console.log(formattedJSON);
+</code></pre>
+    <ul>
+      <li>null as the second parameter maintains all properties.</li>
+      <li>2 specifies the number of spaces for indentation</li>
+    </ul>
+    <p>
+      In JSON.stringify(value, replacer, space), the second argument (replacer)
+      controls which properties get included and/or how values are transformed.
+      Instead of null, you can pass:
+    </p>
+
+    <pre><code>
+let user = { name: "Alice", age: 30, isMember: true, password: "secret" };
+
+let json = JSON.stringify(user, ["name", "age"], 2);
+console.log(json);
+// {
+//   "name": "Alice",
+//   "age": 30
+// }
+</code></pre>
+    <h3>Using fetch() to send data to the post request</h3>
+    <pre><code class = "language-javascript">
+let user = {
+  name: 'Alice',
+  email: 'alice@example.com'
+}
+
+fetch('https://api.example.com/addUser', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(user),
+})
+  .then((response) => response.json())
+  .then((data) => console.log('User added:', data))
+  .catch((error) => console.error('Error:', error))
+    </code></pre>
+    <h3>Using fetch() to receice the JSON data using get request</h3>
+
+    <pre><code class = "language-javascript">
+    fetch('https://api.example.com/data')
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => console.error('Error:', error))
+</code></pre>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

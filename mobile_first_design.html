@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mobile first design</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>Mobile first design</h2>
+    <p>
+      Media queries let you write CSS that only applies when the browser matches
+      certain conditions.
+    </p>
+    <p>This rule applies only when the screen is 600px wide or smaller:</p>
+    <pre><code class = "language-css">
+        @media (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+}
+    </code></pre>
+    <p>
+      <strong>Mobile-first</strong> means you start with styles for small
+      screens, then add rules for larger screens as needed. Example:
+    </p>
+    <pre><code class = "language-css">
+        /*Default mode */
+        .container {
+            padding: 1rem;
+
+        }
+        /*Larger screen */
+        @media (min-width: 768px) {
+            .container {
+                padding: 2rem;
+            }
+        }
+    </code></pre>
+    <p>
+      The CSS <code>@media</code> rule is used in media queries to apply
+      different styles for different media types/devices.
+    </p>
+
+    <p>
+      You can use breakpoints to control layout changes across screen sizes:
+    </p>
+    <ul>
+      <li>576px: small devices</li>
+      <li>768px: tablets</li>
+      <li>992px: desktops</li>
+      <li>1200px: large desktops</li>
+    </ul>
+
+    <h3>
+      Using <code>@media</code> to show or hide content depending on the screen
+      size
+    </h3>
+    <p>In the example below the default is the mobile menu, but the</p>
+    <pre><code class = "language-css">
+.mobile-menu {
+  display: block;
+}
+.desktop-menu {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu {
+    display: none;
+  }
+  .desktop-menu {
+    display: block;
+  }
+}
+    </code></pre>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

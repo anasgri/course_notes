@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=], initial-scale=1.0" />
+    <title>Form Handling and Validation</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h1>Form Handling and Validation</h1>
+    <h3>Revision on the forms</h3>
+    <pre><code class = "language-javascript">
+    &lt;form id="myForm"&gt;
+  &lt;label for="username"&gt;Username:&lt;/label&gt;
+  &lt;input type="text" id="username" name="username" required&gt;
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" name="email" required&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+    <ul>
+      <li>action specifies where to send the form data.</li>
+      <li>method defines how to send data (GET or POST).</li>
+      <li>required ensures the field is not left empty</li>
+    </ul>
+    <h3>Handling Form Submission with JavaScript</h3>
+    <pre><code class = "language-javascript">
+let form = document.getElementById("myForm");
+form.addEventListener("submit", function(event) {
+    // ---- VALIDATION GOES HERE ----
+  event.preventDefault();
+    
+
+  console.log("Form submitted!");
+});
+    </code></pre>
+    <ul>
+      <li>event.preventDefault() prevents the form from submitting.</li>
+      <li>Useful for validating data before submission.</li>
+    </ul>
+    <h3>Accessing Form Values</h3>
+    <pre><code class = "language-javascript">
+let username = document.getElementById("username").value;
+let email = document.getElementById("email").value;
+console.log(`Username: ${username}, Email: ${email}`);
+</code></pre>
+    <ul>
+      <li>value returns the user-entered text.</li>
+      <li>Values can be used for validation or processing.</li>
+    </ul>
+    <p>Below is the example of the validation.</p>
+    <pre><code class = "language-javascript">
+form.addEventListener("submit", function(event) {
+let username = document.getElementById("username").value;
+let email = document.getElementById("email").value;
+
+if (username === "" || email === "") {
+alert("All fields are required!");
+event.preventDefault();
+}
+});
+</code></pre>
+    <ul>
+      <li>Checks if fields are empty.</li>
+      <li>Prevents submission if data is invalid.</li>
+    </ul>
+    '
+    <p>Another example with regex.</p>
+    <pre><code class = "language-javascript">
+function validateEmail(email) {
+  let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email);
+}
+
+form.addEventListener("submit", function(event) {
+  let email = document.getElementById("email").value;
+  if (!validateEmail(email)) {
+    alert("Invalid email format!");
+    event.preventDefault();
+  }
+});
+    </code></pre>
+    <h3>Adding real time validation</h3>
+    <p>You can change the form appearance as user types.</p>
+    <pre><code class = "language-javascript">
+let usernameField = document.getElementById("username");
+usernameField.addEventListener("input", function() {
+  if (usernameField.value.length < 3) {
+    usernameField.style.borderColor = "red";
+  } else {
+    usernameField.style.borderColor = "green";
+  }
+});
+</code></pre>
+    <p>Show error messages dynamically to guide users.</p>
+    <p>
+      The <code>Element.nextElementSibling</code> read-only property returns the
+      element immediately following the specified one in its parent's children
+      list, or null if the specified element is the last one in the list.
+    </p>
+    <p>
+      Thus if user tupes incorrect itput the code below converts the element
+      next to form into error message.
+    </p>
+    <pre><code class = "language-javascript">
+function showError(input, message) {
+let error = input.nextElementSibling;
+error.innerText = message;
+error.style.color = "red";
+}
+
+let usernameField = document.getElementById("username");
+usernameField.addEventListener("input", function() {
+  if (usernameField.value.length < 3) {
+    showError(usernameField, "Username must be at least 3 characters long.");
+  } else {
+    showError(usernameField, "");
+  }
+});
+</code></pre>
+    <p>
+      Here is another example in which the submit button is disabled untill all
+      fields are valid.
+    </p>
+    <pre><code class = "language-javascript">
+function validateEmail(email) {
+  let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return regex.test(email);
+}
+
+let submitButton = document.getElementById("submit");
+function validateForm() {
+  let username = document.getElementById("username").value;
+  let email = document.getElementById("email").value;
+  submitButton.disabled = username === "" || !validateEmail(email);
+}
+
+document.querySelectorAll("input").forEach(input => {
+  input.addEventListener("input", validateForm);
+});
+</code></pre>
+
+    <h3>Using <code>reser()</code> to clear form contents</h3>
+    <pre><code class = "language-javascript">
+form.addEventListener("reset", function() {
+console.log("Form reset!");
+});
+</code></pre>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript debigging</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>JavaScript debugging</h2>
+    <p>
+      <strong>Debugging</strong> is the process of finding and fixing errors or
+      bugs in your code.
+    </p>
+    <ul>
+      <li>
+        <strong>Syntax Errors:</strong> Mistakes in the structure of the code.
+      </li>
+      <li>
+        <strong>Runtime Errors:</strong> Errors that occur while the script is
+        running.
+      </li>
+      <li>
+        <strong>Logical Errors:</strong> Code that runs but produces incorrect
+        results
+      </li>
+    </ul>
+    <p>
+      The easiest way how to do the debugging is a <code>console.log()</code>
+    </p>
+    <p>There are other debugging methods</p>
+    <ul>
+      <li>console.log() – Displays standard messages.</li>
+      <li>console.error() – Displays error messages.</li>
+      <li>console.warn() – Displays warnings.</li>
+      <li>console.table() – Displays tabular data.</li>
+      <li>console.group() – Groups related messages together</li>
+    </ul>
+    <p>
+      <code>debugger</code> statement poses the code execution like a
+      breakpoint.
+    </p>
+    <pre><code class = "language-javascript">
+function calculate(a, b) {
+  let result = a + b;
+  debugger;
+  return result;
+}
+calculate(5, 3);
+    </code></pre>
+    <h3>Catching error using the <code>try catch statement</code></h3>
+    <pre><code class = "language-javascript">
+try {
+  // Code that may cause an error
+} catch (error) {
+  // Code to handle the error
+}
+</code></pre>
+    <h3>Optional finally block</h3>
+    <p>
+      The finally block executes after the try and catch blocks, whether an
+      error occurred or not. It is commonly used for cleanup tasks (e.g.,
+      closing files, stopping loaders, etc.).
+    </p>
+    <pre><code class = "language-javascript">
+    try {
+  // Code that may cause an error
+} catch (error) {
+  // Code to handle the error
+} finally {
+  // Code that always runs, no matter what
+}
+    </code></pre>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

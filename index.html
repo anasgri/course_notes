@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The HTML notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #ebeae5;
+        --paper-alt: #efede9;
+        --ink: #23281f;
+        --ink-soft: #5c5f50;
+        --pen: #2b4c8c;
+        --pen-soft: #6d84b4;
+        --margin: #a8432b;
+        --line: #cac2a8;
+        --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+        --mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--serif);
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* faint paper grain */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.5;
+        background-image: radial-gradient(
+          rgba(0, 0, 0, 0.03) 1px,
+          transparent 1px
+        );
+        background-size: 3px 3px;
+        z-index: 0;
+      }
+
+      .page {
+        position: relative;
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 76px 32px 120px 56px;
+      }
+
+      /* notebook margin rule */
+      .page::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 26px;
+        width: 1px;
+        background: var(--margin);
+        opacity: 0.35;
+      }
+
+      header.hero {
+        margin-bottom: 64px;
+      }
+
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        letter-spacing: 0.02em;
+        color: var(--pen);
+      }
+
+      h1 {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: clamp(2.3rem, 5vw, 3.1rem);
+        line-height: 1.08;
+        margin: 10px 0 14px;
+        color: var(--ink);
+      }
+
+      .hero p.dek {
+        font-family: var(--mono);
+        font-size: 13.5px;
+        color: var(--ink-soft);
+        margin: 0;
+        max-width: 46ch;
+      }
+
+      .hero .dek .accent {
+        color: var(--pen);
+      }
+
+      nav.index-of {
+        margin-top: 34px;
+        border-top: 1px solid var(--line);
+        padding-top: 18px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--ink-soft);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 18px;
+      }
+
+      nav.index-of a {
+        color: var(--ink-soft);
+        text-decoration: none;
+        border-bottom: 1px dotted transparent;
+      }
+
+      nav.index-of a:hover {
+        color: var(--pen);
+        border-bottom-color: var(--pen-soft);
+      }
+
+      section.topic-section {
+        margin-bottom: 52px;
+        scroll-margin-top: 24px;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 10px;
+        margin-bottom: 18px;
+      }
+
+      .section-num {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--margin);
+        opacity: 0.75;
+        min-width: 20px;
+      }
+
+      .section-head h2 {
+        font-family: var(--serif);
+        font-weight: 600;
+        font-size: 1.32rem;
+        margin: 0;
+        color: var(--ink);
+      }
+
+      .section-count {
+        margin-left: auto;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        opacity: 0.7;
+        white-space: nowrap;
+      }
+
+      ul.topics {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 28px;
+        row-gap: 2px;
+      }
+
+      ul.topics li {
+        border-bottom: 1px solid transparent;
+      }
+
+      ul.topics a {
+        display: flex;
+        align-items: baseline;
+        gap: 9px;
+        padding: 7px 0;
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 14.5px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      ul.topics a .tick {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-soft);
+        opacity: 0.55;
+        flex-shrink: 0;
+      }
+
+      ul.topics a:hover {
+        color: var(--pen);
+      }
+
+      ul.topics a:hover .tick {
+        color: var(--pen);
+        opacity: 1;
+      }
+
+      ul.topics a:focus-visible {
+        outline: 2px solid var(--pen);
+        outline-offset: 2px;
+      }
+
+      footer {
+        margin-top: 72px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--ink-soft);
+        opacity: 0.75;
+      }
+
+      @media (max-width: 620px) {
+        .page {
+          padding: 56px 20px 90px 40px;
+        }
+        .page::before {
+          left: 16px;
+        }
+        ul.topics {
+          grid-template-columns: 1fr;
+        }
+        nav.index-of {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="hero">
+        <div class="eyebrow">personal reference · web development</div>
+        <h1>The HTML notes</h1>
+        <p class="dek">
+          A running log of everything learned, from
+          <span class="accent">&lt;html&gt;</span> to deployment — 51 topics
+          across 7 sections.
+        </p>
+        <nav class="index-of" aria-label="Jump to section">
+          <a href="#pure-html">Pure HTML</a>
+          <a href="#css">CSS</a>
+          <a href="#bootstrap">Bootstrap</a>
+          <a href="#javascript">JavaScript</a>
+          <a href="#dom">DOM</a>
+          <a href="#apis">APIs &amp; Ajax</a>
+          <a href="#deploy">Deployment</a>
+        </nav>
+      </header>
+
+      <section class="topic-section" id="pure-html">
+        <div class="section-head">
+          <span class="section-num">01</span>
+          <h2>Pure HTML</h2>
+          <span class="section-count">7 topics</span>
+        </div>
+        <ul class="topics">
+          <li>
+            <a href="basic_elements.html"
+              ><span class="tick">–</span>Basic elements</a
+            >
+          </li>
+          <li>
+            <a href="lists_notes.html"><span class="tick">–</span>Lists</a>
+          </li>
+          <li>
+            <a href="links.html"><span class="tick">–</span>Links</a>
+          </li>
+          <li>
+            <a href="audios_videos.html"
+              ><span class="tick">–</span>Music, audio and video</a
+            >
+          </li>
+          <li>
+            <a href="forms.html"><span class="tick">–</span>Forms</a>
+          </li>
+          <li>
+            <a href="images.html"><span class="tick">–</span>Images</a>
+          </li>
+          <li>
+            <a href="html_tables.html"><span class="tick">–</span>Tables</a>
+          </li>
+          <li>
+            <a href="HTML_notes.html"
+              ><span class="tick">–</span>Html notes put aside</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="topic-section" id="css">
+        <div class="section-head">
+          <span class="section-num">02</span>
+          <h2>CSS</h2>
+          <span class="section-count">11 topics</span>
+        </div>
+        <ul class="topics">
+          <li>
+            <a href="css_notes.html"><span class="tick">–</span>CSS notes</a>
+          </li>
+          <li>
+            <a href="css2.html"><span class="tick">–</span>CSS continued</a>
+          </li>
+          <li>
+            <a href="typography.html"
+              ><span class="tick">–</span>CSS typography</a
+            >
+          </li>
+          <li>
+            <a href="css_units.html"><span class="tick">–</span>CSS units</a>
+          </li>
+          <li>
+            <a href="css_variables_and_components.html"
+              ><span class="tick">–</span>CSS variables :root</a
+            >
+          </li>
+
+          <li>
+            <a href="pseudo_classes.html"
+              ><span class="tick">–</span>Pseudo-classes and pseudo-elements</a
+            >
+          </li>
+
+          <li>
+            <a href="translaitions_and_animations.html"
+              ><span class="tick">–</span>Translations and animations</a
+            >
+          </li>
+          <li>
+            <a href="css_positioning.html"
+              ><span class="tick">–</span>CSS positioning</a
+            >
+          </li>
+          <li>
+            <a href="box_model.html"><span class="tick">–</span>Box model</a>
+          </li>
+          <li>
+            <a href="flex_box_layout.html"
+              ><span class="tick">–</span>Flex box layout</a
+            >
+          </li>
+          <li>
+            <a href="grid_layout.html"
+              ><span class="tick">–</span>Grid layout</a
+            >
+          </li>
+          <li>
+            <a href="grid_exaample.html"
+              ><span class="tick">–</span>Grid layout example</a
+            >
+          </li>
+
+          <li>
+            <a href="another_grid_example.html"
+              ><span class="tick">–</span>Another grid example</a
+            >
+          </li>
+
+          <li>
+            <a href="grid_layout_usecase.html"
+              ><span class="tick">-</span>Third grid example</a
+            >
+          </li>
+
+          <li>
+            <a href="mobile_first_design.html"
+              ><span class="tick">–</span>Mobile first design</a
+            >
+          </li>
+          <li>
+            <a href="Example_mini_project.html"
+              ><span class="tick">–</span>Example mini project</a
+            >
+          </li>
+          <li>
+            <a href="maintainable_css.html"
+              ><span class="tick">–</span>Maintainable CSS</a
+            >
+          </li>
+          <li>
+            <a href="lazy_loading.html"
+              ><span class="tick">–</span>Lazy loading</a
+            >
+          </li>
+          <li>
+            <a href="best_practices_responsive_design.html"
+              ><span class="tick">–</span>Best practices for responsive
+              design</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="topic-section" id="bootstrap">
+        <div class="section-head">
+          <span class="section-num">03</span>
+          <h2>Bootstrap</h2>
+          <span class="section-count">7 topics</span>
+        </div>
+        <ul class="topics">
+          <li>
+            <a href="bootstrap.html"><span class="tick">–</span>Bootstrap</a>
+          </li>
+          <li>
+            <a href="bootstrap_simple_example.html"
+              ><span class="tick">–</span>Bootstrap example</a
+            >
+          </li>
+          <li>
+            <a href="bootstrap-buttons.html"
+              ><span class="tick">–</span>Guide on Bootstrap buttons</a
+            >
+          </li>
+          <li>
+            <a href="customizing_bootstrap.html"
+              ><span class="tick">–</span>Customizing Bootstrap</a
+            >
+          </li>
+          <li>
+            <a href="unitility_classes.html"
+              ><span class="tick">–</span>Using Bootstrap for utility classes</a
+            >
+          </li>
+          <li>
+            <a href="best_practices_responsive_design.html"
+              ><span class="tick">–</span>Responsive design rules for
+              Bootstrap</a
+            >
+          </li>
+          <li>
+            <a href="bootstrap_another_example.html"
+              ><span class="tick">–</span>Another Bootstrap example</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="topic-section" id="javascript">
+        <div class="section-head">
+          <span class="section-num">04</span>
+          <h2>JavaScript</h2>
+          <span class="section-count">11 topics</span>
+        </div>
+        <ul class="topics">
+          <li>
+            <a href="JavaScript_tutorial.html"
+              ><span class="tick">–</span>Declaring variables in JavaScript</a
+            >
+          </li>
+          <li>
+            <a href="Javascript_operators.html"
+              ><span class="tick">–</span>JavaScript operators</a
+            >
+          </li>
+          <li>
+            <a href="JavaScript_math_functions_cheat.html"
+              ><span class="tick">–</span>JavaScript math functions cheat
+              sheet</a
+            >
+          </li>
+
+          <li>
+            <a href="Javascript_conditions.html"
+              ><span class="tick">–</span>JavaScript conditions</a
+            >
+          </li>
+          <li>
+            <a href="JavaScript_loops.html"
+              ><span class="tick">–</span>JavaScript loops</a
+            >
+          </li>
+          <li>
+            <a href="Javascript_functions.html"
+              ><span class="tick">–</span>JavaScript functions</a
+            >
+          </li>
+          <li>
+            <a href="javascript_arrays.html"
+              ><span class="tick">–</span>JavaScript arrays</a
+            >
+          </li>
+          <li>
+            <a href="javascript_objects.html"
+              ><span class="tick">–</span>JavaScript objects</a
+            >
+          </li>
+          <li>
+            <a href="javascript_scope.html"
+              ><span class="tick">–</span>JavaScript scope</a
+            >
+          </li>
+          <li>
+            <a href="javascript_debugging.html"
+              ><span class="tick">–</span>JavaScript debugging</a
+            >
+          </li>
+          <li>
+            <a href="javascript_clean_code.html"
+              ><span class="tick">–</span>JavaScript clean code</a
+            >
+          </li>
+          <li>
+            <a href="destructuring.html"
+              ><span class="tick">–</span>Destructuring</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="topic-section" id="dom">
+        <div class="section-head">
+          <span class="section-num">05</span>
+          <h2>Interactive programming with the DOM</h2>
+          <span class="section-count">7 topics</span>
+        </div>
+        <ul class="topics">
+          <li>
+            <a href="DOM_with_javascript.html"
+              ><span class="tick">–</span>Interactive web pages with JavaScript
+              and the DOM</a
+            >
+          </li>
+          <li>
+            <a href="DOM_and_javascript2.html"
+              ><span class="tick">–</span>DOM and JavaScript continued</a
+            >
+          </li>
+          <li>
+            <a href="DOM_and_javascript3.html"
+              ><span class="tick">–</span>Event listeners and interactive
+              JavaScript</a
+            >
+          </li>
+          <li>
+            <a href="Move_elements_javScript.html"
+              ><span class="tick">–</span>Creating and removing elements
+              dynamically</a
+            >
+          </li>
+          <li>
+            <a href="Form_Handling_and_Validation.html"
+              ><span class="tick">–</span>Form handling and validation</a
+            >
+          </li>
+          <li>
+            <a href="Local_Storage___Session_Storage.html"
+              ><span class="tick">–</span>Local storage &amp; session storage</a
+            >
+          </li>
+          <li>
+            <a href="making_rock_paper_scissors.html"
+              ><span class="tick">–</span>Making a rock, paper, scissors game</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="topic-section" id="apis">
+        <div class="section-head">
+          <span class="section-num">06</span>
+          <h2>APIs and Ajax</h2>
+          <span class="section-count">7 topics</span>
+        </div>
+        <ul class="topics">
+          <li>
+            <a href="introduction_to_api_ajax.html"
+              ><span class="tick">–</span>Introduction to APIs and AJAX</a
+            >
+          </li>
+          <li>
+            <a href="fetch_api.html"
+              ><span class="tick">–</span>The Fetch API</a
+            >
+          </li>
+          <li>
+            <a href="real_fetch_api_example.html"
+              ><span class="tick">–</span>Real Fetch API example</a
+            >
+          </li>
+          <li>
+            <a href="working_with_json.html"
+              ><span class="tick">–</span>Working with JSON</a
+            >
+          </li>
+          <li>
+            <a href="form_submission_javascipt.html"
+              ><span class="tick">–</span>Form submission in JavaScript</a
+            >
+          </li>
+          <li>
+            <a href="handling_API_errors.html"
+              ><span class="tick">–</span>Handling API errors</a
+            >
+          </li>
+          <li>
+            <a href="making_weather_app.html"
+              ><span class="tick">–</span>Making a weather app</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <section class="topic-section" id="deploy">
+        <div class="section-head">
+          <span class="section-num">07</span>
+          <h2>Web hosting and deployment</h2>
+          <span class="section-count">1 topic</span>
+        </div>
+        <ul class="topics">
+          <li>
+            <a href="Deployment_and_hosting.html"
+              ><span class="tick">–</span>Deployment and hosting</a
+            >
+          </li>
+        </ul>
+      </section>
+
+      <footer>
+        keep this file alongside the rest of the notes — every link is relative.
+      </footer>
+    </div>
+  </body>
+</html>

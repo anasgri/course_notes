@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Box model</title>
+
+    <!-- Prism.js CSS (choose a theme, e.g. "okaidia") -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      /*This is going to be applid to all sides */
+      .box1 {
+        margin: 20 px;
+        border: solid black;
+      }
+      /*This is going to be applied to left and right*/
+      .box2 {
+        margin: 10px 15px;
+        border: solid black;
+      }
+      /*This is going to be applied all sides, the order top, right, bottom, left*/
+      .box3 {
+        margin: 10px 15px 20px 25px;
+        border: solid black;
+      }
+
+      .box {
+        border-top: 1px dashed red;
+        border-bottom: 2px solid blue;
+        border-left: 2px solid blue;
+        border-right: 3px dashed yellow;
+      }
+
+      .div1 {
+        width: 300px;
+        height: 100px;
+        border: 1px solid blue;
+      }
+
+      .div2 {
+        width: 300px;
+        height: 100px;
+        padding: 50px;
+        border: 1px solid red;
+      }
+
+      .div3 {
+        width: 300px;
+        height: 100px;
+        border: 1px solid blue;
+        box-sizing: border-box;
+      }
+
+      .div4 {
+        width: 300px;
+        height: 100px;
+        padding: 50px;
+        border: 1px solid red;
+        box-sizing: border-box;
+      }
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Box model</h1>
+    <p>
+      Every element in the HTML id the box, that consists of the four layers.
+    </p>
+    <p>The image below illustrates the CSS box model:</p>
+    <img src="box.png" alt="box_model" width="500" />
+
+    <p>Four layers</p>
+    <ul>
+      <li>
+        Content: The actual text, images, or media inside the element. You can
+        set its size using width and height.
+      </li>
+      <li>
+        Padding: The clear space sitting directly around the content, inside the
+        border. It adds "breathing room".
+      </li>
+      <li>
+        Border: A visible line or frame that wraps around the padding and
+        content.
+      </li>
+      <li>
+        Margin: The outermost clear space that separates the element from its
+        neighboring elements on the page.
+      </li>
+    </ul>
+    <p>Below is the example css foe the element of class box</p>
+    <pre><code class = "language-css">
+    .box {
+        width : 200px;
+        padding: 10px;
+        border: 5px solid #333;
+        margin: 20px;
+    }
+    </code></pre>
+    <h3>CSS Box Sizing</h3>
+    By default, the width and height of an element is calculated like this:
+    <ul>
+      <li>width + padding + border = actual width of an element</li>
+      <li>height + padding + border = actual height of an element</li>
+    </ul>
+    <p>
+      This means: When you set the width/height of an element, the element often
+      appears bigger than you have set (because the element's border and padding
+      are added to the element's specified width/height).
+    </p>
+    <p>
+      The following illustrates two &lt;div&gt; elements with the same specified
+      width and height. The two &lt;div&gt; elements end up with different sizes
+      (because div2 has a large padding specified):
+    </p>
+    <pre><code class="language-css">
+.div1 {
+  width: 300px;
+  height: 100px;
+  border: 1px solid blue;
+}
+
+.div2 {
+  width: 300px;
+  height: 100px;
+  padding: 50px;
+  border: 1px solid red;
+}
+    </code></pre>
+    <p class="div1">This div is has width: 300px and height: 100px.</p>
+    <p class="div2">This div also has width: 300px and height: 100px.</p>
+    <p>
+      The box-sizing property allows us to include the padding and border in an
+      element's total width and height.
+    </p>
+    <pre><code class = "language-css">
+.div3 {
+  width: 300px;
+  height: 100px;
+  border: 1px solid blue;
+  box-sizing: border-box;
+}
+
+.div4 {
+  width: 300px;
+  height: 100px;
+  padding: 50px;
+  border: 1px solid red;
+  box-sizing: border-box;
+}
+  </code></pre>
+    <p class="div3">This div is has width: 300px and height: 100px.</p>
+    <p class="div4">This div also has width: 300px and height: 100px.</p>
+
+    <p>
+      Since the result of using the box-sizing: border-box; is so much better,
+      many developers want all elements on their pages to work this way.
+    </p>
+
+    <p>
+      The code below ensures that all elements are sized in this more intuitive
+      way. Many browsers already use box-sizing: border-box; for many form
+      elements (but not all - which is why inputs and text areas look different
+      at width: 100%;).
+    </p>
+
+    <p>Applying this to all elements is safe and wise:</p>
+    <pre><code class = "language-css">
+      * {
+  box-sizing: border-box;
+}
+    </code></pre>
+    <p>
+      The code above will apply box sizing to all elements. * is the universal
+      selector.
+    </p>
+    <h3>Border property</h3>
+    <p>Border property has three values.</p>
+    <pre><code class = "language-css">
+.box {border: 5px solid #333;
+}
+    </code></pre>
+
+    <h4>The list of the possible border styles</h4>
+    <ul>
+      <li>dotted</li>
+      <li>dashed</li>
+      <li>solid</li>
+      <li>double</li>
+      <li>groove</li>
+      <li>ridge</li>
+      <li>inset</li>
+      <li>outset</li>
+      <li>none</li>
+      <li>hidden</li>
+    </ul>
+    <p>You can also set each site individually</p>
+    <pre><code class = "language-css">
+  .box {border-top: 1px dashed red;
+  border-bottom: 2px solid blue;
+  border-left: 2px solid blue;
+  border-right: 3px dashed yellow;
+}
+</code></pre>
+    <p class="box">The boxed element</p>
+    <p>
+      You can also specify the margin and the padding values individually for
+      each side.
+    </p>
+    <p>If you provide one value, it is going to apply to all sides</p>
+    <pre><code class = "language-css">
+    /*This is going to be applid to all sides */
+    .box1 {margin : 20 px;
+      border: solid black;
+    }
+    /*This is going to be applied, 10px - top and bottom, 15px - left and right*/
+    .box2 {margin : 10px 15px;
+      border: solid black;
+    }
+    /*This is going to be applied all sides, the order top, right, bottom, left*/
+    .box3 {margin : 10px 15px 20px 25px;
+      border: solid black;
+    }
+  </code></pre>
+    <p class="box1">BOX 1 - all margins 20px</p>
+    <p class="box2">BOX 2, 10px - top and bottom, 15px - left and right*</p>
+    <p class="box3">BOX 3 - four different margin values.</p>
+    <p>
+      If you let's say want to specify only the left and right margins you can
+      you sthe following css.
+    </p>
+    <pre><code class = "language-css">
+    .box4 {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+  </code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+  </body>
+</html>

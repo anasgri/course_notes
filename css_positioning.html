@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <title>CSS positioining</title>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>CSS positioning</h1>
+    <h3>The possible values that positioning can take</h3>
+    <ul>
+      <li>static (default)</li>
+      <li>relative</li>
+      <li>absolute</li>
+      <li>fixed</li>
+      <li>sticky</li>
+    </ul>
+    <p>
+      If you use <strong>static</strong> positioning, the
+      <code>top, bottom, left and right</code> properties do not have the
+      effect.
+    </p>
+    <p>
+      If you use the relative positioning, the element moves relative it's
+      original position.
+    </p>
+    <pre><code class = "language-css">
+.box {
+    position: relative;
+    top: 20px;
+    left: 10px;
+}
+    </code></pre>
+    <p>
+      In this case the box is going to move 20px down. The other elements will
+      be not affected by its movement.
+    </p>
+    <h3>Absolute positioning</h3>
+    <ul>
+      <li>Removed from the normal document flow.</li>
+      <li>
+        Positioned relative to the nearest positioned ancestor (anything with
+        position: relative, absolute, or fixed).
+      </li>
+      <li>
+        In order to affect the positioning, the ancestor need to have the
+        positioining specified.
+      </li>
+      <li>
+        If no such ancestor exists, it’s positioned relative to the &lt;html&gt;
+        element (the page itself).
+      </li>
+      <li>
+        Other elements on the page will behave as if this element does not
+        exist.
+      </li>
+      <li>
+        As we scroll, it stays positioned within the container it is assigned
+        to.
+      </li>
+    </ul>
+    <a href="https://www.youtube.com/watch?v=2fmIC26n37w&t=465s"
+      ><button>Video about absolute positioning</button></a
+    >
+    <h3>Position fixed</h3>
+    <p>
+      Position fixed is fixed to the viewpoint, this means that the elements
+      will move with the scrolling.
+    </p>
+    <p>Is removed from the document flow.</p>
+    <h3>Sticky position</h3>
+    <p>An element with position: <strong>sticky;</strong> toggles between a relative and fixed position, depending on the scroll position.</p>
+    <p>Is not removed from the document flow.</p>
+<p>A sticky element is positioned relative until a certain scroll position is reached - then it "sticks" in that place (like position:fixed).</p>
+    <h3>Z index</h3>
+    <p>
+      Z index is the property that only works with positioned elements. The
+      index values are the numbers. The higher the value is the more closer to
+      the user the element is, the lower the number is, the more at the back the
+      element is.
+    </p>
+    <p>
+      Controls stacking order of positioned elements. Higher z-index appears on
+      top. 
+      <p>💡 Key Tip: Z-index only works on positioned elements!</p>
+    </p>
+    <pre><code class = "language-css">
+.box {
+position: relative;
+top: 20px;
+left: 10px;
+z-index: 2;
+}
+    </code></pre>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

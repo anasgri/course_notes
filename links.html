@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide to Links</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+<body>
+    <h3>Links</h3>
+
+<h3>HTML links</h3>
+
+<h4>Basic synthax of the html links</h4>
+<pre><code class ="language-html">
+&lt;a href="url"&gt;link text &lt;/a&gt;
+</code></pre>
+<a href="url">link text</a>
+<h4>HTML Links - The target Attribute</h4>
+<p>By default, the linked page will be displayed in the current browser window. </p>
+<p>To change this, you must specify another target for the link.</p>
+
+<pre><code class ="language-html">
+&lt;a href="https://www.w3schools.com/" target="_blank"&gt;Visit W3Schools!&lt;/a&gt;
+</code></pre>
+
+<h3>nav tags</h3>
+<p> nav tags are used to make a navigation lists of the page</p>
+<pre><code class ="language-html">
+&lt;nav&gt;
+&lt;a href = "index.html"&gt;Home&lt;/a&gt;
+&lt;a href = "index_page1.html"&gt;Page1&lt;/a&gt;
+&lt;/nav&gt;
+</code></pre>
+
+<nav>
+<a href = "index.html">Home</a>
+<a href = "index_page1.html">Page1</a>
+</nav>
+
+
+<pre><code class="language-html">
+	&lt;a href="https://www.w3schools.com"&gt; Link example &lt;/a&gt;
+</code></pre>
+<a href="https://www.w3schools.com">Link example</a> <!-- a is a tag that can have an attribute, link -->
+<p>Link can have a target attribute that will define whether the link is going to open in the new page when clicked or not</p>
+<p>If the target is set to <code>"_blank"</code>, the link will open in the new page</p>
+<pre><code class="language-html">
+	&lt;a href="https://www.w3schools.com" target = "_blank"&gt; Link example &lt;/a&gt;
+</code></pre>
+<p>Other variants of the tags include</p>
+<ul>
+<li>_self - Opens the linked document in the same frame as it was clicked (this is default)</li> 
+<li>_blank - Opens the linked document in a new window or tab</li>
+<li>_parent - Opens the linked document in the parent frame</li>
+<li>_top - Opens the linked document in the full body of the window</li>
+</ul>
+<p>What all this means? in short there is a <code>&lt;iframe&gt;&lt;/iframe&gt;</code> tag</p> that can be used to embed the document into another document</p>
+<p>if you add the <code>target = "_parent"</code> the link opens in parent <code>iframe</code></p>
+<p>if you add the <code>target = "_top"</code> the link opens in the first window that is parent to everything that is embedded</p>
+<br>
+<p>The links can also be acessed by pressing the image, not the text</p>
+
+<pre><code class = "language-html">
+&lt;a href="https://en.wikipedia.org/wiki/Opuntia" target="_blank"&gt;&lt;img src="https://www.Prickly_Pear_Closeup.jpg" alt="A red prickly pear fruit"/&gt;&lt;/a&gt;
+
+</code></pre>
+
+<h5>Relative and absolute paths when working with links</h5>
+<p>It is preferrred to you absoulte paths e.g</p>
+<pre><code class = "language-html">
+&lt;a href = "about_us.html"&gt;Link to about us page&lt;/a&gt;
+</code></pre>
+<p>If you are using the live server you can use relative path</p>
+
+<pre><code class = "language-html">
+&lt;a href = "/about_us.html"&gt;Link to about us page&lt;/a&gt;
+</code></pre>
+
+<p>If you want to specify the link to the file that is one directory upp, use the following syntaxis</p>
+<pre><code class = "language-html">
+&lt;a href = "../about_us.html"&gt;Link to about us page&lt;/a&gt;
+</code></pre>
+<h4>Using the links for thr internal page navigation</h4>
+<pre><code class = "language-html">
+&lt;a href = "#section2"&gt;Link to about us page&lt;/a&gt;
+</code></pre>
+<p>This link leads to the element with id = "section2"</p>
+
+<h4>How to use the links to send email or phone</h4>
+<pre><code class = "language-html">
+&lt;a href = "mailto:flatsearch@mail.com"&gt;Press to email&lt;/a&gt;
+</code></pre>
+<a href = "mailto:flatsearch@mail.com">Press to email</a>
+
+<pre><code class = "language-html">
+&lt;a href = "tel:+123458"&gt;Press to call&lt;/a&gt;
+</code></pre>
+
+<a href = "tel:+123458">Press to call</a>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

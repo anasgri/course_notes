@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS notes</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+      <style>
+      li.spacious.elegant {
+        margin: 2em;
+        padding: 1em;
+        border: 1px solid #ccc;
+      }
+
+      a[title] {
+        color: purple;
+      }
+
+      a[href="https://example.org"] {
+        color: green;
+      }
+
+      a[class~="logo"] {
+        color: purple;
+      }
+
+      a[href*="example"] {
+        color: purple;
+      }
+
+      a[href$=".org" i] {
+        color: mediumvioletred;
+      }
+
+      p[lang|="en"] {
+  background-color: yellow;
+}
+
+    .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1; /* Darker green on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Css notes</h1>
+    <h3>Types of the css selectors</h3>
+    <h4>Element selectors</h4>
+    <p>
+      Element selectors act on the specified elements. In the example below, all
+      paragraphs will be red.
+    </p>
+    <pre><code class = "language-css">
+    /* Element selectors */
+p {
+    color: red;
+}
+    </code></pre>
+    <h4>Class selectors</h4>
+    <p>Class selectors act on the elements assigned to the specific class</p>
+    <p>
+      In the example below all elements assigned to the class .intro will be red
+    </p>
+    <pre><code class = "language-css">
+/* Class selectors */
+.intro {
+    color: red;
+}
+</code></pre>
+    <p>
+      To make the class element specific to cretain tag do as shown in the
+      example below. The code below will result in all paragraphs assigned to
+      class intro being colored red, but other elements that are not paragraphs
+      will not be colored.
+    </p>
+    <pre><code class = "language-css">
+/* Class selectors */
+p.intro {
+    color: red;
+}   
+</code></pre>
+    <p>
+      You can also make the class selectors that will target multiple classes
+    </p>
+    <p>
+      In the example below the selector <code>li.spacious.elegant</code>
+      targets the elements that is assigned to multiple classes.
+    </p>
+
+    <pre><code class = "language-html">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;example css&lt;/title&gt;
+&lt;style&gt;
+li.spacious.elegant {
+  margin: 2em;
+  padding: 1em;
+  border: 1px solid #ccc;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;ul&gt;
+  &lt;li class="spacious elegant"&gt;Item one&lt;/li&gt;
+  &lt;li class="spacious elegant retro"&gt;Item two&lt;/li&gt;
+  &lt;li class="elegant"&gt;Item three (won't match)&lt;/li&gt;
+  &lt;li class="spacious"&gt;Item four (won't match)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+    <ul>
+      <li class="spacious elegant">Item one</li>
+      <li class="spacious elegant retro">Item two</li>
+      <li class="elegant">Item three (won't match)</li>
+      <li class="spacious">Item four (won't match)</li>
+    </ul>
+
+    <h4>ID selectors</h4>
+    <p>The ID selectors target the elements with the specific ID</p>
+    <pre><code class = "language-css">
+/* ID selectors */
+#main-info {
+    color: red;
+}   
+</code></pre>
+    <h3>Important note</h3>
+    <p>The class name must be one word</p>
+    <p>The characters that are allowed in the class names:</p>
+    <ul>
+      <li>Letters: a-z, A-Z</li>
+      <li>Digits: 0-9</li>
+      <li>Hyphens: -</li>
+      <li>Underscores: _</li>
+      <li>
+        Any character outside the ASCII range (Unicode code points ≥ U+0080) —
+        so accented letters, emoji, CJK characters, etc. are technically valid
+        Escaped characters using backslash notation (e.g., \@ to include an
+        otherwise-illegal character)
+      </li>
+    </ul>
+    <h4>Restrictions on structure:</h4>
+    <ul>
+      <li>Cannot start with a digit (.1class is invalid)</li>
+      <li>
+        Cannot start with two hyphens, or a hyphen followed by a digit (.-1class
+        is invalid) — because that pattern is reserved for vendor-prefixed
+        identifiers
+      </li>
+      <li>A single hyphen alone is not a valid identifier</li>
+    </ul>
+    <h4>Attribute selectors</h4>
+    <p>
+      In the example below the link that has the title attribute gets selected
+      and recolored into purple.
+    </p>
+    <pre><code class = "language-html">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;example css&lt;/title&gt;
+&lt;style&gt;
+a[title] {
+  color: purple;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href="https://example.com" title="Visit Example">Link that contains example&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://sample.com">Link without title (default color)&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+    <br />
+    <ul>
+      <li>
+        <a href="https://example.com" title="Visit Example"
+          >Link with title (purple)</a
+        >
+      </li>
+      <li>
+        <a href="https://example.com">Link without title (default color)</a>
+      </li>
+    </ul>
+    <p>
+      <code>[attr]</code> - Represents elements with an attribute name of attr.
+    </p>
+    <pre><code class = "language-html">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;example css&lt;/title&gt;
+&lt;style&gt;
+/* &lt;a&gt; elements with an href matching "https://example.org" */
+a[href="https://example.org"] {
+  color: green;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href="https://example.org" title="Visit Example">Link matching the selector (green)&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://example.com">Link that is not targeted by selector (default color)&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+    <ul>
+      <li>
+        <a href="https://example.org" title="Visit Example"
+          >Link matching the selector (green)</a
+        >
+      </li>
+      <li>
+        <a href="https://example.com"
+          >Link that is not targeted by selector (default color)</a
+        >
+      </li>
+    </ul>
+    <p>
+      <code>[attr=value]</code>- Represents elements with an attribute name of
+      attr whose value is exactly value.
+    </p>
+    <p>
+      In the example above the href link was identical to the value targeted by
+      selector.
+    </p>
+    <pre><code class = "language-html">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;example css&lt;/title&gt;
+&lt;style&gt;
+/* &lt;a&gt; elements with an href matching "https://example.org" */
+a[href="https://example.org"] {
+  color: green;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href="https://example.org" title="Visit Example">Link matching the selector (green)&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://example.com">Link that is not targeted by selector (default color)&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+    </code></pre>
+
+    <h4>Targeting the attribute by substring separated by spaces</h4>
+    <p>The substring should be separated by spaces.</p>
+    <pre><code class = "language-html">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;example css&lt;/title&gt;
+&lt;style&gt;
+a[class~="logo"] {
+  pcolor: purple;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href="/" class="logo"&gt;Home (matches)&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="/" class="nav-logo"&gt;Nav (doesn't match)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="/" class="site logo header"&gt;Site (matches)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="/" class="logotype"&gt;Logotype (doesn't match)&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    <ul>
+      <li>
+        <a href="/" class="logo">Home (matches)</a>
+      </li>
+      <li>
+        <a href="/" class="nav-logo">Nav (doesn't match)</a>
+      </li>
+      <li>
+        <a href="/" class="site logo header">Site (matches)</a>
+      </li>
+      <li>
+        <a href="/" class="logotype">Logotype (doesn't match)</a>
+      </li>
+    </ul>
+    <br />
+    <p>
+      <code>[attr~=value]</code>- Represents elements with an attribute name of
+      attr whose value is a whitespace-separated list of words, one of which is
+      exactly value.
+    </p>
+    <br />
+    <h4>Filtering element by substring</h4>
+    <pre><code class = "language-html">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;example css&lt;/title&gt;
+&lt;style&gt;
+/* &lt;a&gt; elements with an href containing "example" */
+a[href*="example"] {
+  color: purple;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href="https://example.org" title="Visit Example">Link matching the selector (purple))&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://sample.com">Link that is not targeted by selector (default color)&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+    <ul>
+      <li>
+        <a href="https://example.org" title="Visit Example"
+          >Link matching the selector (green)</a
+        >
+      </li>
+      <li>
+        <a href="https://sampple.com"
+          >Link that is not targeted by selector (default color)</a
+        >
+      </li>
+    </ul>
+    <p>
+      <code>[attr*=value]</code> - Represents elements with an attribute name of
+      attr whose value contains at least one occurrence of value within the
+      string.
+    </p>
+    <h4>Targeting the substring that is at the end of the element</h4>
+    <pre><code class = "language-html">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;example css&lt;/title&gt;
+&lt;style&gt;
+/* &lt;a&gt; elements with an href containing "example" */
+a[href$=".org" i] {
+  color: mediumvioletred;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;a href="https://example.org"&gt;Example.org (matches)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://example.ORG"&gt;Example.ORG (matches, case-insensitive)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://example.Org"&gt;Example.Org (matches, case-insensitive)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://example.com"&gt;Example.com (doesn't match)&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;a href="https://example.org/page.html"&gt;Nested path (doesn't match)&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<ul>
+<li>
+<a href="https://example.org">Example.org (matches)</a>
+</li>
+<li>
+<a href="https://example.ORG">Example.ORG (matches, case-insensitive)</a>
+</li>
+<li>
+<a href="https://example.Org">Example.Org (matches, case-insensitive)</a>
+</li>
+<li>
+<a href="https://example.com">Example.com (doesn't match)</a>
+</li>
+<li>
+<a href="https://example.org/page.html">Nested path (doesn't match)</a>
+</li>
+</ul>
+
+<p><code>[attr$=value]</code> - Represents elements with an attribute name of attr whose value is suffixed (followed) by value.</p>
+<p>In other words, this selector targets the attributes that end with the specified substring</p>
+<p> <code>i</code> or <code>I</code> means case insensitive</p>
+
+<h4>Targeting the attribute that starts with the specific substring</h4>
+
+
+<h4>Targeting the attribute based on substring or substring followed by hyphen</h4>
+
+<pre><code class = "language-html">
+&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;example css&lt;/title&gt;
+&lt;style&gt;
+/* &lt;p&gt; elements with lang attribute set to en, or en folowed by - */
+p[lang|="en"] {
+  background-color: yellow;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p lang="en"&gt;English text (matches)&lt;/p&gt;
+&lt;p lang="en-US"&gt;American English (matches)&lt;/p&gt;
+&lt;p lang="en-GB"&gt;British English (matches)&lt;/p&gt;
+&lt;p lang="english"&gt;Not a match — "english" isn't "en" or "en-" followed by more&lt;/p&gt;
+&lt;p lang="fr"&gt;French text (doesn't match)&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p lang="en">English text (matches)</p>
+<p lang="en-US">American English (matches)</p>
+<p lang="en-GB">British English (matches)</p>
+<p lang="english">Not a match — "english" isn't "en" or "en-" followed by more</p>
+<p lang="fr">French text (doesn't match)</p>
+
+<p>
+  <code>[attr|=value]</code>
+Represents elements with an attribute name of attr whose value can be exactly value or can begin with value immediately followed by a hyphen, - (U+002D). It is often used for language subcode matches.
+</p>
+<button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+  </body>
+</html>

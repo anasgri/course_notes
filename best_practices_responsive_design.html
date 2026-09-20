@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive design bootstrap</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Best Practices for Responsive Design with Bootstrap</h3>
+    <p>
+      Bootstrap is built mobile-first. That means: Your styles apply to small
+      screens by default.
+    </p>
+
+    <p>
+      You add classes to adjust layout on small (sm), medium (md), large (lg),
+      extra-large (xl), extra-extra-large (xxl) screens.
+    </p>
+    <p>
+      Responsive design means your website looks good on any screen, from phones
+      to large desktops. Bootstrap makes this easier with mobile-first classes
+      and a flexible grid system
+    </p>
+    <ul>
+      <li>Always wrap rows inside a .container or .container-fluid.</li>
+      <li>Combine .row and .col-* classes to structure content.</li>
+      <li>
+        Use breakpoints (col-sm, col-md, col-lg, etc.) to change layouts based
+        on screen size
+      </li>
+    </ul>
+    <p>
+      You can change how columns are displayed on each screen size. In this
+      example, on mobile, the columns stack. On tablets and desktops, they
+      appear side-by-side
+    </p>
+    <pre><code class = "language-html">
+&lt;div class="row"&gt;
+&lt;div class="col-12 col-md-6"&gt;Left (stacks on small screens)&lt;/div&gt;
+&lt;div class="col-12 col-md-6"&gt;Right&lt;/div&gt;
+&lt;/div&gt;
+    </code></pre>
+    <h3>Typography and padding</h3>
+    <p>Make more padding on larger screens.</p>
+    <p>Use heading classes (h1, h2, etc.) instead of resizing manually</p>
+    <pre><code class = "language-html">
+        &lt;div class="p-3 p-md-5"&gt;More padding on medium+ screens&lt;/div&gt;
+    </code></pre>
+    <h3>Avoid fixed widths</h3>
+    <p>
+      Instead of setting a fixed width with CSS, use Bootstrap width classes or
+      percentages. This keeps your layout flexible
+    </p>
+    <pre><code class = "language-html">
+    &lt;div class = "w-100 w-md-75"&gt;
+</code></pre>
+    <p>Always test your design at different screen sizes:</p>
+    <ul>
+      <li>Resize your browser.</li>
+      <li>Use browser dev tools.</li>
+      <li>Use a Bootstrap extension in your browser.</li>
+      <li>Preview on a real phone when possible.</li>
+    </ul>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

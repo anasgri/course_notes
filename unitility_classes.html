@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding: 30px;
+        background: #f8f9fa;
+      }
+      .demo-box {
+        background: #cfe2ff;
+        border: 2px dashed #0d6efd;
+        display: inline-block;
+      }
+      .demo-wrap {
+        background: #fff3cd;
+        border: 1px solid #ffc107;
+        margin-bottom: 20px;
+        padding: 10px;
+      }
+      code {
+        color: #d63384;
+      }
+      h2 {
+        margin-top: 50px;
+        border-bottom: 2px solid #dee2e6;
+        padding-bottom: 8px;
+      }
+    
+.btnback {
+  background-color: #6495ed; /* Green */
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 100px;
+}
+.btnback:hover {
+  background-color: #4169e1;
+}
+</style>
+  </head>
+  <body>
+    <h1>Using utility classes</h1>
+    <p>
+      Utility classes can be used as a quick way to modify your website without
+      altering the html. just by assigning certain elements to the class.
+    </p>
+    <p>Below is the list of some usefull utility classes.</p>
+    <ul>
+      <li>text-center: Centers text.</li>
+      <li>bg-light, bg-dark: For background colors.</li>
+      <li>m-3, p-3: For margin and padding.</li>
+      <li>d-flex, justify-content-center: For flex layouts.</li>
+    </ul>
+
+    <div class="container">
+      <h1>Bootstrap Spacing Utility Classes</h1>
+      <p class="text-muted">
+        Format: <code>{property}{sides}-{size}</code><br />
+        Property: <code>m</code> = margin, <code>p</code> = padding<br />
+        Sides: (none)=all sides, <code>t</code>=top, <code>b</code>=bottom,
+        <code>s</code>=start(left), <code>e</code>=end(right)<br />
+        Size: <code>0</code> to <code>5</code> (0 = none, 5 = largest)
+      </p>
+
+      <h2>Margin — all sides: m0 to m5</h2>
+      <pre><code class = "language-html">
+      &lt;div class="demo-wrap"&gt;
+        &lt;div class="demo-box m-0 p-2"&gt;m-0&lt;/div&gt;
+        &lt;div class="demo-box m-1 p-2"&gt;m-1&lt;/div&gt;
+        &lt;div class="demo-box m-2 p-2"&gt;m-2&lt;/div&gt;
+        &lt;div class="demo-box m-3 p-2"&gt;m-3&lt;/div&gt;
+        &lt;div class="demo-box m-4 p-2"&gt;m-4&lt;/div&gt;
+        &lt;div class="demo-box m-5 p-2"&gt;m-5&lt;/div&gt;
+      &lt;/div&gt;
+      </code></pre>
+      <div class="demo-wrap">
+        <div class="demo-box m-0 p-2">m-0</div>
+        <div class="demo-box m-1 p-2">m-1</div>
+        <div class="demo-box m-2 p-2">m-2</div>
+        <div class="demo-box m-3 p-2">m-3</div>
+        <div class="demo-box m-4 p-2">m-4</div>
+        <div class="demo-box m-5 p-2">m-5</div>
+      </div>
+      <p>
+        Yellow box = parent boundary. Notice how each blue box pushes further
+        away from its neighbors and the wrapper edge as the number increases.
+      </p>
+
+      <h2>Margin Top — mt0 to mt5</h2>
+      <div class="demo-wrap">
+        <div class="demo-box mt-0 p-2">mt-0</div>
+        <div class="demo-box mt-1 p-2">mt-1</div>
+        <div class="demo-box mt-2 p-2">mt-2</div>
+        <div class="demo-box mt-3 p-2">mt-3</div>
+        <div class="demo-box mt-4 p-2">mt-4</div>
+        <div class="demo-box mt-5 p-2">mt-5</div>
+      </div>
+      <p>Only the top gets pushed down — left/right/bottom are unaffected.</p>
+
+      <h2>Margin Bottom — mb0 to mb5</h2>
+      <div class="demo-wrap">
+        <div class="demo-box mb-0 p-2 d-block">mb-0</div>
+        <div class="demo-box mb-1 p-2 d-block">mb-1</div>
+        <div class="demo-box mb-2 p-2 d-block">mb-2</div>
+        <div class="demo-box mb-3 p-2 d-block">mb-3</div>
+        <div class="demo-box mb-4 p-2 d-block">mb-4</div>
+        <div class="demo-box mb-5 p-2 d-block">mb-5</div>
+      </div>
+      <p>
+        Used as <code>d-block</code> here so you can see the gap stacking
+        vertically below each box.
+      </p>
+
+      <h2>Margin Start (left) — ms0 to ms5</h2>
+      <div class="demo-wrap">
+        <div class="demo-box ms-0 p-2">ms-0</div>
+        <div class="demo-box ms-1 p-2">ms-1</div>
+        <div class="demo-box ms-2 p-2">ms-2</div>
+        <div class="demo-box ms-3 p-2">ms-3</div>
+        <div class="demo-box ms-4 p-2">ms-4</div>
+        <div class="demo-box ms-5 p-2">ms-5</div>
+      </div>
+      <p>
+        <code>ms</code> = "margin-start", meaning left in left-to-right
+        languages (used instead of <code>ml</code> so it also works correctly in
+        right-to-left languages).
+      </p>
+
+      <h2>Margin End (right) — me0 to me5</h2>
+      <div class="demo-wrap">
+        <div class="demo-box me-0 p-2">me-0</div>
+        <div class="demo-box me-1 p-2">me-1</div>
+        <div class="demo-box me-2 p-2">me-2</div>
+        <div class="demo-box me-3 p-2">me-3</div>
+        <div class="demo-box me-4 p-2">me-4</div>
+        <div class="demo-box me-5 p-2">me-5</div>
+      </div>
+      <p>
+        <code>me</code> = "margin-end", meaning right in left-to-right
+        languages.
+      </p>
+
+      <hr class="my-5" />
+
+      <h2>Padding — all sides: p0 to p5</h2>
+      <div class="demo-wrap">
+        <div class="demo-box p-0 m-1">p-0</div>
+        <div class="demo-box p-1 m-1">p-1</div>
+        <div class="demo-box p-2 m-1">p-2</div>
+        <div class="demo-box p-3 m-1">p-3</div>
+        <div class="demo-box p-4 m-1">p-4</div>
+        <div class="demo-box p-5 m-1">p-5</div>
+      </div>
+      <p>
+        Padding adds space <strong>inside</strong> the box, between its border
+        and its content — so the box itself grows bigger, unlike margin.
+      </p>
+
+      <h2>Padding Top — pt0 to pt5</h2>
+      <div class="demo-wrap">
+        <div class="demo-box pt-0 px-2 pb-2 m-1">pt-0</div>
+        <div class="demo-box pt-1 px-2 pb-2 m-1">pt-1</div>
+        <div class="demo-box pt-2 px-2 pb-2 m-1">pt-2</div>
+        <div class="demo-box pt-3 px-2 pb-2 m-1">pt-3</div>
+        <div class="demo-box pt-4 px-2 pb-2 m-1">pt-4</div>
+        <div class="demo-box pt-5 px-2 pb-2 m-1">pt-5</div>
+      </div>
+
+      <h2>Padding Bottom — pb0 to pb5</h2>
+      <div class="demo-wrap">
+        <div class="demo-box pb-0 px-2 pt-2 m-1">pb-0</div>
+        <div class="demo-box pb-1 px-2 pt-2 m-1">pb-1</div>
+        <div class="demo-box pb-2 px-2 pt-2 m-1">pb-2</div>
+        <div class="demo-box pb-3 px-2 pt-2 m-1">pb-3</div>
+        <div class="demo-box pb-4 px-2 pt-2 m-1">pb-4</div>
+        <div class="demo-box pb-5 px-2 pt-2 m-1">pb-5</div>
+      </div>
+
+      <h2>Padding Start (left) — ps0 to ps5</h2>
+      <div class="demo-wrap">
+        <div class="demo-box ps-0 py-2 pe-2 m-1">ps-0</div>
+        <div class="demo-box ps-1 py-2 pe-2 m-1">ps-1</div>
+        <div class="demo-box ps-2 py-2 pe-2 m-1">ps-2</div>
+        <div class="demo-box ps-3 py-2 pe-2 m-1">ps-3</div>
+        <div class="demo-box ps-4 py-2 pe-2 m-1">ps-4</div>
+        <div class="demo-box ps-5 py-2 pe-2 m-1">ps-5</div>
+      </div>
+
+      <h2>Padding End (right) — pe0 to pe5</h2>
+      <div class="demo-wrap">
+        <div class="demo-box pe-0 py-2 ps-2 m-1">pe-0</div>
+        <div class="demo-box pe-1 py-2 ps-2 m-1">pe-1</div>
+        <div class="demo-box pe-2 py-2 ps-2 m-1">pe-2</div>
+        <div class="demo-box pe-3 py-2 ps-2 m-1">pe-3</div>
+        <div class="demo-box pe-4 py-2 ps-2 m-1">pe-4</div>
+        <div class="demo-box pe-5 py-2 ps-2 m-1">pe-5</div>
+      </div>
+
+      <hr class="my-5" />
+
+      <h2>Quick reference table</h2>
+      <table class="table table-bordered bg-white">
+        <thead class="table-light">
+          <tr>
+            <th>Class</th>
+            <th>Property</th>
+            <th>Side affected</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>m-*</code></td>
+            <td>margin</td>
+            <td>all 4 sides</td>
+          </tr>
+          <tr>
+            <td><code>mt-*</code></td>
+            <td>margin</td>
+            <td>top only</td>
+          </tr>
+          <tr>
+            <td><code>mb-*</code></td>
+            <td>margin</td>
+            <td>bottom only</td>
+          </tr>
+          <tr>
+            <td><code>ms-*</code></td>
+            <td>margin</td>
+            <td>start / left only</td>
+          </tr>
+          <tr>
+            <td><code>me-*</code></td>
+            <td>margin</td>
+            <td>end / right only</td>
+          </tr>
+          <tr>
+            <td><code>p-*</code></td>
+            <td>padding</td>
+            <td>all 4 sides</td>
+          </tr>
+          <tr>
+            <td><code>pt-*</code></td>
+            <td>padding</td>
+            <td>top only</td>
+          </tr>
+          <tr>
+            <td><code>pb-*</code></td>
+            <td>padding</td>
+            <td>bottom only</td>
+          </tr>
+          <tr>
+            <td><code>ps-*</code></td>
+            <td>padding</td>
+            <td>start / left only</td>
+          </tr>
+          <tr>
+            <td><code>pe-*</code></td>
+            <td>padding</td>
+            <td>end / right only</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-muted">
+        Bonus: <code>mx-*</code>/<code>px-*</code> set left+right together, and
+        <code>my-*</code>/<code>py-*</code> set top+bottom together — used above
+        to isolate single sides in each demo.
+      </p>
+    </div>
+
+    <h3>Aligning the text using the bootsrap pre-made classes.</h3>
+    <pre><code class = "language-html">
+&lt;h2 class="text-center"&gt;Centered Heading&lt;/h2&gt;
+&lt;p class="text-start"&gt;Left aligned&lt;/p&gt;
+&lt;p class="text-end"&gt;Right aligned&lt;/p&gt;
+    </code></pre>
+    <h2 class="text-center">Centered Heading</h2>
+    <p class="text-start">Left aligned</p>
+    <p class="text-end">Right aligned</p>
+    <h3>Changing how the elements are displayed.</h3>
+    <ul>
+      <li>d-flex: turns the element into a flex container</li>
+      <li>justify-content-* and align-items-* control layout</li>
+    </ul>
+    <pre><code class = "language-html">
+&lt;div class="d-flex justify-content-between align-items-center"&gt;
+&lt;span&gt;Left&lt;/span&gt;
+&lt;span&gt;Right&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+    <div class="d-flex justify-content-between align-items-center">
+      <span>Left</span>
+      <span>Right</span>
+    </div>
+    <h3>Quickly hide or show elements using the display tag.</h3>
+    <p>
+      In the example below the <code>div</code> will be not visible on the small
+      screens, but visible on the larger screens <code>dispaly:block</code>
+    </p>
+    <pre><code class = "language-html">
+  &lt;div class="d-none d-md-block"&gt;Visible only on medium+ screens&lt;/div&gt;
+&lt;img src="photo.jpg" class="w-50" alt="Half width image"&gt;
+</code></pre>
+    <div class="d-none d-md-block">Visible only on medium+ screens</div>
+    <img src="photo.jpg" class="w-50" alt="Half width image" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

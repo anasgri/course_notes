@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript clean code</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h2>JavaScript clean code</h2>
+    <ul>
+      <li>Choose meaningfull names for variables</li>
+      <li>Use camelcase for varables and functions <code>myVariable</code></li>
+      <li>
+        Use Pascalcase <code>PascalCase</code> for classes and condtructors
+      </li>
+      <li>use meaningfull self explanatory names.</li>
+      <li>
+        Functions should perform the single task and be easy to understand
+      </li>
+      <li>Do not use <code>+</code> for string concatenation</li>
+      <pre><code class = "language-javascript">
+// Poor practice
+let name = "Alice";
+let greeting = "Hello, " + name + "!";
+
+// Better practice
+let name = "Alice";
+let greeting = `Hello, ${name}!`;
+    </code></pre>
+    </ul>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form submission Javascript</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+  <body>
+    <h1>Asynschronous form submission</h1>
+    <h3>Recap on the formData</h3>
+    <p>
+      If HTML form element is provided, it automatically captures its fields.
+    </p>
+    <p>
+      The special thing about FormData is that network methods, such as fetch,
+      can accept a FormData object as a body. It’s encoded and sent out with
+      Content-Type: multipart/form-data.
+    </p>
+    <p>
+      From the server point of view, that looks like a usual form submission.
+    </p>
+    <pre><code class = "language-javascript">
+  let formData = new FormData(form); // formdata object
+  form.addEventListener("submit", function(event) {
+  event.preventDefault();
+  let formData = new FormData(form);
+  // acessing the indivisula values using formData.get
+  console.log(formData.get("name"));
+  console.log(formData.get("email"));
+  console.log(formData.get("message"));
+});
+</code></pre>
+    <p>The formData stores the inputs as key value pairs.</p>
+    <p>
+      The key value pairs can be acessed by their kets that are specified by the
+      name tag in the form
+    </p>
+    <pre><code class = "language-html">
+    <!-- Here the name tag is set to email, so key is email-->
+  &lt;input type="email" name="email" placeholder="Email" required&gt;
+</code></pre>
+
+<p>First lets revise how the form would look like</p>
+<p>HTML</p>
+<pre><code class = "language-html">
+&lt;form id="myForm"&gt;
+  &lt;input type="text" name="username" placeholder="Username" required&gt;
+  &lt;input type="email" name="email" placeholder="Email" required&gt;
+  &lt;input type="file" name="avatar"&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+<p>JavaScript</p>
+<pre><code class ="language-javascript">
+// This is the function for the data validation. Will be used later. 
+// .trim() is equivalent to python .strip(), removes extra spaces. 
+function validateForm(formData) {
+  let name = formData.get('name').trim()
+  let email = formData.get('email').trim()
+  let message = formData.get('message').trim()
+
+  if (name === '' || email === '' || message === '') {
+    alert('All fields are required!')
+    return false
+  }
+
+  return true
+}
+
+
+const form = document.getElementById('myForm'); // getting form
+
+form.addEventListener('submit', async function(e) { 
+  e.preventDefault(); // stop default page reload
+
+  const formData = new FormData(form); // formdata object
+  // Here it is important to validate your data, before posting it. 
+  
+  if validateForm(formDara) {
+    console.log("Form is valid submitting!.")
+  }
+
+
+  // You can also append/modify fields manually
+  formData.append('extraField', 'someValue');
+
+  try {
+    const response = await fetch('/api/submit', {
+      method: 'POST',
+      body: formData // it accepts the form data as body
+      // Don't set Content-Type header manually —
+      // the browser sets it automatically with the correct boundary
+    });
+
+    if (!response.ok) throw new Error('Submission failed');
+
+    const result = await response.json();
+    console.log('Success:', result);
+    form.reset() // resetting the form.
+  } catch (err) {
+    console.error('Error:', err);
+  }
+});
+</code></pre>
+    </code></pre>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>

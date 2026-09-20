@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maintainable CSS</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+</head>
+
+  <body>
+    <h1>Maintainable css</h1>
+    <ul>
+      <li>Easier to read and understand</li>
+      <li>Prevents styles from breaking each other</li>
+      <li>Makes it easier to collaborate with others</li>
+      <li>Keeps large projects organized</li>
+    </ul>
+    <h3>BEM convention</h3>
+    <p>
+      BEM stands for Block, Element, Modifier. A naming convention that makes
+      CSS more readable and modular.
+    </p>
+    <p>Example:</p>
+    <pre><code class = "language-html">
+&lt;div class="card card--highlight"&gt;
+&lt;h2 class="card__title"&gt;Title&lt;/h2&gt;
+&lt;p class="card__description"&gt;Text&lt;/p&gt;
+&lt;/div&gt;
+  </code></pre>
+    <ul>
+      <li>card = Block (the standalone component)</li>
+      <li>card__title = Element (a part of the block)</li>
+      <li>card--highlight = Modifier (a variation of the block)</li>
+    </ul>
+<h3>BEM best practices</h3>
+<ul>
+    <li>Use double underscores __ for elements</li>
+<li>Use double dashes -- for modifiers</li>
+<li>Avoid deeply nested selectors</li>
+<li>Be consistent with casing (e.g., all lowercase)</li>
+</li>
+</ul>
+
+<p>You can organise your project like that.</p>
+<img src = "oragnising_project.png" width = "500px" alt = "organise_project">
+<p>And then import the components. </p>
+<img src = "importing_all.png" alt = "organise_propject" width = "500px">
+
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+      <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+</body>
+</html>
