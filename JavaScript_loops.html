@@ -140,6 +140,14 @@ for (let i = 0; i < 10; i++) {
     console.log(text);
     // The number is 0&lt;br&gt;The number is 1&lt;br&gt;The number is 2&lt;br&gt;
   </code></pre>
+  <h3>Continue stsement skips to the next iteration</h3>
+<pre><code class = "language-javascript">
+  for (let i = 1; i < 10; i++) {
+  if (i === 3) { continue; }
+  text += "The number is " + i + "<br>";
+}
+    </code></pre>
+  
       <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
