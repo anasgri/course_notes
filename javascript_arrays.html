@@ -8,7 +8,7 @@
       href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
       rel="stylesheet"
     />
-      <style>
+    <style>
       .btnback {
         background-color: #6495ed; /* Green */
         border-radius: 5px;
@@ -22,7 +22,7 @@
         background-color: #4169e1;
       }
     </style>
-</head>
+  </head>
   <body>
     <h2>JavaScript arrays</h2>
     <p>
@@ -65,7 +65,12 @@ let size = fruits.length;
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.length = 2; // ["Banana", "Orange"];
 </code></pre>
-    <p>he pop() method removes the last element from an array:</p>
+    <p>the join(); method joins the values in the array into string</p>
+    <pre><code class = "language-javascript">
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+let text = fruits.join(); // Banana,Orange,Apple,Mango
+</code></pre>
+    <p>the pop() method removes the last element from an array:</p>
     <pre><code class = "language-javascript">
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.pop();
@@ -113,6 +118,15 @@ fruits.splice(2, 0, 'Cherry');
       the array is saved in the same place.
     </p>
 
+    <p>Sorting the array</p>
+    <pre><code class = "language-javascript">
+      // Create an Array
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+// Sort the Array
+fruits.sort();
+    </code></pre>
+
     <h3>Different ways how to loop through the array</h3>
     <p>Using the conventional loop</p>
     <pre><code class = "language-javascript">
@@ -138,8 +152,8 @@ for (let animal of animals) {
     </code></pre>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
-      <button class="btnback" onclick="window.location.href = 'index.html'">
+    <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
-</body>
+  </body>
 </html>
