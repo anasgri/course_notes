@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timers</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h3>Timers</h3>
+    <p>
+      Sometimes you want to execute code after a certain amount of time has
+      passed.
+    </p>
+    <p>In the case below the alert will be shown after 5 seconds (5000 ms):</p>
+    <pre><code class = "language-javascript">
+function myGreeting() {
+  alert("Hello!");
+}
+const myTimeout = setTimeout(myGreeting, 5000);
+    </code></pre>
+    <p>Use clearTimeout(myTimeout) to prevent myGreeting from running:</p>
+    <pre><code class = "language-javascript">
+const myTimeout = setTimeout(myGreeting, 5000);
+
+function myStopFunction() {
+  clearTimeout(myTimeout);
+}
+    </code></pre>
+    <h3>setInterval()</h3>
+    <p>Set interval executes the function repeatedly at specified intervals:</p>
+    <p>
+      Below is the flashcard project where the source of the image get changed
+      to dipaly different apples.
+    </p>
+    <pre><code class = "language-html">
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8" /&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+&lt;title&gt;Changing images&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Changing Images&lt;/h1&gt;
+&lt;img id="myImage" src="red_apple_image.jpeg" alt="Image 1" width="300" /&gt;
+</code></pre>
+    <p>Javascript code for changing images:</p>
+    <pre><code class = "language-javascript">
+imageArray = [
+        "red_apple_image.jpeg",
+        "green_apple_image.jpeg",
+        "yellow_apple_image.jpg",
+      ];
+      currentIndex = 0;
+      function changeImage() {
+        document.getElementById("myImage").src = imageArray[currentIndex];
+        currentIndex++;
+        if (currentIndex >= imageArray.length) {
+          currentIndex = 0;
+        }
+      }
+      setInterval(changeImage, 10000);
+</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
