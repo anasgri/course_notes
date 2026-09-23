@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reacting to the events</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Responding to the events</h1>
+    <p>
+      This section is about the cases when the user clicks the button and
+      something happens
+    </p>
+    <h3>Easiest option</h3>
+    <p>Easiest option, directly putting the JavaScript code in the HTML</p>
+    <pre><code class = "language-html">
+        &lt;button onclick="alert('Hello!')">Click me&lt;/button>   
+    </code></pre>
+    <h3>Using the onclick and function</h3>
+    <pre><code class = "language-javascript">
+const button = document.getElementById('myButton'); // there is a button with the id 'myButton' in the HTML
+// Assign a function to onclick
+button.onclick = function() {
+  alert('Button was clicked!');
+};
+    </code></pre>
+    <p>More practical example with the list</p>
+    <pre><code class = "language-javascript">
+const items = document.querySelectorAll('.list-item');
+
+items.forEach(item => {
+  item.onclick = function() {
+    this.style.backgroundColor = 'yellow'; // only highlights the clicked item
+    console.log('Clicked:', this.textContent);
+  };
+});
+    </code></pre>
+
+    <h3>The third option is the addEventListener method</h3>
+    <button
+      class="btnback"
+      onclick="window.location.href = 'DOM_and_javascript3.html'"
+    >
+      Go to the EventListener example
+    </button>
+    <h3>List of the events</h3>
+    <ul>
+      <ul>
+        <li>onclick</li>
+        <li>onload</li>
+        <li>onunload</li>
+        <li>onchange</li>
+        <li>onmouseover</li>
+        <li>onmouseout</li>
+        <li>onmouseup</li>
+        <li>onmousedown</li>
+        <li>onfocus</li>
+        <li>onblur</li>
+      </ul>
+    </ul>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
