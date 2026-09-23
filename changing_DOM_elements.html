@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Changing DOM Elements</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Changing DOM Elements</h2>
+    <p>Overall syntax for changing DOM elements in JavaScript:</p>
+    <pre><code class = "language-javascript">
+        myElement.setAttribute("attributeName", "newValue");
+    </code></pre>
+    <p>Example:</p>
+    <pre><code class = "language-javascript">
+        let myElement = document.getElementById("myElement");
+        myElement.setAttribute("src", "newImage.jpg");
+    </code></pre>
+    <h3>Changing the style</h3>
+    <p>To change the style of an element, you can use the `style` property:</p>
+    <pre><code class = "language-javascript">
+        let myElement = document.getElementById("myElement");
+        myElement.style.color = "red";
+        myElement.style.fontSize = "20px";
+    </code></pre>
+    <h3>What to do with the attributes that have dashes</h3>
+    <p>
+      JavaScript can not include dashes in attribute names, so you need to use
+      the `setAttribute` method with the attribute name in camelCase:
+    </p>
+    <p>so attribute like font-family would be fontFamily</p>
+    <pre><code class = "language-javascript">
+        // Single element
+document.querySelector('.my-text').style.fontFamily = 'Verdana, sans-serif';
+
+// Multiple elements
+document.querySelectorAll('p').forEach(el => {
+  el.style.fontFamily = 'Roboto, sans-serif';
+});
+    </code></pre>
+    <h3>Creating the element and adding it to the DOM</h3>
+    <pre><code class = "language-javascript">
+        // 1. Create the element
+const newDiv = document.createElement('div');
+
+// 2. Add content/attributes
+newDiv.textContent = 'Hello, I am a new element!';
+newDiv.className = 'my-new-class';
+newDiv.setAttribute('id', 'greeting');
+newDiv.style.fontFamily = 'Arial, sans-serif';
+newDiv.style.color = 'blue';
+
+// 3. Add it to the DOM
+document.body.appendChild(newDiv);
+</code></pre>
+
+    <h3>Another way of adding text</h3>
+    <pre><code class = "language-javascript">
+var myListItem = document.createElement("li"); // create the new list item
+var myTextNode = document.createTextNode("The Hobbit"); // create a text node with the content
+myListItem.appendChild(myTextNode); // append the text node to the list item
+
+var books = document.getElementById("books"); // get the reference to the existing list
+books.appendChild(myListItem); // append the new list item to the existing list
+    </code></pre>
+
+    <h3>Removing an element</h3>
+    <pre><code class = "language-javascript">
+        var myElement = document.getElementById("myElement");
+</code></pre>
+
+    <h3>insertBefore()</h3>
+    <p>
+      This is the alternative to the `appendChild()` method, that provides more
+      control over where the element is inserted:
+    </p>
+    <p>appendChild() adds the element as the last child of the parent node.</p>
+    <p>
+      insertBefore() uses another element as a reference point for insertion.
+    </p>
+    <pre><code class = "language-javascript">
+parent.insertBefore(newNode, referenceNode);
+</code></pre>
+    <pre><code class = "language-javascript">
+const list = document.getElementById('list'); // reference to the existing list
+const newItem = document.createElement('li'); // create a new list item
+newItem.textContent = 'Inserted second'; // adding the text content to the new list item
+const secondItem = list.children[1]; // reference point
+list.insertBefore(newItem, secondItem); // newItem goes right before secondItem
+    </code></pre>
+
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>

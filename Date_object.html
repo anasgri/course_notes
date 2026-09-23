@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Date Object</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>JavaScript Date Object</h3>
+    <pre><code class="language-javascript">
+const now = new Date();
+console.log(now);
+</code></pre>
+
+    <p>Specifying the date and time:</p>
+    <pre><code class="language-javascript">
+const specificDate = new Date('2024-06-01');
+console.log(specificDate);
+</code></pre>
+    <p>
+      The date calculates the milliseconds since January 1, 1970, 00:00:00 UTC.
+    </p>
+    <pre><code class="language-javascript">
+new Date(0)
+// → Thu Jan 01 1970 00:00:00 GMT+0000 (epoch start)
+
+new Date(1700000000000)
+// → Tue Nov 14 2023 22:13:20 GMT+0000
+
+new Date(-86400000)
+// → Wed Dec 31 1969 00:00:00 GMT+0000 (negative = before epoch)
+</code></pre>
+    <p>Creating date by supplying actual date values:</p>
+    <pre><code class="language-javascript">
+    new Date("2024-01-15")
+// → Mon Jan 15 2024 00:00:00 GMT+0000 (ISO format, parsed as UTC midnight)
+
+new Date("2024-01-15T10:30:00")
+// → Mon Jan 15 2024 10:30:00 (local time)
+
+new Date("January 15, 2024")
+// → Mon Jan 15 2024 00:00:00 (local time)
+
+new Date("01/15/2024")
+// → Mon Jan 15 2024 00:00:00 (US format, local time)
+
+new Date("not a date")
+// → Invalid Date
+</code></pre>
+
+    <h3>Creating date by supplying components as numners</h3>
+    <pre><code class="language-javascript">
+new Date(2024, 0, 15)
+// → Mon Jan 15 2024 00:00:00 (month 0 = January!)
+
+new Date(2024, 11, 25, 9, 30)
+// → Wed Dec 25 2024 09:30:00
+
+new Date(2024, 0)
+// → Mon Jan 01 2024 00:00:00 (day defaults to 1)
+
+new Date(2024, 13, 1)
+// → Sat Feb 01 2025 00:00:00 (month 13 overflows into next year!)
+
+new Date(2024, 0, 32)
+// → Thu Feb 01 2024 00:00:00 (day 32 overflows into next month!)
+
+new Date(2024, 0, 0)
+// → Sun Dec 31 2023 00:00:00 (day 0 = last day of previous month!)
+</code></pre>
+
+    <h3>Getting the date components</h3>
+    <h4>Getting the day of the week</h4>
+    <p>The code belo returns the number.</p>
+    <ul>
+      <li>0 - Sunday</li>
+      <li>1 - Monday</li>
+      <li>2 - Tuesday</li>
+      <li>3 - Wednesday</li>
+      <li>4 - Thursday</li>
+      <li>5 - Friday</li>
+      <li>6 - Saturday</li>
+    </ul>
+    <pre><code class="language-javascript">
+const specificDate = new Date('2024-06-03');
+console.log(specificDate);
+
+day = specificDate.getDay()
+console.log(day);
+</code></pre>
+    <h4>Getting the day of the month</h4>
+    <pre><code class="language-javascript">
+    const specificDate = new Date('2024-02-05');
+console.log(specificDate);
+
+dayDate = specificDate.getDate();
+console.log(dayDate);
+</code></pre>
+    <h4>Getting the year</h4>
+    <pre><code class="language-javascript">
+const specificDate = new Date('2024-02-05');
+console.log(specificDate);
+
+year = specificDate.getFullYear();
+console.log(year); // 2024
+</code></pre>
+
+    <h3>Getting hours and minutes</h3>
+    <pre><code class="language-javascript">
+const specificDate = new Date('2024-02-05T10:30:00');
+console.log(specificDate);
+
+hours = specificDate.getHours();
+console.log(hours); // 10
+
+minutes = specificDate.getMinutes();
+console.log(minutes); // 30
+</code></pre>
+
+    <h3>Getting milliseconds since 1 January 1970</h3>
+    <pre><code class="language-javascript">
+const specificDate = new Date('2024-02-05T10:30:00');
+console.log(specificDate);
+
+milliseconds = specificDate.getTime();
+console.log(milliseconds); // 1707085800000
+</code></pre>
+
+    <h3>You can also set the date</h3>
+    <pre><code class="language-javascript">
+const specificDate = new Date('2024-02-05T10:30:00');
+setDate = specificDate.setDate(15);
+console.log(setDate); // 1707085800000
+// The date is now set to 15th February 2024
+</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
