@@ -27,7 +27,21 @@
   </head>
   <body>
     <h3>Music, audio and video</h3>
-
+    <p>There are two ways how you can embed the media into the page</p>
+    <p>The somplest one is shown below</p>
+    <pre><code class = "language-html">
+  &lt;video src="video.mp4" width="320" height="240" controls&gt;
+    Video not supported
+&lt;/video&gt;
+</code></pre>
+    <p>
+      This method is used when the video file is directly specified in the
+      &lt;video&gt; tag and you do not need the fallbacks
+    </p>
+    <p>
+      The second medthod is shown below and involves additional &lt;source&gt;
+      tags
+    </p>
     <pre><code class = "language-html">
 &lt;video&gt;
 video file
@@ -40,13 +54,12 @@ video file
 &lt;/video&gt;
 </code></pre>
 
-
     <video>
       <source src="ostrich_bald.mp4" , type="video/mp4" />
     </video>
     <br />
-<h3>You can also specify the video height and width</h3>
-<pre><code class = "language-html">
+    <h3>You can also specify the video height and width</h3>
+    <pre><code class = "language-html">
 &lt;video src="myVideo.mp4" width="320" height="240" controls&gt;
 Video not supported
 &lt;/video&gt;
@@ -156,10 +169,15 @@ Audio not supported
 &lt;source src="audiofile.ogg", type="audio/ogg"&gt;
 &lt;/audio&gt;
 </code></pre>
+    <h3>Embedding gifs using &lt;embed&gt; tag</h3>
+    <pre><code class = "language-html">
+      &lt;embed src="fish.gif"/&gt;
+    </code></pre>
+    <embed src="fish.gif" />
+    <br />
     <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
-
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
   </body>
