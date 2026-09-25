@@ -11,6 +11,13 @@
       rel="stylesheet"
     />
     <style>
+      p.advert {
+        background-color: #D9EDF7;
+        border: 2px solid #0c3d55;
+        font-family: Helvetica, sans-serif;
+        padding: 20px 10px;
+        margin: 20px 10px;
+      }
       /*This is going to be applid to all sides */
       .box1 {
         margin: 20 px;
@@ -102,8 +109,16 @@
         neighboring elements on the page.
       </li>
     </ul>
-    <p><strong>width</strong> - Defines the width of an element's content area. The content area is the space inside the padding, border, and margin of the element.</p>
-<p><strong>height</strong> - Defines the height of an element's content area. The content area is the space inside the padding, border, and margin of the element.</p>
+    <p>
+      <strong>width</strong> - Defines the width of an element's content area.
+      The content area is the space inside the padding, border, and margin of
+      the element.
+    </p>
+    <p>
+      <strong>height</strong> - Defines the height of an element's content area.
+      The content area is the space inside the padding, border, and margin of
+      the element.
+    </p>
     <p>Below is the example css foe the element of class box</p>
     <pre><code class = "language-css">
     .box {
@@ -218,17 +233,21 @@
   border-right: 3px dashed yellow;
 }
 </code></pre>
-<h3>Border-radius</h3>
-<p>Border radius property sepcifies how round the corners of the box are. It can be expressed in the pixels or in % </p>
+    <p class="box">The boxed element</p>
+    <h3>Border-radius</h3>
+    <p>
+      Border radius property sepcifies how round the corners of the box are. It
+      can be expressed in the pixels or in %
+    </p>
     <p>The code below will produce the rounded corners.</p>
-<pre><code class = "language-css">
+    <pre><code class = "language-css">
 div.container {
   border: 3px solid blue;
   border-radius: 5px;
 }
 </code></pre>
-<p>The code below will convert the div to the circle</p>
-<pre><code class = "language-css">
+    <p>The code below will convert the div to the circle</p>
+    <pre><code class = "language-css">
   div.container {
   height: 60px;
   width: 60px;
@@ -236,7 +255,7 @@ div.container {
   border-radius: 50%;
 }
 </code></pre>
-    <p class="box">The boxed element</p>
+
     <p>
       You can also specify the margin and the padding values individually for
       each side.
@@ -269,7 +288,107 @@ div.container {
       margin-right: 15px;
     }
   </code></pre>
-    <button class="btnback" onclick="window.location.href = 'index.html'">
+    <h3>Specifying padding or margin with 4 values</h3>
+    <p>The order is the following:</p>
+    <ul>
+      <li>top</li>
+      <li>right</li>
+      <li>bottom</li>
+      <li>left</li>
+    </ul>
+    <p>Example:</p>
+    <pre><code class = "language-css">
+    p.content-header {
+  padding: 6px 11px 4px 9px;
+}
+  </code></pre>
+    <h3>3 Values</h3>
+    <p>
+      If the left and right sides of the content can be equal, the padding
+      shorthand property allows for 3 values to be specified.
+    </p>
+    <p>
+      The <strong>first value</strong> sets the
+      <strong>padding-top</strong> value (5px)
+    </p>
+    <p>
+      The <strong>second value</strong> sets the
+      <strong>padding-left and padding-right</strong> values (10px).
+    </p>
+    <p>
+      and the <strong>third value</strong> sets thep
+      <strong>padding-bottom</strong> value (20px).
+    </p>
+    <pre><code class = "language-css">
+      p.content-header {
+        padding: 5px 10px 20px;
+      }
+    </code></pre>
+    <h3>2 Values</h3>
+    <p>
+      And finally, if the top and bottom sides can be equal, and the left and
+      right sides can be equal, you can specify 2 values. </p>
+      <ul>
+      <li>The first value sets the padding-top and padding-bottom values (5px).</li>
+      <li>The second value sets the padding-left and padding-right values (10px).</li>
+      </ul>
+    </p>
+    <pre><code class = "language-css">
+p.content-header {
+  padding: 5px 10px;
+}
+    </code></pre>
+<h3>Centering the div using auto</h3>
+<p>The margin property also lets you center content. However, you must follow a few syntax requirements. Take a look at the following example:</p>
+    <pre><code class = "language-css">
+  div.headline {
+  width: 400px;
+  margin: 0 auto;
+}
+      </code></pre>
+<p>In the example above, <code>margin: 0 auto;</code> will center the divs in their containing elements. The 0 sets the top and bottom margins to 0 pixels. The auto value instructs the browser to adjust the left and right margins until the element is centered within its containing element.</p>
+
+<p>In order to center an element, a <strong>width must be set</strong> for that element. Otherwise, the width of the div will be automatically set to the full width of its containing element, like the &lt;body&gt;, for example. </p>
+<p>It’s not possible to center an element that takes up the full width of the page, since the width of the page can change due to display and/or browser window size.</p>
+
+<p>In the example above, the width of the div is set to 400 pixels, which is less than the width of most screens. This will cause the div to center within a containing element that is greater than 400 pixels wide.</p>
+<h3>Margin collapse</h3>
+<p>As you have seen, padding is space added inside an element's border, while margin is space 
+  added outside an element's border. </p>
+  <p class = "advert">One additional difference is that <strong>top and bottom margins</strong>, 
+  also called <strong>vertical margins</strong>, collapse, while <strong>top and bottom padding</strong> does not.</p>
+
+<p class = "advert">⚠️ Horizontal margins (left and right), like padding, are always displayed and added together. For example, if two divs with ids #div-one and #div-two, are next to each other, they will be as far apart as the sum of their adjacent margins.</p>
+
+<pre><code class = "language-css">
+#img-one {
+  margin-right: 20px;
+}
+
+#img-two {
+  margin-left: 20px;
+}
+</code></pre>
+
+<p>
+  In this example, the space between the <strong>#img-one</strong> and <strong>#img-two</strong> borders is <strong>40 pixels</strong>. The right margin of <strong>#img-one (20px)</strong> and the left margin of <strong>#img-two (20px)</strong> add to make a total margin of <strong>40 pixels.</strong></p>
+<p class = "advert">
+⚠️ Unlike horizontal margins, vertical margins do not add. Instead, the larger of the two vertical margins sets the distance between adjacent elements.
+</p>
+<pre><code class = "language-css">
+#img-one {
+margin-bottom: 30px;
+}
+
+#img-two {
+  margin-top: 20px;
+}
+</code></pre>
+<p>In this example, the <strong>vertical margin</strong> between the <strong>#img-one</strong> and <strong>#img-two elements</strong> is 30 pixels. Although the sum of the margins is 50 pixels, 
+  the margin collapses so the spacing is only dependent on the <strong>#img-one</strong> bottom margin.
+</p>
+<!--- This is aside do not touch -->
+<button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
