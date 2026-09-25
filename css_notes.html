@@ -527,6 +527,40 @@ p[lang|="en"] {
       exactly value or can begin with value immediately followed by a hyphen, -
       (U+002D). It is often used for language subcode matches.
     </p>
+    <h3>Descendant Combinator</h3>
+    <p>
+      In addition to chaining selectors to select elements, CSS also supports
+      selecting elements that are nested within other HTML elements, also known
+      as descendants. For instance, consider the following HTML:
+    </p>
+    <p>html</p>
+    <pre><code class="language-html">
+&lt;ul class='main-list'&gt;
+  &lt;li&gt; ... &lt;/li&gt;
+  &lt;li&gt; ... &lt;/li&gt;
+  &lt;li&gt; ... &lt;/li&gt;
+&lt;/ul&gt;
+    </code></pre>
+    <p>css</p>
+    <pre><code class="language-css">
+/* Selects all &lt;li&gt; elements that are descendants of an element with the class 'main-list' */
+.main-list li {
+  color: blue;
+}
+  </code></pre>
+    <p>
+      In the example above, .main-list selects the element with the.main-list
+      class (the &lt;ul&gt; element).
+    </p>
+    <p>
+      The descendant <strong>&lt;li&gt;</strong>‘s are selected by adding
+      <strong>li</strong> to the selector, separated by a space. This results in
+      .main-list li as the final selector.
+    </p>
+    <p>
+      Selecting elements in this way can make our selectors even more specific
+      by making sure they appear in the context we expect.
+    </p>
     <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
