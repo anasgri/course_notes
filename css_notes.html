@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
 
-      <style>
+    <style>
       li.spacious.elegant {
         margin: 2em;
         padding: 1em;
@@ -37,10 +37,10 @@
       }
 
       p[lang|="en"] {
-  background-color: yellow;
-}
+        background-color: yellow;
+      }
 
-    .btnback {
+      .btnback {
         background-color: #6495ed; /* Green */
         border-radius: 5px;
         color: white;
@@ -52,6 +52,12 @@
       .btnback:hover {
         background-color: #4169e1; /* Darker green on hover */
       }
+      .intro {
+        color: red;
+      }
+      .highlight {
+        background-color: yellow;
+      }
     </style>
   </head>
   <body>
@@ -60,7 +66,8 @@
     <h4>Element selectors</h4>
     <p>
       Element selectors act on the specified elements. In the example below, all
-      paragraphs will be red.
+      paragraphs will be red. Element selectors are also sometimes called type
+      selectors.
     </p>
     <pre><code class = "language-css">
     /* Element selectors */
@@ -79,6 +86,7 @@ p {
     color: red;
 }
 </code></pre>
+
     <p>
       To make the class element specific to cretain tag do as shown in the
       example below. The code below will result in all paragraphs assigned to
@@ -91,8 +99,37 @@ p.intro {
     color: red;
 }   
 </code></pre>
+    <p>You can assign element to multiple classes</p>
+    <p>css</p>
+    <pre><code class = "language-css">
+/* Multiple classes */
+.intro {
+    color: red;
+}
+.highlight {
+    background-color: yellow;
+}
+</code></pre>
+    <p>html</p>
+    <pre><code class = "language-html">
+&lt;p class="intro highlight"&gt;This paragraph will be red with a yellow background.&lt;/p&gt;
+&lt;p class="intro"&gt;This paragraph will be red.&lt;/p&gt;
+&lt;p class="highlight"&gt;This paragraph will have a yellow background.&lt;/p&gt;
+</code></pre>
+    <p class="intro highlight">
+      This paragraph will be red with a yellow background.
+    </p>
+    <p class="intro">This paragraph will be red.</p>
+    <p class="highlight">This paragraph will have a yellow background.</p>
+    <h3>
+      Targeting elements with multiple classes and ignoring the ones asigned to
+      one class
+    </h3>
     <p>
-      You can also make the class selectors that will target multiple classes
+      You can also make the class selectors that will exclusively target
+      elements that are assigned to several classes and ignore the elements that
+      are assigned to only one of the classes. This is done by combining the
+      class selectors together.
     </p>
     <p>
       In the example below the selector <code>li.spacious.elegant</code>
@@ -162,7 +199,21 @@ li.spacious.elegant {
       </li>
       <li>A single hyphen alone is not a valid identifier</li>
     </ul>
-    <h4>Attribute selectors</h4>
+    <h3>Attribute selectors</h3>
+    <p>
+      Attribute selectors target the elements that have the specific attribute
+      or attribute value.
+    </p>
+    <p>The simplest attribute selector is shown below:</p>
+    <p>
+      It is going to target all links and other elements that have an href
+      attribute:
+    </p>
+    <pre><code class = "language-css">
+  [href]{
+   color: magenta;
+}
+  </code></pre>
     <p>
       In the example below the link that has the title attribute gets selected
       and recolored into purple.
@@ -243,6 +294,21 @@ a[href="https://example.org"] {
       In the example above the href link was identical to the value targeted by
       selector.
     </p>
+    <h3>Targeting the attribute by substring</h3>
+    <pre><code class = "language-css">
+img[src*='winter'] {
+  height: 50px;
+}
+
+img[src*='summer'] {
+  height: 100px;
+}
+</code></pre>
+    <p>html</p>
+    <pre><code class = "language-html">
+  &lt;img src='/images/seasons/cold/winter.jpg'&gt;
+  &lt;img src='/images/seasons/warm/summer.jpg'&gt;
+</code></pre>
     <pre><code class = "language-html">
 &lt;!DOCTYPE HTML&gt;
 &lt;html&gt;
@@ -388,34 +454,45 @@ a[href$=".org" i] {
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<ul>
-<li>
-<a href="https://example.org">Example.org (matches)</a>
-</li>
-<li>
-<a href="https://example.ORG">Example.ORG (matches, case-insensitive)</a>
-</li>
-<li>
-<a href="https://example.Org">Example.Org (matches, case-insensitive)</a>
-</li>
-<li>
-<a href="https://example.com">Example.com (doesn't match)</a>
-</li>
-<li>
-<a href="https://example.org/page.html">Nested path (doesn't match)</a>
-</li>
-</ul>
+    <ul>
+      <li>
+        <a href="https://example.org">Example.org (matches)</a>
+      </li>
+      <li>
+        <a href="https://example.ORG"
+          >Example.ORG (matches, case-insensitive)</a
+        >
+      </li>
+      <li>
+        <a href="https://example.Org"
+          >Example.Org (matches, case-insensitive)</a
+        >
+      </li>
+      <li>
+        <a href="https://example.com">Example.com (doesn't match)</a>
+      </li>
+      <li>
+        <a href="https://example.org/page.html">Nested path (doesn't match)</a>
+      </li>
+    </ul>
 
-<p><code>[attr$=value]</code> - Represents elements with an attribute name of attr whose value is suffixed (followed) by value.</p>
-<p>In other words, this selector targets the attributes that end with the specified substring</p>
-<p> <code>i</code> or <code>I</code> means case insensitive</p>
+    <p>
+      <code>[attr$=value]</code> - Represents elements with an attribute name of
+      attr whose value is suffixed (followed) by value.
+    </p>
+    <p>
+      In other words, this selector targets the attributes that end with the
+      specified substring
+    </p>
+    <p><code>i</code> or <code>I</code> means case insensitive</p>
 
-<h4>Targeting the attribute that starts with the specific substring</h4>
+    <h4>Targeting the attribute that starts with the specific substring</h4>
 
+    <h4>
+      Targeting the attribute based on substring or substring followed by hyphen
+    </h4>
 
-<h4>Targeting the attribute based on substring or substring followed by hyphen</h4>
-
-<pre><code class = "language-html">
+    <pre><code class = "language-html">
 &lt;!DOCTYPE HTML&gt;
 &lt;html&gt;
 &lt;head&gt;&lt;title&gt;example css&lt;/title&gt;
@@ -436,18 +513,23 @@ p[lang|="en"] {
 &lt;/html&gt;
 </code></pre>
 
-<p lang="en">English text (matches)</p>
-<p lang="en-US">American English (matches)</p>
-<p lang="en-GB">British English (matches)</p>
-<p lang="english">Not a match — "english" isn't "en" or "en-" followed by more</p>
-<p lang="fr">French text (doesn't match)</p>
+    <p lang="en">English text (matches)</p>
+    <p lang="en-US">American English (matches)</p>
+    <p lang="en-GB">British English (matches)</p>
+    <p lang="english">
+      Not a match — "english" isn't "en" or "en-" followed by more
+    </p>
+    <p lang="fr">French text (doesn't match)</p>
 
-<p>
-  <code>[attr|=value]</code>
-Represents elements with an attribute name of attr whose value can be exactly value or can begin with value immediately followed by a hyphen, - (U+002D). It is often used for language subcode matches.
-</p>
-<button class="btnback" onclick="window.location.href = 'index.html'">
-      Back to Index</button>
+    <p>
+      <code>[attr|=value]</code>
+      Represents elements with an attribute name of attr whose value can be
+      exactly value or can begin with value immediately followed by a hyphen, -
+      (U+002D). It is often used for language subcode matches.
+    </p>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
 
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
