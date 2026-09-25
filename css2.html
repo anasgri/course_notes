@@ -157,11 +157,25 @@ p {
   &lt;/body&gt;
 &lt;/html&gt;
   </code></pre>
+<h3>!important</h3>
+<p>!important can be applied to specific declarations, instead of full rules. It will override any style no matter how specific it is. As a result, it should almost never be used. Once !important is used, it is very hard to override.
+</p>
+<p>The syntax of !important in CSS looks like this:</p>
+<pre><code class = "language-css">
+p {
+  color: blue !important;
+}
+
+.main p {
+  color: red;
+}
+	  </code></pre>
+	  <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
 
     <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
-    <button class="btnback" onclick="window.location.href = 'index.html'">
-      Back to Index
-    </button>
+    
   </body>
 </html>
