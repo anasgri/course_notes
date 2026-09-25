@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=<h2>, initial-scale=1.0" />
+    <title>Resetting the defaults</title>
+    <style>
+      p.advert {
+        background-color: #d9edf7;
+        border: 2px solid #0c3d55;
+        font-family: Helvetica, sans-serif;
+        padding: 20px 10px;
+        margin: 20px 10px;
+      }
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h2>Resetting the defaults</h2>
+    <p>
+      All major web browsers have a default stylesheet they use in the absence
+      of an external stylesheet. These default stylesheets are known as
+      <em>user agent stylesheets</em>. In this case, the term
+      <em>user agent</em> is a technical term for the browser.
+    </p>
+    <p>
+      Many developers choose to reset these default values so that they can
+      truly work with a clean slate.
+    </p>
+    <pre><code class = "language-css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </code></pre>
+    <h3>Visibility</h3>
+    <p>
+      The <code>visibility</code> property can be set to one of the following
+      values:
+    </p>
+
+    <ul>
+      <li><code>hidden</code> — hides an element.</li>
+      <li><code>visible</code> — displays an element.</li>
+      <li><code>collapse</code> — collapses an element.</li>
+    </ul>
+    <p>html</p>
+    <pre><code class = "language-html">
+    &lt;ul&gt;
+      &lt;li&gt;Explore&lt;/li&gt;
+      &lt;li&gt;Connect&lt;/li&gt;
+      &lt;li class="future"&gt;Donate&lt;/li&gt;
+    &lt;/ul&gt;
+    </code></pre>
+    <p>css</p>
+    <pre><code class = "language-css">
+.future {
+  visibility: hidden;
+}
+    </code></pre>
+    <p>
+      In the example above, the list item with a class of
+      <code>future</code> will be hidden from view in the browser.
+    </p>
+
+    <p>
+      Keep in mind, however, that users can still view the contents of the list
+      item (e.g., <code>Donate</code>) by viewing the source code in their
+      browser. Furthermore, the web page will <em>only</em> hide the contents of
+      the element. It will still leave an empty space where the element is
+      intended to display.
+    </p>
+
+    <p class="advert">
+      <strong>Note:</strong> What's the difference between
+      <code>display: none</code> and <code>visibility: hidden</code>? An element
+      with <code>display: none</code> will be completely removed from the web
+      page. An element with <code>visibility: hidden</code>, however, will not
+      be visible on the web page, but the space reserved for it will.
+    </p>
+
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
