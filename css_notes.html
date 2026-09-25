@@ -561,6 +561,29 @@ p[lang|="en"] {
       Selecting elements in this way can make our selectors even more specific
       by making sure they appear in the context we expect.
     </p>
+    <h3>Multiple selectors</h3>
+    <p>
+      In order to make CSS more concise, it’s possible to add CSS styles to
+      multiple CSS selectors all at once. This prevents writing repetitive code.
+      For instance, the following code has repetitive style attributes:
+    </p>
+    <p>The twjo css code snippets below do the same thing.</p>
+    <pre><code class = "language-css">
+h1 {
+  font-family: Georgia;
+}
+
+.menu {
+  font-family: Georgia;
+}
+
+    </code></pre>
+    <pre><code class = "language-css">
+  h1, 
+.menu {
+  font-family: Georgia;
+}
+</code></pre>
     <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
