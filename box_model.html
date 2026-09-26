@@ -387,6 +387,12 @@ margin-bottom: 30px;
 <p>In this example, the <strong>vertical margin</strong> between the <strong>#img-one</strong> and <strong>#img-two elements</strong> is 30 pixels. Although the sum of the margins is 50 pixels, 
   the margin collapses so the spacing is only dependent on the <strong>#img-one</strong> bottom margin.
 </p>
+    <h3>Calculation of the total size of the element</h3>
+<p>To determine the size of the element the browser only needs to determine the width amd height of the element</p>
+    <p>The formulas are below: </p>
+<p>Height = content height + padding-top + padding-bottom + border-top + border-bottom</p>
+<p>Width = content width + padding-left + padding-right + border-left + border-right</p>
+<p>The <strong>margin</strong>property is not inclided in the width and height calculations</p>
 <!--- This is aside do not touch -->
 <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
