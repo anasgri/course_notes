@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Border-box</title>
+    <style>
+      p.advert {
+        background-color: #d9edf7;
+        border: 2px solid #0c3d55;
+        font-family: Helvetica, sans-serif;
+        padding: 20px 10px;
+        margin: 20px 10px;
+      }
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h2>Border-box</h2>
+    <p>The default box model property is <code>content-box</code>.</p>
+    <p>
+      The box model is set to <strong> content-box</strong> if it is not
+      specified.
+    </p>
+    <p>You can also set the box-model to <strong>border-box</strong></p>
+    <pre><code class = "language-css">
+    * {
+        box-sizing: border-box;
+    }
+    </code></pre>
+    <p>
+      The code in the example above resets the box model to
+      <code>border-box</code> for all HTML elements. This new box model avoids
+      the dimensional issues that exist in the former box model you learned
+      about.
+    </p>
+
+    <p>
+      In this box model, the <strong>height</strong> and
+      <strong>width</strong> of the box will remain fixed. The border thickness
+      and padding will be included inside of the box, which means the overall
+      dimensions of the box <strong>do not change.</strong>
+    </p>
+    <pre><code class = "language-css">
+    * {
+  box-sizing: border-box;
+}
+
+h1 {
+  border: 1px dashed #4f768e;
+  height: 150px;
+  width: 200px;
+  padding: 20px;
+}
+</code></pre>
+    <p>
+      In the example above, the height of the box would remain at 150 pixels and
+      the width would remain at 200 pixels. The border thickness and padding
+      would remain entirely <em>inside</em> of the box.
+    </p>
+
+    <img src="border-box_model.png" alt="border_box_model" height="400px" />
+    <br />
+    <h3>Summary</h3>
+    <p>Let's review what you learned:</p>
+
+    <ol>
+      <li>
+        In the default box model, box dimensions are affected by border
+        thickness and padding.
+      </li>
+      <li>
+        The <code>box-sizing</code> property controls the box model used by the
+        browser.
+      </li>
+      <li>
+        The default value of the <code>box-sizing</code> property is
+        <code>content-box</code>.
+      </li>
+      <li>The value for the new box model is <code>border-box</code>.</li>
+      <li>
+        The <code>border-box</code> model is not affected by border thickness or
+        padding.
+      </li>
+    </ol>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
