@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Positioning demo</title>
+    <link href="styles1.css" rel="stylesheet" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+      h1 {
+        font-family: Arvo, Arial, serif;
+        text-align: center;
+      }
+      div.cont {
+        background-color: #d3d3d3;
+        border: solid 2px black;
+        position: relative;
+        top: 10px;
+        height: 700px;
+      }
+
+      .square_absolute {
+        width: 200px;
+        height: 200px;
+        background-color: bisque;
+        border: solid 2px black;
+        border-radius: 10px;
+        margin: 20px;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        bottom: 10px;
+        right: 10px;
+      }
+
+      .square_fixed {
+        width: 200px;
+        height: 200px;
+        background-color: bisque;
+        border: solid 2px black;
+        border-radius: 10px;
+        margin: 20px;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        position: fixed;
+        top: 10px;
+        left: 240px;
+        bottom: 10px;
+        right: 10px;
+      }
+
+      .square_sticky {
+        width: 200px;
+        height: 200px;
+        background-color: orange;
+        border: solid 2px black;
+        border-radius: 10px;
+        margin: 20px;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        position: sticky;
+        top: 10px;
+        left: 500px;
+        bottom: 10px;
+        right: 10px;
+      }
+      .hide {
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Positioning demo</h1>
+    <div class="cont">
+      <p class="square_absolute">This is square positioned using absolute</p>
+      <p class="square_fixed">
+        This is second square positioned using fixed. It moves with scrolling.
+      </p>
+      <p class="square_sticky">
+        This square is with position sticky.It moves untill the page is
+        scrolled. Then it stays.
+      </p>
+    </div>
+    <ul class="hide">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>5</li>
+      <li>6</li>
+      <li>7</li>
+      <li>8</li>
+      <li>9</li>
+      <li>10</li>
+      <li>11</li>
+      <li>12</li>
+      <li>13</li>
+      <li>14</li>
+      <li>15</li>
+      <li>16</li>
+      <li>17</li>
+      <li>18</li>
+      <li>19</li>
+    </ul>
+  </body>
+</html>
