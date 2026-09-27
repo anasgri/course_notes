@@ -97,6 +97,9 @@
     </p>
     <p>Is removed from the document flow.</p>
     <h3>Sticky position</h3>
+    <p>Since <code>static</code> and <code>relative</code> positioned elements stay in the normal flow of the document, when a user scrolls the page (or parent element) these elements will scroll too. And since <code>fixed</code> and <code>absolute</code> positioned elements are removed from the document flow, when a user scrolls, these elements will stay at their specified offset position.</p>
+
+<p>The <code>sticky</code> value is another position value that keeps an element in the document flow as the user scrolls, but <em>sticks</em> to a specified position as the page is scrolled further. This is done by using the <code>sticky</code> value along with the familiar offset properties, as well as one new one.</p>
     <p>An element with position: <strong>sticky;</strong> toggles between a relative and fixed position, depending on the scroll position.</p>
     <p>Is not removed from the document flow.</p>
 <p>A sticky element is positioned relative until a certain scroll position is reached - then it "sticks" in that place (like position:fixed).</p>
