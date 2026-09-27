@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display options</title>
+    <style>
+      p.advert {
+        background-color: #d9edf7;
+        border: 2px solid #0c3d55;
+        font-family: Helvetica, sans-serif;
+        padding: 20px 10px;
+        margin: 20px 10px;
+      }
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>Display options</h1>
+    <h3>Display inline</h3>
+    <p>
+      Every HTML element has a default <code>display</code> value that dictates
+      if it can share horizontal space with other elements. Some elements fill
+      the entire browser from left to right regardless of the size of their
+      content. Other elements only take up as much horizontal space as their
+      content requires and can be directly next to other elements.
+    </p>
+    <p>This section is dedicated to the following display options:</p>
+    <ul>
+      <li>inline</li>
+      <li>block</li>
+      <li>inline-block</li>
+    </ul>
+    <p>
+      The default <code>display</code> for some elements, such as
+      <code>&lt;em&gt;</code>, <code>&lt;strong&gt;</code>, and
+      <code>&lt;a&gt;</code>, is called <em>inline</em>.
+    </p>
+    <p>
+      Inline elements have a box that wraps tightly around their content, only
+      taking up the amount of space necessary to display their content and not
+      requiring a new line after each element.
+    </p>
+    <p>
+      The height and width of these elements cannot be specified in the CSS
+      document. For example, the text of an anchor tag (<code>&lt;a&gt;</code>)
+      will, by default, be displayed on the same line as the surrounding text,
+      and it will only be as wide as necessary to contain its content.
+      <code>inline</code> elements cannot be altered in size with the
+      <code>height</code> or <code>width</code> CSS properties.
+    </p>
+    <h3>Display block</h3>
+    <p>
+      Some elements are not displayed in the same line as the content around
+      them. These are called <em>block-level</em> elements. These elements fill
+      the entire width of the page by default, but their
+      <code>width</code> property can also be set. Unless otherwise specified,
+      they are the height necessary to accommodate their content.
+    </p>
+
+    <p>
+      Elements that are block-level by default include all levels of heading
+      elements (<code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code>),
+      <code>&lt;p&gt;</code>, <code>&lt;div&gt;</code> and
+      <code>&lt;footer&gt;</code>.
+    </p>
+    <p class="advert">
+      The <strong>width</strong> and <strong>height</strong> can be set for
+      block elements
+    </p>
+    <pre><code class = "language-css">
+        strong {
+  display: block;
+}
+    </code></pre>
+    <p>
+      In the example above, all <code>&lt;strong&gt;</code> elements will be
+      displayed on their own line, with no content directly on either side of
+      them even though their contents may not fill the width of most computer
+      screens.
+    </p>
+    <h3>Inline-block option</h3>
+    <p>
+      The third value for the <code>display</code> property is
+      <code>inline-block</code>. Inline-block display combines features of both
+      inline and block elements. Inline-block elements can appear next to each
+      other and we can specify their dimensions using the <code>width</code> and
+      <code>height</code> properties. Images are the best example of default
+      inline-block elements.
+    </p>
+
+    <p>
+      For example, the <code>&lt;div&gt;</code>s below will be displayed on the
+      same line and with the specified dimensions:
+    </p>
+    <p>html</p>
+    <pre><code class = "language-html">
+&lt;div class="rectangle"&gt;
+&lt;p&gt;I’m a rectangle!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="rectangle"&gt;
+&lt;p&gt;So am I!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="rectangle"&gt;
+&lt;p&gt;Me three!&lt;/p&gt;
+&lt;/div&gt;
+    </code></pre>
+    <p>css</p>
+    <pre><code class = "language-css">
+.rectangle {
+  display: inline-block;
+  width: 200px;
+  height: 300px;
+}
+</code></pre>
+    <p>
+      There are three rectangular divs that each contain a paragraph of text.
+      The <code>.rectangle</code> <code>&lt;div&gt;</code>s will all appear
+      inline (provided there is enough space from left to right) with a width of
+      200 pixels and height of 300 pixels, even though the text inside of them
+      may not require 200 pixels by 300 pixels of space.
+    </p>
+    <h3>Float property</h3>
+    <p>
+      If you're simply interested in moving an element as far left or as far
+      right as possible in the container, you can use the
+      <code>float</code> property.
+    </p>
+
+    <p>
+      The <code>float</code> property is commonly used for wrapping text around
+      an image. Note, however, that moving elements left or right for layout
+      purposes is better suited for tools like CSS grid and flexbox.
+    </p>
+
+    <p>
+      The <code>float</code> property is often set using one of the values
+      below:
+    </p>
+    <ul>
+      <li>
+        <code>left</code> – moves, or floats, elements as far left as possible.
+      </li>
+      <li><code>right</code> – moves elements as far right as possible.</li>
+    </ul>
+    <pre><code class = "language-css">
+.green-section {
+  width: 50%;
+  height: 150px;
+}
+
+.orange-section {
+  background-color: orange;
+  width: 50%;
+  float: right;
+}
+    </code></pre>
+    <p>
+      In the example above, we float the <code>.orange-section</code> element to
+      the <code>right</code>. This works for static and relative positioned
+      elements. See the result of the code below:
+    </p>
+    <img src="float_image.png" alt="float image" />
+    <p>
+      Floated elements must have a width specified, as in the example above.
+      Otherwise, the element will assume the full width of its containing
+      element, and changing the float value will not yield any visible results.
+    </p>
+    <h3>Clear</h3>
+    <p>
+      The <code>float</code> property can also be used to float multiple
+      elements at once. However, when multiple floated elements have different
+      heights, it can affect their layout on the page. Specifically, elements
+      can "bump" into each other and not allow other elements to properly move
+      to the left or right.
+    </p>
+
+    <p>
+      The <code>clear</code> property specifies how elements should behave when
+      they bump into each other on the page. It can take on one of the following
+      values:
+    </p>
+    <ul>
+      <li>
+        <code>left</code> —the <strong>left</strong> side of the element will
+        not touch any other element within the same containing element.
+      </li>
+      <li>
+        <code>right</code> —the <strong>right</strong> side of the element will
+        not touch any other element within the same containing element.
+      </li>
+      <li>
+        <code>both</code> —neither side of the element will touch any other
+        element within the same containing element.
+      </li>
+      <li><code>none</code> —the element can touch either side.</li>
+    </ul>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
