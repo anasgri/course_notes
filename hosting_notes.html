@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hosting</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+  </head>
+  <body>
+    <h1>Hosting and deplyment</h1>
+    <h3>Types of the hosting</h3>
+    <ul>
+      <li>Shared hosting - server is shared between the people using it</li>
+      <li>Dedicated hosting - server is dedicated to one application</li>
+      <li>
+        Cloud hosting - is usefull when you want to run the application on
+        different machines. E.g one part of app requires CPU. Application, data,
+        runtime, middleware is managed by you, everythinh else by clud provider
+      </li>
+      <li>
+        Paas stands for Platform as a Service. It is a cloud computing model
+        that gives developers a complete, ready-to-use platform to build, run,
+        and manage applications without needing to build or fix the underlying
+        hardware and software infrastructure.
+      </li>
+      <li>
+        Faas - instead of giving the provider the application, you give the
+        application the set of functions. And the provider takes care of
+        building the app.
+      </li>
+    </ul>
+
+    <h3>DNS and the domain names</h3>
+    <p>
+      <ul>
+        <li>
+      Resolver (recursive resolver): The middleman that works on behalf of you.
+      Your device asks it a question, and it does all the legwork of finding the
+      answer. It's usually run by your ISP or a public service like Cloudflare
+      (1.1.1.1) or Google (8.8.8.8). It also caches answers so repeat lookups
+      are fast. </li>
+      
+      <li>
+      Root server: The top of the DNS hierarchy. It doesn't know the
+      IP address of www.example.com, but it knows who is responsible for each
+      top-level domain (.com, .org, .lv, etc.) and points you to them. There are
+      13 root server identities (A through M), each operated by many servers
+      worldwide. 
+      </li>
+      
+      <li>
+      TLD server: Responsible for one top-level domain, such as .com.
+      It doesn't know the IP of www.example.com either, but it knows which name
+      servers are authoritative for example.com. 
+      </li>
+      
+      <li>
+      Authoritative name server: The
+      final source of truth for a domain. It holds the actual DNS records (A,
+      AAAA, MX, CNAME, etc.) for example.com and gives the real answer.
+    </li>
+      </ul>
+    </p>
+    <h3>Lookup step by step</h3>
+    <ol>
+<li>
+Your device asks the resolver: "What's the IP of www.example.com?"</li>
+<li>
+If the resolver doesn't have it cached, it asks a root server. The root replies: "I don't know, but here are the .com TLD servers."</li>
+<li>
+The resolver asks a .com TLD server. It replies: "I don't know, but here are the authoritative name servers for example.com."</li>
+<li>
+The resolver asks the authoritative name server, which replies with the actual IP address.</li>
+<li>
+The resolver returns the answer to your device and caches it for the record's TTL (time to live).</li>
+    </ol>
+<p>Hosting is the storage space where the website lives</p>
+<p>The domain name is the address where the website lives.</p>
+    <p>https://www.youtube.com/watch?v=se3ujLcBsAE&t=146s</p>
+    <p>Github pages documemtation:</p>
+    <button id="redirect">Button to githb documentation:</button>
+    <p>https://docs.github.com/en/pages</p>
+    <h3>Deploying the static webpage on the Github pages</h3>
+    <ul>
+      <li>Make a new GitHub repo (public, unless you have GitHub Pro/Team for private Pages).
+If you want it at https://yourusername.github.io/, name the repo exactly <code>yourusername.github.io</code>.</li>
+<li>Otherwise any repo name works and it'll be served at https://yourusername.github.io/repo-name/.</li>
+    <li>Put index.html at the root (or in a /docs folder if you prefer).</li>
+    <li>Keep your linked files (CSS, JS, images, other pages like about.html) 
+      in the same relative structure your index.html references them with — relative links (./about.html, css/style.css) work fine.</li>
+</ul>
+<pre><code class = "language-command-line">
+git init
+git add .
+git commit -m "Initial site"
+git branch -M main
+git remote add origin https://github.com/yourusername/your-repo.git
+git push -u origin main
+</code></pre>
+<ul>
+<li>Go to your repo → Settings → Pages.</li>
+<li>Under "Build and deployment," set Source to "Deploy from a branch."</li>
+<li>Choose branch main (or wherever your files live) and folder / (root) or /docs.</li>
+<li>Save.</li>
+<li>GitHub will give you a URL like https://yourusername.github.io/your-repo/. It rebuilds automatically every time you push.</li>
+</ul>
+    <script>
+      buttonRedirect = document.getElementById("redirect");
+      buttonRedirect.onclick = function () {
+        window.location.replace("https://docs.github.com/en/pages");
+      };
+    </script>
+  </body>
+</html>
