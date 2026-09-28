@@ -38,20 +38,28 @@
       p.example2 {
         text-decoration: underline wavy blue 5px;
       }
-    
-.btnback {
-  background-color: #6495ed; /* Green */
-  border-radius: 5px;
-  color: white;
-  font-weight: bold;
-  padding: 10px 20px;
-  transition: background-color 0.3s ease;
-  margin-bottom: 100px;
-}
-.btnback:hover {
-  background-color: #4169e1;
-}
-</style>
+
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
   </head>
   <body>
     <h3>Typography</h3>
@@ -118,6 +126,67 @@ font-family: "Arvo", Arial, serif;
 &lt;/html&gt;
 </code></pre>
     <h3 class="special">example heading styled</h3>
+
+    <h3>Alternative way to import the custom font</h3>
+    <p>
+      Instead of copying the imprt link you can copy the &lt;link&gt; to font in
+      to the head section.
+    </p>
+    <pre><code class = "language-html">
+&lt;head&gt;
+&lt;!-- Add the link element for Google Fonts along with other metadata --&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet"&gt;
+&lt;/head&gt;
+</code></pre>
+    <h3>Importing the web font using font-face</h3>
+    <p>
+      Fonts can also be added using a <code>@font-face</code>
+      ruleset in your CSS stylesheet instead of using a
+      <code>&lt;link&gt;</code> element in your HTML document. As mentioned
+      earlier, fonts can be downloaded just like any other file on the web. They
+      come in a few different file formats, such as:
+    </p>
+    <ul>
+      <li>OTF (OpenType Font)</li>
+      <li>TTF (TrueType Font)</li>
+      <li>WOFF (Web Open Font Format)</li>
+      <li>WOFF2 (Web Open Font Format 2)</li>
+    </ul>
+    <pre><code class = "language-css">
+      @font-face {
+  font-family: 'MyParagraphFont';
+  src: url('fonts/Roboto.woff2') format('woff2'),
+       url('fonts/Roboto.woff') format('woff'),
+       url('fonts/Roboto.ttf') format('truetype');
+}
+    </code></pre>
+
+    <ul>
+      <li>
+        The <code>@font-face</code> at-rule is used as the selector. It's
+        recommended to define the <code>@font-face</code> ruleset at the top of
+        your CSS stylesheet.
+      </li>
+      <li>
+        Inside the declaration block, the <code>font-family</code> property is
+        used to set a custom name for the downloaded font. The name can be
+        anything you choose, but it must be surrounded by quotation marks. In
+        the example, the font is named <code>'MyParagraphFont'</code>, as this
+        font will be used for all paragraphs.
+      </li>
+      <li>
+        The <code>src</code> property contains three values, each specifying the
+        relative path to the font file and its format. In this example, the font
+        files are stored inside a folder named <code>fonts</code> within the
+        working directory.
+      </li>
+    </ul>
+    <p>
+      The different formats are a progression of standards for how fonts will
+      work with different browsers, with WOFF2 being the most progressive. It's
+      a good idea to include TTF, WOFF, and WOFF2 formats with your
+      <code>@font-face</code> rule to ensure compatibility on all browsers.
+    </p>
     <h3>Common text properties</h3>
     <ul>
       <li>color: Changes text color.</li>
@@ -132,6 +201,50 @@ font-family: "Arvo", Arial, serif;
         and displayed on a webpage without changing the original HTML source.
       </li>
     </ul>
+    <h3>font-weight</h3>
+    <p>
+      The <code>font-weight</code> property can take any one of these keyword
+      values:
+    </p>
+
+    <ul>
+      <li><code>bold</code>: Bold font weight.</li>
+      <li>
+        <code>normal</code>: Normal font weight. This is the default value.
+      </li>
+      <li>
+        <code>lighter</code>: One font weight lighter than the element's parent
+        value.
+      </li>
+      <li>
+        <code>bolder</code>: One font weight bolder than the element's parent
+        value
+      </li>
+    </ul>
+    <h3>Numerical Values for font-weight</h3>
+    <p>
+      Numerical values can range from 1 (lightest) to 1000 (boldest), but it is
+      common practice to use increments of 100.
+    </p>
+    <p>
+      A font weight of <code>400</code> is equal to the keyword value
+      <code>normal</code>, and a font weight of <code>700</code> is equal to
+      <code>bold</code>.
+    </p>
+    <h3>font-style</h3>
+    <p>Font style makes the text italic</p>
+    <p>possible values</p>
+    <ul>
+      <li>font-style: normal;</li>
+      <li>font-style: italic;</li>
+      <li>font-style: oblique;</li>
+      <li>font-style: oblique 10deg;</li>
+    </ul>
+    <p>
+      In the <code>oblique 10deg;</code> the 10deg; specifies the incline of the
+      text.
+    </p>
+    <h3>text-align</h3>
     <p>for <strong>text-align</strong> the permitted propreties are:</p>
     <ul>
       <li>left: Content aligns along the left side.</li>
@@ -232,10 +345,42 @@ p.overline-underline {
     </code></pre>
     <p class="example1">This is example 1</p>
     <p class="example2">This is example 2</p>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
-      <button class="btnback" onclick="window.location.href = 'index.html'">
+
+    <h3>Letter Spacing</h3>
+
+    <p>
+      The <code>letter-spacing</code> property is used to set the horizontal
+      spacing between the individual characters in an element. It's not common
+      to set the spacing between letters, but it can sometimes help the
+      readability of certain fonts or styles. The
+      <code>letter-spacing</code> property takes length values in units, such as
+      <code>2px</code> or <code>0.5em</code>.
+    </p>
+    <pre><code class = "language-css">
+  p {
+  letter-spacing: 2px;
+}
+</code></pre>
+    <h3>Word Spacing</h3>
+
+    <p>
+      You can set the space between words with the
+      <code>word-spacing</code> property. It's also not common to increase the
+      spacing between words, but it may help enhance the readability of bolded
+      or enlarged text. The <code>word-spacing</code> property also takes length
+      values in units, such as <code>3px</code> or <code>0.2em</code>.
+    </p>
+    <pre><code class = "language-css">
+      h1 {
+  word-spacing: 0.3em;
+}
+    </code></pre>
+    <p>
+      For word spacing, using em values are recommended because the spacing can
+      be set based on the size of the font.
+    </p>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
-</body>
+  </body>
 </html>
