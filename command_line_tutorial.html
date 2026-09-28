@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Command line tutorial</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Command line tutorial</h1>
+    <h3>ls</h3>
+    <p>This is the <strong>Linux</strong> command line tutorial</p>
+    <p>To list files in the current dierctory you can do</p>
+    <pre><code class = "language-command-line">
+    ls
+</code></pre>
+    <table>
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>ls -a</code></td>
+          <td>
+            Lists all files, including hidden ones (those starting with a dot).
+          </td>
+        </tr>
+        <tr>
+          <td><code>ls -l</code></td>
+          <td>
+            Lists files and directories with detailed information (permissions,
+            owner, size, and modification time).
+          </td>
+        </tr>
+        <tr>
+          <td><code>ls -t</code></td>
+          <td>
+            Sorts files by modification time, with the most recently modified
+            files first.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>pwd</h3>
+    <p>
+      The next command we're going to look at is <code>pwd</code>, which stands
+      for "print working directory." It outputs the name of the directory you
+      are currently in, called the <em>working directory</em>.
+    </p>
+
+    <p>
+      Here the working directory is <strong>blog/</strong>. In Codecademy
+      courses, your working directory is usually inside the
+      <strong>/home/ccuser/workspace/</strong> directory.
+    </p>
+
+    <p>
+      Together with <code>ls</code>, the <code>pwd</code> command is useful to
+      show where you are in the filesystem.
+    </p>
+    <pre><code class = "language-command-line">
+    pwd
+</code></pre>
+    <h3>cd command</h3>
+    <p>
+      Our next command is <code>cd</code>, which stands for "change directory."
+      Just as you would click on a folder in Windows Explorer or Finder,
+      <code>cd</code> switches you into the directory you specify. In other
+      words, <code>cd</code> changes the working directory.
+    </p>
+
+    <p>Let's say the directory we change into is <strong>2015/</strong>:</p>
+    <pre><code class = "language-command-line">
+    cd 2015
+</code></pre>
+    <p>To move up one directory you can use the following command</p>
+    <pre><code class = "language-command-line">
+cd ..
+</code></pre>
+    <h3>Moving the directory with the single command</h3>
+    <p>
+      To move across multiple directories with a single command, we can provide
+      <code>cd</code> a relative path to the <strong>memory/</strong> directory
+      as an argument. From the <strong>blog/</strong> directory use:
+    </p>
+    <pre><code class = "language-command-line">
+cd 2015/jan/memory
+</code></pre>
+    <p>To move two directories up you can use:</p>
+    <p>../..</p>
+    <pre><code class = "language-command-line">
+$ pwd
+/home/ccuser/workspace/blog/2015/jan/memory
+$ cd ../..
+$ pwd
+/home/ccuser/workspace/blog/2015
+</code></pre>
+    <p>
+      Lastly, we can move to an adjacent directory using <code>..</code> and
+      then a directory name. If we are in the <strong>2015/</strong> directory
+      and we want to go into the <strong>2014/</strong> directory, we go up one
+      directory then into the <strong>2014/</strong> directory:
+    </p>
+    <pre><code class = "language-command-line">
+$ ls
+2014  2015  hardware.txt
+$ cd 2015
+$ pwd
+/home/ccuser/workspace/blog/2015
+$ cd ../2014
+$ pwd
+/home/ccuser/workspace/blog/2014
+</code></pre>
+    <h3>mkdir</h3>
+    <p>
+      The <code>mkdir</code> command stands for "make directory". It takes in a
+      directory name as an argument and then creates a new directory in the
+      current working directory.
+    </p>
+
+    <p>
+      Here we used <code>mkdir</code> to create a new directory named
+      <strong>media/</strong> inside our working directory.
+    </p>
+    <pre><code class = "language-command-line">
+    mkdir media
+</code></pre>
+    <h3>Creating the files using command line</h3>
+    <p>We can create new files using the command <code>touch</code></p>
+    <pre><code class = "language-command-line">
+    touch keyboard.txt
+</code></pre>
+    <p>You can also create the file in the following way</p>
+    <p>
+      This command creates the file hello_cli.txt and primes the "Hello Command
+      Line" into it
+    </p>
+    <pre><code class = "language-command-line">
+    echo "Hello Command Line" >> hello_cli.txt 
+</code></pre>
+    <h3>Prining the contents of the file to the command line</h3>
+    <pre><code class = "language-command-line">
+    cat hello_cli.txt
+</code></pre>
+    <p>
+      The command above will print the content of hello_cli.txt to command line
+    </p>
+    <h2>Helper Commands</h2>
+
+    <p>
+      Now that we've covered the basics of navigating your filesystem from the
+      command line, let's look at some helpful commands that will make using it
+      easier!
+    </p>
+
+    <p>
+      <kbd>tab</kbd> can be used to autocomplete your command. When you are
+      typing the name of an existing file or directory, you can use
+      <kbd>tab</kbd> to finish the rest of the name.
+    </p>
+
+    <p>
+      The up and down arrows (<kbd>↑</kbd> and <kbd>↓</kbd>) can be used to
+      cycle through your previous commands. <kbd>↑</kbd> will take you up
+      through your most recent commands, and <kbd>↓</kbd> will take you back
+      through to the most recent one.
+    </p>
+
+    <p>
+      <code>clear</code> is used to clear your terminal, which is useful when
+      it's full of previous commands and outputs. It doesn't change or undo your
+      previous commands, it just clears them from view. As mentioned above, you
+      can use the up and down arrow keys to review your command history anytime.
+    </p>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
