@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Css child and parent elements</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+        margin-top: 20px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+      table {
+        border: 1px solid black;
+      }
+
+   table th, td {
+        border: 1px solid black;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>More complex css selectors</h2>
+    <p><code> element > child_element</code></p>
+
+    <pre><code class = "language-html">
+&lt;ul class="breadcrumb"&gt;
+&lt;li&gt;Home&lt;/li&gt;              &lt;!-- matches --&gt;
+&lt;li&gt;Products
+&lt;ul&gt;
+&lt;li&gt;Shoes&lt;/li&gt;         &lt;!-- does NOT match (grandchild) --&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+    <pre><code class = "language-css">
+.breadcrumb > li {
+display: inline;
+}
+</code></pre>
+    <p>
+      The <strong>&gt;</strong> is the child combinator. It means "select only
+      direct children," not any descendant further down the tree.
+    </p>
+
+    <p>
+      So .breadcrumb &gt; li matches every
+      &lt;li&gt;
+        that sits directly inside an element with the class breadcrumb, and sets
+        those to display: inline (so they line up horizontally instead of
+        stacking as list items).
+      </li>
+    </p>
+<table>
+  <thead>
+    <tr>
+      <th>Selector</th>
+      <th>Matches</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>A B</code></td>
+      <td>any <code>B</code> inside <code>A</code>, at any depth</td>
+    </tr>
+    <tr>
+      <td><code>A &gt; B</code></td>
+      <td>only <code>B</code> that is a direct child of <code>A</code></td>
+    </tr>
+    <tr>
+      <td><code>A + B</code></td>
+      <td>the <code>B</code> immediately after <code>A</code> (sibling)</td>
+    </tr>
+    <tr>
+      <td><code>A ~ B</code></td>
+      <td>all <code>B</code> siblings that come after <code>A</code></td>
+    </tr>
+  </tbody>
+</table>
+<button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+
+  </body>
+</html>
