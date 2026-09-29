@@ -46,7 +46,21 @@
 	&lt;a href="https://www.codecademy.com" title="Codecademy is an online learning platform"&gt;Codecademyis the best place to learn to code&lt;/a&gt; 
 </code></pre>
 	<a href="https://www.codecademy.com" title="Codecademy is an online learning platform">Codecademyis the best place to learn to code</a>
+<h2>Link States</h2>
 
+<p>Links have four main states: normal (not clicked), hover, active (clicked), and visited. These four states have associated <a href="#">CSS pseudo-classes</a>: <code>:link</code>, <code>:hover</code>, <code>:active</code>, and <code>:visited</code>. These four states can be used to give a full range of visual feedback to users about the status of their link interaction.</p>
+
+<p>Each state should still make it clear that the element in question is a link, meaning it should not make text identical to non-link text or alter the link's appearance so much that users could perceive its behavior differently.</p>
+
+<p>The ordering of link state pseudo-class rules is important to reveal the proper information. When a user hovers and then clicks a link, those styles should always override the <a href="#">static</a> styling surrounding a user's history with the link (unvisited <code>:link</code> and <code>:visited</code>). The proper order of these rules is:</p>
+	<ul>
+  <li><code>:link</code></li>
+  <li><code>:visited</code></li>
+  <li><code>:hover</code></li>
+  <li><code>:active</code></li>
+</ul>
+
+<p>This ordering will ensure that the rules <a href="#">cascade properly</a> and the user can receive the most applicable visual feedback about the state of the link.</p>
 <h3>nav tags</h3>
 <p> nav tags are used to make a navigation lists of the page</p>
 <pre><code class ="language-html">
