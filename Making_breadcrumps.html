@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Making breadcrumps</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+
+      .breadcrumb > li {
+display: inline;
+}
+
+.breadcrumb li+li::before {
+	padding: 10px;
+  content: ">"
+}
+
+.breadcrumb a {
+text-decoration: none;
+}
+
+.breadcrumb a:hover {
+color: red;
+}
+
+
+/* Here is another set of breadcrumps */
+.breadcrumb1 > li {
+display: inline;
+}
+.breadcrumb1 {
+  text-align: left;
+}
+.breadcrumb1 li {
+  float: left;
+}
+.breadcrumb1 a {
+  color: #fff;
+  background: darkcyan;
+  text-decoration: none;
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin-right: 15px;
+  padding: 0 5px;
+}
+
+.breadcrumb1 a::before,
+.breadcrumb1 a::after {
+  content: "";
+  position: absolute;
+  border-color: darkcyan;
+  border-style: solid;
+  border-width: 15px 5px;
+}
+
+.breadcrumb1 a::before {
+  left: -10px;
+  border-left-color: transparent;
+}
+.breadcrumb1 a::after {
+  left: 100%;
+}
+
+.breadcrumb1 a::after {
+  left: 100%;
+  border-color: transparent;
+  border-left-color: darkcyan;
+}
+
+.breadcrumb1 a:hover {
+  background-color: blue;
+}
+.breadcrumb1 a:hover::before {
+  border-color: blue;
+  border-left-color: transparent;
+}
+.breadcrumb1 a:hover::after {
+  border-left-color: blue;
+}
+    </style>
+  </head>
+  <body>
+    <h2>Maing breadcrumps</h2>
+    <p>
+      Breadcrumbs are usually displayed as a horizontal list of pages and take
+      up minimal space. Users expect to find them in the header, left-aligned,
+      and below any primary navigation. Typically they are separated with a
+      &ldquo;&gt;&rdquo; or a &ldquo;/&rdquo; symbol.
+    </p>
+    <p>Below is the code that makes the breadcrums from the list;</p>
+    <pre><code class = "language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;link rel="stylesheet" type="text/css" href="./styles.css"&gt;
+
+&lt;ul class="breadcrumb"&gt;
+  &lt;li&gt;
+    &lt;a href="shopping"&gt;Shopping&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="fashion"&gt;Fashion&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="shoes"&gt;Shoes&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="flats"&gt;Flats&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;a href="brown"&gt;Brown&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+    </code></pre>
+    <p>css</p>
+    <pre><code class = "language-css">
+    .breadcrumb > li {
+display: inline;
+}
+
+.breadcrumb li+li::before {
+	padding: 10px;
+  content: ">"
+}
+
+.breadcrumb a {
+text-decoration: none;
+}
+
+.breadcrumb a:hover {
+color: red;
+}
+</code></pre>
+    <p>Result</p>
+<html>
+<link rel="stylesheet" type="text/css" href="./styles.css">
+
+<ul class="breadcrumb">
+  <li>
+    <a href="shopping">Shopping</a>
+  </li>
+  <li>
+    <a href="fashion">Fashion</a>
+  </li>
+  <li>
+    <a href="shoes">Shoes</a>
+  </li>
+  <li>
+    <a href="flats">Flats</a>
+  </li>
+  <li>
+    <a href="brown">Brown</a>
+  </li>
+</ul>
+<h3>Styling the breadcrumps</h3>
+<p>
+  The previous exercise demonstrated the most basic styling for breadcrumbs.
+  When designing your own site, you&rsquo;ll need to make a judgment call if
+  this approach is sufficient. If you want to invite the user to interact with
+  the breadcrumbs, you can style them to make them a more prominent part of the
+  page design.
+</p>
+
+<p>
+  The example below makes use of a couple of CSS tricks to create an arrow
+  effect. We&rsquo;re using the <code>::before</code> and <code>::after</code>
+  pseudo-elements to add filled rectangles (with empty content) before and
+  after each list item:
+</p>
+<pre><code class = "language-css">
+.breadcrumb li a::before, .breadcrumb li a::after {
+  content: "";
+  position: absolute;
+  border-color: darkcyan;
+  border-style: solid;
+  border-width: 15px 5px;
+}
+</code></pre>
+<p>By setting a portion of the 
+border to transparent, it creates the “tail” of the arrow:</p>
+<pre><code class = "language-css">
+.breadcrumb li a::before {
+  left: -10px;
+  border-left-color: transparent;
+}
+</code></pre>
+<h3>Below is the full css code to make the arrowed breadcramps</h3>
+<pre><code class = "language-css">
+    .breadcrumb {
+  text-align: left;
+}
+.breadcrumb li {
+  float: left;
+}
+.breadcrumb a {
+  color: #fff;
+  background: darkcyan;
+  text-decoration: none;
+  position: relative;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  margin-right: 15px;
+  padding: 0 5px;
+}
+
+.breadcrumb a::before,
+.breadcrumb a::after {
+  content: "";
+  position: absolute;
+  border-color: darkcyan;
+  border-style: solid;
+  border-width: 15px 5px;
+}
+
+.breadcrumb a::before {
+  left: -10px;
+  border-left-color: transparent;
+}
+.breadcrumb a::after {
+  left: 100%;
+}
+
+.breadcrumb a::after {
+  left: 100%;
+  border-color: transparent;
+  border-left-color: darkcyan;
+}
+
+.breadcrumb a:hover {
+  background-color: blue;
+}
+.breadcrumb a:hover::before {
+  border-color: blue;
+  border-left-color: transparent;
+}
+.breadcrumb a:hover::after {
+  border-left-color: blue;
+}
+</code></pre>
+<ul class="breadcrumb1">
+  <li>
+    <a href="shopping">Shopping</a>
+  </li>
+  <li>
+    <a href="fashion">Fashion</a>
+  </li>
+  <li>
+    <a href="shoes">Shoes</a>
+  </li>
+  <li>
+    <a href="flats">Flats</a>
+  </li>
+  <li>
+    <a href="brown">Brown</a>
+  </li>
+</ul>
+<br/>
+<h2>Breadcrumb Types</h2>
+
+<p>There are three major types of breadcrumbs:</p>
+
+<ul>
+  <li>Location</li>
+  <li>Attribute</li>
+  <li>Path</li>
+</ul>
+
+<p>You&rsquo;ve seen the first two types in our examples so far.</p>
+
+<p>
+  <strong>Location</strong> based breadcrumbs are based on where you are with
+  respect to the navigation structure of the website. In our previous shoe
+  shopping example, the first three <code>li</code> elements are location based.
+  We are in the &ldquo;shoes&rdquo; section of the website, which is contained
+  within the &ldquo;fashion&rdquo; section, which is contained within the
+  &ldquo;shopping&rdquo; section.
+</p>
+
+<p>
+  <strong>Attribute</strong> based breadcrumbs are based on the attributes of
+  the page or product that you are browsing. In our previous example, the final
+  two <code>li</code> elements are attribute based. We are shopping for shoes
+  that are &ldquo;flats&rdquo; and &ldquo;brown&rdquo;. Since the order of these
+  attributes is not prescriptive, you&rsquo;ll see some sites display these at
+  the same level in the UI. If you want to allow users to remove attributes,
+  provide an (x) button or similar to indicate they can be removed.
+</p>
+
+<p>
+  Finally, breadcrumbs can be based on a user&rsquo;s unique
+  <strong>path</strong> through the site. For example, if they landed on the
+  home page, browsed to the about page and finally the registration page, their
+  breadcrumb trail may look like:
+</p>
+
+<p><code>Home &gt; About &gt; Register</code></p>
+
+<p>
+  Note that this breadcrumb trail will be different for each user and each
+  visit. For even mildly complex sites, the number of steps will become large.
+  To simplify the display, the beginning of the trail is often abbreviated:
+</p>
+
+<p><code>... &gt; About &gt; Register</code></p>
+<button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+</button>
+
+  </body>
+</html>
