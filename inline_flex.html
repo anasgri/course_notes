@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inline flex</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .pseudobody {
+        margin: 0;
+        border: 0;
+        font-family: "Roboto Mono", monospace;
+        text-align: center;
+      }
+
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+        margin-top: 20px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+
+      h1 {
+        font-size: 18px;
+        text-align: center;
+      }
+
+      .container {
+        width: 150px;
+        border: 1px solid grey;
+        display: inline-flex;
+        text-align: center;
+      }
+
+      .box {
+        background-color: dodgerblue;
+        height: 75px;
+        width: 75px;
+        border: 1px solid turquoise;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Display: inline-flex</h2>
+    <p>
+      If the <code>display:flex</code> is applied to the container, the
+      comtainer itself takes all the space in the specified
+      <code>flex-direction</code>
+    </p>
+    <p>
+      There is an option to set the display to <code>inline-flex</code>, which
+      whill allow the flex containers themselves become an inline elements
+    </p>
+    <p>html</p>
+    <pre><code class = "language-html">
+     &lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Inline&lt;/title&gt;
+  &lt;link href='style.css' rel='stylesheet' /&gt;
+  &lt;link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet'&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;h1&gt;Inline-flex&lt;/h1&gt;
+  &lt;div class='container'&gt; &lt;!--- This is the first inline container --&gt;
+    &lt;div class='box'&gt; 
+      &lt;h3&gt;1&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class='box'&gt;
+      &lt;h3&gt;2&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class='box'&gt;
+      &lt;h3&gt;3&lt;/h3&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class='container'&gt; &lt;!--- This is the second inline container --&gt;
+    &lt;div class='box'&gt;
+      &lt;h3&gt;1&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class='box'&gt;
+      &lt;h3&gt;2&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class='box'&gt;
+      &lt;h3&gt;3&lt;/h3&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+    <p>css</p>
+    <pre><code class = "language-css">
+
+    body {
+  margin: 0;
+  border: 0;
+  font-family: 'Roboto Mono', monospace;
+  text-align: center;
+}
+
+h1 {
+  font-size: 18px;
+  text-align: center;
+}
+
+.container {
+  width: 150px;
+  border: 1px solid grey;
+  display: inline-flex; /* The containers are in-line because of that line */
+}
+
+.box {
+  background-color: dodgerblue;
+  height: 75px;
+  width: 75px;
+  border: 1px solid turquoise;
+}
+</code></pre>
+
+    <h1>Inline-flex</h1>
+    <div class="pseudobody">
+      <div class="container">
+        <!--- This is the first inline container -->
+        <div class="box">
+          <h3>1</h3>
+        </div>
+        <div class="box">
+          <h3>2</h3>
+        </div>
+        <div class="box">
+          <h3>3</h3>
+        </div>
+      </div>
+      <div class="container">
+        <!--- This is the second inline container -->
+        <div class="box">
+          <h3>1</h3>
+        </div>
+        <div class="box">
+          <h3>2</h3>
+        </div>
+        <div class="box">
+          <h3>3</h3>
+        </div>
+      </div>
+    </div>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
