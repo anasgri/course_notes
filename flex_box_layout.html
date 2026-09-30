@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
     <style>
-        .container {
+.container {
   display: flex;
   background-color: DodgerBlue;
 }
@@ -129,7 +129,47 @@ border: solid 1px black;
 
 }
 
+p.advert {
+      background-color: #d9edf7;
+      border: 2px solid #0c3d55;
+      font-family: Helvetica, sans-serif;
+      padding: 20px 10px;
+      margin: 20px 10px;
+    }
+
+.container4 {
+  background-color: dodgerblue;
+  display: flex;
+  align-items: center;
+  min-height: 125px;
+  width: 500px;
+}
+
+.box {
+  background-color: whitesmoke;
+  border: 1px solid white;
+  width: 100px;
+  height: 100px;
+}
+
+#wrap {
+display: flex;
+flex-wrap: wrap;
+}
+
+#nowrap {
+display: flex;
+flex-wrap: nowrap;
+}
+
+#reverse {
+display: flex;
+flex-wrap: wrap-reverse;
+}
+
     </style>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
   </head>
   <body>
     <h1>Flexbox layout</h1>
@@ -275,6 +315,65 @@ border: solid 1px black;
 <li>wrap</li>
 <li>wrap-reverse</li>
 </ul>
+<ol>
+  <li><code>wrap</code> — child elements of a flex container that don't fit into a row will move down to the next line</li>
+  <li><code>wrap-reverse</code> — the same functionality as <code>wrap</code>, but the order of rows within a flex container is reversed (for example, in a 2-row flexbox, the first row from a <code>wrap</code> container will become the second in <code>wrap-reverse</code> and the second row from the <code>wrap</code> container will become the first in <code>wrap-reverse</code>)</li>
+  <li><code>nowrap</code> — prevents items from wrapping; this is the default value and is only necessary to override a wrap value set by a different CSS rule.</li>
+</ol>
+<h3>Flex-Wrap: Wrap</h3>
+  <div class='container4' id='wrap'>
+    <div class='box'>
+      <h3>1</h3>
+    </div>
+    <div class='box'>
+      <h3>2</h3>
+    </div>
+    <div class='box'>
+      <h3>3</h3>
+    </div>
+    <div class='box'>
+      <h3>4</h3>
+    </div>
+    <div class='box'>
+      <h3>5</h3>
+    </div>
+  </div>
+  <h3>Flex-Wrap: No-Wrap</h3>
+  <div class='container4' id='nowrap'>
+    <div class='box'>
+      <h3>1</h3>
+    </div>
+    <div class='box'>
+      <h3>2</h3>
+    </div>
+    <div class='box'>
+      <h3>3</h3>
+    </div>
+    <div class='box'>
+      <h3>4</h3>
+    </div>
+    <div class='box'>
+      <h3>5</h3>
+    </div>
+  </div>
+  <h3>Flex-Wrap: Wrap-Reverse</h3>
+  <div class='container4' id='reverse'>
+    <div class='box'>
+      <h3>1</h3>
+    </div>
+    <div class='box'>
+      <h3>2</h3>
+    </div>
+    <div class='box'>
+      <h3>3</h3>
+    </div>
+    <div class='box'>
+      <h3>4</h3>
+    </div>
+    <div class='box'>
+      <h3>5</h3>
+    </div>
+  </div>
 <h4>How the flex wrap works</h4>
 <ul>
 <li>flex-direction: row + flex-wrap: wrap → items fill left-to-right, then wrap into new rows stacked downward.</li>
@@ -394,6 +493,20 @@ display: flex;
 flex-flow: column wrap;
 }
   </code></pre>
+<p>Two code snippets below do the same thing</p>
+<pre><code class = "language-css">
+  .container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+</code></pre>
+<pre><code class = "language-css">
+  .container {
+  display: flex;
+  flex-flow: column wrap;
+}
+</code></pre>
 <h3>align-content</h3>
 <p>The align-content property aligns the flex lines. It only has effect when flex items <strong>wrap onto multiple lines.</strong></p>
 <p>This property can have one of the following values:</p>
@@ -405,6 +518,85 @@ flex-flow: column wrap;
 <li>space-around</li>
 <li>space-evenly</li>
 </ul>
+
+<h2>Other properties that are applied to the children elements (not the container)</h2>
+<h3>flex-shrink property</h3>
+<p>Just as the <code>flex-grow</code> property proportionally stretches flex items, the <code>flex-shrink</code> property can be used to specify which elements will shrink and in what proportions.</p>
+<p><code><strong>The flex-shrink property</strong></code> specifies how the item will shrink relative to the rest of the flexible items inside the same container.</code></p>
+<pre><code class = "language-css">
+  div:nth-of-type(2) {
+  flex-shrink: 3;
+}
+</code></pre>
+
+<h3>flex-grow</h3>
+    <p>If the parent container is larger than necessary then the flex items will not stretch by default. The <code>flex-grow</code> property allows us to specify if items should grow to fill a container and also which items should grow proportionally more or less than others.</p>
+<p>The flex-grow CSS property specifies how much a flex item will grow relative to the other flex items inside the same container when extra free space is available.</p>
+<pre><code class = "language-css">
+div:nth-of-type(1) {flex-grow: 1;}
+div:nth-of-type(2) {flex-grow: 3;}
+div:nth-of-type(3) {flex-grow: 1;}
+</code></pre>
+<h3>order</h3>
+<p><code><strong>order</strong></code> - Specifies the display order of the flex items inside the flex container. Default is 0; higher numbers appear later</p>
+<pre><code class = "language-html">
+&lt;div class="flex-container"&gt;
+&lt;div style="order: 3"&gt;1&lt;/div&gt;
+&lt;div style="order: 2"&gt;2&lt;/div&gt;
+&lt;div style="order: 4"&gt;3&lt;/div&gt;
+&lt;div style="order: 1"&gt;4&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>Note on the flex-grow and flex-shrink</h3>
+<p>Allowed values:</p>
+<ul>
+  <li>Any non-negative number: 0, 1, 2, 0.5, 3.7, etc. Decimals are fine.</li>
+  <li>Negative values are invalid and the declaration is ignored.</li>
+  <li>The default is 1, so every flex item shrinks by default.</li>
+  <li>Global keywords also work: inherit, initial, unset, revert.</li>
+</ul>
+<h3>How the numbers work</h3>
+
+<p>
+  The values are <em>proportional weights</em>, and they're also multiplied by
+  each item's <code>flex-basis</code> (its starting size). So
+  <code>flex-shrink: 2</code> doesn't mean "shrinks exactly twice as much in
+  pixels." It means the item's shrink share is weighted twice as heavily,
+  scaled by its size.
+</p>
+
+<p>
+  Example: three items each 200px wide (600px total) in a 400px container, so
+  200px of overflow has to be absorbed.
+</p>
+
+<pre><code>.a { flex-shrink: 1; }
+.b { flex-shrink: 1; }
+.c { flex-shrink: 2; }</code></pre>
+
+<p>
+  Weighted shares are 200×1, 200×1, 200×2, totaling 800. So:
+</p>
+
+<ul>
+  <li>A shrinks by 200 × (200/800) = 50px → 150px</li>
+  <li>B shrinks by 50px → 150px</li>
+  <li>C shrinks by 200 × (400/800) = 100px → 100px</li>
+</ul>
+<p class = "advert">
+  If the flex-grow or flex-shrink is set to 0, the elements do not shrink or grow.
+</p>
+<h2>flex-basis</h2>
+
+<p>In the previous two exercises, the dimensions of the divs were determined by heights and widths set with CSS. Another way of specifying the width of a flex item is with the <code>flex-basis</code> property. <code>flex-basis</code> allows us to specify the width of an item before it stretches or shrinks.</p>
+<pre><code class = "language-css">
+  .side {
+  flex-grow: 1;
+  flex-basis: 100px;
+}
+</code></pre>
+
+<p>In the previous two exercises, the dimensions of the divs were determined by heights and widths set with CSS. Another way of specifying the width of a flex item is with the <code>flex-basis</code> property. <code>flex-basis</code> allows us to specify the width of an item before it stretches or shrinks.</p>
 <h3>Controlling Item Size with flex</h3>
 <pre><code class = "language-css">
   .item {
@@ -442,48 +634,59 @@ border: solid 1px black;
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-<div class="container4">
+<div class="container">
   <div class="square1">Square with flex 1</div>
   <div class="square2">Square with flex 3</div>
 </div>
-<h2>Other properties that are applied to the children elements (not the container)</h2>
-<h3>flex-shrink property</h3>
-<p>Just as the <code>flex-grow</code> property proportionally stretches flex items, the <code>flex-shrink</code> property can be used to specify which elements will shrink and in what proportions.</p>
-<p><code><strong>The flex-shrink property</strong></code> specifies how the item will shrink relative to the rest of the flexible items inside the same container.</code></p>
+<p>Lets consider two snippets below. They do the same thing. The first one uses the flex-grow, flex-shrink and flex-basis</p>
 <pre><code class = "language-css">
-  div:nth-of-type(2) {
-  flex-shrink: 3;
+  .big {
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: 150px;
+}
+
+.small {
+  flex-grow: 1;
+  flex-shrink: 2;
+  flex-basis: 100px;
 }
 </code></pre>
-
-<h3>flex-grow</h3>
-    <p>If the parent container is larger than necessary then the flex items will not stretch by default. The <code>flex-grow</code> property allows us to specify if items should grow to fill a container and also which items should grow proportionally more or less than others.</p>
-<p>The flex-grow CSS property specifies how much a flex item will grow relative to the other flex items inside the same container when extra free space is available.</p>
+<br/>
 <pre><code class = "language-css">
-div:nth-of-type(1) {flex-grow: 1;}
-div:nth-of-type(2) {flex-grow: 3;}
-div:nth-of-type(3) {flex-grow: 1;}
+.big {
+  flex: 2 1 150px;
+}
+
+.small {
+  flex: 1 2 100px;
+}
 </code></pre>
-<h3>order</h3>
-<p><code><strong>order</strong></code> - Specifies the display order of the flex items inside the flex container. Default is 0; higher numbers appear later</p>
-<pre><code class = "language-html">
-&lt;div class="flex-container"&gt;
-&lt;div style="order: 3"&gt;1&lt;/div&gt;
-&lt;div style="order: 2"&gt;2&lt;/div&gt;
-&lt;div style="order: 4"&gt;3&lt;/div&gt;
-&lt;div style="order: 1"&gt;4&lt;/div&gt;
-&lt;/div&gt;
+<h3>Using only two values</h3>
+<p>In the example below, we use the <code>flex</code> property to declare <code>flex-grow</code> and <code>flex-shrink</code>, but not <code>flex-basis</code>.</p>
+<pre><code class = "language-css">
+.big {
+ flex: 2 1;
+}
 </code></pre>
-<img src = "order_demo.png" alt = "order_demo"/>
+<p>In the example below, we use the <code>flex</code> property to declare <code>flex-grow</code> and <code>flex-basis</code>.</p>
+<pre><code class = "language-css">
+.small {
+  flex: 1 20px;
+}
+</code></pre>
+<p class = "advert">Note that there is no way to set only <code>flex-shrink</code> and <code>flex-basis</code> using 2 values.</p>
+<!-- <img src = "order_demo.png" alt = "order_demo"/> -->
 <h3>align-self property</h3>
+<p><code>align-self</code> overrides the <code>align-items</code> property of the individual element in the container.</p>
+<p><code>align-items</code> is applied to the container and changes the positioning of all items within that container.</p>
+<p>The <code>align-self</code> is applied to the individual items in the container and can be used to override the <code>align-items</code> property.</p>
 <p>The align-self property specifies the alignment in the block direction for the selected item inside a flexbox or grid container.</p>
 <p>For pages in English, block direction is downward and inline direction is left to right.</p>
 
 <p>💡 To align a grid item in the inline direction instead of the block direction, use justify-self or justify-items properties.</p>
 <p><code>align-self</code> overrides align-items for individual
 items.</p>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
     <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
