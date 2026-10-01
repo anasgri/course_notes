@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid layout advanced</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+      <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    
+
+    .container {
+  display: grid;
+  max-width: 900px;
+  position: relative;
+  margin: auto;
+  gap: 10px;
+  grid-template: repeat(12, 1fr) / repeat(6, 1fr);
+}
+
+h1.exp, h2.exp, h3.exp {
+  font-family: monospace;
+  text-align: center;
+}
+
+header {
+  background-color: dodgerblue;
+  grid-area: 1 / 1 / 3 / 7;
+}
+
+nav {
+  background-color: beige;
+  grid-area: 3 / 1 / 4 / 7;
+}
+
+.left {
+  background-color: dodgerblue;
+  grid-area: 4 / 1 / 9 / 5;
+}
+
+.right {
+  background-color: beige;
+  grid-area: 4 / 5 / 9 / 7;
+}
+
+.overlap {
+  background-color: lightcoral;
+  grid-area: 6 / 4 / 8 / 6;
+  z-index: 5;
+}
+
+footer {
+  background-color: dodgerblue;
+  grid-area: 9 / 1 / 13 / 7;
+}
+    </style>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+</head>
+
+  </head>
+  <body>
+    <h1>Grid layout advanced</h1>
+<h3>Grid-area</h3>
+<p>You can directly add the positions of the elements on the grid using grid-area</p>
+<p>Lets look at the html below. It is just a div, with the emenent inside.</p>
+<pre><code class = "language-html">
+ &lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;Grid Stuff&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Header&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;nav&gt;
+      &lt;h1&gt;Nav&lt;/h1&gt;
+    &lt;/nav&gt;
+    &lt;section class="left"&gt;
+      &lt;h2&gt;Left&lt;/h2&gt;
+    &lt;/section&gt;
+    &lt;div class="overlap"&gt;
+      &lt;h3&gt;Overlap!&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;section class="right"&gt;
+      &lt;h2&gt;Right&lt;/h2&gt;
+    &lt;/section&gt;
+    &lt;footer&gt;
+      &lt;h1&gt;Footer&lt;/h1&gt;
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>Now can add the grid-area property to each element in the css</p>
+<pre><code class = "language-css">
+.container {
+  display: grid;
+  max-width: 900px;
+  position: relative;
+  margin: auto;
+  gap: 10px;
+  grid-template: repeat(12, 1fr) / repeat(6, 1fr);
+}
+
+h1, h2, h3 {
+  font-family: monospace;
+  text-align: center;
+}
+
+header {
+  background-color: dodgerblue;
+  grid-area: 1 / 1 / 3 / 7; /*-- Header spans rows 1-2 and columns 1-6 */
+}
+
+nav {
+  background-color: beige;
+  grid-area: 3 / 1 / 4 / 7; /*-- Nav spans row 3 and columns 1-6 */
+}
+
+.left {
+  background-color: dodgerblue;
+  grid-area: 4 / 1 / 9 / 5; /*-- Left spans rows 4-8 and columns 1-4 */
+}
+
+.right {
+  background-color: beige;
+  grid-area: 4 / 5 / 9 / 7; /*-- Right spans rows 4-8 and columns 5-6 */
+}
+
+.overlap {
+  background-color: lightcoral;
+  grid-area: 6 / 4 / 8 / 6; /*-- Overlap spans rows 6-7 and columns 4-5 */
+  z-index: 5; /*-- this is necessary for overlapp to appear on top--*/
+}
+
+footer {
+  background-color: dodgerblue;
+  grid-area: 9 / 1 / 13 / 7; /*-- Footer spans rows 9-12 and columns 1-6 */
+}
+</code></pre>
+<div class="container">
+    <header>
+      <h1>Header</h1>
+    </header>
+    <nav>
+      <h1 class="exp">Nav</h1>
+    </nav>
+    <section class="left">
+      <h2 class="exp">Left</h2>
+    </section>
+    <div class="overlap">
+      <h3 class="exp">Overlap!</h3>
+    </div>
+    <section class="right">
+      <h2 class="exp">Right</h2>
+    </section>
+    <footer>
+      <h1 class="exp">Footer</h1>
+    </footer>
+  </div>
+<p>So, instead of linearly stacked divs we see a more complex structure thank-s to <code>grid-area</code></p>
+    
+<h2>Grid Template Areas</h2>
+
+    <p>
+      The <code>grid-template-areas</code> property allows you to name sections
+      of your web page to use as values in the <code>grid-row-start</code>,
+      <code>grid-row-end</code>, <code>grid-column-start</code>,
+      <code>grid-column-end</code>, and <code>grid-area</code> properties. This
+      property is declared on grid containers.
+    </p>
+    <pre><code class = "language-html">
+&lt;div class="container"&gt;
+  &lt;header&gt;Welcome!&lt;/header&gt;
+  &lt;nav&gt;Links!&lt;/nav&gt;
+  &lt;section class="info"&gt;Info!&lt;/section&gt;
+  &lt;section class="services"&gt;Services!&lt;/section&gt;
+  &lt;footer&gt;Contact us!&lt;/footer&gt;
+&lt;/div&gt;
+</code></pre>
+    <pre><code class = "language-css">
+.container {
+  display: grid;
+  max-width: 900px;
+  position: relative;
+  margin: auto;
+  grid-template-areas: "header header"
+                       "nav nav" 
+                       "info services"
+                       "footer footer";
+  grid-template-rows: 300px 120px 800px 120px;
+  grid-template-columns: 1fr 3fr; 
+}
+
+header {
+  grid-area: header;
+} 
+
+nav {
+  grid-area: nav;
+} 
+
+.info {
+  grid-area: info;
+} 
+
+.services {
+  grid-area: services;
+}
+
+footer {
+  grid-area: footer;
+} 
+</code></pre>
+<ol>
+  <li>
+    In the example above, the HTML creates a web
+    page with five distinct parts.
+  </li>
+  <li>
+    In the <code>.container</code> ruleset, the <code>grid-template-areas</code>
+    declaration creates a 2-column, 4-row
+    layout.
+  </li>
+  <li>
+    The <code>grid-template-rows</code> declaration specifies
+    the height of each of the four rows from top to
+    bottom: 300 pixels, 120 pixels, 800 pixels, and
+    120 pixels.
+  </li>
+  <li>
+    The <code>grid-template-columns</code> declaration uses the
+    <code>fr</code> value to cause the left column to use one
+    fourth of the available space on the page and
+    the right column to use three-fourths of the
+    available space on the page.
+  </li>
+  <li>
+    In each ruleset below <code>.container</code>, we use the
+    <code>grid-area</code> property to tell that section to cover
+    the portion of the page specified. The <code>header</code>
+    element spans the first row and both columns.
+    The <code>nav</code> element spans the second row and
+    both columns. The element with class <code>.info</code>
+    spans the third row and left column. The
+    element with class <code>.services</code> spans the third
+    row and right column. The <code>footer</code> element
+    spans the bottom row and both columns.
+  </li>
+<li>The <code>grid-template-areas</code> property has 8 words, this is because there are 8 cells in the current grid.</li>
+</ol>
+<button class="btnback" onclick="window.location.href = 'index.html'">
+Back to Index
+</button>
+  </body>
+</html>
