@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Implicit grid</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Implicit vs. Explicit Grid</h2>
+
+    <p>
+      So far, we have been explicitly defining the dimensions and quantities of
+      our grid elements using various properties. This works well in many cases,
+      such as a landing page for a business that will display a specific amount
+      of information at all times.
+    </p>
+
+    <p>
+      However, there are instances in which we don't know how much information
+      we're going to display. For example, consider online shopping. Often,
+      these web pages include the option at the bottom of the search results to
+      display a certain quantity of results or to display ALL results on a
+      single page. When displaying all results, the web developer can't know in
+      advance how many elements will be in the search results each time.
+    </p>
+
+    <p>
+      What happens if the developer has specified a 3-column, 5-row grid (for a
+      total of 15 items), but the search results return 30?
+    </p>
+    <p>
+      Something called the <em>implicit</em> grid takes over. The implicit grid
+      is an algorithm built into the specification for CSS Grid that determines
+      default behavior for the placement of elements when there are more than
+      fit into the grid specified by the CSS.
+    </p>
+
+    <p>
+      The default behavior of the implicit grid is as follows: items fill up
+      rows first, adding new rows as necessary. New grid rows will only be tall
+      enough to contain the content within them. In the next exercise, you'll
+      learn how to change this default behavior.
+    </p>
+
+    <p>
+      <code>grid-auto-rows</code> and <code>grid-auto-columns</code> accept the
+      same values as their explicit counterparts,
+      <code>grid-template-rows</code> and <code>grid-template-columns</code>:
+    </p>
+
+    <ul>
+      <li>pixels (<code>px</code>)</li>
+      <li>percentages (<code>%</code>)</li>
+      <li>fractions (<code>fr</code>)</li>
+      <li>the <code>repeat()</code> function</li>
+    </ul>
+    <p>Lets look at the example below:</p>
+    <pre><code class = "language-html">
+&lt;body&gt;
+  &lt;div&gt;Part 1&lt;/div&gt;   
+  &lt;div&gt;Part 2&lt;/div&gt;
+  &lt;div&gt;Part 3&lt;/div&gt;
+  &lt;div&gt;Part 4&lt;/div&gt;
+  &lt;div&gt;Part 5&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+    <pre><code class = "language-css">
+body {
+  display: grid;
+  grid: repeat(2, 100px) / repeat(2, 150px); 
+  grid-auto-rows: 50px;
+}
+
+</code></pre>
+    <p>
+      In the example above, there are 5 <code>&lt;div&gt;</code>s. However, in
+      the <code>body</code> ruleset, we only specify a 2-row, 2-column grid —
+      four grid cells.
+    </p>
+
+    <p>
+      The fifth <code>&lt;div&gt;</code> will be added to an implicit row that
+      will be 50 pixels tall.
+    </p>
+
+    <p>
+      If we did not specify <code>grid-auto-rows</code>, the rows would be
+      auto-adjusted to the height of the content of the grid items.
+    </p>
+
+    <h2>Grid Auto Flow</h2>
+
+    <p>
+      In addition to setting the dimensions of implicitly-added rows and
+      columns, we can specify the order in which they are rendered.
+    </p>
+
+    <p>
+      <code>grid-auto-flow</code> specifies whether new elements should be added
+      to rows or columns, and is declared on grid containers.
+    </p>
+
+    <p><code>grid-auto-flow</code> accepts these values:</p>
+
+    <ul>
+      <li>
+        <code>row</code> — specifies the new elements should fill rows from left
+        to right and create new rows when there are too many elements (default)
+      </li>
+      <li>
+        <code>column</code> — specifies the new elements should fill columns
+        from top to bottom and create new columns when there are too many
+        elements
+      </li>
+      <li>
+        <code>dense</code> — this keyword invokes an
+        <a href="#">algorithm</a> that attempts to fill holes earlier in the
+        grid layout if smaller elements are added
+      </li>
+    </ul>
+
+    <p>
+      You can pair <code>row</code> or <code>column</code> with
+      <code>dense</code>, like this: <code>grid-auto-flow: row dense;</code>.
+    </p>
+    <pre><code class= "language-html">
+    &lt;body&gt;
+    &lt;div class='box'&gt;Part 1&lt;/div&gt;   
+    &lt;div class='box'&gt;Part 2&lt;/div&gt;
+    &lt;div class='box'&gt;Part 3&lt;/div&gt;
+    &lt;div class='box'&gt;Part 4&lt;/div&gt;
+    &lt;div class='box'&gt;Part 5&lt;/div&gt;
+    &lt;/body&gt;
+    </code></pre>
+    <pre><code class = "language-css">
+    body {
+  display: grid;
+  gap: 5px;
+  grid: repeat(2, 100px) / repeat(2, 150px);
+  grid-auto-rows: 45px;
+  grid-auto-columns: 65px;
+  grid-auto-flow: column;
+}
+
+    </code></pre>
+    <img src="the-column-flow.png" alt="the-column-flow.png" />
+
+    <p>
+      The fifth grid item is added to a new, implicit column. The width of this
+      implicit column is dictated by <code>grid-auto-columns</code>, making the
+      fifth item <code>65px</code> wide — narrower than the other grid items.
+    </p>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
