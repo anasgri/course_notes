@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid-layout justify items</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    
+body {
+  margin: 0;
+  padding: 2rem;
+  font-family: system-ui, sans-serif;
+  background: #fafafa;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(3, 400px);
+  justify-items: center;
+  gap: 1.5rem;
+}
+
+.card {
+  width: 300px;
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.25rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.justify-demo {
+width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.justify-card img {
+    width: 300px;
+};
+
+.justify-card code {
+    font-weight: bold;
+    font-size: 16px;
+};
+
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+  </head>
+  <body>
+    <h2>Justify-items for grid</h2>
+    <p>
+      There are two axes in a grid layout — the column (or block) axis and the
+      row (or inline) axis.
+    </p>
+    <p>
+      The column axis stretches from top to bottom across the web page. The row
+      axis stretches from left to right across the web page.
+    </p>
+    <p>
+      <code><strong>justify-items</strong></code> is a property that positions
+      grid items along the inline, or row, axis. This means that it positions
+      items from left to right across the web page. This property is declared on
+      grid containers.
+    </p>
+    <p>
+  <code>justify-items</code> accepts these values:
+</p>
+
+<ul>
+  <li><code>start</code> — aligns grid items to the left side of the grid area</li>
+  <li><code>end</code> — aligns grid items to the right side of the grid area</li>
+  <li><code>center</code> — aligns grid items to the center of the grid area</li>
+  <li><code>stretch</code> — stretches all items to fill the grid area</li>
+</ul>
+    <p>Lets consider the html below:</p>
+    <pre><code class = "language-html">
+&lt;main&gt;
+  &lt;div class="card"&gt;Card 1&lt;/div&gt;
+  &lt;div class="card"&gt;Card 2&lt;/div&gt;
+  &lt;div class="card"&gt;Card 3&lt;/div&gt;
+&lt;/main&gt;
+</code></pre>
+    <p>
+      There are three cards. Now we are going to apply the css with three
+      columns to them:
+    </p>
+    <pre><code class = "language-css">
+display: grid;
+  grid-template-columns: repeat(3, 400px);
+  justify-items: center;
+</code></pre>
+    <p>
+      In the example above, we use <code>justify-items</code> to adjust the
+      positioning of some elements on this web page.
+    </p>
+
+    <ol>
+      <li>
+        There is a grid container with three columns that are each 400 pixels
+        wide.
+      </li>
+      <li>
+        The container has three grid items that do not have a specified width.
+      </li>
+      <li>
+        Without setting the <code>justify-items</code> property, these elements
+        will span the width of the column they are in (400 pixels).
+      </li>
+      <li>
+        By setting the <code>justify-items</code> property to
+        <code>center</code>, the <code>.card</code> <code>&lt;div&gt;</code>s
+        will be centered inside of their columns. They will only be as wide as
+        necessary to contain their content (the words Card 1, etc).
+      </li>
+      <li>
+        If we specify a width for the <code>.card</code> elements, they will not
+        stretch the width of their column.
+      </li>
+    </ol>
+
+    <!-- this is the example-->
+     <body>
+  <main>
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+  </main>
+<h3>Visual representations of justify--items</h3>
+
+<div class = "justify-demo">
+    <div class = "justify-card" id = "start">
+    <img src = "justify-items-start.svg" alt = "justify-items-start" />
+    <p><code>justify-items: start;</code></p></div>
+
+    <div class = "justify-card" id = "end">
+    <img src = "justify-items-end.svg" alt = "justify-items-end" />
+    <p><code>justify-items: end;</code></p></div>
+
+    <div class = "justify-card" id = "center">
+    <img src = "justify-items-center.svg" alt = "justify-items-center" />
+    <p><code>justify-items: center;</code></p></div>
+
+    <div class = "justify-card" id = "stretch">
+    <img src = "justify-items-stretch.svg" alt = "justify-items-stretch" />
+    <p><code>justify-items: stretch;</code></p></div>
+    </div>
+</div>
+<h2>Justify-content</h2>
+<p>While <code><strong>justify-items</strong></code> aligns individual items inside their respective grid cells, 
+    <code><strong>justify-content</strong></code> aligns the entire grid structure within the parent container.</p>
+<p>
+  It accepts these values:
+</p>
+
+<ul>
+  <li><code>start</code> — aligns the grid to the left side of the grid container</li>
+  <li><code>end</code> — aligns the grid to the right side of the grid container</li>
+  <li><code>center</code> — centers the grid horizontally in the grid container</li>
+  <li><code>stretch</code> — stretches the grid items to increase the size of the grid to expand horizontally across the container</li>
+  <li><code>space-around</code> — includes an equal amount of space on each side of a grid element, resulting in double the amount of space between elements as there is before the first and after the last element</li>
+  <li><code>space-between</code> — includes an equal amount of space between grid items and no space at either end</li>
+  <li><code>space-evenly</code> — places an even amount of space between grid items and at either end</li>
+</ul>
+
+<pre><code class = "language-html">
+&lt;main&gt;
+  &lt;div class="left"&gt;Left&lt;/div&gt;
+  &lt;div class="right"&gt;Right&lt;/div&gt;
+&lt;/main&gt;
+
+</code></pre>
+
+
+<pre><code class = "language-css">
+main {
+  display: grid;
+  width: 1000px;
+  grid-template-columns: 300px 300px;
+  grid-template-areas: "left right"; 
+  justify-content: center;
+}
+    </code></pre>
+<ol>
+  <li>
+    In the example above, the grid container is 1000
+    pixels wide, but we only specified two columns that
+    are 300 pixels each. This will leave 400 pixels of
+    unused space in the grid container.
+  </li>
+  <li>
+    <code>justify-content: center;</code> positions the columns in
+    the center of the grid, leaving 200 pixels on the right
+    and 200 pixels on the left of the grid.
+  </li>
+</ol>
+
+
+<div class = "justify-demo">
+    <div class = "justify-card" id = "justify-content-start">
+    <img src = "justify-content-start.svg" alt = "justify-content-start" />
+    <p><code>justify-content: start;</code></p></div>
+
+    <div class = "justify-card" id = "justify-content-end">
+    <img src = "justify-content-end.svg" alt = "justify-content-end" />
+    <p><code>justify-content: end;</code></p></div>
+
+    <div class = "justify-card" id = "justify-content-center">
+    <img src = "justify-content-center.svg" alt = "justify-content-center" />
+    <p><code>justify-content: center;</code></p></div>
+
+    <div class = "justify-card" id = "justify-content-stretch">
+    <img src = "justify-content-stretch.svg" alt = "justify-content-stretch" />
+    <p><code>justify-content: stretch;</code></p></div>
+
+    <div class = "justify-card" id = "justify-content-space-around">
+    <img src = "justify-content-space-around.svg" alt = "justify-content-space-around" />
+    <p><code>justify-content: space-around;</code></p></div>
+
+    <div class = "justify-card" id = "justify-content-space-between">
+    <img src = "justify-content-space-between.svg" alt = "justify-content-space-between" />
+    <p><code>justify-content: space-between;</code></p></div>
+
+    <div class = "justify-card" id = "justify-content-space-evenly">
+    <img src = "justify-content-space-evenly.svg" alt = "justify-content-space-evenly" />
+    <p><code>justify-content: space-evenly;</code></p></div>
+</div>
+
+<h2>Align-items</h2>
+<p><code>align-items</code> is a property that positions grid items along the block, or column axis. 
+    This means that it positions items from top to bottom. This property is declared on grid containers.</p>
+<p>
+  <code>align-items</code> accepts these values:
+</p>
+
+<ul>
+  <li><code>start</code> — aligns grid items to the top side of the grid area</li>
+  <li><code>end</code> — aligns grid items to the bottom side of the grid area</li>
+  <li><code>center</code> — aligns grid items to the center of the grid area</li>
+  <li><code>stretch</code> — stretches all items to fill the grid area</li>
+</ul>
+<pre><code class = "language-html">
+&lt;main&gt;
+  &lt;div class="card"&gt;Card 1&lt;/div&gt;
+  &lt;div class="card"&gt;Card 2&lt;/div&gt;
+  &lt;div class="card"&gt;Card 3&lt;/div&gt;
+&lt;/main&gt;
+</code></pre>
+<pre><code class = "language-css">
+main {
+  display: grid;
+  grid-template-rows: repeat(3, 400px);
+  align-items: center;
+}
+</code></pre>
+<p>
+  In the example above, we use <code>align-items</code> to adjust the
+  positioning of some elements on this web page.
+</p>
+
+<ol>
+  <li>
+    There is a grid container with three rows that are 400
+    pixels tall.
+  </li>
+  <li>
+    The container has three grid items that do not have a
+    specified height.
+  </li>
+  <li>
+    Without setting the <code>align-items</code> property, these
+    elements will span the height of the row they are in
+    (400 pixels).
+  </li>
+  <li>
+    By setting the <code>align-items</code> property to <code>center</code>, the
+    <code>.card</code> <code>&lt;div&gt;</code>s will be centered vertically inside of
+    their rows. They will only be as tall as necessary to
+    contain their content (the words Card 1, etc).
+  </li>
+  <li>
+    If we specify a height for the <code>.card</code> elements, they
+    will not stretch the height of their row even if <code>align-items: stretch;</code>
+    is set.
+  </li>
+</ol>
+
+<div class = "justify-demo">
+    <div class = "justify-card" id = "start">
+    <img src = "align-items-start.svg" alt = "align-items-start" />
+    <p><code>align-items: start;</code></p></div>
+
+    <div class = "justify-card" id = "end">
+    <img src = "align-items-end.svg" alt = "align-items-end" />
+    <p><code>align-items: end;</code></p></div>
+
+    <div class = "justify-card" id = "center">
+    <img src = "align-items-center.svg" alt = "align-items-center" />
+    <p><code>align-items: center;</code></p></div>
+
+    <div class = "justify-card" id = "stretch">
+    <img src = "align-items-stretch.svg" alt = "align-items-stretch" />
+    <p><code>align-items: stretch;</code></p></div>
+    </div>
+<h2>Align-content</h2>
+<p><code>align-content</code> positions the rows along the column axis, or from top to bottom, and is declared on grid containers.</p>
+<p>
+  It accepts these positional values:
+</p>
+
+<ul>
+  <li><code>start</code> — aligns the grid to the top of the grid container</li>
+  <li><code>end</code> — aligns the grid to the bottom of the grid container</li>
+  <li><code>center</code> — centers the grid vertically in the grid container</li>
+  <li><code>stretch</code> — stretches the grid items to increase the size of the grid to expand vertically across the container</li>
+  <li><code>space-around</code> — includes an equal amount of space on each side of a grid element, resulting in double the amount of space between elements as there is before the first and after the last element</li>
+  <li><code>space-between</code> — includes an equal amount of space between grid items and no space at either end</li>
+  <li><code>space-evenly</code> — places an even amount of space between grid items and at either end</li>
+</ul>
+  <div class = "justify-demo">
+    <div class = "justify-card" id = "align-content-start">
+    <img src = "align-content-start.svg" alt = "align-content-start" />
+    <p><code>align-content: start;</code></p></div>
+
+    <div class = "justify-card" id = "align-content-end">
+    <img src = "align-content-end.svg" alt = "align-content-end" />
+    <p><code>align-content: end;</code></p></div>
+
+    <div class = "justify-card" id = "align-content-center">
+    <img src = "align-content-center.svg" alt = "align-content-center" />
+    <p><code>align-content: center;</code></p></div>
+
+    <div class = "justify-card" id = "align-content-stretch">
+    <img src = "align-content-stretch.svg" alt = "align-content-stretch" />
+    <p><code>align-content: stretch;</code></p></div>
+
+    <div class = "justify-card" id = "align-content-space-around">
+    <img src = "align-content-space-around.svg" alt = "align-content-space-around" />
+    <p><code>align-content: space-around;</code></p></div>
+
+    <div class = "justify-card" id = "align-content-space-between">
+    <img src = "align-content-space-between.svg" alt = "align-content-space-between" />
+    <p><code>align-content: space-between;</code></p></div>
+
+    <div class = "justify-card" id = "align-content-space-evenly">
+    <img src = "align-content-space-evenly.svg" alt = "align-content-space-evenly" />
+    <p><code>align-content: space-evenly;</code></p></div>
+</div>
+
+<h2>Justify Self and Align Self</h2>
+
+<p>
+  The <code>justify-items</code> and <code>align-items</code> properties specify
+  how all grid items contained within a single container will
+  position themselves along the row and column axes,
+  respectively.
+</p>
+
+<p>
+  <code>justify-self</code> specifies how an individual element should
+  position itself with respect to the row axis. This property
+  will override <code>justify-items</code> for any item on which it is
+  declared.
+</p>
+
+<p>
+  <code>align-self</code> specifies how an individual element should
+  position itself with respect to the column axis. This
+  property will override <code>align-items</code> for any item on which
+  it is declared.
+</p>
+
+<p>
+  These properties are declared on grid items. They both
+  accept these four properties:
+</p>
+<ul>
+  <li><code>start</code> — positions grid items on the left side/top of the grid area</li>
+  <li><code>end</code> — positions grid items on the right side/bottom of the grid area</li>
+  <li><code>center</code> — positions grid items on the center of the grid area</li>
+  <li><code>stretch</code> — positions grid items to fill the grid area (default)</li>
+</ul>
+<h3>Align-self</h3>
+<div class = "justify-demo">
+    <div class = "justify-card" id = "align-self-start">
+    <img src = "align-self-start.svg" alt = "align-self-start" />
+    <p><code>align-self: start;</code></p></div>
+
+    <div class = "justify-card" id = "align-self-end">
+    <img src = "align-self-end.svg" alt = "align-self-end" />
+    <p><code>align-self: end;</code></p></div>
+
+    <div class = "justify-card" id = "align-self-center">
+    <img src = "align-self-center.svg" alt = "align-self-center" />
+    <p><code>align-self: center;</code></p></div>
+
+    <div class = "justify-card" id = "align-self-stretch">
+    <img src = "align-self-stretch.svg" alt = "align-self-stretch" />
+    <p><code>align-self: stretch;</code></p></div>
+</div>
+<h3>Justify Self</h3>
+
+<div class = "justify-demo">
+    <div class = "justify-card" id = "justify-self-start">
+    <img src = "justify-self-start.svg" alt = "justify-self-start" />
+    <p><code>justify-self: start;</code></p></div>
+
+    <div class = "justify-card" id = "justify-self-end">
+    <img src = "justify-self-end.svg" alt = "justify-self-end" />
+    <p><code>justify-self: end;</code></p></div>
+
+    <div class = "justify-card" id = "justify-self-center">
+    <img src = "justify-self-center.svg" alt = "justify-self-center" />
+    <p><code>justify-self: center;</code></p></div>
+
+    <div class = "justify-card" id = "justify-self-stretch">
+    <img src = "justify-self-stretch.svg" alt = "justify-self-stretch" />
+    <p><code>justify-self: stretch;</code></p></div>
+</div>
+  <button class="btnback" onclick="window.location.href = 'index.html'">
+Back to Index
+</button>
+
+  </body>
+</html>
