@@ -22,9 +22,34 @@
         background-color: #4169e1;
       }
     </style>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
 </head>
   <body>
-    <h3>Grid Layout</h3>
+    <h2>Grid Layout</h2>
+<h3>Creating a Grid</h3>
+
+<p>
+  To set up a grid, you need to have both a <em>grid container</em>
+  and <em>grid items</em>. The grid container will be a parent
+  element that contains grid items as children and applies
+  overarching styling and positioning to them.
+</p>
+
+<p>
+  To turn an HTML element into a grid container, you must
+  set the element's <code>display</code> property to one of two values:
+</p>
+
+<ul>
+  <li><code>grid</code> — for a block-level grid.</li>
+  <li><code>inline-grid</code> — for an inline grid.</li>
+</ul>
+
+<p>
+  Then, you can assign other properties to lay out the grid
+  to suit your needs.
+</p>
     <pre><code class = "language-css">
 .container {
     display: grid; /* activates the grid layout */
@@ -33,7 +58,48 @@
 }
 </code></pre>
 
-    <h4>Another example</h4>
+
+<h3>Creating Columns</h3>
+
+<p>
+  By default, grids contain only one column. If you were to
+  start adding items, each item would be put on a new row;
+  that's not much of a grid! To change this, we need to
+  explicitly define the number of rows and columns in our
+  grid.
+</p>
+
+<p>
+  We can define the columns of our grid by using the CSS
+  property <code>grid-template-columns</code>. Below is an example of
+  this property in action:
+</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  width: 500px;
+  grid-template-columns: 100px 200px;
+}
+</code></pre>
+<p>This property creates two changes. First, it defines the number of columns in the grid; in this case, there are two. Second, it sets the width of each column. The first column will be 100 pixels wide and the second column will be 200 pixels wide.
+
+We can also define the size of our columns as a percentage of the entire grid’s width.</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  width: 500px;
+  grid-template-columns: 20% 80%;
+}
+</code></pre>
+<p>We can also mix and match these two units. In the example below, there are three columns of width 20 pixels, 40 percent, and 60 pixels:</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  width: 100px;
+  grid-template-columns: 20px 40% 60px;
+}
+</code></pre>
+<h4>Another example</h4>
 
     <pre><code class = "language-css">
 .grid-container {
@@ -63,15 +129,320 @@ If the container is 1000px wide, the gap is 20px, the second column gets 1000 - 
     grid-row: 1/3;
 }
 </code></pre>
+<h3>Creating Rows</h3>
 
+<p>
+  We've learned how to define the number of columns in
+  our grid explicitly. To specify the number and size of the
+  rows, we are going to use the property <code>grid-template-rows</code>.
+</p>
+
+<p>
+  This property is almost identical to <code>grid-template-columns</code>.
+  Take a look at the code below to see both
+  properties in action.
+</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  width: 1000px;
+  height: 500px;
+  grid-template-columns: 100px 200px;
+  grid-template-rows: 10% 20% 600px;
+}
+</code></pre>
+<h2>Grid Template</h2>
+
+<p>
+  The shorthand property, <code>grid-template</code>, can replace the
+  previous two CSS properties. Both <code>grid-template-rows</code>
+  and <code>grid-template-columns</code> are nowhere to be found in
+  the following code!
+</p>
+<pre><code class = "language-css">
+
+</code></pre>
 <p>Example</p>
 <pre><code class = "language-css">
-    
+.grid {
+  display: grid;
+  width: 1000px;
+  height: 500px;
+  grid-template: 200px 300px / 20% 10% 70%;
+}
 </code></pre>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
-      <button class="btnback" onclick="window.location.href = 'index.html'">
-      Back to Index
-    </button>
+<p>
+  When using <code>grid-template</code>, the values before the slash
+  will determine the size of each row. The values after the
+  slash determine the size of each column. In this example,
+  we've made two rows and three columns of varying sizes.
+</p>
+
+<p>
+  The same rules from before apply; when using
+  percentages to set rows, each row will be a percentage of
+  the grid's total height. Columns are still a percentage of
+  the total width.
+</p>
+<h3>Fraction</h3>
+
+<p>
+  You may already be familiar with several types of
+  responsive units such as percentages (<code>%</code>), <code>em</code>s and <code>rem</code>s.
+  CSS Grid introduced a new relative sizing unit — <code>fr</code>, like
+  fraction.
+</p>
+
+<p>
+  By using the <code>fr</code> unit, we can define the size of columns
+  and rows as a fraction of the grid's length and width. This
+  unit was specifically created for use in CSS Grid. Using
+  <code>fr</code> makes it easier to prevent grid items from overflowing
+  the boundaries of the grid. Consider the code below:
+</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  width: 1000px;
+  height: 400px;
+  grid-template: 2fr 1fr 1fr / 1fr 3fr 1fr;
+}
+</code></pre>
+<p>
+  It is possible to use <code>fr</code> with other units as well. When this
+  happens, each <code>fr</code> represents a fraction of the <em>available</em>
+  space.
+</p>
+<pre><code class = "language-css">
+.grid {
+display: grid;
+width: 100px;
+grid-template-columns: 1fr 60px 1fr;
+}
+</code></pre>
+<p>
+  In this example, <strong>60 pixels</strong> are taken up by the second
+  column. Therefore the first and third columns have <strong>40 pixels</strong>
+  available to split between them. Since each gets one
+  fraction of the total, they both end up being <strong>20 pixels</strong>
+  wide.
+</p>
+<h3>Repeat</h3>
+
+<p>
+  The properties that define the number of rows and
+  columns in a grid can take a function as a value. <code>repeat()</code>
+  is one of these functions. The <code>repeat()</code> function was
+  created specifically for CSS Grid.
+</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  width: 300px;
+  grid-template-columns: repeat(3, 100px);
+}
+</code></pre>
+<p>
+  Repeat is particularly useful with <code>fr</code>. For example,
+  <code>repeat(5, 1fr)</code> would split your table into five equal rows
+  or columns.
+</p>
+
+<p>
+  Finally, the second <a href="#">parameter</a> of <code>repeat()</code> can have
+  multiple values.
+</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  width: 300px;
+  grid-template-columns: repeat(2, 20px 50px)
+}
+</code></pre>
+<h2>Grid minmax property</h2>
+<p>
+  So far, all of the grids that we have worked with have
+  been a fixed size. The grid in our example has been
+  400 pixels wide and 500 pixels tall. But sometimes
+  you might want a grid to resize based on the size of
+  your web browser.
+</p>
+
+<p>
+  In these situations, you might want to prevent a row
+  or column from getting too big or too small. For
+  example, if you have a <strong>100-pixel wide image</strong> in your
+  grid, you probably don't want its column to get
+  thinner than 100 pixels! The <code>minmax()</code> function can
+  help us solve this problem.
+</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  grid-template-columns: 100px minmax(100px, 500px) 100px;
+}
+</code></pre>
+<p>In this example, the <strong>first</strong> and <strong>third</strong> columns will always be <strong>100 pixels</strong> wide, no matter the size of the grid. 
+  The <strong>second</strong> column, however, will <strong>vary in size</strong> as the overall grid resizes. 
+  The second column will always be between 100 and 500 pixels wide.</p>
+
+<h2>Grid Gap</h2>
+
+<p>
+  The CSS properties
+  <code>row-gap</code> and <code>column-gap</code> will put blank space
+  between every row and column in the grid.
+</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  width: 320px;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 10px;
+}
+</code></pre>
+<p>Finally, there is a shorthand CSS property, gap, that can set the row and column gap at the same time.</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  width: 320px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 10px;
+}
+</code></pre>
+<p>
+  The example above will set the distance between
+  rows to <strong>20 pixels</strong> and the distance between columns
+  to <strong>10 pixels</strong>. Unlike other CSS grid properties, this
+  shorthand does not take a <code>/</code> between values! If only
+  one value is given, it will set the column gap and the
+  row gap to that value.
+</p>
+<pre><code class = "language-css">
+.grid {
+  display: grid;
+  width: 320px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px; /* sets both row and column gap to 10px */
+}
+</code></pre>
+<h3>Multiple Row Items</h3>
+<p>
+  Using the CSS properties <code>grid-row-start</code> and <code>grid-row-end</code>,
+  we can make single grid items take up
+  multiple rows. Remember, we are no longer applying
+  CSS to the outer grid container; we're adding CSS to
+  the elements sitting inside the grid!
+</p>
+<pre><code class = "language-css">
+.item {
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+</code></pre>
+<p>In this example, the HTML element of class item will take up two rows in the grid, rows 1 and 2. 
+The values that grid-row-start and grid-row-end accept are grid lines.</p>
+<h2>Grid Row</h2>
+<p>
+  We can use the property <code>grid-row</code> as shorthand for
+  <code>grid-row-start</code> and <code>grid-row-end</code>. The following two
+  code blocks will produce the same output:
+</p>
+<pre><code class = "language-css">
+.item {
+  grid-row-start: 4;
+  grid-row-end: 6;
+}
+
+</code></pre>
+<pre><code class = "language-css">
+.item {
+  grid-row: 4 / 6;
+}
+</code></pre>
+<h2>Grid Column</h2>
+<p>
+  The previous three properties also exist for
+  columns. <code>grid-column-start</code>, <code>grid-column-end</code> and
+  <code>grid-column</code> work identically to the row properties.
+  These properties allow a grid item to span multiple
+  columns.
+</p>
+
+<p>
+  When using these properties, we can use the
+  keyword <code>span</code> to start or end a column or row,
+  relative to its other end. Look at how <code>span</code> is used
+  in the code below:
+</p>
+<pre><code class = "language-css">
+.item {
+  grid-column: 4 / span 2;
+}
+</code></pre>
+<p>This is telling the item element to begin in column four and take up 
+  two columns of space. So item would occupy columns four and five. 
+  It produces the same result as the following code blocks:</p>
+<pre><code class = "language-css">
+.item {
+  grid-column: 4 / 6;
+}
+</code></pre>
+<pre><code class = "language-css">
+.item {
+  grid-column-start: 4;
+  grid-column-end: span 2;
+}
+</code></pre>
+
+<pre><code class = "language-css">
+.item {
+  grid-column-start: 4;
+  grid-column-end: span 2;
+}
+</code></pre>
+<pre><code class = "language-css">
+.item {
+  grid-column-start: span 2;
+  grid-column-end: 6;
+}
+</code></pre>
+<h3>Grid Area</h3>
+<p>We can refactor even more using the property grid-area. 
+  This property will set the starting and ending positions for both the rows and columns of an item.</p>
+<pre><code class = "language-css">
+.item {
+  grid-area: 2 / 3 / 4 / span 5;
+}
+</code></pre>
+<p>
+  <code>grid-area</code> takes four values separated by slashes.
+  The order is important! This is how <code>grid-area</code> will
+  interpret those values.
+</p>
+
+<ol>
+  <li><code>grid-row-start</code></li>
+  <li><code>grid-column-start</code></li>
+  <li><code>grid-row-end</code></li>
+  <li><code>grid-column-end</code></li>
+</ol>
+<p>
+  In the above example, the item will start on row <code>2</code>
+  and end on row <code>4</code>, though the 4th row is not
+  actually included, only rows <code>2</code> and <code>3</code>! The item
+  will then start on column <code>3</code> and instead of setting
+  a number for which column to end on, we want this
+  item to <code>span 5</code> columns — this means the item will
+  include columns <code>3</code>, <code>4</code>, <code>5</code>, <code>6</code>, and <code>7</code>.
+</p>
+
+<p>
+  Using <code>grid-area</code> is an easy way to place items
+  exactly where you want them in a grid.
+</p>
+  <button class="btnback" onclick="window.location.href = 'index.html'">
+Back to Index
+</button>
 </body>
 </html>
