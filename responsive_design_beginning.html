@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive design beginning</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      ul {
+        line-height: 1.5;
+      }
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+      p.advert {
+        color: #0f0000;
+        font-style: italic;
+        font-weight: bold;
+        font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+        background-color: rgb(205, 237, 249);
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #212020;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Responsive Design</h1>
+    <h2>Viewport Meta Tag</h2>
+    <p>
+      <em>viewport</em> is the total viewable area for a user; This area varies
+      depending on device. The viewport is smaller on a mobile device and larger
+      on a desktop.
+    </p>
+
+    <p>
+      Based on the size of the viewport, the
+      <em>meta tag</em> (<code>&lt;meta&gt;</code>) is used to instruct the
+      browser on how to render the webpage's scale and dimensions.
+    </p>
+    <p>
+      For instance, say if a web page is 960px and the device is 320px wide.
+      Adding the viewport meta tag will squish the content down until it is
+      320px — there is no need for the user to zoom out and view the whole page!
+    </p>
+
+    <p>
+      Inside the <code>&lt;head&gt;</code> element, we will find where the
+      <code>&lt;meta&gt;</code> tag syntax is implemented:
+    </p>
+    <pre><code class = "language-html">
+&lt;!DOCTYPE html&gt; 
+&lt;html lang="en"&gt; 
+&lt;head&gt; 
+...
+&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+...
+&lt;/head&gt; 
+</code></pre>
+    <p>
+      We can break down the added <code>&lt;meta&gt;</code> tag into the
+      following essential components:
+    </p>
+
+    <ul>
+      <li>
+        the <code>name="viewport"</code> attribute: tells the browser to display
+        the web page at the same width as its screen
+      </li>
+      <li>
+        the <code>content</code> attribute: defines the values for the
+        <code>&lt;meta&gt;</code> tag, including <code>width</code> and
+        <code>initial-scale</code>
+      </li>
+      <li>
+        the <code>width=device-width</code> key-value pair: controls the size of
+        the viewport in which it sets the width of the viewport to equal the
+        width of the device
+      </li>
+      <li>
+        the <code>initial-scale=1</code> key-value pair: sets the initial zoom
+        level (Read more about scale at
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag"
+          >MDN's viewport documentation</a
+        >)
+      </li>
+    </ul>
+    <h3>Media Queries</h3>
+    <p>
+      CSS uses media queries to adapt a website’s content to different screen
+      sizes. With <strong>media queries</strong>, CSS can detect the size of the
+      current screen and apply different CSS styles depending on the width of
+      the screen.
+    </p>
+    <pre><code class = "language-css">
+@media only screen and (max-width: 480px) {
+  body {
+    font-size: 12px;
+  }
+}
+    </code></pre>
+    <p>Let's break this example down into its parts:</p>
+
+    <ol>
+      <li>
+        <code>@media</code> — This keyword begins a media query rule and
+        instructs the CSS compiler on how to parse the rest of the rule.
+      </li>
+      <li>
+        <code>only screen</code> — Indicates what types of devices should use
+        this rule. In early attempts to target different devices, CSS
+        incorporated different media types (screen, print, handheld). The
+        rationale was that by knowing the media type, the proper CSS rules could
+        be applied. However, "handheld" and "screen" devices began to occupy a
+        much wider range of sizes and having only one CSS rule per media device
+        was not sufficient. <code>screen</code> is the media type always used
+        for displaying content, no matter the type of device. The
+        <code>only</code> keyword is added to indicate that this rule only
+        applies to one media type (<code>screen</code>).
+      </li>
+      <li>
+        <code>and (max-width : 480px)</code> — This part of the rule is called a
+        media feature, and instructs the CSS compiler to apply the CSS styles to
+        devices with a width of 480 pixels or smaller. Media features are the
+        conditions that must be met in order to render the CSS within a media
+        query.
+      </li>
+    </ol>
+    <h3>Range</h3>
+    <p>
+      Specific screen sizes can be targeted by setting multiple width and height
+      media features. <code>min-width</code> and <code>min-height</code> are
+      used to set the minimum width and minimum height, respectively.
+      Conversely, <code>max-width</code> and <code>max-height</code> set the
+      <strong>maximum width</strong> and <strong>maximum height</strong>,
+      respectively.
+    </p>
+    <p>
+      By using multiple widths and heights, a range can be set for a media
+      query.
+    </p>
+    <pre><code class = "language-css">
+      @media only screen and (min-width: 320px) and (max-width: 480px) {
+    /* ruleset for 320px - 480px */
+}
+    </code></pre>
+    <p>
+      The example above would apply its CSS rules only when the screen size is
+      between <strong>320 pixels</strong> and <strong>480 pixels</strong>.
+      Notice the use of a second and keyword after the min-width media feature.
+      This allows us to chain two requirements together. The example above can
+      be written using two separate rules as well:
+    </p>
+    <pre><code class = "language-css">
+@media only screen and (min-width: 320px) { 
+    /* ruleset for >= 320px */
+}
+
+@media only screen and (min-width: 480px) { 
+    /* ruleset for >= 480px */
+}
+</code></pre>
+    <h3>Dots Per Inch (DPI)</h3>
+    <p>
+      Another media feature we can target is screen resolution. Many times we
+      will want to supply higher quality media (images, video, etc.) only to
+      users with screens that can support high resolution media.
+    </p>
+    <p>
+      Targeting screen resolution also helps users avoid downloading high
+      resolution (large file size) images that their screen may not be able to
+      properly display.
+    </p>
+    <p>
+      To target by resolution, we can use the
+      <strong>min-resolution</strong> and <strong>max-resolution</strong>
+      media features.
+    </p>
+    <p>
+      These media features accept a resolution value in either
+      <strong>dots per inch (dpi)</strong> or
+      <strong>dots per centimeter (dpc)</strong>. Learn more about resolution
+      measurements here.
+    </p>
+    <pre><code class = "language-css">
+      @media only screen and (min-resolution: 300dpi) {
+    /* CSS for high resolution screens */
+}
+    </code></pre>
+    <p>
+      The media query in the example above targets
+      <strong>high resolution screens</strong> by making sure the screen
+      resolution is at least <strong>300 dots per inch</strong>. If the screen
+      resolution query is met, then we can use CSS to display high resolution
+      images and other media.
+    </p>
+    <h3>And Operator</h3>
+    <p>
+      The <code>and</code> operator can be used to require multiple media
+      features. Therefore, we can use the <code>and</code> operator to require
+      both a <code>max-width</code> of <code>480px</code> <em>and</em> to have a
+      <code>min-resolution</code> of <code>300dpi</code>.
+    </p>
+    <pre><code class = "language-css">
+      @media only screen and (max-width: 480px) and (min-resolution: 300dpi) {
+    /* CSS ruleset */
+}
+    </code></pre>
+    <p>
+      By placing the <strong>and</strong> operator between the two media
+      features, the browser will require both media features to be true before
+      it renders the CSS within the media query. The
+      <strong>and</strong> operator can be used to chain as many media features
+      as necessary.
+    </p>
+    <h3>Comma Separated List</h3>
+    <p>
+      If only one of multiple media features in a media query must be met, media
+      features can be separated in a comma separated list.
+    </p>
+
+    <p>
+      For example, if we needed to apply a style when
+      <strong>only one</strong> of the below is true:
+    </p>
+
+    <ul>
+      <li>The screen is more than 480 pixels wide</li>
+      <li>The screen is in landscape mode</li>
+    </ul>
+
+    <p>We could write:</p>
+    <pre><code class = "language-css">
+      @media only screen and (min-width: 480px), (orientation: landscape) {
+    /* CSS ruleset */
+}
+    </code></pre>
+    <p>
+      In the example above, we used a comma (<code>,</code>) to separate
+      multiple rules. The example above requires only one of the media features
+      to be true for its CSS to apply.
+    </p>
+
+    <p class="advert">
+      Note that the second media feature is <code>orientation</code>. The
+      <code>orientation</code> media feature detects if the page has more width
+      than height. If a page is wider, it's considered <code>landscape</code>,
+      and if a page is taller, it's considered <code>portrait</code>.
+    </p>
+
+    <h3>Breakpoints</h3>
+    <p>
+      The points at which media queries are set are called
+      <strong>breakpoints</strong>. Breakpoints are the screen sizes at which
+      your web page does not appear properly. For example, if we want to target
+      tablets that are in landscape orientation, we can create the following
+      breakpoint:
+    </p>
+    <pre><code class = "language-css">
+      @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* CSS ruleset */
+}
+    </code></pre>
+    <p>
+      There is a standard list of breakpoints that should work on majority of
+      the devices.
+    </p>
+    <ul>
+      <li><strong>Mobile:</strong> up to 767px</li>
+      <li><strong>Tablet:</strong> 768px-1023px</li>
+      <li><strong>Desktop:</strong> 1024px and up</li>
+      <li><strong>Wide:</strong> 1440px and up (optional)</li>
+    </ul>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to beginning
+    </button>
+  </body>
+</html>
