@@ -8,6 +8,9 @@
       href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
       rel="stylesheet"
     />
+
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
     <style>
       * {
         box-sizing: border-box;
@@ -35,6 +38,16 @@
       }
       .btnback:hover {
         background-color: #4169e1;
+      }
+      p.advert {
+        color: #0f0000;
+        font-style: italic;
+        font-weight: bold;
+        font-family:'Segoe UI', Tahoma, Verdana, sans-serif;
+        background-color: rgb(205, 237, 249);
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #212020;
       }
     </style>
   </head>
@@ -94,15 +107,189 @@ font-size: 1.5rem;
 &lt;/html&gt;
     </code></pre>
 
+<h3>Note on the relative-units</h3>
+<p>
+  Rem stands for <em>root em</em>. It acts similar to em, but instead of checking
+  parent elements to size font, it checks the <em>root element</em>.</p>
+<p class = "advert">The root element is the <code>&lt;html&gt;</code> tag.
+</p>
+
+<p>
+  Most browsers set the font size of <code>&lt;html&gt;</code> to 16 pixels, so by default rem
+  measurements will be compared to that value. To set a different font size
+  for the root element, you can add a CSS rule.
+</p>
+<pre><code class = "language-css">
+html {
+  font-size: 20px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+</code></pre>
+<h3>Examples</h3>
 <p class = "absolute">This is the absolute sized text</p>
 <p> Outer text
 <p class = "relative-em">This is text re-sized with 2 em</p></p>
 <p class = "relative-rem">This is text re-sized with 1.5 rem</p>
+<h2>Percentages: Height &amp; Width</h2>
 
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
-    <button class="btnback" onclick="window.location.href = 'index.html'">
-      Back to Index
-    </button>
+<p>
+  To size non-text HTML elements relative to their parent elements on the
+  page you can use <em>percentages</em>.
+</p>
+
+<p>
+  Percentages are often used to size box-model values, like width and height,
+  padding, border, and margins. They can also be used to set positioning
+  properties (top, bottom, left, right).
+</p>
+
+<p>
+  To start, let's size the height and width of an element using percentages.
+</p>
+<pre><code class = "language-css">
+  .main {
+  height: 300px;
+  width: 500px;
+}
+ 
+.main .subsection {
+  height: 50%;
+  width: 50%;
+}
+</code></pre>
+    <p>
+  In the example above, <code>.main</code> and <code>.subsection</code> each represent divs. The
+  <code>.subsection</code> div is nested within the <code>.main</code> div. Note that the dimensions
+  of the parent div (<code>.main</code>) have been set to a height of 300 pixels and a
+  width of 500 pixels.
+</p>
+
+<p>
+  When percentages are used, elements are sized relative to the dimensions
+  of their parent element (also known as a container). Therefore, the
+  dimensions of the <code>.subsection</code> div will be 150 pixels tall and 250 pixels
+  wide. </p>
+  <p class = "advert">Note: Because the box model includes padding, borders, and margins, setting an element’s width to 100% may cause content to overflow its parent container.
+     While tempting, 100% should only be used when content will not have padding, border, or margin.</p>
+
+  <h3>Percentages: Padding &amp; Margin</h3>
+
+<p>
+  Percentages can also be used to set the padding and margin of elements.
+</p>
+
+<p>
+  When height and width are set using percentages, you learned that the
+  dimensions of child elements are calculated based on the dimensions of
+  the parent element.
+</p>
+
+<p>
+  When percentages are used to set padding and margin, however, they are
+  calculated based only on the <em>width</em> of the parent element.
+</p>
+
+<p>
+  For example, when a property like <code>margin-left</code> is set using a percentage
+  (say <code>50%</code>), the element will be moved halfway to the right in the parent
+  container (as opposed to the child element receiving a margin half of its
+  parent's margin).
+</p>
+<pre><code class = "language-css">
+.images {
+  margin-bottom: 20%;
+}
+</code></pre>
+<h3>Width: Minimum &amp; Maximum</h3>
+
+<p>
+  Although relative measurements provide consistent layouts across devices
+  of different screen sizes, elements on a website can lose their integrity
+  when they become too small or large. You can limit how wide an element
+  becomes with the following properties:
+</p>
+
+<ol>
+  <li><code>min-width</code> — ensures a minimum width for an element.</li>
+  <li><code>max-width</code> — ensures a maximum width for an element.</li>
+</ol>
+<pre><code class = "language-css">
+  .main {
+  min-width: 200px;
+  max-width: 800px;
+}
+</code></pre>
+<p>In the example above, when the browser is resized, the width of paragraph elements will not fall below <strong>300 pixels</strong>, nor will their width exceed <strong>600 pixels</strong>.</p>
+
+<p>When a browser window is narrowed or widened, text can become either very compressed or very spread out, 
+  making it difficult to read. These two properties ensure that content is legible by limiting the minimum and maximum widths.</p>
+<h3>Height: Minimum &amp; Maximum</h3>
+<p>Identical rule applies to height;</p>
+<pre><code class = "language-css">
+  .main {
+  min-height: 200px;
+  max-height: 800px;
+}
+</code></pre>
+<p>In the example above, when the browser is resized, the height of paragraph elements will not fall below <strong>300 pixels</strong>, nor will their height exceed <strong>600 pixels</strong>.</p>
+<h3>Scaling images and video's</h3>
+<p>Lets look at the example below:</p>
+<pre><code class = "language-css">
+  .container {
+  width: 50%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.container img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+</code></pre>
+<p>In the example above, .container represents a container div. It is set to a width of <strong>50%</strong> (half of the browser’s width, in this example) and a height of <strong>200 pixels</strong>. 
+  Setting overflow to hidden ensures that any content with dimensions larger than the container will be hidden from view.</p>
+
+<p>The second CSS rule ensures that images scale with the width of the container. 
+  The height property is set to auto, meaning an image’s height will automatically scale proportionally with the width. </p>
+ <p>Finally, the last line will display images as block level elements (rather than inline-block, their default state). 
+  This will prevent images from attempting to align with other content on the page (like text), which can add unintended margin to the images.</p>
+<p class = "advert">
+It’s worth memorizing the entire example above. It represents a very common design pattern used to scale images and videos proportionally.
+</p>
+<h3>Scaling Background Images</h3>
+<p>Background images of HTML elements can also be scaled responsively using CSS properties.</p>
+<pre><code class = "language-css">
+  body {
+  background-image: url('#');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+</code></pre>
+<p>
+  In the example above, the first CSS declaration sets the background image (<code>#</code>
+  is a placeholder for an image URL in this example).</p>
+<p>
+  The second declaration
+  instructs the CSS compiler to not repeat the image (by default, images will
+  repeat). The third declaration centers the image within the element.
+</p>
+
+<p>
+  The final declaration, however, is the focus of the example above. It's what
+  scales the background image. The image will <em>cover</em> the entire background of
+  the element, all while keeping the image in proportion. </p>
+<p>
+  If the dimensions of
+  the image exceed the dimensions of the container then only a portion of the
+  image will display.
+</p>
+<button class="btnback" onclick="window.location.href = 'index.html'">
+  Back to beginning
+</button>
   </body>
 </html>
