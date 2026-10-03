@@ -18,7 +18,7 @@
       defer
       src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
     ></script>
-      <style>
+    <style>
       .btnback {
         background-color: #6495ed; /* Green */
         border-radius: 5px;
@@ -32,7 +32,7 @@
         background-color: #4169e1;
       }
     </style>
-</head>
+  </head>
   <body>
     <h1>JavaScript functions</h1>
     <pre><code class = "language-javascript">
@@ -58,12 +58,27 @@
   console.log(sum);
 
 </code></pre>
+
+    <h3>Note on the return statement</h3>
+    <p>
+      When a <code>return</code> statement is used in a function body, the
+      execution of the function is stopped, and the code that follows it will
+      not be executed. Look at the example below:
+    </p>
+    <pre><code class = "language-javascript">
+function rectangleArea(width, height) {
+  if (width < 0 || height < 0) {
+    return 'You need positive integers to calculate area!';
+  }
+  return width * height;
+}
+</code></pre>
+
     <p>Below is the example of the function that returns the function</p>
-<pre><code class = "language-javascript">
+    <pre><code class = "language-javascript">
 function myFunction (a, b) {
   return arguments.length;
 }
-
 console.log(myFunction(5, 10));
 </code></pre>
     <h3>Arrow functions</h3>
@@ -109,16 +124,35 @@ console.log(myFunction(5, 10));
     <p>The incoming value is the array.</p>
 
     <h3>Note on the <code>return</code> statement</h3>
-   <p>Once one <code>return</code> statement is executed, the function stos.</p>
+    <p>
+      Once one <code>return</code> statement is executed, the function stos.
+    </p>
+    <h3>Function hoisting</h3>
+    <p>
+      We should also be aware of the <strong>hoisting</strong> feature in
+      JavaScript, which allows access to function declarations before they’re
+      defined.
+    </p>
+    <p>Take a look at an example of hoisting:</p>
+    <pre><code class = "language-javascript">
+greetWorld(); // Output: Hello, World!
 
-    </code></pre>
+function greetWorld() {
+  console.log('Hello, World!');
+}
+</code></pre>
+    <p>
+      Notice how hoisting allowed <code>greetWorld()</code> to be called before
+      the <code>greetWorld()</code> function was defined! Since hoisting isn’t
+      considered good practice, we simply want to point out this feature.
+    </p>
     <h3>Math functions Javascript</h3>
     <p>JavaScript has in-build function module that can help to do maths.</p>
     <pre><code class = "language-javascript">
       console.log(Math.max(2, 3, 4))
     </code></pre>
-      <button class="btnback" onclick="window.location.href = 'index.html'">
+    <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
-</body>
+  </body>
 </html>
