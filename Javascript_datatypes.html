@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript datatypes</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>JavaScript datatypes</h2>
+    <h2>Data Types</h2>
+
+    <p>
+      <a href="#">Data types</a> are the classifications we give to the
+      different kinds of data that we use in programming. In JavaScript, there
+      are eight fundamental data types:
+    </p>
+
+    <ul>
+      <li>
+        <strong>Number</strong>: Any number, including numbers with decimals:
+        <code>4</code>, <code>8</code>, <code>1516</code>, <code>23.42</code>.
+      </li>
+      <li>
+        <strong>BigInt</strong>: Any number, greater than 2<sup>53</sup>-1 or
+        less than -(2<sup>53</sup>-1), with <code>n</code> appended to the
+        number: 1234567890123456n.
+      </li>
+      <li>
+        <strong>String</strong>: Any grouping of characters on the keyboard
+        (letters, numbers, spaces, symbols, etc.) surrounded by single quotes:
+        <code>' ... '</code> or double quotes <code>" ... "</code>, though we
+        prefer single quotes. Some people like to think of string as a fancy
+        word for text.
+      </li>
+      <li>
+        <strong>Boolean</strong>: This data type only has two possible values —
+        either <code>true</code> or <code>false</code> (without quotes). It's
+        helpful to think of booleans as on and off switches or as the answers to
+        a "yes" or "no" question.
+      </li>
+      <li>
+        <strong>Null</strong>: This data type represents the intentional absence
+        of a value, and is represented by the keyword <code>null</code> (without
+        quotes).
+      </li>
+      <li>
+        <strong>Undefined</strong>: This data type is denoted by the keyword
+        <code>undefined</code> (without quotes). It also represents the absence
+        of a value, though it has a different use than <code>null</code>.
+        <code>undefined</code> means that a given value does not exist.
+      </li>
+
+      <li>
+        <strong>Symbol</strong>: A newer feature of the language, symbols are
+        unique identifiers that are useful in more complex coding. No need to
+        worry about these for now.
+      </li>
+      <li><strong>Object</strong>: Collections of related data.</li>
+    </ul>
+    <p>
+      The first seven of those types are considered primitive data types. They
+      are the most basic data types in the language. Objects are complex.
+    </p>
+    <h3>Determining the datatype using typof</h3>
+    <pre><code class = "language-javascript">
+typeof "John"         // Returns string
+typeof ("John"+"Doe") // Returns string
+typeof 3.14           // Returns number
+typeof 33             // Returns number
+typeof (33 + 66)      // Returns number
+typeof true           // Returns boolean
+typeof false          // Returns boolean
+typeof 1234n          // Returns bigint
+typeof Symbol()       // Returns symbol
+typeof x              // Returns undefined
+    </code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to start page
+    </button>
+  </body>
+</html>
