@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1; /* Darker green on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <h2>String Interpolation</h2>
+
+    <p>
+      In the ES6 version of JavaScript, we can insert, or <em>interpolate</em>,
+      variables into strings using <em>template literals</em>. Check out the
+      following example where a template literal is used to log strings
+      together:
+    </p>
+
+    <pre><code class = "language-javascript">const myPet = 'armadillo';
+console.log(`I own a pet ${myPet}.`);
+// Output: I own a pet armadillo.</code></pre>
+
+    <p>Notice that:</p>
+
+    <ul>
+      <li>
+        A template literal is wrapped by backticks <code>`</code> (this key is
+        usually located on the top of the keyboard, left of the
+        <kbd>1</kbd> key).
+      </li>
+      <li>
+        Inside the template literal, we'll see a placeholder,
+        <code>${myPet}</code>. The value of <code>myPet</code> is inserted into
+        the template literal.
+      </li>
+      <li>
+        When we interpolate <code>`I own a pet ${myPet}.`</code>, the output we
+        print is the string: <code>'I own a pet armadillo.'</code>
+      </li>
+    </ul>
+
+    <p>
+      One of the biggest benefits of using template literals is the readability
+      of the code. Using template literals, we can more easily tell what the new
+      string will be. We also don't have to worry about escaping double quotes
+      or single quotes.
+    </p>
+
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
