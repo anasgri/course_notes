@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Truthy and Falsy</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1; /* Darker green on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Truthy and Falsy</h2>
+
+    <p>
+      Let's consider how <strong>non-boolean</strong> data types, like strings
+      or numbers, are evaluated when checked inside a condition.
+    </p>
+
+    <p>
+      Sometimes, you'll want to check if a variable exists and you won't
+      necessarily want it to equal a specific value — you'll only check to see
+      if the variable has been assigned a value.
+    </p>
+
+    <p>Here's an example:</p>
+
+    <pre><code class = "language-javascript">
+let myVariable = 'I Exist!';
+if (myVariable) {
+   console.log(myVariable)
+} else {
+   console.log('The variable does not exist.')
+}</code></pre>
+
+    <p>
+      The code block in the <code>if</code> statement will run because
+      <code>myVariable</code> has a <strong>truthy</strong> value; even though
+      the value of <code>myVariable</code> is not explicitly the value
+      <code>true</code>, when used in a boolean or conditional context, it
+      evaluates to <code>true</code> because it has been assigned a non-falsy
+      value.
+    </p>
+    <p>
+      So which values are <strong>falsy</strong>, or evaluate to
+      <code>false</code> when checked as a condition? The list of falsy values
+      includes:
+    </p>
+
+    <ul>
+      <li><code>0</code></li>
+      <li>empty strings like <code>""</code> or <code>''</code></li>
+      <li><code>null</code>, which represents when there is no value at all</li>
+      <li>
+        <code>undefined</code>, which represents when a declared variable lacks
+        a value
+      </li>
+      <li><code>NaN</code>, or Not a Number</li>
+    </ul>
+
+    <p>Here's an example with numbers:</p>
+
+    <pre><code class = "language-javascript">
+let numberOfApples = 0;
+
+if (numberOfApples){
+   console.log('Let us eat apples!');
+} else {
+   console.log('No apples left!');
+}
+
+// Prints 'No apples left!'</code></pre>
+
+    <p>
+      The condition evaluates to <code>false</code> because the value of
+      <code>numberOfApples</code> is <code>0</code>. Since <code>0</code> is a
+      falsy value, the code block in the <code>else</code> statement will run.
+    </p>
+    <h3>hort-circuit evaluation</h3>
+    <p>Lets look at the code snippet below</p>
+    <pre><code class = "language-javascript">
+let username = '';
+let defaultName;
+
+if (username) {
+  defaultName = username;
+} else {
+  defaultName = 'Stranger';
+}
+
+console.log(defaultName); // Prints: Stranger
+</code></pre>
+    <p>
+      Since the <code>username</code> is the the empty string, the else
+      condition is executed and the final log prints out <code>Stranger</code>
+    </p>
+    <p>The same can be achieved by the following code snippet</p>
+    <pre><code class = "language-javascript">
+let username = '';
+let defaultName = username || 'Stranger';
+
+console.log(defaultName); // Prints: Stranger
+</code></pre>
+    <p>
+      The expression above results in <code>Stranger</code> al long as username
+      is false;
+    </p>
+    <h3>Ternary Operator</h3>
+    <p>
+      In the spirit of using short-hand syntax, we can use a ternary operator to
+      simplify an <code>if...else</code> statement.
+    </p>
+    <p>Take a look at the <code>if...else</code> statement example:</p>
+    <pre><code class = "language-javascript">
+let isNightTime = true;
+
+if (isNightTime) {
+  console.log('Turn on the lights!');
+} else {
+  console.log('Turn off the lights!');
+}
+    </code></pre>
+    <p>The same can be achieved using the following example:</p>
+    <pre><code class = "language-javascript">
+isNightTime ? console.log('Turn on the lights!') : console.log('Turn off the lights!');
+</code></pre>
+
+    <p>In the example above:</p>
+
+    <ul>
+      <li>
+        The condition, <code>isNightTime</code>, is provided before the
+        <code>?</code>.
+      </li>
+      <li>
+        Two expressions follow the <code>?</code> and are separated by a colon
+        <code>:</code>.
+      </li>
+      <li>
+        If the condition evaluates to <code>true</code>, the first expression
+        executes.
+      </li>
+      <li>
+        If the condition evaluates to <code>false</code>, the second expression
+        executes.
+      </li>
+    </ul>
+
+    <p>
+      Like <code>if...else</code> statements, ternary operators can be used for
+      conditions that evaluate to <code>true</code> or <code>false</code>.
+    </p>
+    <pre><code class = "language-javascript">
+condition ? what to do if true : what to do if false;
+</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
