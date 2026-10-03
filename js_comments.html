@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Js comments</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>JavaScript comments</h2>
+    <p>
+      A single-line comment will comment out a single line and is denoted with
+      two forward slashes <code>//</code> preceding it.
+    </p>
+    <pre><code class = "language-javascript">
+// Prints 5 to the console
+console.log(5);
+</code></pre>
+    <p>
+      A multi-line comment will comment out multiple lines and is denoted with
+      <code>/* to begin the comment, and */ </code>to end the comment.
+    </p>
+    <pre><code class = "language-javascript">
+/*
+This is all commented 
+console.log(10);
+None of this is going to run!
+console.log(99);
+*/
+</code></pre>
+    <p>
+      This syntax can also be used to comment something out in the middle of a
+      line of code:
+    </p>
+    <pre><code class = "language-javascript">
+    console.log(/*IGNORED!*/ 5); // Still just prints 5
+    </code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
