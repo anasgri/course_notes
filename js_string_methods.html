@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Js string methods</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>JavaScript string methods</h2>
+    <p>
+      String methods let you extract, modify, search and format text. Strings
+      are immutable, so every method below returns a new value and leaves the
+      original string unchanged. Indexes start at <code>0</code>.
+    </p>
+
+    <h3>Extracting parts of a string</h3>
+
+    <p>
+      <code>slice(start, end)</code> returns the part of the string from
+      <code>start</code> up to (not including) <code>end</code>. If
+      <code>end</code> is left out it goes to the end of the string. Negative
+      numbers count from the end.
+    </p>
+    <pre><code class = "language-javascript">
+let a = 'Geeks for Geeks';
+
+console.log(a.slice(0, 5)); // "Geeks"
+console.log(a.slice(6, 9)); // "for"
+console.log(a.slice(10));   // "Geeks"
+console.log(a.slice(-5));   // "Geeks"
+</code></pre>
+
+    <p>
+      <code>substring(start, end)</code> works like <code>slice()</code> but
+      treats negative numbers as <code>0</code>.
+    </p>
+    <pre><code class = "language-javascript">
+let str = "Mind, Power, Soul";
+
+console.log(str.substring(6, 11)); // "Power"
+</code></pre>
+
+    <p>
+      <code>substr(start, length)</code> returns a number of characters
+      starting at <code>start</code>. It is deprecated, so prefer
+      <code>slice()</code>.
+    </p>
+    <pre><code class = "language-javascript">
+let str = "Mind, Power, Soul";
+
+console.log(str.substr(6, 5)); // "Power"
+</code></pre>
+
+    <p>
+      <code>charAt(index)</code> returns the character at the given index.
+    </p>
+    <pre><code class = "language-javascript">
+let gfg = 'GeeksforGeeks';
+
+console.log(gfg.charAt(0)); // "G"
+console.log(gfg.charAt(5)); // "f"
+</code></pre>
+
+    <p>
+      <code>at(index)</code> also returns the character at an index, but it
+      accepts negative numbers to count back from the end.
+    </p>
+    <pre><code class = "language-javascript">
+let word = 'Hello';
+
+console.log(word.at(0));  // "H"
+console.log(word.at(-1)); // "o"
+console.log(word.at(-2)); // "l"
+</code></pre>
+
+    <p>
+      <code>charCodeAt(index)</code> returns the Unicode (UTF-16) number of the
+      character at the given index.
+    </p>
+    <pre><code class = "language-javascript">
+console.log('GeeksforGeeks'.charCodeAt(0)); // 71
+</code></pre>
+
+    <p>
+      <code>codePointAt(index)</code> returns the code point value at an index.
+      Unlike <code>charCodeAt()</code> it handles characters such as emoji
+      correctly.
+    </p>
+    <pre><code class = "language-javascript">
+console.log('A'.codePointAt(0));  // 65
+console.log('😀'.codePointAt(0)); // 128512
+</code></pre>
+
+    <h3>Searching a string</h3>
+
+    <p>
+      <code>includes(text)</code> returns <code>true</code> if the string
+      contains the given text. It is case-sensitive.
+    </p>
+    <pre><code class = "language-javascript">
+let s = 'Hello, world';
+
+console.log(s.includes('world')); // true
+console.log(s.includes('World')); // false
+</code></pre>
+
+    <p>
+      <code>startsWith(text, position)</code> checks whether the string starts
+      with the given text. The optional second argument is where to start
+      checking.
+    </p>
+    <pre><code class = "language-javascript">
+let s = 'Hello, world';
+
+console.log(s.startsWith('Hello'));   // true
+console.log(s.startsWith('world'));   // false
+console.log(s.startsWith('world', 7)); // true
+</code></pre>
+
+    <p>
+      <code>endsWith(text, length)</code> checks whether the string ends with
+      the given text. The optional second argument is how many characters of
+      the string to look at.
+    </p>
+    <pre><code class = "language-javascript">
+let s = 'Hello, world';
+
+console.log(s.endsWith('world'));  // true
+console.log(s.endsWith('Hello'));  // false
+console.log(s.endsWith('Hello', 5)); // true
+</code></pre>
+
+    <p>
+      <code>indexOf(text, from)</code> returns the index of the first match,
+      or <code>-1</code> if there is none.
+    </p>
+    <pre><code class = "language-javascript">
+let s = 'Hello, world';
+
+console.log(s.indexOf('o'));    // 4
+console.log(s.indexOf('o', 5)); // 8
+console.log(s.indexOf('z'));    // -1
+</code></pre>
+
+    <p>
+      <code>lastIndexOf(text)</code> returns the index of the last match, or
+      <code>-1</code> if there is none.
+    </p>
+    <pre><code class = "language-javascript">
+let s = 'Hello, world';
+
+console.log(s.lastIndexOf('o')); // 8
+console.log(s.lastIndexOf('l')); // 10
+console.log(s.lastIndexOf('z')); // -1
+</code></pre>
+
+    <h3>Regular expressions</h3>
+
+    <p>
+      <code>match(regex)</code> searches the string using a regular
+      expression. Without the <code>g</code> flag it returns the first match
+      (with extra details), with <code>g</code> it returns an array of all
+      matches, and it returns <code>null</code> if nothing matches.
+    </p>
+    <pre><code class = "language-javascript">
+let text = 'a1b22c333';
+
+console.log(text.match(/\d+/)[0]); // "1"
+console.log(text.match(/\d+/g));   // ["1", "22", "333"]
+console.log(text.match(/x/));      // null
+</code></pre>
+
+    <p>
+      <code>matchAll(regex)</code> returns an iterator of all matches,
+      including their positions. The regular expression must use the
+      <code>g</code> flag.
+    </p>
+    <pre><code class = "language-javascript">
+let text = 'a1b22c333';
+
+for (const m of text.matchAll(/\d+/g)) {
+  console.log(m[0], m.index);
+}
+// "1" 1
+// "22" 3
+// "333" 6
+</code></pre>
+
+    <p>
+      <code>search(regex)</code> returns the index of the first regular
+      expression match, or <code>-1</code> if there is none.
+    </p>
+    <pre><code class = "language-javascript">
+console.log('Hello 2026'.search(/\d/)); // 6
+console.log('Hello'.search(/\d/));      // -1
+</code></pre>
+
+    <h3>Replacing text</h3>
+
+    <p>
+      <code>replace(search, newText)</code> replaces the first match, which can
+      be a string or a regular expression.
+    </p>
+    <pre><code class = "language-javascript">
+let str = "Mind, Power, Soul";
+
+console.log(str.replace("Power", "Space")); // "Mind, Space, Soul"
+</code></pre>
+
+    <p>
+      <code>replaceAll(search, newText)</code> replaces every match.
+    </p>
+    <pre><code class = "language-javascript">
+let str = "Mind, Power, Power, Soul";
+
+console.log(str.replaceAll("Power", "Space")); // "Mind, Space, Space, Soul"
+</code></pre>
+
+    <h3>Changing case</h3>
+
+    <p>
+      <code>toUpperCase()</code> and <code>toLowerCase()</code> change every
+      character to upper or lower case.
+    </p>
+    <pre><code class = "language-javascript">
+let word = 'Hello World';
+
+console.log(word.toUpperCase()); // "HELLO WORLD"
+console.log(word.toLowerCase()); // "hello world"
+</code></pre>
+
+    <p>
+      <code>toLocaleUpperCase(locale)</code> and
+      <code>toLocaleLowerCase(locale)</code> change case using the rules of a
+      language. The Turkish letter <code>i</code> is a common example.
+    </p>
+    <pre><code class = "language-javascript">
+console.log('i'.toLocaleUpperCase('en-US')); // "I"
+console.log('i'.toLocaleUpperCase('tr'));    // "İ"
+console.log('I'.toLocaleLowerCase('tr'));    // "ı"
+</code></pre>
+
+    <h3>Joining, repeating and splitting</h3>
+
+    <p>
+      <code>concat(str1, str2, ...)</code> joins strings together and returns
+      the combined string.
+    </p>
+    <pre><code class = "language-javascript">
+let hello = 'Hello';
+
+console.log(hello.concat(', ', 'world')); // "Hello, world"
+</code></pre>
+
+    <p>
+      <code>repeat(count)</code> returns a new string with the original
+      repeated the given number of times.
+    </p>
+    <pre><code class = "language-javascript">
+console.log('ab'.repeat(3));  // "ababab"
+console.log('-'.repeat(10));  // "----------"
+console.log('x'.repeat(0));   // ""
+</code></pre>
+
+    <p>
+      <code>split(separator)</code> breaks a string into an array of
+      substrings at every separator.
+    </p>
+    <pre><code class = "language-javascript">
+let geeks = 'stands-for-GeeksforGeeks';
+
+console.log(geeks.split('-')); // ["stands", "for", "GeeksforGeeks"]
+</code></pre>
+
+    <h3>Removing whitespace</h3>
+
+    <p>
+      <code>trim()</code> removes whitespace from both ends,
+      <code>trimStart()</code> from the beginning only and
+      <code>trimEnd()</code> from the end only. None of them take an argument.
+    </p>
+    <pre><code class = "language-javascript">
+let gfg = '   GFG   ';
+
+console.log(gfg.length);         // 9
+console.log(gfg.trim().length);  // 3
+console.log(gfg.trimStart());    // "GFG   "
+console.log(gfg.trimEnd());      // "   GFG"
+</code></pre>
+
+    <h3>Padding</h3>
+
+    <p>
+      <code>padStart(length, pad)</code> adds the pad text to the left until
+      the string reaches the given length. <code>padEnd(length, pad)</code>
+      does the same on the right.
+    </p>
+    <pre><code class = "language-javascript">
+let stone = "Soul";
+
+console.log(stone.padStart(9, "Mind ")); // "Mind Soul"
+console.log(stone.padEnd(10, " Power"));  // "Soul Power"
+console.log('7'.padStart(3, '0'));       // "007"
+</code></pre>
+
+    <h3>Comparing and normalizing</h3>
+
+    <p>
+      <code>localeCompare(other)</code> compares two strings and returns a
+      negative number, <code>0</code> or a positive number. It is handy for
+      sorting text.
+    </p>
+    <pre><code class = "language-javascript">
+console.log('a'.localeCompare('b')); // negative number
+console.log('b'.localeCompare('a')); // positive number
+console.log('a'.localeCompare('a')); // 0
+
+let fruit = ['Zebra', 'apple', 'Mango'];
+console.log(fruit.sort((x, y) => x.localeCompare(y))); // ["apple", "Mango", "Zebra"]
+</code></pre>
+
+    <p>
+      <code>normalize()</code> returns a Unicode normalization form of the
+      string. It makes two different ways of writing the same character equal.
+    </p>
+    <pre><code class = "language-javascript">
+let combined = 'e\u0301'; // "e" followed by a combining accent
+let single = '\u00e9';    // "é" as one character
+
+console.log(combined.length);              // 2
+console.log(combined === single);          // false
+console.log(combined.normalize() === single); // true
+</code></pre>
+
+    <h3>Converting to a string value</h3>
+
+    <p>
+      <code>toString()</code> and <code>valueOf()</code> return the string
+      value itself. They matter mostly when you have a <code>String</code>
+      object instead of a plain string.
+    </p>
+    <pre><code class = "language-javascript">
+let plain = 'Hi';
+let obj = new String('Hi');
+
+console.log(plain.toString()); // "Hi"
+console.log(plain.valueOf());  // "Hi"
+console.log(typeof obj);            // "object"
+console.log(typeof obj.valueOf());  // "string"
+</code></pre>
+
+    <h3>Well-formed strings</h3>
+
+    <p>
+      <code>isWellFormed()</code> checks that the string has no lone
+      surrogates (half of a two-part Unicode character).
+    </p>
+    <pre><code class = "language-javascript">
+console.log('abc'.isWellFormed());      // true
+console.log('ab\uD800'.isWellFormed()); // false
+</code></pre>
+
+    <p>
+      <code>toWellFormed()</code> replaces lone surrogates with the Unicode
+      replacement character (<code>\uFFFD</code>).
+    </p>
+    <pre><code class = "language-javascript">
+let broken = 'ab\uD800';
+let fixed = broken.toWellFormed();
+
+console.log(fixed);               // "ab\uFFFD"
+console.log(fixed.charCodeAt(2)); // 65533
+console.log(fixed.isWellFormed()); // true
+</code></pre>
+
+    <h3>Static methods on String</h3>
+
+    <p>
+      <code>String.fromCharCode(code1, code2, ...)</code> builds a string from
+      UTF-16 code units. Call it on <code>String</code>, not on a string
+      value.
+    </p>
+    <pre><code class = "language-javascript">
+console.log(String.fromCharCode(72, 105));     // "Hi"
+console.log(String.fromCharCode(65, 66, 67));  // "ABC"
+</code></pre>
+
+    <p>
+      <code>String.fromCodePoint(code1, code2, ...)</code> builds a string
+      from code point values, including ones above 65535 such as emoji.
+    </p>
+    <pre><code class = "language-javascript">
+console.log(String.fromCodePoint(72, 105)); // "Hi"
+console.log(String.fromCodePoint(128512));  // "😀"
+</code></pre>
+
+    <p>
+      <code>String.raw</code> is a template tag that returns the raw text of a
+      template literal without processing escape characters such as
+      <code>\n</code>.
+    </p>
+    <pre><code class = "language-javascript">
+console.log(`Line 1\nLine 2`);
+// Line 1
+// Line 2
+
+console.log(String.raw`Line 1\nLine 2`);
+// Line 1\nLine 2
+
+console.log(String.raw`C:\new\table`);
+// C:\new\table
+</code></pre>
+
+    <h3>Method that returns HTML</h3>
+
+    <p>
+      <code>anchor(name)</code> creates an HTML anchor element from the
+      string. It is a legacy method, so in modern code build elements with the
+      DOM instead.
+    </p>
+    <pre><code class = "language-javascript">
+console.log('Home'.anchor('top'));
+// &lt;a name="top"&gt;Home&lt;/a&gt;
+</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
