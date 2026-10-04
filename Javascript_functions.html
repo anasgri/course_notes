@@ -89,6 +89,7 @@ console.log(myFunction(5, 10));
       };
       console.log(multiply(2, 4));
     </code></pre>
+    <h3>Concise notation of the functions</h3>
     <p>
       When the function has only one statement in its body, the
       <code>{}</code> brackers can be omitted.
@@ -97,44 +98,92 @@ console.log(myFunction(5, 10));
       const multiply = (a, b) => a*b;
       console.log( multiply(2, 3)); // 6
     </code></pre>
-    <h3>Deafult parameters</h3>
-    <p>
-      The defaulkt parameter, is what function uses when the user does not
-      specify parameters when calling function.
-    </p>
-    <pre><code class = "language-javascript">
-      function greet(name = "stranger") {
-        console.log("Hello" + name);
-      }
-      greet(); // Hello stranger
-      greet("Alice"); // Hello Alice
-    </code></pre>
-    <h3>Rest parameters</h3>
-    <p>Rest parameters is equivalent to <code>**args</code> in python</p>
-    <pre><code class = "language-javascript">
-      function sum(...numbers) {
-        return numbers.reduce((total, num) => total + num, 0);
-      }
-      console.log(sum(1, 2, 3, 4));
-    </code></pre>
-    <p>
-      we use <code>...numbers</code> when we are nut sure how many arguments
-      there will be
-    </p>
-    <p>The incoming value is the array.</p>
+<ol>
+<li>
+    Functions that take only a single parameter do not need that
+    parameter to be enclosed in parentheses. However, if a function
+    takes zero or multiple parameters, parentheses are required.
+</li>
 
-    <h3>Note on the <code>return</code> statement</h3>
-    <p>
-      Once one <code>return</code> statement is executed, the function stos.
-    </p>
-    <h3>Function hoisting</h3>
-    <p>
-      We should also be aware of the <strong>hoisting</strong> feature in
-      JavaScript, which allows access to function declarations before they’re
-      defined.
-    </p>
-    <p>Take a look at an example of hoisting:</p>
-    <pre><code class = "language-javascript">
+<pre><code class = "language-javascript">// ZERO PARAMETERS
+const functionName = () =&gt; {};
+
+// ONE PARAMETER
+const functionName = paramOne =&gt; {};
+
+// TWO OR MORE PARAMETERS
+const functionName = (paramOne, paramTwo) =&gt; {};</code></pre>
+
+
+<li>
+    A function body composed of a single-line block does not need curly
+    braces. Without the curly braces, whatever that line evaluates will be
+    automatically returned. The contents of the block should immediately
+    follow the arrow <code>=&gt;</code>, and the <code>return</code> keyword can be removed. This is
+    referred to as <strong>implicit return</strong>.</li>
+</li></ol>
+<pre><code class = "language-javascript">// SINGLE-LINE BLOCK
+const sumNumbers = number =&gt; number + number;
+// MULTI-LINE BLOCK
+const sumNumbers = number =&gt; {
+    const sum = number + number;
+    return sum; // RETURN STATEMENT
+};</code></pre>
+
+<p>
+  So if we have a function:
+</p>
+
+<pre><code class = "language-javascript">
+  const squareNum = (num) =&gt; {
+  return num * num;
+};</code></pre>
+
+<p>
+  We can refactor the function to:
+</p>
+
+<pre><code>const squareNum = num =&gt; num * num;</code></pre>
+</ol>
+
+<h3>Deafult parameters</h3>
+<p>
+  The defaulkt parameter, is what function uses when the user does not
+  specify parameters when calling function.
+</p>
+<pre><code class = "language-javascript">
+  function greet(name = "stranger") {
+    console.log("Hello" + name);
+  }
+  greet(); // Hello stranger
+  greet("Alice"); // Hello Alice
+</code></pre>
+<h3>Rest parameters</h3>
+<p>Rest parameters is equivalent to <code>**args</code> in python</p>
+<pre><code class = "language-javascript">
+  function sum(...numbers) {
+    return numbers.reduce((total, num) => total + num, 0);
+  }
+  console.log(sum(1, 2, 3, 4));
+</code></pre>
+<p>
+  we use <code>...numbers</code> when we are nut sure how many arguments
+  there will be
+</p>
+<p>The incoming value is the array.</p>
+
+<h3>Note on the <code>return</code> statement</h3>
+<p>
+  Once one <code>return</code> statement is executed, the function stos.
+</p>
+<h3>Function hoisting</h3>
+<p>
+  We should also be aware of the <strong>hoisting</strong> feature in
+  JavaScript, which allows access to function declarations before they’re
+  defined.
+</p>
+<p>Take a look at an example of hoisting:</p>
+<pre><code class = "language-javascript">
 greetWorld(); // Output: Hello, World!
 
 function greetWorld() {
@@ -151,6 +200,29 @@ function greetWorld() {
     <pre><code class = "language-javascript">
       console.log(Math.max(2, 3, 4))
     </code></pre>
+    <h3>Anonymous function</h3>
+    <p>
+      Another way to define a function is to use a
+      <strong>function expression.</strong>
+    </p>
+    <p>
+      To define a function inside an expression, we can use the
+      <strong><code>function</code></strong>
+      keyword. In a function expression, the function name is usually omitted. A
+      function with no name is called an anonymous function. A function
+      expression is often stored in a variable in order to refer to it.
+    </p>
+    <pre><code class = "language-javascript">
+      const calculateArea = function(width, height) {
+        const area = width* height;
+        return area;
+      }
+    // To call this function
+    console.log(calculateArea(5, 6)) // 30;
+    </code></pre>
+    <p class="advert">
+      <strong>Note:</strong> anonymous functions are not hoisted
+    </p>
     <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
