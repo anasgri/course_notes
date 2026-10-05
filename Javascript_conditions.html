@@ -125,7 +125,26 @@ switch (day) {
 
 }
 </code></pre>
-
+<h3>Switching on true</h3>
+<p>Switch statement evaluates strong equality, it can not accept ranges. Below is a way how you can tailor it to accepting ranges</p>
+<pre><code class = "language-javascript">
+  function lifePhase(age) {
+  switch (true) { // here the parameter is true
+    case age >= 0 && age <= 3:
+      return "baby";
+    case age >= 4 && age <= 12:
+      return "child";
+    case age >= 13 && age <= 19:
+      return "teen";
+    case age >= 20 && age <= 64:
+      return "adult";
+    case age >= 65 && age <= 140:
+      return "senior citizen";
+    default:
+      return "This is not a valid age";
+  }
+}
+</code></pre>
     <h3>Shorthand for the <code>if else</code> <code>?</code></h3>
     <p>
       The <code>?</code> is going to evaluate the condition and set it ti the
