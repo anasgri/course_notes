@@ -8,6 +8,15 @@
       href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
       rel="stylesheet"
     />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
     <style>
       .btnback {
         background-color: #6495ed; /* Green */
@@ -50,6 +59,20 @@ const fruits = ["Banana", "Orange", "Apple", "Mango"];
 let fruit = fruits.at(2);
 </code></pre>
 
+    <h3>Updating the elements</h3>
+    <pre><code class = "language-javascript">
+let seasons = ['Winter', 'Spring', 'Summer', 'Fall'];
+seasons[3] = 'Autumn';
+console.log(seasons); 
+//Output: ['Winter', 'Spring', 'Summer', 'Autumn']
+</code></pre>
+    <p>Changing the last item in the array</p>
+    <pre><code class = "language-javascript">
+
+const utensils = ['Fork', 'Knife', 'Chopsticks', 'Spork'];
+utensils[utensils.length - 1] = "Spoon";
+</code></pre>
+
     <h3>Array methods, javascript</h3>
     <p>The length property returns the length (size) of an array</p>
     <pre><code class = "language-javascript">
@@ -85,13 +108,27 @@ let fruit = fruits.pop();
     <pre><code class = "language-javascript">
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.push("Kiwi");
+// ["Banana", "Orange", "Apple", "Mango", "Kiwi"];
 </code></pre>
     <p>The push() method returns the new array length:</p>
     <pre><code class = "language-javascript">
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
 let length = fruits.push("Kiwi");
+// 4
 </code></pre>
+    <p>
+      <code>.push()</code> can take a single argument or multiple arguments
+      separated by commas. In this case, we’re adding two elements: 'item 3' and
+      'item 4' to itemTracker.
+    </p>
+    <pre><code class = "language-javascript">
+const itemTracker = ['item 0', 'item 1', 'item 2'];
 
+itemTracker.push('item 3', 'item 4');
+
+console.log(itemTracker); 
+// Output: ['item 0', 'item 1', 'item 2', 'item 3', 'item 4'];
+</code></pre>
     <p>Inserting the element inside the array by index</p>
     <pre><code class = "language-javascript">
 const fruits = ['Apple', 'Banana', 'Date'];
@@ -104,6 +141,14 @@ fruits.splice(2, 0, 'Cherry');
       array.splice(index, 0, element). Passing 0 as the second argument ensures
       that no elements are deleted, turning the operation into a pure insertion.
     </p>
+    <h4>
+      Adding the item to the beginning of the array using <code>unsift();</code>
+    </h4>
+    <pre><code class = "language-javascript">
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.unshift("Lemon","Pineapple");
+// ["Lemon","Pineapple", "Banana", "Orange", "Apple", "Mango"];
+</code></pre>
     <h3>Removing elements from the lists</h3>
     <p>
       The <code>shift()</code> method removes the first array element and
@@ -117,7 +162,17 @@ fruits.splice(2, 0, 'Cherry');
       You can declare arrays with <code>const</code>, despite being modified,
       the array is saved in the same place.
     </p>
-
+    <h3>Slicing the array</h3>
+    <p>The command below slices the elements with the 1, 2</p>
+    <pre><code class = "language-javascript">
+const fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+const citrus = fruits.slice(1, 3);
+// "Orange", "Lemon", 
+</code></pre>
+    <p>
+      The <code>.slice()</code> command generates the new array, it does not
+      mutate the original array
+    </p>
     <p>Sorting the array</p>
     <pre><code class = "language-javascript">
       // Create an Array
@@ -127,6 +182,41 @@ const fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.sort();
     </code></pre>
 
+    <h3>Splice method that can add or remove items</h3>
+    <pre><code class = "language-javascript">
+  // Create an Array
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+// At position 2 remove 0 items (do not remove), add "Lemon" and "Kiwi":
+fruits.splice(2, 0, "Lemon", "Kiwi");
+</code></pre>
+    <p>In the next example two items are removed by position</p>
+    <pre><code class = "language-javascript">
+// Create an Array
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+// At position 2, remove 2 items
+fruits.splice(2, 2);
+</code></pre>
+
+    <p>Replacing the items</p>
+    <pre><code class = "language-javascript">
+  // Create an Array
+const fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+// At position 2, remove 1 item, add "Lemon" and "Kiwi"
+fruits.splice(2, 1, "Lemon", "Kiwi");
+
+</code></pre>
+
+    <h3>Finding the index of the element in the array</h3>
+    <pre><code class = "language-javascript">
+  const groceryList = ['orange juice', 'bananas', 'coffee beans', 'brown rice', 'pasta', 'coconut oil', 'plantains'];
+  // finding the index of the elememnt
+const pastaIndex = groceryList.indexOf("pasta");
+console.log(pastaIndex);
+// 4
+</code></pre>
     <h3>Different ways how to loop through the array</h3>
     <p>Using the conventional loop</p>
     <pre><code class = "language-javascript">
@@ -150,8 +240,88 @@ for (let animal of animals) {
   console.log(animal);
 }
     </code></pre>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+    <h3>Arrays and Functions</h3>
+    <p>
+      Throughout this lesson, we went over arrays being mutable, or changeable.
+      Well what happens if we try to change an array inside a function? Does the
+      array keep the change after the function call or is it scoped to inside
+      the function?
+    </p>
+    <p>
+      Take a look at the following example where we call
+      <code>.push()</code> on an array inside a function. Recall, the
+      <code>.push()</code> method mutates, or changes, an array:
+    </p>
+    <pre><code class = "language-javascript">
+const flowers = ['peony', 'daffodil', 'marigold'];
+function addFlower(arr) {
+  arr.push('lily');
+}
+addFlower(flowers);
+console.log(flowers); // Output: ['peony', 'daffodil', 'marigold', 'lily']
+    </code></pre>
+
+    <p>Let's go over what happened in this example:</p>
+
+    <ul>
+      <li>The <code>flowers</code> array starts with three elements.</li>
+      <li>
+        The function <code>addFlower()</code> has a parameter of
+        <code>arr</code> and uses <code>.push()</code> to add a
+        <code>'lily'</code> element into <code>arr</code>.
+      </li>
+      <li>
+        We call <code>addFlower()</code> with an argument of
+        <code>flowers</code>, which will execute the code inside
+        <code>addFlower</code>.
+      </li>
+      <li>
+        We check the value of <code>flowers</code> and it now includes the
+        <code>'lily'</code>
+        element! The array was mutated!
+      </li>
+    </ul>
+
+    <p>
+      So when we pass an array into a function, if the array is mutated inside
+      the function, that change will be maintained outside the function as well.
+      This concept is also sometimes called <strong>pass-by-reference</strong>,
+      since what we're actually passing to the function is a reference to where
+      the variable is stored in memory and changing the data there.
+    </p>
+    <h3>Nested Arrays</h3>
+    <p>
+      Earlier, we mentioned that arrays can store other arrays. When an array
+      contains another array, it is known as a <strong>nested array</strong>.
+      Examine the following example:
+    </p>
+
+    <pre><code class = "language-javascript">
+      const nestedArr = [[1], [2, 3]];
+    </code></pre>
+
+    <p>
+      To access the nested arrays, we can use bracket notation with the index
+      value, just like we did to access any other element:
+    </p>
+
+    <pre><code class = "language-javascript">
+const nestedArr = [[1], [2, 3]];
+console.log(nestedArr[1]); // Output: [2, 3]
+</code></pre>
+
+    <p>
+      Notice that <code>nestedArr[1]</code> will grab the element in index
+      <code>1</code>, which is the array <code>[2, 3]</code>. Then, we can
+      access the elements within the nested array by <strong>chaining</strong>,
+      or adding on, more bracket notation with index values.
+    </p>
+
+    <pre><code class = "language-javascript">const nestedArr = [[1], [2, 3]];
+console.log(nestedArr[1]); // Output: [2, 3]
+console.log(nestedArr[1][0]); // Output: 2
+</code></pre>
+
     <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
