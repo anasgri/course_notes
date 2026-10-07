@@ -17,7 +17,7 @@
       defer
       src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
     ></script>
-      <style>
+    <style>
       .btnback {
         background-color: #6495ed; /* Green */
         border-radius: 5px;
@@ -31,7 +31,7 @@
         background-color: #4169e1;
       }
     </style>
-</head>
+  </head>
   <body>
     <h2>JavaScript loops</h2>
     <p>The loop below logs to console the numbers from 0 to 4.</p>
@@ -112,26 +112,92 @@ do {
   num++;
 } while (num < 3);
     </code></pre>
+
+    <p>
+      In some cases, we want a piece of code to run at least once and then loop
+      based on a specific condition after its initial run. This is where the
+      <code>do...while</code> statement comes in.
+    </p>
+
+    <p>
+      A <a href="#"><code>do...while</code></a> statement says to do a task once
+      and then keep doing it until a specified condition is no longer met. The
+      syntax for a <code>do...while</code>
+      statement looks like this:
+    </p>
+
+    <pre><code class = "language-javascript">let countString = '';
+let i = 0;
+
+do {
+  countString = countString + i;
+  i++;
+} while (i &lt; 5);
+
+console.log(countString);</code></pre>
+
+    <p>
+      In this example, the code block makes changes to the
+      <code>countString</code> variable by appending the string form of the
+      <code>i</code> variable to it. First, the code block after the
+      <code>do</code> keyword is executed once. Then the condition is evaluated.
+      If the condition evaluates to <code>true</code>, the block will execute
+      again. The looping stops when the condition evaluates to
+      <code>false</code>.
+    </p>
+
+    <p>
+      Note that the <code>while</code> and <code>do...while</code> loops are
+      different! Unlike the <code>while</code> loop,
+      <code>do...while</code> will run at least once, whether or not the
+      condition evaluates to <code>true</code>.
+    </p>
+
+    <pre><code class = "language-javascript">
+const firstMessage = 'I will print!';
+const secondMessage = 'I will not print!';
+
+// A do while with a stopping condition that evaluates to false
+do {
+  console.log(firstMessage)
+} while (true === false);
+
+// A while loop with a stopping condition that evaluates to false
+while (true === false){
+  console.log(secondMessage)
+};
+</code></pre>
+
     <h3>forEach() loop</h3>
     <p>
       This loop runs through an array and applies the function at each
       iteration.
     </p>
+
     <pre><code class = "language-javascript">
-        array.forEach(function(item, index) {
-            // do something;
-        })
-    </code></pre>
+    array.forEach(function(item, index) {
+        // do something;
+    })
+</code></pre>
     <h3>for of loop</h3>
     <pre><code class = "language-javascript">
 let fruits = ["apple", "banana", "cherry"];
-    for (let fruit of fruits) {
-        console.log(fruit);
+for (let fruit of fruits) {
+  console.log(fruit);
 }
-    </code></pre>
-<h3>Break statement</h3>
-  <p>Break statement stops the loop</p>
-  <pre><code class = "language-javascript">
+</code></pre>
+    <p><code>for of</code> loop can be used to iterate over the string</p>
+    <pre><code class = "language-javascript">
+const username = 'joe';
+ 
+for (const char of username) {
+  console.log(char);
+}
+
+</code></pre>
+    <h3>Break statement</h3>
+    <p>Break statement stops the loop</p>
+    <pre><code class = "language-javascript">
   let text = "";
 for (let i = 0; i < 10; i++) {
   if (i === 3) { break; }
@@ -140,16 +206,34 @@ for (let i = 0; i < 10; i++) {
     console.log(text);
     // The number is 0&lt;br&gt;The number is 1&lt;br&gt;The number is 2&lt;br&gt;
   </code></pre>
-  <h3>Continue stsement skips to the next iteration</h3>
-<pre><code class = "language-javascript">
+    <h3>Continue stsement skips to the next iteration</h3>
+    <pre><code class = "language-javascript">
   for (let i = 1; i < 10; i++) {
   if (i === 3) { continue; }
-  text += "The number is " + i + "<br>";
+  text += "The number is " + i + "&gt;br&lt;";
 }
     </code></pre>
-  
-      <button class="btnback" onclick="window.location.href = 'index.html'">
-      Back to Index
+    <h3>The nested loops</h3>
+    <p>
+      When one loop is running inside another loop, we call that a nested loop.
+      One use for a nested for loop is to compare the elements in two arrays.
+      For each round of the outer for loop, the inner for loop will run
+      completely.
+    </p>
+    <pre><code class = "language-javascript">
+  const arrayA = [6, 19, 20];
+const arrayB = [19, 81, 2];
+for (let i = 0; i < arrayA.length; i++) {
+  for (let j = 0; j < arrayB.length; j++) {
+    if (arrayA[i] === arrayB[j]) {
+      console.log('Both arrays have the number: ' + arrayB[j]);
+    }
+  }
+}
+</code></pre>
+
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to beginning
     </button>
-</body>
+  </body>
 </html>
