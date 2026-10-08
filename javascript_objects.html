@@ -8,9 +8,9 @@
       href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
       rel="stylesheet"
     />
-      <style>
+    <style>
       .btnback {
-        background-color: #6495ed; /* Green */
+        background-color: #6495ed; /* blue*/
         border-radius: 5px;
         color: white;
         font-weight: bold;
@@ -22,7 +22,15 @@
         background-color: #4169e1;
       }
     </style>
-</head>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+  </head>
   <body>
     <h2>JavaScript Objects</h2>
     <p>The JavaScript object is the equivalent of the python dictionary</p>
@@ -36,14 +44,74 @@
     console.log(person.name);
     console.log(person["age"])
     </code></pre>
+    <p>
+      We <strong>must</strong> use bracket notation when accessing keys that are
+      not valid identifier names (e.g., keys that begin with a number or contain
+      spaces or special characters). Without bracket notation in these
+      situations, our code would throw an error.
+    </p>
+    <pre><code class = "language-javascript">
+let spaceship = {
+'Fuel Type': 'Turbo Fuel',
+'Active Duty': true,
+homePlanet: 'Earth',
+numCrew: 5
+};
+spaceship['Active Duty'];   // Returns true
+spaceship['Fuel Type'];   // Returns 'Turbo Fuel'
+spaceship['numCrew'];   // Returns 5
+spaceship['!!!!!!!!!!!!!!!'];   // Returns undefined
+    </code></pre>
+    <p>
+      If we try to access a property that does not exist on that object,
+      <code>undefined</code> will be returned.
+    </p>
+    <pre><code class = "language-javascript">
+  spaceship.favoriteIcecream; // Returns undefined
+</code></pre>
+    <h3>Adding the key value pairs to the object</h3>
     <p>Addind the properties can be done just by dot notation.</p>
     <pre><code class = "language-javascript">
-        let car = {
-        brand: "Toyota",
-        model: "Corolla"
-            }
-        car.year = 2022;
-        </code></pre>
+let car = {
+brand: "Toyota",
+model: "Corolla"
+    }
+car.year = 2022;
+</code></pre>
+    <p>Or you can add it using the bracket noation</p>
+    <pre><code class = "language-javascript">
+  let spaceship = {
+  'Fuel Type' : 'Turbo Fuel',
+  homePlanet : 'Earth',
+  color: 'silver',
+  'Secret Mission' : 'Discover life outside of Earth.'
+};
+spaceship['Fuel Type'] = 'vegetable oil';
+</code></pre>
+    <p>One of two things can happen with property assignment:</p>
+
+    <ul>
+      <li>
+        If the property already exists on the object, whatever value it held
+        before will be replaced with the newly assigned value.
+      </li>
+      <li>
+        If there was no property with that name, a new property will be added to
+        the object.
+      </li>
+    </ul>
+
+    <p>
+      It's important to know that although we can't reassign an object declared
+      with <code>const</code>, we can still mutate it, meaning we can add new
+      properties and change the properties that are there.
+    </p>
+
+    <pre><code class = "language-javascript">const spaceship = {type: 'shuttle'};
+spaceship = {type: 'alien'}; // TypeError: Assignment to constant variable.
+spaceship.type = 'alien'; // Changes the value of the type property
+spaceship.speed = 'Mach 5'; // Creates a new key of 'speed' with a value of 'Mach 5'</code></pre>
+
     <p>You can also delete properies by using the below shown way</p>
     <pre><code class = "language-javascript">
 let car = {
@@ -51,10 +119,53 @@ brand: "Toyota",
 model: "Corolla"}
 
 delete car.brand;
-console.log(car)
+console.log(car) // { model: 'Corolla' };
+</code></pre>
+    <p>or</p>
+    <pre><code class = "language-javascript">
+  let car = {
+brand: "Toyota",
+model: "Corolla"} 
 
-    </code></pre>
-    <h3>How to store the function in the object</h3>
+delete car['brand'];
+console.log(car) // { model: 'Corolla' };
+</code></pre>
+
+    <h3>How to store the function in the object: Object methods</h3>
+    <p>
+      We can include methods in our object literals by creating ordinary,
+      colon-separated key-value pairs. The key serves as our method's name,
+      while the value is an anonymous function expression.
+    </p>
+
+    <pre><code class = "language-javascript">
+  const alienShip = {
+  invade: function () {
+    console.log('Hello! We have come to dominate your planet. Instead of Earth, it shall be called New Xaculon.')
+  }
+};</code></pre>
+
+    <p>
+      With the new method syntax introduced in ES6, we can omit the colon and
+      the <code>function</code> keyword.
+    </p>
+
+    <pre><code class = "language-javascript">
+  const alienShip = {
+  invade () {
+    console.log('Hello! We have come to dominate your planet. Instead of Earth, it shall be called New Xaculon.')
+  }
+};</code></pre>
+
+    <p>
+      Object methods are invoked by appending the object's name with the dot
+      operator, followed by the method name and parentheses:
+    </p>
+
+    <pre><code class = "language-javascript">
+alienShip.invade(); // Prints 'Hello! We have come to dominate your planet. Instead of Earth, it shall be called New Xaculon.'
+</code></pre>
+    <p>Another example:</p>
     <pre><code class = "language-javascript">
 const person = {
 name: "Alice",
@@ -87,7 +198,7 @@ const person = {
 person.birthday();
 
 </code></pre>
-    <h3>Object methods</h3>
+    <p>Another one:</p>
     <p>
       Objects can have methods (functions attached to an object). Methods in
       objects are like buttons on a calculator. Pressing the button (calling the
@@ -107,11 +218,221 @@ person.birthday();
 console.log(calculator.add(5, 3));      // 8
 console.log(calculator.subtract(10, 4)); // 6
 </code></pre>
+    <h3>Nested Objects</h3>
 
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
-      <button class="btnback" onclick="window.location.href = 'index.html'">
-      Back to Index
+    <p>
+      In application code, objects are often nested — an object might have
+      another object as a property, which in turn could have a property that's
+      an array of even more objects!
+    </p>
+
+    <p>
+      In our <code>spaceship</code> object, we want a <code>crew</code> object.
+      This will contain all the crew members who do important work on the craft.
+      Each of those <code>crew</code> members is an object in themselves. They
+      have properties like <code>name</code> and <code>degree</code>, and they
+      each have unique methods based on their roles. We can also nest other
+      objects in the <code>spaceship</code>, such as a <code>telescope</code>,
+      or nest details about the spaceship's computers inside a parent
+      <code>nanoelectronics</code> object.
+    </p>
+    <pre><code class = "language-javascript">
+  const spaceship = {
+  telescope: {
+    yearBuilt: 2018,
+    model: '91031-XLT',
+    focalLength: 2032 
+  },
+  crew: {
+    captain: { 
+      name: 'Sandra', 
+      degree: 'Computer Engineering', 
+      encourageTeam() { console.log('We got this!') } 
+    }
+  },
+  engine: {
+    model: 'Nimbus2000'
+  },
+  nanoelectronics: {
+    computer: {
+      terabytes: 100,
+      monitors: 'HD'
+    },
+    'back-up': {
+      battery: 'Lithium',
+      terabytes: 50
+    }
+  }
+}; 
+</code></pre>
+    <p>
+      We can chain<strong>operators</strong> to access nested properties. We’ll
+      have to pay attention to which operator makes sense to use in each layer.
+      It can be helpful to pretend you are the computer and evaluate each
+      expression from left to right so that each operation starts to feel a
+      little more manageable.
+    </p>
+    <pre><code class = "language-javascript">
+  spaceship.nanoelectronics['back-up'].battery; // Returns 'Lithium'
+</code></pre>
+    <p>In the preceding code:</p>
+
+    <ul>
+      <li>
+        First, the computer evaluates <code>spaceship.nanoelectronics</code>,
+        which results in an object containing the <code>back-up</code> and
+        <code>computer</code> objects.
+      </li>
+      <li>
+        We accessed the <code>back-up</code> object by appending
+        <code>['back-up']</code>.
+      </li>
+      <li>
+        The <code>back-up</code> object has a <code>battery</code> property,
+        accessed with <code>.battery</code>, which returned the value stored
+        there: <code>'Lithium'</code>
+      </li>
+    </ul>
+
+    <h3>Pass By Reference</h3>
+
+    <p>
+      Objects are <strong>passed by reference</strong>. This means when we pass
+      a variable assigned to an object into a function as an argument, the
+      computer interprets the parameter name as pointing to the space in memory
+      holding that object. As a result, functions that change object properties
+      actually mutate the object permanently (even when the object is assigned
+      to a <code>const</code> variable).
+    </p>
+
+    <pre><code class = "language-javascript">
+const spaceship = {
+  homePlanet : 'Earth',
+  color : 'silver'
+};
+
+let paintIt = obj =&gt; {
+  obj.color = 'glorious gold'
+};
+
+paintIt(spaceship);
+
+spaceship.color // Returns 'glorious gold'</code></pre>
+
+    <p>
+      Our function <code>paintIt()</code> permanently changed the color of our
+      <code>spaceship</code> object. However, reassignment of the
+      <code>spaceship</code> variable wouldn't work in the same way:
+    </p>
+    <pre><code class = "language-javascript">
+  let spaceship = {
+  homePlanet : 'Earth',
+  color : 'red'
+};
+let tryReassignment = obj => {
+  obj = {
+    identified : false, 
+    'transport type' : 'flying'
+  }
+  console.log(obj) // Prints { 'identified': false, 'transport type': 'flying' }
+ 
+};
+tryReassignment(spaceship) // The attempt at reassignment does not work.
+spaceship // Still returns { homePlanet: 'Earth', color: 'red' };
+ 
+spaceship = {
+  identified : false, 
+  'transport type': 'flying'
+}; // Regular reassignment still works.
+</code></pre>
+    <p>Let's look at what happened in the code example:</p>
+
+    <ul>
+      <li>
+        We declared this <code>spaceship</code> object with <code>let</code>.
+        This allowed us to reassign it to a new object with
+        <code>identified</code> and <code>'transport type'</code>
+        properties with no problems.
+      </li>
+      <li>
+        When we tried the same thing using a function designed to reassign the
+        object passed into it, the reassignment didn't stick (even though
+        calling <code>console.log()</code> on the object produced the expected
+        result).
+      </li>
+      <li>
+        When we passed <code>spaceship</code> into that function,
+        <code>obj</code> became a reference to the memory location of the
+        <code>spaceship</code> object, but <em>not</em> to the
+        <code>spaceship</code> variable. This is because the
+        <code>obj</code> parameter of the
+        <code>tryReassignment()</code> function is a variable in its own right.
+        The body of <code>tryReassignment()</code> has no knowledge of the
+        <code>spaceship</code> variable at all!
+      </li>
+      <li>
+        When we did the reassignment in the body of
+        <code>tryReassignment()</code>, the <code>obj</code> variable came to
+        refer to the memory location of the object
+        <code>{ 'identified': false, 'transport type': 'flying' }</code>, while
+        the <code>spaceship</code> variable was completely unchanged from its
+        earlier value.
+      </li>
+    </ul>
+    <h3>Looping Through Objects</h3>
+
+    <p>
+      <strong>Loops</strong> are programming tools that repeat a block of code
+      until a condition is met. We learned how to iterate through arrays using
+      their numerical indexing, but the key-value pairs in objects aren't
+      ordered! JavaScript has given us an alternative solution for iterating
+      through objects with for...in syntax.
+    </p>
+
+    <p>
+      <code>for...in</code> will execute a given block of code for each property
+      in an object.
+    </p>
+    <pre><code class = "language-javascript">
+      let spaceship = {
+  crew: {
+    captain: { 
+      name: 'Lily', 
+      degree: 'Computer Engineering', 
+      cheerTeam() { console.log('You got this!') } 
+    },
+    'chief officer': { 
+      name: 'Dan', 
+      degree: 'Aerospace Engineering', 
+      agree() { console.log('I agree, captain!') } 
+    },
+    medic: { 
+      name: 'Clementine', 
+      degree: 'Physics', 
+      announce() { console.log(`Jets on!`) } },
+    translator: {
+      name: 'Shauna', 
+      degree: 'Conservation Science', 
+      powerFuel() { console.log('The tank is full!') } 
+    }
+  }
+}; 
+
+// for...in
+for (let crewMember in spaceship.crew) {
+  console.log(`${crewMember}: ${spaceship.crew[crewMember].name}`);
+}
+// captain: Lily
+// chief officer: Dan
+// medic: Clementine
+// translator: Shauna
+    </code></pre>
+    <p>
+      In the example above the crewmember fetces the key as a string, amnd to
+      fetch out the value you need to plug it into the object
+    </p>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to beginning
     </button>
-</body>
+  </body>
 </html>
