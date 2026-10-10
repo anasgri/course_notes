@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript objects</title>
+    <style>
+      p.advert {
+        background-color: #d9edf7;
+        border: 2px solid #0c3d55;
+        font-family: Helvetica, sans-serif;
+        padding: 20px 10px;
+        margin: 20px 10px;
+      }
+      .btnback {
+        background-color: #6495ed; /* blue*/
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h3>JavaScript objects this keyword</h3>
+    <p>Lets see the following example</p>
+    <pre><code class = "language-javascript">
+    const goat = {
+  dietType: 'herbivore',
+  makeSound() {
+    console.log('baaa');
+  },
+  diet() {
+    console.log(dietType);
+  }
+};
+goat.diet(); 
+// Output will be "ReferenceError: dietType is not defined"
+
+</code></pre>
+    <p>
+      That’s strange, why is dietType not defined even though it’s a property of
+      goat? That’s because inside the scope of the .diet() method, we don’t
+      automatically have access to other properties of the goat object.
+    </p>
+    <p>
+      Here’s where the this keyword comes to the rescue. If we change the
+      <code>.diet()</code> method to use this, then the
+      <code>.diet()</code> method will work! :
+    </p>
+    <pre><code class = "language-javascript">
+        const goat = {
+  dietType: 'herbivore',
+  makeSound() {
+    console.log('baaa');
+  },
+  diet() {
+    console.log(this.dietType);
+  }
+};
+
+goat.diet(); 
+// Output: herbivore
+    </code></pre>
+    <h2>Arrow Functions and this</h2>
+
+    <p>
+      We saw in the previous exercise that for a method, the calling object is
+      the object the method belongs to. If we use the this keyword in a method,
+      then the value of <code>this</code> is the calling object. However, it
+      becomes a bit more complicated when we start using arrow functions for
+      methods. Take a look at the example below:
+    </p>
+
+    <pre><code class = "language-javascript">
+const goat = {
+  dietType: 'herbivore',
+  makeSound() {
+    console.log('baaa');
+  },
+  diet: () =&gt; {
+    console.log(this.dietType);
+  }
+};
+
+goat.diet(); // Prints undefined</code></pre>
+
+    <p>
+      In the comment, note that <code>goat.diet()</code> would log
+      <code>undefined</code>. So what happened? Notice that the
+      <code>.diet()</code> method is defined using an arrow function.
+    </p>
+
+    <p>
+      Arrow functions inherently <em>bind</em>, or tie, an already defined
+      <code>this</code> value to the function itself that is NOT the calling
+      object. In the preceding code snippet, the value of <code>this</code> is
+      the <strong>global object</strong>, or an object that exists in the global
+      scope, which doesn't have a <code>dietType</code> property and therefore
+      returns <code>undefined</code>.
+    </p>
+
+    <p class="advert">
+      The key takeaway from this example is to <em>avoid</em> using arrow
+      functions when using <code>this</code> in a method!
+    </p>
+    <h3>Privacy</h3>
+
+    <p>
+      Accessing and updating properties is fundamental in working with
+      <strong>objects</strong>. However, there are cases in which we don't want
+      other code simply accessing and updating an object's properties.
+    </p>
+    <p>
+      When discussing <strong>privacy</strong> in objects, we define it as the
+      idea that only certain properties should be mutable or able to change in
+      value.
+    </p>
+
+    <p>
+      Certain languages have privacy built in for objects, but JavaScript does
+      not have this feature. Rather, JavaScript developers follow naming
+      conventions that signal to other developers how to interact with a
+      property. One common convention is to place an underscore (<code>_</code>)
+      before the name of a property to mean that the property should not be
+      altered. Here's an example of using <code>_</code> to prepend a property.
+    </p>
+
+    <pre><code>const bankAccount = {
+  _amount: 1000
+}</code></pre>
+
+    <p>
+      In the example above, the <code>_amount</code> is not intended to be
+      directly manipulated.
+    </p>
+
+    <p>Even so, it is still possible to reassign <code>_amount</code>:</p>
+
+    <pre><code>bankAccount._amount = 1000000;</code></pre>
+    <h3>Getters</h3>
+    <p>
+      <strong>Getters</strong> are methods that contain functions. that get and
+      return the internal properties of an object. But they can do more than
+      just retrieve the value of a property! Let’s take a look at a getter
+      method:
+    </p>
+    <pre><code class = "language-javascript">
+const person = {
+  _firstName: 'John',
+  _lastName: 'Doe',
+  get fullName() {
+    if (this._firstName && this._lastName){
+      return `${this._firstName} ${this._lastName}`;
+    } else {
+      return 'Missing a first name or a last name.';
+    }
+  }
+}
+
+// To call the getter method: 
+person.fullName; // 'John Doe'
+    </code></pre>
+    <p>Notice that in the getter method above:</p>
+
+    <ul>
+      <li>
+        We use the <code>get</code> keyword followed by a method name and a
+        function body.
+      </li>
+      <li>
+        We use an <code>if...else</code> conditional to check if both
+        <code>_firstName</code> and <code>_lastName</code> exist (by making sure
+        they both return truthy values) and then return a different value
+        depending on the result.
+      </li>
+      <li>
+        We can access the calling object's internal properties using
+        <code>this</code>. In <code>fullName</code>, we're accessing both
+        <code>this._firstName</code> and <code>this._lastName</code>.
+      </li>
+      <li>
+        In the last line, we call <code>fullName</code> on <code>person</code>.
+        In general, getter methods do not need to be called with a set of
+        parentheses. Syntactically, it looks like we're accessing a property.
+      </li>
+    </ul>
+    <p>
+      Now that we've gone over syntax, let's discuss some notable advantages of
+      using getter methods:
+    </p>
+
+    <ul>
+      <li>
+        Getters can perform an action on the data when getting a property.
+      </li>
+      <li>Getters can return different values using conditionals.</li>
+      <li>
+        In a getter, we can access the properties of the calling object using
+        <code>this</code>.
+      </li>
+      <li>
+        The functionality of our code is easier for other developers to
+        understand.
+      </li>
+    </ul>
+
+    <p>
+      Another thing to keep in mind when using getter (and setter) methods is
+      that properties <strong>cannot share the same name</strong> as the
+      getter/setter function. If we do so, then calling the method will result
+      in an infinite call stack error. One workaround is to add an underscore
+      before the property name, like we did in the example above.
+    </p>
+
+    <h3>Setters</h3>
+
+    <p>
+      Along with getter methods, we can also create
+      <strong>setter</strong> methods, which reassign values of existing
+      properties within an object. Let's see an example of a setter method:
+    </p>
+
+    <pre><code class = "language-javascript">
+const person = {
+  _age: 37,
+  set age(newAge){
+    if (typeof newAge === 'number'){
+      this._age = newAge;
+    } else {
+      console.log('You must assign a number to age');
+    }
+  }
+};</code></pre>
+
+    <p>Notice that in the example above:</p>
+    <ul>
+      <li>
+        We can perform a check for what value is being assigned to
+        <code>this._age</code>.
+      </li>
+      <li>
+        When we use the setter method, only values that are numbers will be
+        reassigned to <code>this._age</code>.
+      </li>
+      <li>
+        There are different outputs depending on what values are used to
+        reassign <code>this._age</code>.
+      </li>
+    </ul>
+    <p>Then, to use the setter method:</p>
+    <pre><code class = "language-javascript">
+person.age = 40;
+console.log(person._age); // Logs: 40
+person.age = '40'; // Logs: You must assign a number to age
+    </code></pre>
+    <p class="advert">
+      Setter methods like age do not need to be called with a set of
+      parentheses. Syntactically, it looks like we’re reassigning the value of a
+      property.
+    </p>
+    <h3>Factory functions</h3>
+    <p>
+      So far, we’ve been creating objects individually, but there are times when
+      we want to create many instances of an object quickly. Here’s where
+      factory functions come in. A real-world factory manufactures multiple
+      copies of an item quickly and on a massive scale. A factory function is a
+      function that returns an object and can be reused to make multiple object
+      instances.
+    </p>
+    <p>
+      Factory functions can also have parameters, allowing us to customize the
+      object that gets returned. Let’s say we wanted to create an object to
+      represent monsters in JavaScript. There are many different types of
+      monsters, and we could go about making each monster individually, but we
+      can also use a factory function to make our lives easier. To achieve this
+      diabolical plan of creating multiple monster objects, we can use a factory
+      function that has parameters:
+    </p>
+    <pre><code class = "language-javascript">
+    const monsterFactory = (name, age, energySource, catchPhrase) => {
+  return { 
+    name: name,
+    age: age, 
+    energySource: energySource,
+    scare() {
+      console.log(catchPhrase);
+    } 
+  }
+};
+  </code></pre>
+    <p>
+      In the preceding <code>monsterFactory</code> function, it takes four
+      parameters and returns an object that has the properties:
+      <code>name</code>, <code>age</code>, <code>energySource</code>, and the
+      <code>scare()</code> method. To make an object that represents a specific
+      monster like a ghost, we can call <code>monsterFactory</code> with the
+      necessary arguments and assign the return value to a variable:
+    </p>
+
+    <pre><code class = "language-javascript">const ghost = monsterFactory('Ghouly', 251, 'ectoplasm', 'BOO!');
+ghost.scare(); // 'BOO!'</code></pre>
+
+    <p>
+      Now we have a <code>ghost</code> object as a result of calling
+      <code>monsterFactory()</code> with the needed arguments. With
+      <code>monsterFactory</code> in place, we don't have to create an object
+      literal every time we need a new monster. Instead, we can invoke the
+      <code>monsterFactory</code> function with the necessary arguments to make
+      a monster for us!
+    </p>
+    <p>Another example</p>
+    <pre><code class = "language-javascript">
+  const robotFactory = (model, mobile) => {
+  return {
+    model: model, 
+    mobile: mobile, 
+    beep() {
+      console.log('Beep Boop');
+    }
+  }
+};
+
+const tinCan = robotFactory('P-500', true);
+
+tinCan.beep();
+</code></pre>
+    <h3>Property Value Shorthand</h3>
+    <p>
+      ES6 introduced some new shortcuts for assigning properties to
+      <a href="#">variables</a> known as
+      <strong><a href="#">destructuring</a></strong
+      >.
+    </p>
+
+    <p>
+      In the previous exercise, we created a factory function that helped us
+      create objects. We had to assign each property a key and value, even
+      though the key name was the same as the parameter name we assigned to it.
+      To remind ourselves, here's a truncated version of the factory function:
+    </p>
+
+    <pre><code class = "language-javascript">const monsterFactory = (name, age) =&gt; {
+  return {
+    name: name,
+    age: age
+  }
+};</code></pre>
+
+    <p>
+      Imagine if we had to include more properties, that process would quickly
+      become tedious! But we can use a destructuring technique, called
+      <strong>property value shorthand</strong>, to save ourselves some
+      keystrokes. We can use property value shorthand when the key and the
+      variable passed in as the value share the same name. The following example
+      works exactly the same as the previous:
+    </p>
+
+    <pre><code class = "language-javascript">const monsterFactory = (name, age) =&gt; {
+  return {
+    name,
+    age
+  }
+};</code></pre>
+    <p>Another example</p>
+    <pre><code class = "language-javascript">
+const robotFactory = (model, mobile) => {
+  return {
+    model, 
+    mobile, 
+    beep() {
+      console.log('Beep Boop');
+    }
+  }
+}
+
+// To check that the property value shorthand technique worked:
+const newRobot = robotFactory('P-501', false)
+console.log(newRobot.model)
+console.log(newRobot.mobile)
+</code></pre>
+    <h3>Destructured Assignment</h3>
+    <p>
+      We often want to extract key-value pairs from objects and save them as
+      variables
+    </p>
+    <p>For example, the following object:</p>
+    <pre><code class = "language-javascript">
+  const vampire = {
+  name: 'Dracula',
+  residence: 'Transylvania',
+  preferences: {
+    day: 'stay inside',
+    night: 'satisfy appetite'
+  }
+};
+</code></pre>
+    <p>
+      If we wanted to extract the residence property as a variable, we could use
+      the following code:
+    </p>
+    <pre><code class = "language-javascript">
+const residence = vampire.residence; 
+console.log(residence); // Prints 'Transylvania'
+</code></pre>
+    <p>
+      However, we can also take advantage of a
+      <strong>destructuring technique</strong> called
+      <strong>destructured assignment</strong> to save ourselves some
+      keystrokes. In destructured assignment, we create a variable with the name
+      of an object's key that is wrapped in curly braces <code>{ }</code> and
+      assign to it the object. Take a look at the example below:
+    </p>
+
+    <pre><code class = "language-javascript">const { residence } = vampire;
+console.log(residence); // Prints 'Transylvania'</code></pre>
+
+    <p>
+      Look back at the <code>vampire</code> object's properties in the first
+      code example. Then, in the example above, we declare a new variable
+      <code>residence</code> that extracts the value of the
+      <code>residence</code> property of <code>vampire</code>. When we log the
+      value of <code>residence</code> to the console,
+      <code>'Transylvania'</code> is printed.
+    </p>
+
+    <p>
+      We can even use destructured assignment to grab nested properties of an
+      object:
+    </p>
+    <pre><code class = "language-javascript">
+      const { day } = vampire.preferences; 
+console.log(day); // Prints 'stay inside'
+    </code></pre>
+    <h3>Built-in Object Methods</h3>
+    <p>
+      Previously we created the methods for the objects ourselves. But there are
+      also <strong>built-in</strong>medthods of the objects
+    </p>
+  <p>
+  For example, we have access to object instance methods like:
+  <code>.hasOwnProperty()</code> and <code>.valueOf()</code>. There are also useful <code>Object</code> class
+  methods such as <code>Object.assign()</code>, <code>Object.entries()</code>, and <code>Object.keys()</code>.
+  </p>
+  <h4>Object.keys()</h4>
+  <pre><code class = "language-javascript">
+    const object = {
+  a: "some string",
+  b: 42,
+  c: false,
+};
+
+console.log(Object.keys(object));
+// Expected output: Array ["a", "b", "c"]
+  </code></pre>
+<h4>Object.entries()</h4>
+<pre><code class = "language-javascript">
+  const object = {
+  a: "some string",
+  b: 42,
+};
+
+for (const [key, value] of Object.entries(object)) {
+  console.log(`${key}: ${value}`);
+}
+
+// Expected output:
+// "a: some string"
+// "b: 42"
+
+</code></pre>
+<p>Raw Object.entries() logged in</p>
+<pre><code class = "language-javascript">
+  const robot = {
+	model: 'SAL-1000',
+  mobile: true,
+  sentient: false,
+  armor: 'Steel-plated',
+  energyLevel: 75
+};
+
+const robotEntries = Object.entries(robot);
+console.log(robotEntries);
+/*[
+  [ 'model', 'SAL-1000' ],
+  [ 'mobile', true ],
+  [ 'sentient', false ],
+  [ 'armor', 'Steel-plated' ],
+  [ 'energyLevel', 75 ]
+]
+*/
+</code></pre>
+
+<h4>Object.assign()</h4>
+<pre><code class = "language-javascript">
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+
+const returnedTarget = Object.assign(target, source);
+// { a: 1, b: 4, c: 5 }
+</code></pre>
+<p><code>Object.assign()</code> medthod is going to take all elements from <code>source</code> object and 
+  add them into the <code>target</code> object</p>
+  <p>If the property is already present in target it is is going to be overwritten by the property with the same key in source</p>
+<p>you can have as many of the source objects as you want</p>
+
+<pre><code class = "language-javascript">
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+const source2 = { e: 6, d: 5 };
+
+target1 = Object.assign(target, source, source2);
+console.log(target1)
+// { a: 1, b: 4, c: 5, e: 6, d: 5 }
+</code></pre>
+<p>Copying object using Object.assign()</p>
+<pre><code class = "language-javascript">
+  const obj = { a: 1 };
+const copy = Object.assign({}, obj);
+console.log(copy); // { a: 1 }
+</code></pre>
+<button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to beginning
+    </button>
+
+</html>
