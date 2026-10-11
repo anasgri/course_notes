@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Javascript functions as objects</title>
+    <style>
+      p.advert {
+        background-color: #d9edf7;
+        border: 2px solid #0c3d55;
+        font-family: Helvetica, sans-serif;
+        padding: 20px 10px;
+        margin: 20px 10px;
+      }
+      .btnback {
+        background-color: #6495ed; /* blue*/
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h2>In JavaScript functions are objects</h2>
+    <p>In Javascript functions are objects that have some</p>
+    <p>
+      In JavaScript, functions are <em>first-class objects</em>. This means
+      that, like other objects we've encountered, JavaScript functions can have
+      properties and methods.
+    </p>
+
+    <p>
+      Since functions are a type of object, they have properties such as
+      <code>.length</code> and <code>.name</code>, and methods such as
+      <code>.toString()</code>.
+    </p>
+    <pre><code class = "language-javascript">
+        const checkThatTwoPlusTwoEqualsFourAMillionTimes = () => {
+  for(let i = 1; i <= 1000000; i++) {
+    if ( (2 + 2) != 4) {
+      console.log('Something has gone very wrong :( '));
+    }
+  }
+};
+
+// Write your code below
+const isTwoPlusTwo = checkThatTwoPlusTwoEqualsFourAMillionTimes;
+isTwoPlusTwo();
+console.log(isTwoPlusTwo.name);
+    </code></pre>
+    <p>
+      You can assign the function to variable. If you forgot the original name
+      of the function you can use <code>function.name</code>
+    </p>
+    <h3>Functions as Parameters</h3>
+
+    <p>
+      Recall that a parameter is a placeholder for the data that gets passed
+      into a function. Since functions can behave like any other type of data in
+      JavaScript, it may not be a surprise to learn that functions can accept
+      other functions as parameters. A <em>higher-order function</em> is a
+      function that either accepts functions as parameters, returns a function,
+      or both! We call functions that get passed in as parameters
+      <em>callback functions</em>. Callback functions get invoked during the
+      execution of the higher-order function.
+    </p>
+
+    <p>
+      When we invoke a higher-order function and pass another function in as an
+      argument, we don't invoke the argument function. Invoking it would
+      evaluate to passing in the return value of that function call. With
+      callback functions, we pass in the function itself by typing the function
+      name
+      <em>without</em> the parentheses:
+    </p>
+    <pre><code class = "language-javascript">
+const higherOrderFunc = param => {
+  param();
+  return `I just invoked ${param.name} as a callback function!`
+}
+ 
+const anotherFunc = () => {
+  return 'I\'m being invoked by the higher-order function!';
+}
+
+higherOrderFunc(anotherFunc);
+    </code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to beginning
+    </button>
+  </body>
+</html>
