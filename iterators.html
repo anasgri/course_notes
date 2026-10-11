@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iterators</title>
+    <style>
+      p.advert {
+        background-color: #d9edf7;
+        border: 2px solid #0c3d55;
+        font-family: Helvetica, sans-serif;
+        padding: 20px 10px;
+        margin: 20px 10px;
+      }
+      .btnback {
+        background-color: #6495ed; /* blue*/
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+      table {
+        border-collapse: collapse;
+        text-align: center;
+        width: 400px;
+      }
+      table th,
+      td {
+        border:
+          1px,
+          solid black;
+      }
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h2>Iterators</h2>
+    <p>Lets look at the following example</p>
+    <pre><code class = "language-javascript">
+const grocreies = ["bread", "eggs", "milk"];
+        function printGrocery(element){
+  console.log(element);
+}
+
+groceries.forEach(printGrocery);
+    </code></pre>
+    <p>
+      The preceding code example will log a nicely formatted list of the
+      groceries to the console. Let's explore the syntax of invoking
+      <code>.forEach()</code>.
+    </p>
+
+    <ul>
+      <li>
+        <code>groceries.forEach()</code> calls the <code>forEach</code> method
+        on the <code>groceries</code>
+        array.
+      </li>
+      <li>
+        <code>.forEach()</code> takes a callback function as an argument.
+        Remember, a callback function is a function passed as an argument to
+        another function.
+      </li>
+      <li>
+        <code>.forEach()</code> loops through the array and executes the
+        callback function for each element. During each execution, the current
+        element is passed as the argument for the callback function.
+      </li>
+      <li>
+        The return value for <code>.forEach()</code> will always be
+        <code>undefined</code>.
+      </li>
+    </ul>
+
+    <p>
+      Another way to pass a callback for <code>.forEach()</code> is to use arrow
+      function syntax.
+    </p>
+    <pre><code class = "language-javascript">
+        groceries.forEach(groceryItem => console.log(groceryItem));
+    </code></pre>
+    <p>Another example</p>
+    <pre><code class = "language-javascript">
+const fruits = ['mango', 'papaya', 'pineapple', 'apple'];
+
+// Iterate over fruits below
+fruits.forEach(griceryItem => console.log(`I want to eat a ${griceryItem}`))
+    </code></pre>
+    <h3>The .map() Method</h3>
+
+    <p>
+      The second iterator we're going to cover is <code>.map()</code>. When
+      <code>.map()</code> is called on an array, it takes an argument of a
+      callback function and returns a new array! Take a look at an example of
+      calling <code>.map()</code>:
+    </p>
+
+    <pre><code class = "language-javascript">const numbers = [1, 2, 3, 4, 5];
+
+const bigNumbers = numbers.map(number =&gt; {
+  return number * 10;
+
+console.log(numbers); // Output: [1, 2, 3, 4, 5]
+console.log(bigNumbers); // Output: [10, 20, 30, 40, 50]
+});</code></pre>
+
+    <p>
+      <code>.map()</code> works in a similar manner to <code>.forEach()</code> —
+      the major difference is that <code>.map()</code> returns a new array.
+    </p>
+
+    <p>In the example above:</p>
+
+    <ul>
+      <li><code>numbers</code> is an array of numbers.</li>
+      <li>
+        <code>bigNumbers</code> will store the return value of calling
+        <code>.map()</code> on <code>numbers</code>.
+      </li>
+      <li>
+        <code>numbers.map</code> will iterate through each element in the
+        <code>numbers</code> array and pass the element into the callback
+        function.
+      </li>
+      <li>
+        <code>return number * 10</code> is the code we wish to execute upon each
+        element in the array. This will save each value from the
+        <code>numbers</code> array, multiplied by <code>10</code>, to a new
+        array.
+      </li>
+    </ul>
+    <h3>The .filter() Method</h3>
+    <p>
+      Another useful iterator method is <code>.filter()</code>. Like
+      <code>.map()</code>, <code>.filter()</code> returns a new array. However,
+      <code>.filter()</code> returns an array of elements after filtering out
+      certain elements from the original array. The callback function for the
+      <code>.filter()</code> method should return <code>true</code> or
+      <code>false</code> depending on the element that is passed to it. The
+      elements that cause the callback function to return <code>true</code> are
+      added to the new array. Take a look at the following example:
+    </p>
+
+    <pre><code class = "language-javascript">
+const words = ['chair', 'music', 'pillow', 'brick', 'pen', 'door'];
+
+const shortWords = words.filter(word =&gt; {
+  return word.length &lt; 6;
+
+console.log(words); // Output: ['chair', 'music', 'pillow', 'brick', 'pen', 'door']; 
+console.log(shortWords); // Output: ['chair', 'music', 'brick', 'pen', 'door']
+
+});</code></pre>
+
+    <ul>
+      <li><code>words</code> is an array that contains string elements.</li>
+      <li>
+        <code>const shortWords =</code> declares a new variable that will store
+        the returned array from invoking <code>.filter()</code>.
+      </li>
+      <li>
+        The callback function is an arrow function that takes a single
+        parameter, <code>word</code>. Each element in the
+        <code>words</code> array will be passed to this function as an argument.
+      </li>
+      <li>
+        <code>word.length &lt; 6;</code> is the condition in the callback
+        function. Any <code>word</code> from the <code>words</code> array that
+        has fewer than <code>6</code> characters will be added to the
+        <code>shortWords</code> array.
+      </li>
+    </ul>
+    <h3>The .findIndex() Method</h3>
+
+    <p>
+      We sometimes want to find the location of an element in an array. That's
+      where the <code>.findIndex()</code> method comes in! Calling
+      <code>.findIndex()</code> on an array will return the index of the first
+      element that evaluates to <code>true</code> in the callback function.
+    </p>
+
+    <pre><code>const jumbledNums = [123, 25, 78, 5, 9];
+
+const lessThanTen = jumbledNums.findIndex(num =&gt; {
+  return num &lt; 10;
+  console.log(lessThanTen); // 3;
+});</code></pre>
+
+    <ul>
+      <li>
+        <code>jumbledNums</code> is an array that contains elements that are
+        numbers.
+      </li>
+      <li>
+        <code>const lessThanTen =</code> declares a new variable that stores the
+        returned index number from invoking <code>.findIndex()</code>.
+      </li>
+      <li>
+        The callback function is an arrow function that has a single parameter,
+        <code>num</code>. Each element in the <code>jumbledNums</code> array
+        will be passed to this function as an argument.
+      </li>
+      <li>
+        <code>num &lt; 10;</code> is the condition that elements are checked
+        against. <code>.findIndex()</code> will return the index of the first
+        element that evaluates to <code>true</code> for that condition.
+      </li>
+      <li>
+        The result is 3 because the element 5 has index of 3, the indexes start
+        with 0.
+      </li>
+    </ul>
+    <p>
+      If there isn’t a single element in the array that satisfies the condition
+      in the callback, then <code>.findIndex()</code> will return -1.
+    </p>
+    <pre><code class = "language-javascript">
+const greaterThan1000 = jumbledNums.findIndex(num => {
+  return num > 1000;
+});
+
+console.log(greaterThan1000); // Output: -1
+    </code></pre>
+    <h3>The .reduce() Method</h3>
+
+    <p>
+      Another widely used iteration method is <code>.reduce()</code>. The
+      <code>.reduce()</code> method returns a single value after iterating
+      through the elements of an array, thereby <em>reducing</em> the array.
+      Take a look at the following example:
+    </p>
+
+    <pre><code class = "language-javascript">
+const numbers = [1, 2, 4, 10];
+const summedNums = numbers.reduce((accumulator, currentValue) =&gt; {
+  return accumulator + currentValue
+})
+
+console.log(summedNums) // Output: 17</code></pre>
+
+    <p>
+      Here are the values of <code>accumulator</code> and
+      <code>currentValue</code> as we iterate through the
+      <code>numbers</code> array:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Iteration</th>
+          <th>accumulator</th>
+          <th>currentValue</th>
+          <th>return value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>First</td>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>Second</td>
+          <td>3</td>
+          <td>4</td>
+          <td>7</td>
+        </tr>
+        <tr>
+          <td>Third</td>
+          <td>7</td>
+          <td>10</td>
+          <td>17</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Now let's go over the use of <code>.reduce()</code> from the example
+      above:
+    </p>
+
+    <ul>
+      <li><code>numbers</code> is an array that contains numbers.</li>
+      <li>
+        <code>summedNums</code> is a variable that stores the returned value of
+        invoking <code>.reduce()</code> on <code>numbers</code>.
+      </li>
+      <li>
+        <code>numbers.reduce()</code> calls the <code>.reduce()</code> method on
+        the <code>numbers</code> array and takes in a callback function.
+      </li>
+      <li>
+        <code>reduce.()</code>takes two arguments, first is a function with two
+        parameters, one is accumulator, the second is a current value, apart
+        from function <code>.reduce</code> takes the optional extra paramenter
+        that serves as initial value of the accumulator
+      </li>
+    </ul>
+    <p>
+      The .reduce() method can also take an optional second parameter to set an
+      initial value for accumulator (remember, the first argument is the
+      callback function!). For instance:
+    </p>
+    <pre><code class = "language-javascript">
+const numbers = [1, 2, 4, 10];
+
+const summedNums = numbers.reduce((accumulator, currentValue) =&gt; {
+  return accumulator + currentValue
+}, 100)  // &lt;- Second argument for .reduce()
+console.log(summedNums); // Output: 117
+    </code></pre>
+    <p>
+      Here's an updated chart that accounts for the second argument of
+      <code>100</code>:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Iteration #</th>
+          <th><code>accumulator</code></th>
+          <th><code>currentValue</code></th>
+          <th>return value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>First</td>
+          <td>100</td>
+          <td>1</td>
+          <td>101</td>
+        </tr>
+        <tr>
+          <td>Second</td>
+          <td>101</td>
+          <td>2</td>
+          <td>103</td>
+        </tr>
+        <tr>
+          <td>Third</td>
+          <td>103</td>
+          <td>4</td>
+          <td>107</td>
+        </tr>
+        <tr>
+          <td>Fourth</td>
+          <td>107</td>
+          <td>10</td>
+          <td>117</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Another example:</p>
+    <pre><code class = "language-javascript">
+const newNumbers = [1, 3, 5, 7];
+const newSum = newNumbers.reduce(function(accumulator, currentValue) {
+console.log('The value of accumulator: ', accumulator);
+console.log('The value of currentValue: ', currentValue);
+return accumulator + currentValue;
+}, 10);
+
+console.log(newSum);
+
+/*
+
+Output-only Terminal
+Output:
+The value of accumulator:  10
+The value of currentValue:  1
+The value of accumulator:  11
+The value of currentValue:  3
+The value of accumulator:  14
+The value of currentValue:  5
+The value of accumulator:  19
+The value of currentValue:  7
+26*/
+</code></pre>
+    <h3>array.some() method</h3>
+    <p>
+      The <code>some()</code> method of Array instances returns true if it finds
+      an element in the array that satisfies the provided testing function.
+      Otherwise, it returns false.
+    </p>
+    <pre><code class = "language-javascript">
+const array = [1, 2, 3, 4, 5];
+
+// Checks whether an element is even
+const even = (element) => element % 2 === 0;
+
+console.log(array.some(even));
+// Expected output: true
+
+</code></pre>
+    <p>Short hand center</p>
+    <pre><code class = "language-javascript">
+[2, 5, 8, 1, 4].some((x) => x > 10); // false
+[12, 5, 8, 1, 4].some((x) => x > 10); // true
+</code></pre>
+    <h3>.every()</h3>
+    <p>
+      The every() method of Array instances returns false if it finds an element
+      in the array that does not satisfy the provided testing function.
+      Otherwise, it returns true.
+    </p>
+    <pre><code class = "language-javascript">
+const isBelowThreshold = (currentValue) => currentValue < 40;
+
+const array1 = [1, 30, 39, 29, 10, 13];
+
+console.log(array1.every(isBelowThreshold));
+// Expected output: true
+</code></pre>
+
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to beginning
+    </button>
+  </body>
+</html>
