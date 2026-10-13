@@ -141,6 +141,22 @@ fruits.splice(2, 0, 'Cherry');
       array.splice(index, 0, element). Passing 0 as the second argument ensures
       that no elements are deleted, turning the operation into a pure insertion.
     </p>
+<h3>Array.splice() modeifies the original array</h3>
+    <p><code>toSpliced()</code> is the alternative that does not modify the original array</p>
+<pre><code class = "language-javascript">
+const original = ['A', 'B', 'C', 'D'];
+
+// 1. Using splice() -> Modifies the original array
+const deleted = original.splice(1, 2); 
+console.log(original); // ['A', 'D'] <-- CHANGED!
+console.log(deleted);  // ['B', 'C']
+
+// 2. Using toSpliced() -> Keeps original intact
+const originalAA = ['A', 'B', 'C', 'D'];
+const newArray = originalAA.toSpliced(1, 2);
+console.log(originalAA); // ['A', 'B', 'C', 'D'] <-- UNCHANGED!
+console.log(newArray);   // ['A', 'D']
+</code></pre>
     <h4>
       Adding the item to the beginning of the array using <code>unsift();</code>
     </h4>
