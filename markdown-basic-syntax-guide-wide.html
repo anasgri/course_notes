@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Markdown Basic Syntax Guide</title>
+    <style>
+      :root {
+        --bg: #eef1f7; --panel: #ffffff; --ink: #121a33; --mute: #56627d;
+        --line: #d5dbe8; --accent: #4169e1; --accent-ink: #2b4bb8;
+        --hero: #0f1b3d; --hero-ink: #f4f7ff; --hero-mute: #aab6d6;
+        --code-bg: #121a33; --code-ink: #e6edf7;
+        --good: #1e7a46; --bad: #b3362f; --soft: #e4eafb;
+      }
+      :root:not([data-theme="light"]) { color-scheme: light; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --bg: #0e1220; --panel: #171d31; --ink: #e8ecf7; --mute: #9aa6c4;
+          --line: #2a3350; --accent: #8aa9ff; --accent-ink: #a9c0ff;
+          --hero: #080b16; --hero-ink: #f4f7ff; --hero-mute: #9aa6c4;
+          --code-bg: #0a0d18; --code-ink: #e6edf7;
+          --good: #58c58a; --bad: #f08a82; --soft: #1f2845;
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+      body {
+        margin: 0; background: var(--bg); color: var(--ink);
+        font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+      a { color: var(--accent-ink); }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+      /* Hero spans the full screen width */
+      .hero { background: var(--hero); color: var(--hero-ink); padding: 3.5rem clamp(1.25rem, 4vw, 4rem) 3rem; }
+      .hero h1 { font-size: clamp(2.2rem, 5vw, 4.25rem); line-height: 1.05; margin: 0 0 1rem; letter-spacing: -0.035em; font-weight: 800; }
+      .hero .lede { font-size: 1.2rem; color: var(--hero-mute); margin: 0; max-width: 60ch; }
+
+      /* Top bar navigation */
+      .layout { display: block; }
+      nav {
+        position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 0.35rem;
+        padding: 0.6rem clamp(1.25rem, 4vw, 4rem); overflow-x: auto; white-space: nowrap;
+        background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); font-size: 14px;
+      }
+      nav b { margin-right: 0.75rem; font-size: 14px; }
+      nav a { padding: 0.3rem 0.8rem; border-radius: 99px; color: var(--mute); text-decoration: none; font-weight: 500; }
+      nav a:hover, nav a[aria-current="true"] { background: var(--accent); color: #fff; }
+
+      main { padding: 1rem clamp(1.25rem, 4vw, 4rem) 3rem; max-width: 1900px; margin: 0 auto; }
+
+      /* Each topic is a wide row: title rail on the left, examples on the right */
+      section {
+        display: grid; grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
+        column-gap: clamp(1.5rem, 4vw, 4rem); row-gap: 0;
+        padding: 2.75rem 0; border-top: 1px solid var(--line);
+      }
+      section:first-of-type { border-top: 0; }
+      section > * { grid-column: 2; }
+      section > h2 {
+        grid-column: 1; grid-row: 1 / span 40; align-self: start;
+        position: sticky; top: 4.5rem; margin: 0;
+        font-size: 1.9rem; line-height: 1.15; letter-spacing: -0.025em; font-weight: 800;
+      }
+      h3 { font-size: 1.05rem; margin: 2.25rem 0 0.35rem; font-weight: 700; padding-left: 0.7rem; border-left: 3px solid var(--accent); }
+      section > h2 + p, section > p:first-of-type { margin-top: 0; }
+      p { margin: 0.6rem 0; max-width: 75ch; }
+      ul, ol { max-width: 75ch; }
+
+      code { font: 0.88em ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--soft); padding: 0.1em 0.35em; border-radius: 4px; }
+      pre {
+        margin: 0; background: var(--code-bg); color: var(--code-ink); padding: 1rem 1.15rem;
+        border-radius: 8px; overflow-x: auto; white-space: pre;
+        font: 14px/1.6 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      }
+      pre code { background: none; padding: 0; font-size: inherit; }
+
+      .ex { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0; align-items: stretch; }
+      .ex > div { min-width: 0; }
+      .cap { font: 600 13px system-ui, sans-serif; color: var(--mute); margin-bottom: 0.35rem; }
+      .out {
+        background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--accent);
+        border-radius: 8px; padding: 0.9rem 1.15rem; height: calc(100% - 1.6rem);
+      }
+      .out > *:first-child { margin-top: 0; } .out > *:last-child { margin-bottom: 0; }
+      .out h1, .out h2, .out h3, .out h4, .out h5, .out h6 { margin: 0.25rem 0; letter-spacing: 0; padding: 0; border: 0; position: static; font-weight: 700; }
+      .out h1 { font-size: 1.9rem; } .out h2 { font-size: 1.55rem; } .out h3 { font-size: 1.3rem; }
+      .out h4 { font-size: 1.1rem; } .out h5 { font-size: 1rem; } .out h6 { font-size: 0.9rem; }
+      blockquote { margin: 0.6rem 0; padding: 0.1rem 1rem; border-left: 4px solid var(--accent); color: var(--mute); }
+      blockquote blockquote { margin: 0.4rem 0; }
+      .out hr { border: 0; border-top: 1px solid var(--line); margin: 0.8rem 0; }
+
+      .dd { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0; }
+      .dd > div { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; min-width: 0; background: var(--panel); }
+      .dd h4 { margin: 0; padding: 0.4rem 0.9rem; font: 600 14px system-ui, sans-serif; }
+      .dd .y h4 { color: var(--good); background: color-mix(in srgb, var(--good) 14%, transparent); }
+      .dd .n h4 { color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, transparent); }
+      .dd pre { border-radius: 0; }
+
+      .note { border-left: 4px solid var(--accent); background: var(--soft); padding: 0.7rem 1rem; border-radius: 0 8px 8px 0; margin: 1rem 0; max-width: 80ch; }
+      table { border-collapse: collapse; width: 100%; background: var(--panel); }
+      th, td { border: 1px solid var(--line); padding: 0.45rem 0.8rem; text-align: left; }
+      th { background: var(--soft); font-size: 14px; }
+      .tw { overflow-x: auto; max-width: 900px; }
+      footer { color: var(--mute); font-size: 14px; border-top: 1px solid var(--line); padding-top: 1.5rem; max-width: 80ch; }
+
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover { background-color: #4169e1; }
+
+      @media (max-width: 960px) {
+        section { grid-template-columns: 1fr; padding: 2rem 0; }
+        section > * { grid-column: 1; }
+        section > h2 { grid-row: auto; position: static; margin-bottom: 0.75rem; }
+        .ex, .dd { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <h1>Markdown Basic Syntax Guide</h1>
+      <p class="lede">The core elements from the original Markdown design, with what to type and what you get.</p>
+    </header>
+    <div class="layout">
+      <nav aria-label="Sections">
+        <b>Markdown basics</b>
+        <a href="#overview">Overview</a><a href="#headings">Headings</a
+        ><a href="#paragraphs">Paragraphs</a><a href="#breaks">Line breaks</a
+        ><a href="#emphasis">Emphasis</a><a href="#quotes">Blockquotes</a
+        ><a href="#lists">Lists</a><a href="#code">Code</a
+        ><a href="#rules">Horizontal rules</a><a href="#links">Links</a
+        ><a href="#images">Images</a><a href="#escaping">Escaping</a
+        ><a href="#html">HTML</a>
+      </nav>
+      <main>
+
+        <section id="overview">
+          <h2>Overview</h2>
+          <p>
+            Almost every Markdown application supports the basic syntax from the
+            original Markdown design document. Processors differ in small ways,
+            so each section notes the habits that work everywhere. The "Do" and
+            "Don't" boxes show the most compatible choices.
+          </p>
+        </section>
+
+        <section id="headings">
+          <h2>Headings</h2>
+          <p>
+            Start a line with number signs (<code>#</code>). The count sets the
+            level, from one to six.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code># Heading level 1
+## Heading level 2
+### Heading level 3
+#### Heading level 4
+##### Heading level 5
+###### Heading level 6</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <h1>Heading level 1</h1>
+                <h2>Heading level 2</h2>
+                <h3>Heading level 3</h3>
+                <h4>Heading level 4</h4>
+                <h5>Heading level 5</h5>
+                <h6>Heading level 6</h6>
+              </div>
+            </div>
+          </div>
+          <h3>Alternate syntax</h3>
+          <p>
+            Underline the text with <code>===</code> for level 1 or
+            <code>---</code> for level 2.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>Heading level 1
+===============
+
+Heading level 2
+---------------</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <h1>Heading level 1</h1>
+                <h2>Heading level 2</h2>
+              </div>
+            </div>
+          </div>
+          <h3>Best practices</h3>
+          <div class="dd">
+            <div class="y">
+              <h4>✅ Do this</h4>
+              <pre><code># Here's a heading
+
+Blank lines sit before and after.</code></pre>
+            </div>
+            <div class="n">
+              <h4>❌ Don't do this</h4>
+              <pre><code>#No space after the sign
+Text right after a heading</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="paragraphs">
+          <h2>Paragraphs</h2>
+          <p>Separate paragraphs with a blank line.</p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>I really like using Markdown.
+
+I think I'll use it to format
+all of my documents.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>I really like using Markdown.</p>
+                <p>I think I'll use it to format all of my documents.</p>
+              </div>
+            </div>
+          </div>
+          <div class="note">
+            Don't indent paragraphs with spaces or tabs unless the paragraph is
+            inside a list. Indenting can cause unexpected formatting.
+          </div>
+        </section>
+
+        <section id="breaks">
+          <h2>Line breaks</h2>
+          <p>
+            End a line with two or more spaces, then press return, to get a
+            <code>&lt;br&gt;</code>.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown (· marks a trailing space)</div>
+              <pre><code>This is the first line.··
+And this is the second line.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>This is the first line.<br />And this is the second line.</p>
+              </div>
+            </div>
+          </div>
+          <p>
+            Trailing spaces work nearly everywhere but are invisible in most
+            editors, which is why some people dislike them. If your application
+            allows HTML, ending the line with <code>&lt;br&gt;</code> is easier
+            to see.
+          </p>
+          <div class="dd">
+            <div class="y">
+              <h4>✅ Do this</h4>
+              <pre><code>First line, two spaces after.··
+Next line.
+
+First line with a tag.&lt;br&gt;
+Next line.</code></pre>
+            </div>
+            <div class="n">
+              <h4>❌ Don't do this</h4>
+              <pre><code>First line with a backslash.\
+Next line.
+
+First line with nothing after.
+Next line.</code></pre>
+            </div>
+          </div>
+          <p>
+            A trailing backslash is CommonMark-only, and a bare return only
+            works in a few lightweight markup languages.
+          </p>
+        </section>
+
+        <section id="emphasis">
+          <h2>Emphasis</h2>
+          <h3>Bold</h3>
+          <p>
+            Wrap text in two asterisks or two underscores. To bold part of a
+            word, use asterisks with no spaces.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>I just love **bold text**.
+I just love __bold text__.
+Love**is**bold</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>
+                  I just love <strong>bold text</strong>.<br />I just love
+                  <strong>bold text</strong>.<br />Love<strong>is</strong>bold
+                </p>
+              </div>
+            </div>
+          </div>
+          <h3>Italic</h3>
+          <p>
+            Wrap text in one asterisk or one underscore. Again, use asterisks
+            inside a word.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>Italicized text is the *cat's meow*.
+Italicized text is the _cat's meow_.
+A*cat*meow</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>
+                  Italicized text is the <em>cat's meow</em>.<br />Italicized
+                  text is the <em>cat's meow</em>.<br />A<em>cat</em>meow
+                </p>
+              </div>
+            </div>
+          </div>
+          <h3>Bold and italic</h3>
+          <p>
+            Use three asterisks or underscores, or nest one style inside the
+            other.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>This text is ***really important***.
+This text is ___really important___.
+This text is __*really important*__.
+This text is **_really important_**.
+This is really***very***important text.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>
+                  This text is <em><strong>really important</strong></em
+                  >.<br />This text is <em><strong>really important</strong></em
+                  >.<br />This text is <em><strong>really important</strong></em
+                  >.<br />This text is <em><strong>really important</strong></em
+                  >.<br />This is really<em><strong>very</strong></em
+                  >important text.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="note">
+            Processors disagree on underscores in the middle of a word, so use
+            asterisks for mid-word emphasis: <code>Love**is**bold</code>, not
+            <code>Love__is__bold</code>. The order of the <code>em</code> and
+            <code>strong</code> tags may also vary between processors.
+          </div>
+        </section>
+
+        <section id="quotes">
+          <h2>Blockquotes</h2>
+          <p>Put <code>&gt;</code> in front of a paragraph.</p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>&gt; Dorothy followed her through
+&gt; many of the beautiful rooms
+&gt; in her castle.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <blockquote>
+                  <p>
+                    Dorothy followed her through many of the beautiful rooms in
+                    her castle.
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          <h3>Multiple paragraphs</h3>
+          <p>Add a <code>&gt;</code> on the blank line between paragraphs.</p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>&gt; Dorothy followed her through
+&gt; many of the beautiful rooms.
+&gt;
+&gt; The Witch bade her clean the
+&gt; pots and kettles.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <blockquote>
+                  <p>
+                    Dorothy followed her through many of the beautiful rooms.
+                  </p>
+                  <p>The Witch bade her clean the pots and kettles.</p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          <h3>Nested</h3>
+          <p>Use <code>&gt;&gt;</code> for the inner quote.</p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>&gt; Dorothy followed her through
+&gt; many of the beautiful rooms.
+&gt;
+&gt;&gt; The Witch bade her clean the
+&gt;&gt; pots and kettles.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <blockquote>
+                  <p>
+                    Dorothy followed her through many of the beautiful rooms.
+                  </p>
+                  <blockquote>
+                    <p>The Witch bade her clean the pots and kettles.</p>
+                  </blockquote>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          <h3>With other elements</h3>
+          <p>
+            Quotes can hold headings, lists, and emphasis. Not every element
+            works in every processor, so experiment.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>&gt; #### The quarterly results look great!
+&gt;
+&gt; - Revenue was off the chart.
+&gt; - Profits were higher than ever.
+&gt;
+&gt; *Everything* is going according to **plan**.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <blockquote>
+                  <h4>The quarterly results look great!</h4>
+                  <ul>
+                    <li>Revenue was off the chart.</li>
+                    <li>Profits were higher than ever.</li>
+                  </ul>
+                  <p>
+                    <em>Everything</em> is going according to
+                    <strong>plan</strong>.
+                  </p>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+          <div class="note">
+            Leave blank lines before and after a blockquote for best
+            compatibility.
+          </div>
+        </section>
+
+        <section id="lists">
+          <h2>Lists</h2>
+          <h3>Ordered lists</h3>
+          <p>
+            Number each item followed by a period. The numbers needn't be in
+            sequence, but start with 1. Indent items to nest them.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>1. First item
+2. Second item
+3. Third item
+    1. Indented item
+    2. Indented item
+4. Fourth item</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <ol>
+                  <li>First item</li>
+                  <li>Second item</li>
+                  <li>
+                    Third item
+                    <ol>
+                      <li>Indented item</li>
+                      <li>Indented item</li>
+                    </ol>
+                  </li>
+                  <li>Fourth item</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <p>
+            Writing <code>1.</code> on every line, or <code>1. 8. 3. 5.</code>,
+            gives the same rendered numbering. Use periods only:
+            <code>1)</code> is supported by CommonMark but not everywhere.
+          </p>
+          <h3>Unordered lists</h3>
+          <p>
+            Start items with <code>-</code>, <code>*</code>, or <code>+</code>.
+            Indent to nest.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>- First item
+- Second item
+- Third item
+    - Indented item
+    - Indented item
+- Fourth item</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <ul>
+                  <li>First item</li>
+                  <li>Second item</li>
+                  <li>
+                    Third item
+                    <ul>
+                      <li>Indented item</li>
+                      <li>Indented item</li>
+                    </ul>
+                  </li>
+                  <li>Fourth item</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="dd">
+            <div class="y">
+              <h4>✅ Do this</h4>
+              <pre><code>- First item
+- Second item
+- Third item</code></pre>
+            </div>
+            <div class="n">
+              <h4>❌ Don't do this</h4>
+              <pre><code>+ First item
+* Second item
+- Third item</code></pre>
+            </div>
+          </div>
+          <p>
+            Pick one delimiter per list, since mixing them behaves differently
+            across applications.
+          </p>
+          <h3>Starting an item with a number</h3>
+          <p>
+            Escape the period with a backslash so it isn't read as an ordered
+            list.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>- 1968\. A great year!
+- I think 1969 was second best.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <ul>
+                  <li>1968. A great year!</li>
+                  <li>I think 1969 was second best.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <h3>Adding elements inside lists</h3>
+          <p>
+            Indent the extra element four spaces or one tab to keep the list
+            continuous.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Paragraph in a list</div>
+              <pre><code>* This is the first list item.
+* Here's the second list item.
+
+    I need another paragraph below it.
+
+* And here's the third list item.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Blockquote in a list</div>
+              <pre><code>* This is the first list item.
+* Here's the second list item.
+
+    &gt; A blockquote would look great
+    &gt; below the second list item.
+
+* And here's the third list item.</code></pre>
+            </div>
+          </div>
+          <div class="ex">
+            <div>
+              <div class="cap">Code block in a list (eight spaces)</div>
+              <pre><code>1. Open the file.
+2. Find this code on line 21:
+
+        &lt;html&gt;
+          &lt;head&gt;
+            &lt;title&gt;Test&lt;/title&gt;
+          &lt;/head&gt;
+
+3. Update the title.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Image in a list</div>
+              <pre><code>1. Open the file with the mascot.
+2. Marvel at its beauty.
+
+    ![Tux, the Linux mascot](tux.png)
+
+3. Close the file.</code></pre>
+            </div>
+          </div>
+          <div class="note">
+            If a list doesn't look right, check that nested elements are
+            indented four spaces or one tab (eight spaces or two tabs for code
+            blocks).
+          </div>
+        </section>
+
+        <section id="code">
+          <h2>Code</h2>
+          <p>Wrap a word or phrase in backticks to mark it as code.</p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>At the command prompt, type `nano`.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>At the command prompt, type <code>nano</code>.</p>
+              </div>
+            </div>
+          </div>
+          <h3>Backticks inside code</h3>
+          <p>Use double backticks around text that contains a backtick.</p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>``Use `code` in your Markdown file.``</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p><code>Use `code` in your Markdown file.</code></p>
+              </div>
+            </div>
+          </div>
+          <h3>Code blocks</h3>
+          <p>
+            Indent every line of the block by at least four spaces or one tab.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>    &lt;html&gt;
+      &lt;head&gt;
+      &lt;/head&gt;
+    &lt;/html&gt;</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <pre><code>&lt;html&gt;
+  &lt;head&gt;
+  &lt;/head&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+          </div>
+          <div class="note">
+            To make code blocks without indenting, use fenced code blocks from
+            the extended syntax.
+          </div>
+        </section>
+
+        <section id="rules">
+          <h2>Horizontal rules</h2>
+          <p>
+            Put three or more asterisks, dashes, or underscores on a line by
+            themselves. All three produce the same line.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>***
+
+---
+
+_________________</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out"><hr /></div>
+            </div>
+          </div>
+          <div class="dd">
+            <div class="y">
+              <h4>✅ Do this</h4>
+              <pre><code>A blank line before...
+
+---
+
+...and after the rule.</code></pre>
+            </div>
+            <div class="n">
+              <h4>❌ Don't do this</h4>
+              <pre><code>Without a blank line,
+---
+this turns into a heading.</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="links">
+          <h2>Links</h2>
+          <p>
+            Put the link text in brackets and the URL right after it in
+            parentheses.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>My favorite search engine is
+[Duck Duck Go](https://duckduckgo.com).</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>
+                  My favorite search engine is
+                  <a href="https://duckduckgo.com">Duck Duck Go</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+          <h3>Adding a title</h3>
+          <p>A quoted title after the URL shows as a tooltip on hover.</p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>[Duck Duck Go](https://duckduckgo.com "The best search engine for privacy")</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>
+                  <a
+                    href="https://duckduckgo.com"
+                    title="The best search engine for privacy"
+                    >Duck Duck Go</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+          <h3>URLs and email addresses</h3>
+          <p>
+            Wrap a URL or email address in angle brackets to make it clickable.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>&lt;https://www.markdownguide.org&gt;
+&lt;fake@example.com&gt;</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>
+                  <a href="https://www.markdownguide.org"
+                    >https://www.markdownguide.org</a
+                  ><br /><a href="mailto:fake@example.com">fake@example.com</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <h3>Formatting links</h3>
+          <p>
+            Put emphasis markers outside the brackets and parentheses. To make
+            link text look like code, put backticks inside the brackets.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>I love supporting the **[EFF](https://eff.org)**.
+This is the *[Markdown Guide](https://www.markdownguide.org)*.
+See the section on [`code`](#code).</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>
+                  I love supporting the
+                  <strong><a href="https://eff.org">EFF</a></strong
+                  >.<br />This is the
+                  <em
+                    ><a href="https://www.markdownguide.org"
+                      >Markdown Guide</a
+                    ></em
+                  >.<br />See the section on
+                  <a href="#code"><code>code</code></a
+                  >.
+                </p>
+              </div>
+            </div>
+          </div>
+          <h3>Reference-style links</h3>
+          <p>
+            Keep long URLs out of your paragraph. The inline part uses two sets
+            of brackets: the visible text, then a label. The definition lives
+            elsewhere in the file, such as under the paragraph or at the end.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>It was a [hobbit-hole][1], and
+that means comfort.
+
+[1]: &lt;https://en.wikipedia.org/wiki/Hobbit#Lifestyle&gt; "Hobbit lifestyles"</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>
+                  It was a
+                  <a
+                    href="https://en.wikipedia.org/wiki/Hobbit#Lifestyle"
+                    title="Hobbit lifestyles"
+                    >hobbit-hole</a
+                  >, and that means comfort.
+                </p>
+              </div>
+            </div>
+          </div>
+          <ul>
+            <li>
+              Labels aren't case sensitive and can contain letters, numbers,
+              spaces, or punctuation.
+            </li>
+            <li>
+              A space between the two sets of brackets is allowed:
+              <code>[hobbit-hole] [1]</code>.
+            </li>
+            <li>
+              The definition is <code>[label]: URL "Title"</code>. The URL may
+              be in angle brackets, and the title may use double quotes, single
+              quotes, or parentheses.
+            </li>
+          </ul>
+          <h3>Best practices</h3>
+          <p>
+            Encode spaces in URLs as <code>%20</code> and parentheses as
+            <code>%28</code> and <code>%29</code>. Alternatively, use an HTML
+            <code>&lt;a&gt;</code> tag if your application supports HTML.
+          </p>
+          <div class="dd">
+            <div class="y">
+              <h4>✅ Do this</h4>
+              <pre><code>[link](https://www.example.com/my%20great%20page)
+
+[a novel](https://en.wikipedia.org/wiki/The_Milagro_Beanfield_War_%28novel%29)</code></pre>
+            </div>
+            <div class="n">
+              <h4>❌ Don't do this</h4>
+              <pre><code>[link](https://www.example.com/my great page)
+
+[a novel](https://en.wikipedia.org/wiki/The_Milagro_Beanfield_War_(novel))</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <section id="images">
+          <h2>Images</h2>
+          <p>
+            Write an exclamation mark, alt text in brackets, then the path or
+            URL in parentheses. A quoted title is optional.
+          </p>
+          <pre><code>![The San Juan Mountains are beautiful](/assets/images/san-juan-mountains.jpg "San Juan Mountains")</code></pre>
+          <h3>Linking an image</h3>
+          <p>
+            Wrap the whole image in brackets and add the link target in
+            parentheses.
+          </p>
+          <pre><code>[![An old rock in the desert](/assets/images/shiprock.jpg "Shiprock, New Mexico")](https://www.flickr.com/photos/beaurogers/31833779864)</code></pre>
+          <div class="note">
+            Resizing and captions aren't part of basic syntax. Use HTML or an
+            extended feature for those.
+          </div>
+        </section>
+
+        <section id="escaping">
+          <h2>Escaping characters</h2>
+          <p>
+            Put a backslash before a character to show it literally instead of
+            as formatting.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>\* Without the backslash, this
+would be a bullet in a list.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>
+                  * Without the backslash, this would be a bullet in a list.
+                </p>
+              </div>
+            </div>
+          </div>
+          <h3>Characters you can escape</h3>
+          <div class="tw">
+            <table>
+              <tr>
+                <th>Character</th>
+                <th>Name</th>
+                <th>Character</th>
+                <th>Name</th>
+              </tr>
+              <tr>
+                <td><code>\</code></td>
+                <td>backslash</td>
+                <td><code>( )</code></td>
+                <td>parentheses</td>
+              </tr>
+              <tr>
+                <td><code>`</code></td>
+                <td>backtick</td>
+                <td><code>#</code></td>
+                <td>pound sign</td>
+              </tr>
+              <tr>
+                <td><code>*</code></td>
+                <td>asterisk</td>
+                <td><code>+</code></td>
+                <td>plus sign</td>
+              </tr>
+              <tr>
+                <td><code>_</code></td>
+                <td>underscore</td>
+                <td><code>-</code></td>
+                <td>minus sign (hyphen)</td>
+              </tr>
+              <tr>
+                <td><code>{ }</code></td>
+                <td>curly braces</td>
+                <td><code>.</code></td>
+                <td>dot</td>
+              </tr>
+              <tr>
+                <td><code>[ ]</code></td>
+                <td>brackets</td>
+                <td><code>!</code></td>
+                <td>exclamation mark</td>
+              </tr>
+              <tr>
+                <td><code>&lt; &gt;</code></td>
+                <td>angle brackets</td>
+                <td><code>|</code></td>
+                <td>pipe</td>
+              </tr>
+            </table>
+          </div>
+        </section>
+
+        <section id="html">
+          <h2>HTML</h2>
+          <p>
+            Many Markdown applications accept raw HTML, which is handy for
+            things Markdown can't express, like text color or image width.
+          </p>
+          <div class="ex">
+            <div>
+              <div class="cap">Markdown</div>
+              <pre><code>This **word** is bold. This &lt;em&gt;word&lt;/em&gt; is italic.</code></pre>
+            </div>
+            <div>
+              <div class="cap">Result</div>
+              <div class="out">
+                <p>
+                  This <strong>word</strong> is bold. This <em>word</em> is
+                  italic.
+                </p>
+              </div>
+            </div>
+          </div>
+          <ul>
+            <li>
+              Some applications block HTML for security, or allow only a subset
+              of tags. Check the documentation.
+            </li>
+            <li>
+              Separate block-level elements (<code>&lt;div&gt;</code>,
+              <code>&lt;table&gt;</code>, <code>&lt;pre&gt;</code>,
+              <code>&lt;p&gt;</code>) from surrounding content with blank lines,
+              and don't indent their tags.
+            </li>
+            <li>
+              Markdown syntax doesn't work inside block-level HTML tags:
+              <code>&lt;p&gt;italic and **bold**&lt;/p&gt;</code> won't format.
+            </li>
+          </ul>
+          <br />
+          <button class="btnback" onclick="window.location.href = 'index.html'">
+            Back to Index
+          </button>
+        </section>
+
+        <footer>
+          Adapted from
+          <a href="https://www.markdownguide.org/basic-syntax/">Basic Syntax</a>
+          on Markdown Guide by Matt Cone, licensed
+          <a href="https://creativecommons.org/licenses/by-sa/4.0/"
+            >CC BY-SA 4.0</a
+          >. This version is reworded and reorganized and is shared under the
+          same license.
+        </footer>
+      </main>
+    </div>
+    <script>
+      const links = [...document.querySelectorAll("nav a")];
+      const io = new IntersectionObserver((es) => es.forEach((e) => {
+        if (e.isIntersecting) links.forEach((a) => a.setAttribute("aria-current", a.hash === "#" + e.target.id));
+      }), { rootMargin: "-20% 0px -70% 0px" });
+      document.querySelectorAll("section[id]").forEach((s) => io.observe(s));
+    </script>
+  </body>
+</html>
