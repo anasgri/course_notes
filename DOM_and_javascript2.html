@@ -127,6 +127,16 @@ let items = document.getElementsByClassName("item");
 let paragraphs = document.getElementsByTagName("p");
 
 </code></pre>
+<p>Another example. You can use bracket notation to access individual
+  elements of an array:
+</p>
+<pre><code class = "language-javascript">
+  // Set first element of .student class as 'Not yet registered'
+document.getElementsByClassName('student')[0].innerHTML = 'Not yet registered';
+
+// Set second &lt;li&gt; tag as 'Cedric Diggory'
+document.getElementsByTagName('li')[1].innerHTML = 'Cedric Diggory`;
+</code></pre>
     <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
