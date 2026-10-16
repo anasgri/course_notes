@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async attribute</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css"
+    />
+
+    <style>
+      .btnback {
+        display: inline-block;
+        background-color: #6495ed;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+      .buttons {
+        margin-bottom: 100px;
+      }
+    </style>
+
+    <!-- The Prism core already includes the markup (HTML) language -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"
+    ></script>
+  </head>
+  <body>
+    <h2>Async attribute</h2>
+
+    <p>
+      The <code>async</code> attribute loads and executes the script
+      asynchronously with the rest of the webpage. This means that, similar to
+      the <code>defer</code> attribute, the HTML parser will continue parsing
+      the rest of the HTML as the script is downloaded in the background.
+      However, with the <code>async</code> attribute, the script will not wait
+      until the entire page is parsed: it will execute immediately after it has
+      been downloaded. Here is an example of the <code>async</code> attribute:
+    </p>
+
+    <pre><code class="language-html">&lt;script src="example.js" async&gt;&lt;/script&gt;</code></pre>
+
+    <p>When is it useful?</p>
+
+    <p>
+      <code>async</code> is useful for scripts that don't depend on other
+      scripts. If it does not matter exactly when the script is executed,
+      asynchronous loading is the most suitable option, as it optimizes web
+      page load time.
+    </p>
+
+    <p>
+      Note the key difference from <code>defer</code>: <code>async</code>
+      scripts may execute out of order, as soon as each one finishes
+      downloading, while <code>defer</code> scripts run in order after the
+      document has been parsed. The Prism scripts on this page use
+      <code>defer</code>.
+    </p>
+
+    <h2>The document object</h2>
+
+    <p>
+      The <em>Document Object Model</em>, abbreviated DOM, is a powerful
+      tree-like structure that organizes the elements on a web page and allows
+      scripting languages to access them. This lesson will focus on some of the
+      most useful methods and properties of the DOM interface in JavaScript.
+      This interface is implemented by every modern browser.
+    </p>
+
+    <p>
+      First things first! The <code>document</code> object in JavaScript is the
+      door to the DOM structure. The <code>document</code> object allows you to
+      access the root node of the DOM tree. Before you can access a specific
+      element in the page, first you must access the document structure itself.
+      The <code>document</code> object allows scripts to access children of the
+      DOM as properties.
+    </p>
+
+    <p>
+      For example, if you want to access the <code>&lt;body&gt;</code> element
+      from your script, you can access it as a property of the
+      <code>document</code> object by using <code>document.body</code>. This
+      property will return the body element of that DOM.
+    </p>
+
+    <div class="buttons">
+      <a
+        class="btnback"
+        href="https://developer.mozilla.org/en-US/docs/Web/API/Document"
+      >
+        Document object documentation
+      </a>
+      <a class="btnback" href="index.html">Back to starting page</a>
+    </div>
+  </body>
+</html>
