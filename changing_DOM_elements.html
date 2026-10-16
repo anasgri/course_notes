@@ -49,6 +49,27 @@
         myElement.style.color = "red";
         myElement.style.fontSize = "20px";
     </code></pre>
+    <p>
+  Another way to modify an element is by changing its CSS style. The
+  <code>.style</code> property of a DOM element provides access to the inline
+  style of that HTML tag.
+</p>
+
+<p>
+  The syntax follows an <code>element.style.property</code> format, with the
+  <code>property</code> representing a CSS property. For example, the following
+  code selects the first element with a <code>class</code> of <code>blue</code>
+  and assigns blue as the <code>background-color</code>:
+</p>
+
+<pre><code class = "language-javascript">let blueElement = document.querySelector('.blue');
+blueElement.style.backgroundColor = 'blue';</code></pre>
+
+<p>
+  Unlike CSS, the DOM <code>.style</code> property does not implement a hyphen
+  such as <code>background-color</code>, but rather camel case notation,
+  <code>backgroundColor</code>. 
+</p>
     <h3>What to do with the attributes that have dashes</h3>
     <p>
       JavaScript can not include dashes in attribute names, so you need to use
