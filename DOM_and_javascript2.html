@@ -36,6 +36,22 @@
   <body>
     <h2>JavaScript annd DOM cotinued</h2>
     <p>
+  Let’s take a look at how we can reassign the contents of the
+  <code>&lt;body&gt;</code> element to the text
+  <code>'The cat loves the dog'</code>:
+</p>
+
+<pre><code>document.body.innerHTML = 'The cat loves the dog.';</code></pre>
+
+<p>
+  The <code>.innerHTML</code> property can also add any valid HTML elements. The
+  following example replaces the contents of the <code>&lt;body&gt;</code>
+  element by assigning an <code>&lt;h2&gt;</code> element as a child inside the
+  <code>&lt;body&gt;</code> element:
+</p>
+
+<pre><code>document.body.innerHTML = '&lt;h2&gt;This is a heading&lt;/h2&gt;';</code></pre>
+    <p>
       You can select the element by <code>getElementById()</code> and then
       modify its attruibutes and change styles.
     </p>
