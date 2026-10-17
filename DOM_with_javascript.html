@@ -76,6 +76,13 @@ let firstChild = document.getElementById("content").lastElementChild; // selects
 <p><code>.createElement();</code> - creates a new element and adds it to DOM</p>
 <p><code>.appendChild();</code> adds element to the DOM</p>
 <p><code>.remove();</code>- removes an element.</p>
+
+<p>
+  The <code>.createElement()</code> method creates a new element
+  based on the specified tag name passed into it as an argument. However, it does
+  not append it to the document. It creates an empty element with no inner HTML.
+</p>
+<p>You have to use <code>.appendChild()</code> to add it.</p>
 <pre><code class = "language-javascript">
   // Change content
 let heading = document.getElementById("title");
