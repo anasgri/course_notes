@@ -129,7 +129,36 @@ document.body.removeChild(paragraph);</code></pre>
 </p>
 
 <pre><code>document.getElementById('sign').hidden = true;</code></pre>
-    
+<h2>Add Click Interactivity</h2>
+
+<p>
+  You can add interactivity to DOM elements by assigning a function to run based
+  on an event. Events can include anything from a click to a user
+  mousing over an element. 
+</p>
+
+<p>
+  The <code>.onclick</code> property allows you to assign a function to run on
+  when a click event happens on an element:
+</p>
+
+<pre><code class = "language-javascript">let element = document.querySelector('button');
+
+element.onclick = function() {
+  element.style.backgroundColor = 'blue'
+};</code></pre>
+
+<p>
+  You can also assign the <code>.onclick</code> property to a function by name:
+</p>
+
+<pre><code class = "language-javascript">let element = document.querySelector('button');
+
+function turnBlue() {
+   element.style.backgroundColor = 'blue';
+}
+
+element.onclick = turnBlue;</code></pre>
 <p>You can also include Event listeners to buttons</p>
 <pre><code class = "language-javascript">
   let button = document.getElementById("btn");
