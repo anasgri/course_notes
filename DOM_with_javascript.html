@@ -102,6 +102,34 @@ item.remove();
 let newAttraction = document.createElement('li');
 newAttraction.id = 'vespa';
 </code></pre>
+
+<h2>Remove an Element</h2>
+
+<p>
+  In addition to modifying or creating an element from scratch, the DOM also
+  allows for the removal of an element. The <code>.removeChild()</code>
+  <a href="#">method</a> removes a specified child from a parent.
+</p>
+
+<pre><code>let paragraph = document.querySelector('p');
+document.body.removeChild(paragraph);</code></pre>
+
+<p>
+  In the above example code, the <code>.querySelector()</code> method returns the
+  first paragraph in the document. Then, the <code>paragraph</code> element is
+  passed as an argument of the <code>.removeChild()</code> method
+  chained to the parent of the paragraph— <code>document.body</code>. This
+  removes the first paragraph from the document body.
+</p>
+
+<p>
+  If you want to hide an element rather than completely deleting it, the
+  <code>.hidden</code> property</a> allows you to hide it by setting
+  the property as <code>true</code> or <code>false</code>:
+</p>
+
+<pre><code>document.getElementById('sign').hidden = true;</code></pre>
+    
 <p>You can also include Event listeners to buttons</p>
 <pre><code class = "language-javascript">
   let button = document.getElementById("btn");
