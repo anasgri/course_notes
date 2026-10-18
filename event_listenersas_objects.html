@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Object Properties</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Cornflower blue */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1; /* Darker blue on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Event Object Properties</h2>
+
+    <p>
+      JavaScript stores events as <code>Event</code> objects with their related
+      data and functionalities as properties and methods. When an event is
+      triggered, the event object can be passed as an argument to the event
+      handler function.
+    </p>
+
+    <pre><code class="language-javascript">function eventHandlerFunction(event){
+   console.log(event.timeStamp);
+}
+
+eventTarget.addEventListener('click', eventHandlerFunction);</code></pre>
+
+    <p>
+      In the example above, when the <code>'click'</code> event is triggered on
+      the <code>eventTarget</code>, the
+      <code>eventHandlerFunction</code> receives <code>event</code>, the Event
+      object, which has information related to the <code>'click'</code> event.
+      Then, we log the time that passed between the document being loaded and
+      the event being triggered by accessing the
+      <code>.timeStamp</code> property of the <code>event</code> object.
+    </p>
+
+    <p>
+      There are pre-determined properties associated with event objects. You can
+      call these properties to see information about the event, for example:
+    </p>
+
+    <ul>
+      <li>
+        the <code>.target</code> property to reference the element that
+        triggered the event.
+      </li>
+      <li>the <code>.type</code> property to access the name of the event.</li>
+      <li>
+        the <code>.timeStamp</code> property to access the number of
+        milliseconds that passed since the document loaded and the event was
+        triggered.
+      </li>
+    </ul>
+    <p>
+      In the example below the code
+      <code>event.target.style.display = 'none';</code> refers to the
+      <code>share</code> element, because the function is invoked in the event
+      listener attached to this element.
+    </p>
+    <p>
+      <code>event.timeStamp</code> is the number of milliseconds that passed
+      between the page loading and the share button being clicked.
+    </p>
+    <pre><code class="language-javascript">
+let social = document.getElementById('social-media');
+let share = document.getElementById('share-button');
+let text = document.getElementById('text');
+
+// Write your code below
+let sharePhoto = function(event) {
+  event.target.style.display = 'none';
+  text.innerHTML = event.timeStamp;
+}
+
+share.addEventListener('click', sharePhoto);
+    </code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to Index
+    </button>
+  </body>
+</html>
