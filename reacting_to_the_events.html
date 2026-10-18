@@ -33,6 +33,39 @@
   </head>
   <body>
     <h1>Responding to the events</h1>
+<h2>Adding Event Handlers</h2>
+
+<p>
+  We looked at registering event handlers using the
+  <code>.addEventListener()</code> method, but there is also another way!
+</p>
+
+<p>
+  Event Handlers can also be registered by setting an <code>.onevent</code>
+  property on a DOM element (event target). The pattern for registering a
+  specific event is to append an element with <code>.on</code> followed by the
+  lowercased event type name. For instance, if we want to register a click event
+  with this pattern, we would write:
+</p>
+
+<pre><code class = "language-javascript">eventTarget.onclick = eventHandlerFunction;</code></pre>
+
+<p>
+  Here, we give the DOM element <code>eventTarget</code> the
+  <code>.onclick</code> property and set its value as the event handler function
+  <code>eventHandlerFunction</code>.
+</p>
+
+<p>
+  It’s important to know that this <code>.onevent</code> property and
+  <code>.addEventListener()</code> will both register event listeners. With
+  <code>.onevent</code>, it allows for one event handler function to be attached
+  to the event target. However, with the <code>.addEventListener()</code> method,
+  we can add multiple event handler functions. In the later exercises, we’ll be
+  using the <code>.addEventListener()</code> syntax, but we wanted to also
+  introduce the <code>.onevent</code> syntax because both are widely used.
+</p>
+    
     <p>
       This section is about the cases when the user clicks the button and
       something happens
