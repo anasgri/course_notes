@@ -166,6 +166,18 @@ button.addEventListener("click", function() {
   alert("Button clicked!");
 });
 </code></pre>
+<p>Or the function can be defined separartely</p>
+<pre><code class = "language-javascript">
+  let readMore = document.getElementById('read-more');
+let moreInfo = document.getElementById('more-info');
+
+// Write your code here:
+function showInfo() {
+  moreInfo.style.display = "block";
+}
+
+readMore.addEventListener("click", showInfo);
+</code></pre>
     <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
