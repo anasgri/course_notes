@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Removing event handlers</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Cornflower blue */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1; /* Darker blue on hover */
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Removing Event Handlers</h2>
+
+    <p>
+      The <code>.removeEventListener()</code> method is used to reverse the
+      <code>.addEventListener()</code> method. This method stops the event
+      target from “listening” for an event to fire when it no longer needs to.
+      <code>.removeEventListener()</code> also takes two arguments:
+    </p>
+
+    <ol>
+      <li>The event type as a string</li>
+      <li>The event handler function</li>
+    </ol>
+
+    <p>
+      Check out the syntax of a <code>.removeEventListener()</code> method with
+      a click event:
+    </p>
+
+    <pre><code class="language-javascript">eventTarget.removeEventListener('click', eventHandlerFunction);</code></pre>
+
+    <p>
+      Because there can be multiple event handler functions associated with a
+      particular event, <code>.removeEventListener()</code> needs both the exact
+      event type name and the name of the event handler you want to remove. If
+      <code>.addEventListener()</code> was provided an anonymous function, then
+      that event listener cannot be removed.
+    </p>
+    <p>
+      This might be useful when the button needs to serve its purpose only once.
+    </p>
+    <p>
+      Below is an example of such code, where the fortune needs to be displayed
+      once the button is clicked, and the same function that displays the
+      fortune contains <code>removeEventListener</code>.
+    </p>
+    <pre><code class="language-javascript">
+let fortunes = ["A beautiful, smart, and loving person will be coming into your life.",
+  "A fresh start will put you on your way.",
+  "A golden egg of opportunity falls into your lap this month.",
+  "A smile is your personal welcome mat.",
+  "All your hard work will soon pay off."
+]
+
+let button = document.getElementById('fortuneButton');
+let fortune = document.getElementById('fortune');
+
+function fortuneSelector(){
+  let randomFortune = Math.floor(Math.random() * fortunes.length);
+  return fortunes[randomFortune];
+}
+
+function showFortune(){
+  fortune.innerHTML = fortuneSelector();
+  button.innerHTML = "Come back tomorrow!";
+  button.style.cursor = "default";
+  button.removeEventListener('click', showFortune);
+
+}
+
+button.addEventListener('click', showFortune);
+</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to beginning
+    </button>
+  </body>
+</html>
