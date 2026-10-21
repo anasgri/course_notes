@@ -56,6 +56,61 @@ Form elements
 	</li>
 </ul>
 
+<h2>How a Form Works</h2>
+
+<p>
+  We can think of the internet as a network of computers which send and receive
+  information. Computers need an <em>HTTP request</em> to know how to
+  communicate. The HTTP request instructs the receiving computer how to handle
+  the incoming information. More information can be found in our article about
+  HTTP requests.
+</p>
+
+<p>
+  The <code>&lt;form&gt;</code> element is a great tool for collecting
+  information, but then we need to send that information somewhere else for
+  processing. We need to supply the <code>&lt;form&gt;</code> element with both
+  the location of where the <code>&lt;form&gt;</code>’s information goes and what
+  HTTP request to make. Take a look at the sample <code>&lt;form&gt;</code>
+  below:
+</p>
+
+<pre><code class = "language-html">&lt;form action="/example.html" method="POST"&gt;
+&lt;/form&gt;</code></pre>
+
+<p>
+  In the above example, we’ve created the skeleton for a
+  <code>&lt;form&gt;</code> that will send information to
+  <strong>example.html</strong> as a POST request:
+</p>
+
+<ul>
+  <li>The <code>action</code> attribute determines where the information is sent.</li>
+  <li>
+    The <code>method</code> attribute is assigned a HTTP verb that is included in
+    the HTTP request</li>
+</ul>
+<p>
+  Note: HTTP verbs like POST do not need to be capitalized for the request to
+  work, but it’s done so out of convention. In the example above we could have
+  written <code>method="post"</code> and it would still work.
+</p>
+<p>
+  The <code>&lt;form&gt;</code> element can also contain child elements. For
+  instance, it would be helpful to provide a header so that users know what this
+  <code>&lt;form&gt;</code> is about. We could also add a paragraph to provide
+  even more detail. Let’s see an example of this in code:
+</p>
+
+<pre><code class = "language-html">&lt;form action="/example.html" method="POST"&gt;
+  &lt;h1&gt;Creating a form&lt;/h1&gt;
+  &lt;p&gt;Looks like you want to learn how to create an HTML form.
+Well, the best way to learn is to play around with it.&lt;/p&gt;
+&lt;/form&gt;</code></pre>
+
+<p>
+  The example above doesn’t collect any user input.</p>
+
 <p> The form can have <code>&lt;input&gt;</code> elements.</p>
 <p> The input element can be displayed in diffferent ways based on its <code>type</code> attribute</p>
 <p> The full list of the attribute types is shown below: </p>
@@ -137,6 +192,146 @@ Form elements
  </fieldset>
 </form>
 
+
+<h3>Password Input</h3>
+
+<p>
+  Think about all those times we have to put sensitive information, like a
+  password or PIN, into a <code>&lt;form&gt;</code>. We wouldn’t want our
+  information to be seen by anyone peeking over our shoulder! Luckily, we have
+  the <code>type="password"</code> attribute for <code>&lt;input&gt;</code>!
+</p>
+
+<p>
+  An <code>&lt;input type ="password"&gt;</code> element will replace input text
+  with another character like an asterisk (*) or a dot (·). The code below
+  provides an example of how to create a password field:
+</p>
+
+<pre><code class = "language-html">&lt;form&gt;
+  &lt;label for="user-password"&gt;Password: &lt;/label&gt;
+  &lt;input type="password" id="user-password" name="user-password"&gt;
+&lt;/form&gt;</code></pre>
+
+<form>
+  <label for="user-password">Password: </label>
+  <input type="password" id="user-password" name="user-password">
+</form>
+
+<h3>Number Input</h3>
+
+<p>
+  We’ve now gone over two <code>type</code> attributes for
+  <code>&lt;input&gt;</code> related to text. But, we might want our users to
+  type in a number — in which case we can set the <code>type</code> attribute
+  to… (you guessed it)… <code>"number"</code>!
+</p>
+
+<p>
+  By setting <code>type="number"</code> for an <code>&lt;input&gt;</code> we can
+  restrict what users type into the input field to just numbers (and a few
+  special characters like <code>-</code>, <code>+</code>, and <code>.</code>).
+  We can also provide a <code>step</code> attribute which creates arrows inside
+  the input field to increase or decrease by the value of the
+  <code>step</code> attribute. Below is the code needed to render an input field
+  for numbers:
+</p>
+
+<pre><code class = "language-html">&lt;form&gt;
+  &lt;label for="years"&gt; Years of experience: &lt;/label&gt;
+  &lt;input id="years" name="years" type="number" step="1"&gt;
+&lt;/form&gt;</code></pre>
+<form>
+  <label for="years"> Years of experience: </label>
+  <input id="years" name="years" type="number" step="1">
+</form>
+<h3>Range attribute</h3>
+<p>
+  Using an <code>&lt;input type="number"&gt;</code> is great if we want to allow
+  users to type in any number of their choosing. But, if we wanted to limit what
+  numbers our users could type we might consider using a different
+  <code>type</code> value. Another option we could use is setting
+  <code>type</code> to <code>"range"</code> which creates a slider.
+</p>
+
+<p>
+  To set the minimum and maximum values of the slider we assign values to the
+  <code>min</code> and <code>max</code> attribute of the
+  <code>&lt;input&gt;</code>. We could also control how smooth and fluid the
+  slider works by assigning the <code>step</code> attribute a value. Smaller
+  <code>step</code> values will make the slider move more fluidly, whereas larger
+  <code>step</code> values will make the slider move more noticeably.
+</p>
+
+<pre><code class = "language-html">&lt;form&gt;
+  &lt;label for="volume"&gt; Volume Control&lt;/label&gt;
+  &lt;input id="volume" name="volume" type="range" min="0" max="100" step="1"&gt;
+&lt;/form&gt;</code></pre>
+<form>
+  <label for="volume"> Volume Control</label>
+  <input id="volume" name="volume" type="range" min="0" max="100" step="1">
+</form>
+</br>
+<h3>Chekbox input</h3>
+<p>
+  So far the types of inputs we’ve allowed were all single choices. But, what if
+  we presented multiple options to users and allowed them to select any number of
+  options? Sounds like we could use checkboxes! In a <code>&lt;form&gt;</code> we
+  would use the <code>&lt;input&gt;</code> element and set
+  <code>type="checkbox"</code>. Examine the code used to create multiple
+  checkboxes:
+</p>
+
+<pre><code class = "language-html">&lt;form&gt;
+  &lt;p&gt;Choose your pizza toppings:&lt;/p&gt;
+  &lt;label for="cheese"&gt;Extra cheese&lt;/label&gt;
+  &lt;input id="cheese" name="topping" type="checkbox" value="cheese"&gt;
+  &lt;br&gt;
+  &lt;label for="pepperoni"&gt;Pepperoni&lt;/label&gt;
+  &lt;input id="pepperoni" name="topping" type="checkbox" value="pepperoni"&gt;
+  &lt;br&gt;
+  &lt;label for="anchovy"&gt;Anchovy&lt;/label&gt;
+  &lt;input id="anchovy" name="topping" type="checkbox" value="anchovy"&gt;
+&lt;/form&gt;</code></pre>
+<form>
+  <p>Choose your pizza toppings:</p>
+  <label for="cheese">Extra cheese</label>
+  <input id="cheese" name="topping" type="checkbox" value="cheese">
+  <br>
+  <label for="pepperoni">Pepperoni</label>
+  <input id="pepperoni" name="topping" type="checkbox" value="pepperoni">
+  <br>
+  <label for="anchovy">Anchovy</label>
+  <input id="anchovy" name="topping" type="checkbox" value="anchovy">
+</form>
+<br/>
+<h3>Radio Button Input</h3>
+
+<p>
+  Checkboxes work well if we want to present users with multiple options and let
+  them choose one or more of the options. However, there are cases where we want
+  to present multiple options and only allow for one selection — like asking
+  users if they agree or disagree with the terms and conditions. Let’s look over
+  the code used to create radio buttons:
+</p>
+
+<pre><code class = "language-html">&lt;form&gt;
+  &lt;p&gt;What is sum of 1 + 1?&lt;/p&gt;
+  &lt;input type="radio" id="two" name="answer" value="2"&gt;
+  &lt;label for="two"&gt;2&lt;/label&gt;
+  &lt;br&gt;
+  &lt;input type="radio" id="eleven" name="answer" value="11"&gt;
+  &lt;label for="eleven"&gt;11&lt;/label&gt;
+&lt;/form&gt;</code></pre>
+
+<form>
+  <p>What is sum of 1 + 1?</p>
+  <input type="radio" id="two" name="answer" value="2">
+  <label for="two">2</label>
+  <br>
+  <input type="radio" id="eleven" name="answer" value="11">
+  <label for="eleven">11</label>
+</form>
 <h3>label, id and for attributes in the form elements</h3>
 
 <p>It's considered a very good practice to connect the label to the input elements with the use of for and id attributes.</p>
@@ -219,7 +414,19 @@ names</p>
   <input type="password" id="password" name="password" minlength="8" maxlength="50"><br><br>
   <input type="submit" value="Submit">
 </form>
-
+<h3>Specifying minimum and maiximum in for type number form</h3>
+<pre><code class = "language-html">
+&lt;form action="/action_page.php"&gt;
+&lt;label for="number"&gt;Enter your age here:&lt;/label&gt;
+&lt;input type="number" name="age" id="age" required min="1" max="123"&gt;
+&lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;
+</code></pre>
+<form action="/action_page.php">
+<label for="number">Enter your age here:</label>
+<input type="number" name="age" id="age" required min="1" max="123">
+<input type="submit" value="Submit">
+</form>
 <p>There also might be a pattern attribute that contains the <strong>regex expression</strong></p>
 <pre><code class = "language-html">
 &lt;form action="/action_page.php"&gt;
@@ -263,9 +470,9 @@ names</p>
 <p> in this case the <code>value</code> attribute is needed to interpret users choice as value</p>
 <pre><code class = "language-html">
 &lt;label for = "my_radio"&gt;Cash&lt;/label"&gt;
-&lt;input type="radio", id = "my_radio", name = "payment_method", value = "cash"&gt;
+&lt;input type="radio" id = "my_radio" name = "payment_method" value = "cash"&gt;
 &lt;label for = "my_radio1"&gt;Card&lt;/label"&gt;
-&lt;input type="radio", id = "my_radio1", name = "payment_method", value = "card"&gt;
+&lt;input type="radio" id = "my_radio1" name = "payment_method" value = "card"&gt;
 </code></pre>
 
 <label for = "my_radio">Cash</label">
@@ -370,6 +577,86 @@ dropdown elements
 </select>
 </form>
 
+<h2>Datalist Input</h2>
+
+<p>
+  Even if we have an organized dropdown list, if the list has a lot of options,
+  it could be tedious for users to scroll through the entire list to locate one
+  option. That’s where using the <code>&lt;datalist&gt;</code> element comes in
+  handy.
+</p>
+
+<p>
+  The <code>&lt;datalist&gt;</code> is used with an
+  <code>&lt;input type="text"&gt;</code> element. The
+  <code>&lt;input&gt;</code> creates a text field that users can type into and
+  filter options from the <code>&lt;datalist&gt;</code>. Let’s go over a concrete
+  example:
+</p>
+
+<pre><code class = "language-html">&lt;form&gt;
+  &lt;label for="city"&gt;Ideal city to visit?&lt;/label&gt;
+  &lt;input type="text" list="cities" id="city" name="city"&gt;
+
+  &lt;datalist id="cities"&gt;
+    &lt;option value="New York City"&gt;&lt;/option&gt;
+    &lt;option value="Tokyo"&gt;&lt;/option&gt;
+    &lt;option value="Barcelona"&gt;&lt;/option&gt;
+    &lt;option value="Mexico City"&gt;&lt;/option&gt;
+    &lt;option value="Melbourne"&gt;&lt;/option&gt;
+    &lt;option value="Other"&gt;&lt;/option&gt;
+  &lt;/datalist&gt;
+&lt;/form&gt;</code></pre>
+
+<p>
+  Notice, in the code above, we have an <code>&lt;input&gt;</code> that has a
+  <code>list</code> attribute. The <code>&lt;input&gt;</code> is associated to the
+  <code>&lt;datalist&gt;</code> via the <code>&lt;input&gt;</code>’s
+  <code>list</code> attribute and the <code>id</code> of the
+  <code>&lt;datalist&gt;</code>.
+</p>
+
+<h3>Textarea element</h3>
+
+<p>
+  An <code>&lt;input&gt;</code> element with <code>type="text"</code> creates a
+  single row input field for users to type in information. However, there are
+  cases where users need to write in more information, like a blog post. In such
+  cases, instead of using an <code>&lt;input&gt;</code>, we could use
+  <code>&lt;textarea&gt;</code>.
+</p>
+
+<p>
+  The <code>&lt;textarea&gt;</code> element is used to create a bigger text field
+  for users to write more text. We can add the attributes <code>rows</code> and
+  <code>cols</code> to determine the amount of rows and columns for the
+  <code>&lt;textarea&gt;</code>. Take a look:
+</p>
+
+<pre><code class = "language-html">&lt;form&gt;
+  &lt;label for="blog"&gt;New Blog Post: &lt;/label&gt;
+  &lt;br&gt;
+  &lt;textarea id="blog" name="blog" rows="5" cols="30"&gt;
+  &lt;/textarea&gt;
+&lt;/form&gt;</code></pre>
+
+<p>
+  When we submit the form, the value of <code>&lt;textarea&gt;</code> is the text
+  written inside the box. If we want to add a default value to
+  <code>&lt;textarea&gt;</code> we would include it within the opening and closing
+  tags like so:
+</p>
+
+<pre><code class = "language-html">&lt;textarea&gt;Adding default text&lt;/textarea&gt;</code></pre>
+
+<h3>External library resources</h3>
+<p>If we’re creating a relatively simple website, it makes sense to code the form validation ourselves or use a simple 
+  <a href = "https://www.npmjs.com/package/just-validate">vanilla JavaScript</a> library—just-validate, for example. 
+  But most basic validation libraries will involve directly accessing or manipulating the DOM.
+   This can get tricky when working with a <a href = "https://www.codecademy.com/resources/docs/general/framework">framework</a>
+ that relies on a virtual DOM—like React or Vue. In those situations, it might be best to incorporate a library 
+ that works well with your specific framework. For example, the <a href = "https://www.npmjs.com/package/formik">formik</a> library is a 
+ lightweight library that simplifies validating forms in a React app.</p>
  <button type="button" class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
