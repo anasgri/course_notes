@@ -4,6 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CSS colors</title>
+    <style>
+      .btnback {
+        background-color: #6495ed; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+
   </head>
   <body>
     <h1>CSS colors</h1>
@@ -72,5 +87,12 @@
         <code>a</code>, which is represented as a percentage.
       </li>
     </ul>
+    <button type="button" class="btnback" onclick="window.location.href = 'https://webaim.org/resources/contrastchecker/'">The contrast checker</button>
+    <br>
+
+    <button type="button" class="btnback" onclick="window.location.href = 'index.html'">
+      Back to beginning
+    </button>
+
   </body>
 </html>
