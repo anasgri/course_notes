@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Images</title>
     <link
       href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
       rel="stylesheet"
     />
+	  <script defer src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
       <style>
       .btnback {
         background-color: #6495ed; /* Green */
@@ -54,11 +56,42 @@
 
     <p><img src="img_girl.jpg" width="500" height="600" alt="picture" /></p>
     <!--The img tag has attributes width hight-->
+	<p>
+  In the example above, a screen reader will read out loud “image: a kitten
+  snuggling a puppy” to the user. If the image doesn’t load properly, the browser
+  will display this text as a tooltip.
+</p>
 
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
+<p>
+  When using the <code>alt</code> attribute, you should adhere to these
+  conventions:
+</p>
+
+<ol>
+  <li>
+    In general, the value of <code>alt</code> should concisely describe the
+    image.
+  </li>
+  <li>
+    For images that are also <code>&lt;a&gt;</code> elements, the
+    <code>alt</code> attribute should describe the source that the link targets.
+  </li>
+  <li>
+    If an image conveys no information (such as a decorative border), the
+    <code>alt</code> attribute should be empty, but should never be omitted.
+  </li>
+  <li>
+    If an image is described by text near the image, do not duplicate the
+    description in the <code>alt</code> attribute. Use an empty
+    <code>alt</code> attribute instead.
+  </li>
+  <li>
+    The value of an <code>alt</code> attribute should be no more than 150
+    characters.
+  </li>
+</ol>
       <button class="btnback" onclick="window.location.href = 'index.html'">
-      Back to Index
+      Back to starting page
     </button>
 </body>
 </html>
