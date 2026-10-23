@@ -1,0 +1,551 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css"
+    />
+    <style>
+      /*
+      .grid-diagram {
+        width: 70%;
+      }
+      table th,
+      td {
+        border: 1px solid black;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      table th {
+        background-color: rgb(204, 204, 234);
+      }
+        */
+      .btnback {
+        background-color: #e1a50c;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #917b2a;
+      }
+      .advert {
+        padding: 10px;
+        background-color: rgb(205, 226, 245);
+        border: 1px solid rgb(26, 16, 2);
+        line-height: 1.5;
+      }
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"
+    ></script>
+  </head>
+  <body>
+    <h2>Introduction to Classes</h2>
+
+    <p>
+      JavaScript is an <em>object-oriented programming</em> (OOP) language we
+      can use to model real-world items. In this lesson, we will learn how to
+      make classes. <strong>Classes</strong> are a tool that developers use to
+      produce similar objects quickly.
+    </p>
+
+    <p>
+      For example, consider an object representing a dog called Halley. This dog
+      has a <code>_name</code> property with the value <code>'Halley'</code> and
+      a <code>_behavior</code> property with the value <code>0</code>. Here’s
+      how we create the <code>halley</code> object:
+    </p>
+
+    <pre><code class = "language-javascript">
+    let halley = {
+  _name: 'Halley',
+  _behavior: 0,
+
+  get name() {
+    return this._name;
+  },
+
+  get behavior() {
+    return this._behavior;
+  },
+
+  incrementBehavior() {
+    this._behavior++;
+  }
+}</code></pre>
+
+    <p>
+      Now, imagine we own a dog daycare and want to create a catalog of all the
+      dogs who belong to the daycare. Instead of using the syntax above for
+      every dog that joins the daycare, we can create a <code>Dog</code> class
+      that serves as a template for creating new <code>Dog</code> objects. For
+      each new dog, we can provide a value for their name.
+    </p>
+    <p>Below is the example of the class constructor</p>
+    <pre><code class = "language-javascript">
+class Dog {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+
+  get name() {
+    return this._name;
+  }
+  get behavior() {
+    return this._behavior;
+  }   
+
+  incrementBehavior() {
+    this._behavior ++;
+  }
+}
+
+const halley = new Dog('Halley'); // creating new object
+console.log(halley.name); // Print name value to console
+console.log(halley.behavior); // Print behavior value to console
+halley.incrementBehavior(); // Add one to behavior
+console.log(halley.name); //Print name value to console
+console.log(halley.behavior); // Print behavior value to console
+</code></pre>
+    <h3>Constructor</h3>
+    <p>
+      JavaScript calls the <code>.constructor()</code> method every time it
+      creates a new instance of a class
+    </p>
+    <pre><code class = "language-javascript">
+class Dog {
+  constructor(name) {
+    this.name = name;
+    this.behavior = 0;
+  }
+}
+    </code></pre>
+    <ul>
+      <li>
+        <code>Dog</code> is the name of our class. By convention, we capitalize
+        and PascalCase class names.
+      </li>
+      <li>
+        JavaScript will invoke the <code>.constructor()</code> method every time
+        we create a new instance of our <code>Dog</code> class.
+      </li>
+      <li>
+        This <code>.constructor()</code> method accepts one argument,
+        <code>name</code>.
+      </li>
+      <li>
+        Inside the <code>.constructor()</code> method, we use the
+        <code>this</code> keyword. In the context of a class,
+        <code>this</code> refers to an instance of that class. In the
+        <code>Dog</code> class, we use <code>this</code> to set the value of the
+        <code>Dog</code> instance’s <code>name</code> property to the
+        <code>name</code> argument.
+      </li>
+      <li>
+        Under <code>this.name</code>, we create a property called
+        <code>behavior</code>, which will keep track of the number of times a
+        dog misbehaves. The <code>behavior</code> property is always initialized
+        to zero.
+      </li>
+    </ul>
+    <h3>Creating a class instance</h3>
+    <p>
+      An instance is an object that contains the property names and methods of a
+      class, but with unique property values. Let’s look at our Dog class
+      example.
+    </p>
+    <pre><code class = "language-javascript">
+class Dog {
+  constructor(name) {
+    this.name = name;
+    this.behavior = 0;
+  } 
+}
+
+const halley = new Dog('Halley'); // Create a new Dog instance
+console.log(halley.name); // Log the name value saved to halley
+// Output: 'Halley'
+      </code></pre>
+    <p>
+      Below our <code>Dog</code> class, we use the <code>new</code> keyword to
+      create an instance of our <code>Dog</code> class. Let’s consider the line
+      of code step-by-step.
+    </p>
+
+    <ul>
+      <li>
+        We create a new variable named <code>halley</code> that will store an
+        instance of our <code>Dog</code> class.
+      </li>
+      <li>
+        We use the <code>new</code> keyword to generate a new instance of the
+        <code>Dog</code> class. The <code>new</code> keyword calls the
+        constructor, executes the code inside of it, and then returns the new
+        instance.
+      </li>
+      <li>
+        We pass the <code>'Halley'</code> string to the
+        <code>Dog</code> constructor, which sets the <code>name</code> property
+        to <code>'Halley'</code>.
+      </li>
+      <li>
+        Finally, we log the value saved to the <code>name</code> key in our
+        <code>halley</code> object, which logs <code>'Halley'</code> to the
+        console.
+      </li>
+    </ul>
+    <h3>Adding getters to the classses</h3>
+    <p>
+      Below is the surgeon class, the properties are prepended with the
+      underscore _, so that they can not be acessed directly.
+    </p>
+    <p>
+      To add the getter method the {} needs to ve closed, and then the getter is
+      added.
+    </p>
+    <pre><code class = "language-javascript">
+        class Surgeon {
+  constructor(name, department) {
+    this._name = name;
+    this._department = department;
+    this._remainingVacationDays = 20;
+  } // It is important to close it here
+    get name() {
+      return this._name;
+    }
+  }
+
+const surgeonRomero = new Surgeon('Francisco Romero', 'Cardiovascular');
+const surgeonJackson = new Surgeon('Ruth Jackson', 'Orthopedics');
+    </code></pre>
+
+    <h3>Setter methods</h3>
+    <p>
+      The setter methods of the classes are similar to those of objects, they
+      require one compulsary parameter
+    </p>
+    <pre><code class = "language-javascript">
+    class Person {
+  constructor(firstName, lastName) {
+    this._firstName = firstName;
+    this._lastName = lastName;
+  }
+
+  set lang(lang) {
+    this._language = lang;  // creates _language the first time it's called
+  }
+
+  get lang() {
+    return this._language;
+  }
+}
+
+const person = new Person("Ada", "Lovelace");
+console.log(person.lang); // undefined (not set yet)
+person.lang = "en";
+console.log(person.lang); // "en"
+</code></pre>
+
+    <h3>Adding the functions to the classes</h3>
+    <p>
+      Below is the same class, just the function
+      <code>takeVacationDays()</code> has been added
+    </p>
+    <pre><code class = "language-javascript">
+class Surgeon {
+  constructor(name, department) {
+    this._name = name;
+    this._department = department;
+    this._remainingVacationDays = 20;
+  }
+    get name() {
+      return this._name;
+    }
+    get department() {
+      return this._department;
+    }
+    get remainingVacationDays() {
+      return this._remainingVacationDays;
+    }
+    takeVacationDays(daysOff) {
+      this._remainingVacationDays-= daysOff;
+    }
+  }
+
+const surgeonRomero = new Surgeon('Francisco Romero', 'Cardiovascular');
+const surgeonJackson = new Surgeon('Ruth Jackson', 'Orthopedics');
+
+// Getting the properties
+console.log(surgeonRomero.name);  // Francisco Romero
+surgeonRomero.takeVacationDays(3); // substracts 3 from 20
+console.log(surgeonRomero.remainingVacationDays); // 17
+</code></pre>
+    <h3>Inheritance</h3>
+    <p>
+      In the example below it is shown how the class Cat can inherit from the
+      animal class
+    </p>
+    <pre><code class = "language-javascript">
+    // parent class
+    class Animal {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+    
+  get name() {
+    return this._name;
+  }
+  
+  get behavior() {
+    return this._behavior;
+  }
+    
+  incrementBehavior() {
+    this._behavior++;
+  }
+} 
+
+// child class
+class Cat extends Animal {
+  constructor(name, usesLitter) {
+    super(name);
+    this._usesLitter = usesLitter;
+  }
+}
+
+</code></pre>
+    <p>
+      In the example above, we created a new class named <code>Cat</code> that
+      extends the <code>Animal</code> class. Let’s pay special attention to our
+      new keywords: <code>extends</code> and <code>super</code>.
+    </p>
+
+    <ul>
+      <li>
+        The <code>extends</code> keyword makes the properties and methods of the
+        <code>Animal</code> class available inside the <code>Cat</code> class.
+      </li>
+      <li>
+        The constructor, called when a new <code>Cat</code> object is created,
+        accepts two arguments, <code>name</code> and <code>usesLitter</code>.
+      </li>
+      <li>
+        The <code>super</code> keyword calls the constructor of the parent
+        class. In this case, <code>super(name)</code> passes the
+        <code>name</code> argument of the <code>Cat</code> class to the
+        constructor of the <code>Animal</code> class. When the
+        <code>Animal</code> constructor runs, it sets
+        <code>this._name = name;</code> for new <code>Cat</code> instances.
+      </li>
+      <li>
+        <code>_usesLitter</code> is a new property that is unique to the
+        <code>Cat</code> class, so we set it in the
+        <code>Cat</code> constructor.
+      </li>
+    </ul>
+
+    <p class="advert">
+      Notice that we call <code>super()</code> on the first line of our
+      constructor, then set the <code>_usesLitter</code> property on the second
+      line. In a subclass constructor, we must always call the
+      <code>super()</code> method before using the <code>this</code> keyword —
+      if we do not, JavaScript will throw a reference error. To avoid reference
+      errors, it is best practice to call <code>super()</code> on the first line
+      of subclass constructors.
+    </p>
+    <h3>Another examople of the inheritance</h3>
+    <pre><code class = "language-javascript">
+            class HospitalEmployee {
+  constructor(name) {
+    this._name = name;
+    this._remainingVacationDays = 20;
+  }
+  
+  get name() {
+    return this._name;
+  }
+  
+  get remainingVacationDays() {
+    return this._remainingVacationDays;
+  }
+  
+  takeVacationDays(daysOff) {
+    this._remainingVacationDays -= daysOff;
+  }
+}
+
+class Nurse extends HospitalEmployee {
+  constructor(name, certifications) {
+  super(name);
+  this._certifications = certifications;
+}
+}
+
+
+const nurseOlynyk = new Nurse('Olynyk', ['Trauma', 'Pediatrics'])
+
+this._name = name;                  // uses the argument you passed
+this._remainingVacationDays = 20;   // hardcoded, needs no input, automatically inherited when yo call super
+
+        </code></pre>
+    <p>
+      <code>super(...)</code> calls the parent class’s constructor, so you pass
+      it <strong>whatever arguments the parent’s constructor expects</strong>.
+      Everything the parent constructor does then runs automatically, including
+      setting properties that don’t depend on any input.
+    </p>
+    <h3>Inheritenace of the methods</h3>
+    <p>
+      When we use extends in a class declaration, all of the parent methods are
+      available to the child class. Below, we extend our Animal class to a Cat
+      subclass.
+    </p>
+    <pre><code class = "language-javascript">
+class Animal {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+    
+  get name() {
+    return this._name;
+  }
+  
+  get behavior() {
+    return this._behavior;
+  }
+  
+  incrementBehavior() {
+    this._behavior++;
+  }
+} 
+
+
+class Cat extends Animal {
+  constructor(name, usesLitter) {
+    super(name);
+    this._usesLitter = usesLitter;
+  }
+}
+
+const bryceCat = new Cat('Bryce', false);
+console.log(bryceCat.behavior); // 0
+bryceCat.incrementBehavior();
+console.log(bryceCat.behavior); // 1
+    </code></pre>
+    <p>
+      In the preceding example, our Cat class extends Animal. As a result, the
+      Cat class has access to the Animal getters and the
+      <code>.incrementBehavior()</code>
+      method.
+    </p>
+    <p>
+      In addition to the inherited features, child classes can contain their own
+      properties, getters, setters, and methods.
+    </p>
+
+    <p>
+      Below, we added a <code>.usesLitter()</code> getter to our
+      <code>Cat</code>
+      class. The syntax for creating getters, setters, and methods is the same
+      as it is in any other class.
+    </p>
+
+    <pre><code class = "language-javascript">
+class Cat extends Animal {
+  constructor(name, usesLitter) {
+    super(name);
+    this._usesLitter = usesLitter;
+  }
+
+  get usesLitter() {
+    return this._usesLitter;
+  }
+}</code></pre>
+
+    <p>
+      In the example above, we create a <code>.usesLitter()</code> getter in the
+      <code>Cat</code> class that returns the value saved to
+      <code>_usesLitter</code>.
+    </p>
+    <h2>Static Methods</h2>
+
+    <p>
+      Sometimes, we want a class to have methods that aren’t available in
+      individual instances but can be called directly from the class.
+    </p>
+
+    <p>
+      Take the <code>Date</code> class, for example — we can both create
+      <code>Date</code> instances to represent whatever date we want, and call
+      <strong>static</strong> methods, like <code>Date.now()</code> which
+      returns the current date, directly from the class. The
+      <code>.now()</code> method is static, so it can be called directly from
+      the class, but not from an instance of the class.
+    </p>
+
+    <p>
+      Let’s see how to use the <code>static</code> keyword to create a static
+      method called <code>generateName</code> in our <code>Animal</code> class:
+    </p>
+
+    <pre><code class = "language-javascript">class Animal {
+  constructor(name) {
+    this._name = name;
+    this._behavior = 0;
+  }
+
+  static generateName() {
+    const names = ['Angel', 'Spike', 'Buffy', 'Willow', 'Tara'];
+    const randomNumber = Math.floor(Math.random()*5);
+    return names[randomNumber];
+  }
+}</code></pre>
+
+    <p>
+      In the example above, we create a <code>static</code> method called
+      <code>.generateName()</code> that returns a random name when it’s called.
+      Because of the <code>static</code> keyword, we can only access
+      <code>.generateName()</code> by appending it to the
+      <code>Animal</code> class.
+    </p>
+    <p>
+      We call the <code>.generateName()</code> method with the following syntax:
+    </p>
+
+    <pre><code class = "language-javascript">console.log(Animal.generateName()); // returns a name</code></pre>
+
+    <p>
+      <code>.generateName()</code> cannot be accessed from instances of the
+      <code>Animal</code> class or instances of its subclasses:
+    </p>
+
+    <pre><code class = "language-javascript">const tyson = new Animal('Tyson');
+tyson.generateName(); // TypeError</code></pre>
+
+    <p>
+      This example will result in an error, because a static method
+      (<code>.generateName()</code>) cannot be called on an instance
+      (<code>tyson</code>).
+    </p>
+
+    <button
+      type="button"
+      class="btnback"
+      onclick="window.location.href = 'index.html'"
+    >
+      Back to starting page
+    </button>
+  </body>
+</html>
