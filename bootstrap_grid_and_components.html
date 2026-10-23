@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bootstrap grid</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css"
+    />
+    <style>
+      .grid-diagram {
+        width: 70%;
+      }
+      table th,
+      td {
+        border: 1px solid black;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      table th {
+        background-color: rgb(204, 204, 234);
+      }
+      .btnback {
+        background-color: #e1a50c; /* Green */
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #917b2a;
+      }
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"
+    ></script>
+  </head>
+  <body>
+    <h1>Bootstrap Grid</h1>
+
+    <h2>Intro to the Grid</h2>
+
+    <p>
+      Bootstrap simplifies the layout of a website using a grid system. For us
+      to fully take advantage of Bootstrap’s grid system, we need to understand
+      how to structure our HTML.
+    </p>
+
+    <p>
+      At the heart of it, <em>containers</em> are the basis of Bootstrap’s grid.
+      Inside containers, we nest <em>rows</em> as immediate children. Then,
+      nested inside rows are <em>columns</em>. Inside columns, we put our actual
+      content. Take a look below at an example of this nesting pattern. Don’t
+      worry about the syntax of rows and columns just yet, but do take note of
+      how our HTML is organized:
+    </p>
+
+    <pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col"&gt;
+      &lt;!-- A column inside a row inside a container! --&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <p>
+      We can gain even more control of our layout once we start nesting rows
+      inside columns and setting widths for our columns! But, first, let’s
+      review how to create a layout using Bootstrap.
+    </p>
+    <h2>Bootstrap Containers</h2>
+
+    <p>
+      Bootstrap uses a grid system based on CSS Flexbox which organizes content
+      in rows or columns. As seen in the previous exercise, Bootstrap also uses
+      rows and columns and in this exercise we’ll learn about the essential
+      Bootstrap container. Using the Bootstrap grid also allows for
+      <em>responsive design</em>, in other words, a website’s layout can change
+      based on the user’s screen size.
+    </p>
+
+    <p>
+      Bootstrap uses classes to apply CSS rulesets — these rulesets dictate the
+      layout and styling of the element. To create a container, necessary for
+      Bootstrap’s grid, we assign a class of <code>"container"</code> to a
+      <code>&lt;div&gt;</code> like so:
+    </p>
+
+    <pre><code class="language-html">&lt;div class="container"&gt;&lt;/div&gt;</code></pre>
+
+    <p>
+      The <code>&lt;div&gt;</code> from the example above becomes a Bootstrap
+      container which has a width relative to a user’s screen size, becomes
+      horizontally centered, and has a left and right margin.
+    </p>
+
+    <p>
+      If we wanted the container to take up the entire width of the screen we
+      can assign a class of <code>"container-fluid"</code>:
+    </p>
+
+    <pre><code class="language-html">&lt;div class="container-fluid"&gt;&lt;/div&gt;</code></pre>
+    <h2>Rows</h2>
+
+    <p>
+      Now that we have an understanding of how the layout works in Bootstrap and
+      how to use containers, let’s focus our attention to rows.
+    </p>
+
+    <p>
+      As mentioned in the previous exercise, rows are nested within containers.
+      Also, we can add as many rows as we want inside a container. By default, a
+      row will take up the entire width of its parent container. To create a row
+      we assign a
+      <code>class</code> of <code>"row"</code> to an element. Take a look at the
+      provided example with a nested row inside a container:
+    </p>
+
+    <pre><code class="language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <h2>Columns</h2>
+    <p>
+      We’ve covered containers and rows, now we have to go one level deeper and
+      explore Bootstrap’s columns.
+    </p>
+    <p>
+      Columns are the immediate children of rows and store content. By default,
+      a column will take up the entire width of its parent row. As we add more
+      columns inside a row, the default behavior is for each column’s width to
+      be readjusted to fit in the row — each column will have the same width.
+      <strong
+        >A row is divided into 12 column units; if the columns’ widths add up to
+        more than 12, the extra columns wrap onto a new line. Study the diagram
+        below to see how column sizing works:</strong
+      >
+    </p>
+    <img
+      class="grid-diagram"
+      src="simple-12-grid.svg"
+      alt="Diagram of Bootstrap’s 12-column grid"
+    />
+    <h3>Setting Column Widths</h3>
+    <p>
+      We can decide the width of a column by appending a hyphen and a number to
+      the "col" class like so:
+    </p>
+    <pre><code class="language-html">&lt;div class="col-8"&gt;
+  &lt;p&gt;This is the width of 8 columns.&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+    <p>
+      In our example, our row still has 4 columns worth of space. If we decide
+      to add an adjacent column, we could also set our desired width like so:
+    </p>
+    <pre><code class = "language-html">
+  &lt;div class="row"&gt;
+ &lt;div class="col-8"&gt;
+   &lt;p&gt;This is the width of 8 columns.&lt;/p&gt;
+ &lt;/div&gt;
+ &lt;div class="col-4"&gt;
+   &lt;p&gt;This has the width of 4 columns.&lt;/p&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    <h3>Setting Column Width with Content</h3>
+    <p>
+      Another option we could use to set the width of a column is the content
+      inside the column. If we want to use the content to set a column’s width,
+      we append "auto" to the class of the column, for example:
+    </p>
+    <pre><code class = "language-html">
+&lt;div class="col-auto"&gt;
+  &lt;p&gt;This content determines the width of the parent column&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+    <h2>Bootstrap Breakpoints</h2>
+
+    <p>
+      One benefit of using Bootstrap is that it incorporates
+      <em>responsive design</em>. With responsive design, the layout of the
+      content changes to accommodate a user’s screen size.
+    </p>
+
+    <p>
+      Bootstrap categorizes screen sizes into 5 categories or as
+      <em>breakpoints</em>: extra small, small, medium, large, and extra large.
+      Each breakpoint has a range measured in pixels. The range of these
+      breakpoints and accompanying device types are marked in the following
+      table:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Breakpoint Range</th>
+          <th>Device Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Extra small</td>
+          <td>&lt; <code>576 px</code></td>
+          <td>portrait smartphones</td>
+        </tr>
+        <tr>
+          <td>Small</td>
+          <td>&ge; <code>576 px</code></td>
+          <td>landscape smartphones</td>
+        </tr>
+        <tr>
+          <td>Medium</td>
+          <td>&ge; <code>768 px</code></td>
+          <td>tablets</td>
+        </tr>
+        <tr>
+          <td>Large</td>
+          <td>&ge; <code>992 px</code></td>
+          <td>desktops</td>
+        </tr>
+        <tr>
+          <td>Extra Large</td>
+          <td>&ge; <code>1200 px</code></td>
+          <td>large desktop</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      By using these breakpoints in combination with Bootstrap’s grid, we can
+      customize the layout of our content for different screens.
+    </p>
+    <h2>Breakpoint Naming Convention</h2>
+
+    <p>
+      Using Bootstrap, we can freely change the layout of our content using
+      grid. We can even customize how our content on the grid changes based on
+      breakpoints (extra small, small, medium, large, extra large). To
+      incorporate these breakpoints into our code, we have to follow Bootstrap’s
+      class naming convention.
+    </p>
+
+    <p>
+      The naming convention follows a pattern of
+      <code class="language-css">"col-{breakpoint}-{width}"</code>. Let’s break
+      this pattern down:
+    </p>
+
+    <ul>
+      <li>As seen before <code>"col"</code> refers to a column.</li>
+      <li>
+        <code>{breakpoint}</code> can be <code>sm</code>, <code>md</code>,
+        <code>lg</code>, or <code>xl</code>. Notice that there is no extra small
+        or <code>xs</code> breakpoint. If we omit <code>{breakpoint}</code>, it
+        is by default for extra small screens.
+      </li>
+      <li>
+        <code>{width}</code> can be set from <code>1</code> to
+        <code>12</code> and assigns a width to the column.
+      </li>
+      <li>
+        When we set a <code>{breakpoint}-{width}</code>, it means that we want
+        our column to have that set width for screens that fit in the specified
+        breakpoint range and other larger screens.
+      </li>
+    </ul>
+
+    <p>For instance:</p>
+
+    <pre><code class = "language-html">&lt;div class="col-sm-8"&gt;
+&lt;/div&gt;</code></pre>
+    <h3>Combining Bootstrap Classes</h3>
+    <p>
+      It is also possible to combine multiple bootstrap classes to accomodate
+      for all screen sizes. The tag below is going to ensure that
+    </p>
+    <ul>
+      <li>
+        on the extra small screens, since we don’t have much space, we would
+        want to have our column take up the entirety of the row and assign a
+        class of <code>"col-12"</code>. We don’t include an xs breakpoint, it’s
+        implicitly applied for us!
+      </li>
+      <li>
+        <code> col-md-8</code> ensures that width will be set to 8 on mediun
+        sized screens
+      </li>
+      <li>
+        finally, on extra large screens the width will be set to 6, using
+        <code>col-xl-6</code>
+      </li>
+    </ul>
+    <pre><code class = "language-html">
+&lt;div class="col-12 col-md-8 col-xl-6"&gt;
+&lt;/div&gt;
+</code></pre>
+    <p>
+      The breakpoints cover the ranges upward from the particular breakpoint.
+    </p>
+    <p>Lets loo at the code below:</p>
+    <pre><code class = "language-html">&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-12 col-sm-7 col-lg-5"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    <ul>
+      <li>
+        col-sm-7 applies from the small breakpoint (576px) upward, so it covers
+        small and medium screens until a larger rule takes over.
+      </li>
+      <li>
+        col-lg-5 applies from the large breakpoint (992px) upward, so it covers
+        large and extra large screens.
+      </li>
+      <li>
+        col-12 was already in the starter code. It makes the column full width
+        on extra small screens (under 576px).
+      </li>
+    </ul>
+
+    <h2>The Navigation Component</h2>
+
+    <p>
+      In addition to useful utility classes, Bootstrap offers a collection of
+      <em>components</em>, such as a navbar, buttons, a carousel/slideshow for
+      images, and much more! Each Bootstrap component serves a distinct purpose
+      and we can find examples and code snippets directly from the documentation
+      — then, we can tweak the components to our personal needs.
+    </p>
+
+    <p>
+      The first component we’ll investigate is the
+      <em>navigation (nav) component</em> which offers our users a collection of
+      links. The nav component is slightly different from a <em>navbar</em>
+      component. The nav component is often specific to one or a few webpages,
+      whereas a navbar often appears on all the pages of a website.
+    </p>
+
+    <p>
+      There are many ways to create a basic nav component. Here’s one example:
+    </p>
+
+    <pre><code class = "language-html">&lt;ul class="nav"&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;a class="nav-link" href="#"&gt;First Link&lt;/a&gt;
+  &lt;/li&gt;
+  &lt;li class="nav-item"&gt;
+    &lt;a class="nav-link" href="#"&gt;Second Link&lt;/a&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+    <p>In the above example:</p>
+
+    <ul>
+      <li>
+        We created a navigation component using an <code>&lt;ul&gt;</code> that
+        has a class of <code>"nav"</code>.
+      </li>
+      <li>
+        The <code>&lt;ul&gt;</code> has nested <code>&lt;li&gt;</code> elements
+        which each have a class of <code>"nav-item"</code>.
+      </li>
+      <li>
+        Inside each <code>&lt;li&gt;</code> is an <code>&lt;a&gt;</code> which
+        has a class of <code>"nav-link"</code>.
+      </li>
+    </ul>
+
+    <h2>The Button Component</h2>
+
+    <p>
+      Another common component we see on websites are buttons. Buttons represent
+      a clickable object that does something else in return like navigating to a
+      different page, submitting a form, or opening a popup, just to name a few.
+    </p>
+
+    <p>
+      By default, the <code>&lt;button&gt;</code> element doesn’t have much
+      styling. But, with Bootstrap we can make button components that have more
+      styling. Here’s an example from Bootstrap’s button documentation:
+    </p>
+
+    <pre><code class = "language-html">&lt;button type="button" class="btn btn-danger"&gt;Danger&lt;/button&gt;</code></pre>
+
+    <p>
+      The example above will render a red button that has the text
+      <code>Danger</code> inside the button:
+    </p>
+
+    <ul>
+      <li>It has a <code>type</code> of <code>"button"</code>.</li>
+      <li>
+        It has two classes, <code>"btn"</code> and <code>"btn-danger"</code>.
+        <ul>
+          <li>
+            The <code>"btn"</code> class provides Bootstrap’s default button
+            styling.
+          </li>
+          <li>
+            The <code>"btn-danger"</code> turns the button red and conveys the
+            purpose of the button, i.e. clicking this button might not be safe!
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h2>Collapsing a Component</h2>
+
+    <p>
+      Bootstrap also allows us to quickly add interactivity to a webpage. One
+      way to include interactivity is to toggle the visibility of an element.
+    </p>
+
+    <p>
+      To add such a feature, we need two elements and a few attributes — one
+      element with content and another element that switches the visibility of
+      the previous element. For example:
+    </p>
+
+    <pre><code class = "language-html">&lt;button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"&gt;
+  This button controls the following div's visibility.
+&lt;/button&gt;
+
+&lt;div class="collapse" id="collapseExample"&gt;
+  &lt;p&gt;This content's visibility gets toggled&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+    <p>
+      In the example above, we have a <code>&lt;button&gt;</code> element that
+      toggles the visibility of the <code>&lt;div&gt;</code> element below it.
+    </p>
+
+    <p>
+      The button has an attribute <code>data-toggle="collapse"</code> which
+      enables button’s toggle ability. Another attribute,
+      <code>data-target="#collapseExample"</code>, means that this button
+      toggles the visibility of the element with the <code>id</code> of
+      <code>"collapseExample"</code>. The <code>aria-expanded</code> and
+      <code>aria-controls</code> attributes are information for screen readers
+      and other accessibility means.
+    </p>
+
+    <p>
+      Focusing our attention on the <code>&lt;div&gt;</code> below the button,
+      notice that it has a class of <code>"collapse"</code>, which hides the
+      content when the webpage initially renders. Our
+      <code>&lt;div&gt;</code> also has an <code>id</code> of
+      <code>"collapseExample"</code> which corresponds to the value of the
+      button’s <code>data-target</code>.
+    </p>
+    <h3>More advanced navbar</h3>
+    <pre><code class = "language-html">&lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+  &lt;a class="navbar-brand" href="#"&gt;Brand Goes Here&lt;/a&gt;
+  &lt;button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"&gt;
+    &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+  &lt;/button&gt;
+
+  &lt;div class="collapse navbar-collapse" id="navbarSupportedContent"&gt;
+    &lt;ul class="navbar-nav"&gt;
+      &lt;li class="nav-item active"&gt;
+        &lt;a class="nav-link" href="#"&gt;Current Page Link &lt;span class="sr-only"&gt;(current)&lt;/span&gt;&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li class="nav-item"&gt;
+        &lt;a class="nav-link" href="#"&gt;Another Page Link&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+
+    <p>
+      There’s a lot going on, so let’s break it down before we use it in our own
+      code:
+    </p>
+
+    <ul>
+      <li>
+        We have a <code>&lt;nav&gt;</code> element with multiple classes:
+        <ul>
+          <li>
+            <code>"navbar"</code> makes this <code>&lt;nav&gt;</code> a
+            Bootstrap navbar.
+          </li>
+          <li>
+            <code>"navbar-expand-lg"</code> renders the
+            <code>&lt;div class="collapse navbar-collapse"&gt;</code> element on
+            large (and extra large screens). The <code>"lg"</code> portion is
+            called a <em>breakpoint</em> and refers to screen size widths. We
+            can append one of any breakpoint value at the end, i.e.
+            <code>"sm"</code>, <code>"md"</code>, <code>"lg"</code>, or
+            <code>"xl"</code>.
+          </li>
+          <li>
+            <code>"navbar-light"</code> assigns a color scheme to the navbar.
+          </li>
+          <li>
+            <code>"bg-light"</code> assigns a background color to the navbar.
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <ul>
+      <li>
+        Inside the <code>&lt;nav&gt;</code> is an <code>&lt;a&gt;</code> with a
+        class of <code>"navbar-brand"</code> which can be an image or text that
+        represents the brand/logo of the website.
+      </li>
+      <li>
+        There is a <code>&lt;button&gt;</code> that renders when a user’s screen
+        size is smaller than the breakpoint value in
+        <code>"navbar-expand-{breakpoint}"</code> and toggles the visibility of
+        the navbar menu to save space.
+      </li>
+
+      <li>
+        If the user’s screen size matches the breakpoint (or is bigger), then
+        the
+        <code>&lt;div&gt;</code>, with the nav component and its links, renders
+        instead of the button.
+      </li>
+    </ul>
+    <h3>The Jumbotron Component</h3>
+
+    <p>
+      In arenas and stadiums, there are giant screens called <em>jumbotrons</em>
+      which display the main event for everyone in the crowd to see. Bootstrap
+      also offers a jumbotron component that serves a similar function and makes
+      content stand out.
+    </p>
+
+    <p>Here’s an example of a basic jumbotron that only contains text:</p>
+
+    <pre><code class = "language-html">&lt;div class="jumbotron"&gt;
+  &lt;h1&gt;Wow this stands out!&lt;/h1&gt;
+&lt;/div&gt;</code></pre>
+    <h3>Bootstrap card</h3>
+    <p>
+      Bootstrap also has a card component that serves as a container for smaller
+      customized content. Card components are often grouped together to display
+      a collection of similar content in manageable chunks. We can draw a
+      comparison of the card component to playing cards in deck — in both cases,
+      there are cards grouped together and each one contains something
+      different.
+    </p>
+    <pre><code class = "language-html">
+    &lt;div class="card"&gt;
+  &lt;img class="card-img-top" src="placeholder.jpg" alt="card example image"&gt;
+  &lt;div class="card-body"&gt;
+    &lt;h5 class="card-title"&gt;Card title&lt;/h5&gt;
+    &lt;p class="card-text"&gt;Card description goes here.&lt;/p&gt;
+    &lt;a href="#" class="card-link"&gt;Link to somewhere.&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+  </code></pre>
+    <ul>
+      <li>
+        To make a card component we need to assign a class of
+        <code>"card"</code> to an element.
+      </li>
+      <li>
+        Inside the card component, there are two children, an
+        <code>&lt;img&gt;</code> and a <code>&lt;div&gt;</code> element.
+      </li>
+      <li>
+        The <code>&lt;img&gt;</code> has a class of
+        <code>"card-img-top"</code> which adds styling and formatting to the
+        image.
+      </li>
+      <li>
+        The <code>&lt;div&gt;</code> has a class of
+        <code>"card-body"</code> which adds a section with default padding.
+      </li>
+      <li>
+        The content inside the card body all have classes with
+        <code>"card-{value}"</code> which adds styling to these elements
+        specific for Bootstrap cards.
+      </li>
+      <li>
+        By default, this card will take up the entire width of its parent
+        element.
+      </li>
+    </ul>
+    <h3>The Carousel Component</h3>
+    <p>
+      There are times that we want to showcase a group of images but not want to
+      have our users scroll through one picture on top of another. Instead, we
+      could fit our images into a slideshow using Bootstrap’s carousel
+      component.
+    </p>
+    <pre><code class = "language-html">
+    &lt;div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel"&gt;
+  &lt;div class="carousel-inner"&gt;
+    &lt;div class="carousel-item active"&gt;
+      &lt;img class="d-block w-100" src="example_slide_1.png" alt="First slide"&gt;
+    &lt;/div&gt;
+    &lt;div class="carousel-item"&gt;
+      &lt;img class="d-block w-100" src="example_slide_2.png" alt="Second slide"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+  </code></pre>
+
+    <p>
+      The example above will render a slideshow that loops through two images,
+      displaying one at a time. In the actual code:
+    </p>
+
+    <ul>
+      <li>
+        The parent <code>&lt;div&gt;</code> element has an <code>id</code> of
+        <code>"carouselExampleSlidesOnly"</code>, two classes
+        <code>"carousel"</code> and <code>"slide"</code>, and the attribute
+        <code>data-ride="carousel"</code>.
+        <ul>
+          <li>
+            The <code>id</code> is used later when we want to add controls to
+            click between slides.
+          </li>
+          <li>The classes provide the styling and formatting.</li>
+          <li>
+            The <code>data-ride</code> attribute provides the interactivity and
+            slide transitions.
+          </li>
+        </ul>
+      </li>
+      <li>
+        We also have a nested
+        <code>&lt;div class="carousel-inner"&gt;</code> element that contains
+        other <code>&lt;div&gt;</code> elements with images.
+      </li>
+      <li>
+        Nested inside the 2nd <code>&lt;div&gt;</code> is yet another
+        <code>&lt;div&gt;</code> with a class of
+        <code>"carousel-item"</code> and <code>"active"</code> (only one image
+        needs the active class, if none have active, no images are shown).
+      </li>
+      <li>
+        Each <code>&lt;div&gt;</code> with <code>.carousel-item</code> has a
+        nested <code>&lt;img&gt;</code> element which have the usual
+        <code>src</code> and <code>alt</code> attributes.
+        <ul>
+          <li>
+            The <code>&lt;img&gt;</code> elements use two utility classes
+            <code>"d-block"</code> sets its display as block and the
+            <code>"w-100"</code> is to take up 100% of the width.
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <button
+      type="button"
+      class="btnback"
+      onclick="window.location.href = 'index.html'"
+    >
+      Back to starting page
+    </button>
+  </body>
+</html>
