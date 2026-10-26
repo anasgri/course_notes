@@ -96,6 +96,57 @@ try {
   // Code that always runs, no matter what
 }
     </code></pre>
+<h3>Another example</h3>
+<p>
+  In JavaScript, we use <code>try...catch</code> statement to anticipate and
+  handle errors. Take a look at the following example:
+</p>
+
+<pre><code class = "language-javascript">try {
+  throw Error('This error will get caught');
+} catch (e) {
+  console.log(e);
+}
+// Prints: This error will get caught
+
+console.log('The thrown error that was caught in the try...catch statement!');
+// Prints: 'The thrown error that was caught in the try...catch statement!'</code></pre>
+
+<p>
+  Now, let’s break down what happened in the <code>try...catch</code> statement
+  above:
+</p>
+
+<ul>
+  <li>
+    We have code that follows <code>try</code> inside curly braces
+    <code>{}</code> known as the <em>try block</em>.
+  </li>
+  <li>
+    Inside the <code>try</code> block, we insert code that we anticipate might
+    throw an error.
+  </li>
+  <li>
+    Since we want to see what happens if an error is thrown in the
+    <code>try</code> block, we throw an error with the message
+    <code>'This error will get caught'</code>.
+  </li>
+  <li>
+    Following the <code>try</code> block is the <code>catch</code> statement,
+    which accepts the thrown error from the <code>try</code> block. The
+    <code>e</code> represents the thrown error.
+  </li>
+  <li>
+    The code within the curly braces that follows <code>catch(e)</code> is known
+    as the <em>catch block</em> and executes to handle an error when one is
+    thrown.
+  </li>
+  <li>
+    Since the error is caught, our <code>console.log()</code> after the
+    <code>try...catch</code> statement prints
+    <code>'The thrown error that was caught in the try...catch statement!'</code>.
+  </li>
+</ul>
       <button class="btnback" onclick="window.location.href = 'index.html'">
       Back to Index
     </button>
