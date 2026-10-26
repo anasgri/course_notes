@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modules JavaScript</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css"
+    />
+    <style>
+      .btnback {
+        background-color: #e1a50c;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #917b2a;
+      }
+      .advert {
+        padding: 10px;
+        background-color: rgb(205, 226, 245);
+        border: 1px solid rgb(26, 16, 2);
+        line-height: 1.5;
+      }
+    </style>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"
+    ></script>
+  </head>
+  <body>
+    <h2>JavaScript modules</h2>
+    <p>
+      Modules are reusable pieces of code in a file that scan be exported and
+      then imported for use in another file. A modular program is one whose
+      components can be separated, used individually, and recombined to create a
+      complex system.
+    </p>
+    <p>
+      Instead of having the entire program written within
+      <code>my_app.js</code>, its components are broken up into separate modules
+      that each handle a particular task. For example, the
+      <code>database_logic.js</code> module may contain code for storing and
+      retrieving data from a database. Meanwhile, the
+      <code>date_formatting.js</code> module may contain functions designed to
+      easily convert date values from one format to another (a common headache
+      among programmers!).
+    </p>
+    <p>There are two main systems:</p>
+    <ul>
+      <li>ES Modules (ESM), the modern standard</li>
+      <li>CommonJS (CJS), the older Node.js style</li>
+    </ul>
+    <p>Let's suppose we have a module math.js</p>
+    <pre><code class = "language-javascript">
+  // math.js file
+// Named exports
+export function add(a, b) {
+  return a + b;
+}
+
+export const PI = 3.14159;
+
+export function multiply(a, b) {
+  return a * b;
+}
+</code></pre>
+    <p>Importing into another file.</p>
+    <pre><code class = "language-javascript">
+  import { add, PI, multiply } from './math.js';
+
+console.log(add(2, 3));      // 5
+console.log(multiply(2, 3)); // 6
+console.log(PI);             // 3.14159
+</code></pre>
+
+    <p>You can also rename on import</p>
+    <pre><code class = "language-javascript">
+  // Rename on import
+import { add as sum } from './math.js';
+</code></pre>
+    <p>you can also add everything as object</p>
+    <pre><code class = "language-javascript">
+// Import everything as an object
+import * as math from './math.js';
+console.log(math.add(2, 3));
+</code></pre>
+    <p>
+      You can aslo have an export list instead of putting export before every
+      function
+    </p>
+    <pre><code class = "language-javascript">
+  function changeText(domElement, newText) {
+  domElement.innerHTML = newText;
+}
+
+function changeToFunkyColor(domElement) {
+  const r = Math.random() * 255;
+  const g = Math.random() * 255;
+  const b = Math.random() * 255;
+
+  domElement.style.color = `rgb(${r}, ${g}, ${b})`;
+}
+
+export { changeText, changeToFunkyColor };
+</code></pre>
+    <h3>Important rules:</h3>
+    <ul>
+      <li>Use the relative path (./ or ../) and include the .js extension.</li>
+      <li>
+        Without a ./ prefix, JavaScript assumes it’s a package from
+        node_modules.
+      </li>
+    </ul>
+    <h3>Older ways of exporting the files</h3>
+    <pre><code class = "language-javascript">
+  function add(a, b) {
+  return a + b;
+}
+
+module.exports = { add };
+</code></pre>
+    <p>You can also export multiple functions in the same way</p>
+    <pre><code class = "language-javascript">
+  function add(a, b) {
+  return a + b;
+}
+
+function subtract(a, b) {
+  return a - b;
+}
+
+function multiply(a, b) {
+  return a * b;
+}
+
+const PI = 3.14159;
+
+module.exports = { add, subtract, multiply, PI };
+</code></pre>
+    <p>importing</p>
+    <pre><code class = "language-javascript">
+const { add } = require('./math');
+console.log(add(2, 3));
+</code></pre>
+    <h3>To add the module script to the html file</h3>
+    <pre><code class = "language-html">&lt;script type="module" src="main.js"&gt;&lt;/script&gt;</code></pre>
+    <h3>Importing packages (from npm)</h3>
+    <pre><code class = "language-javascript">
+      npm install lodash
+    </code></pre>
+    <pre><code class = "language-javascript">
+      import _ from 'lodash';
+
+    </code></pre>
+    <p>or CommonJS</p>
+    <pre><code class = "language-javascript">
+// or CommonJS: 
+const _ = require('lodash');
+</code></pre>
+    <h3>Default export</h3>
+    <p>
+      Default export: only one per file. When importing, no curly braces, and
+      you can call it whatever you want.
+    </p>
+    <pre><code class = "language-javascript">
+// multiply.js
+export default function multiply(a, b) { return a * b; }
+</code></pre>
+    <p>Importing in the <code>main.js</code></p>
+    <pre><code class = "language-javascript">
+import multiply from './multiply.js';
+import times from './multiply.js';   // also works, different name
+</code></pre>
+
+    <p>
+      So far, the examples have used named export/import syntax, in which a
+      module’s resources are exported individually by name. Every module also
+      has the option to export a single value to represent the entire module,
+      called the
+      <strong>default export</strong>. Often, though not always, the default
+      export value is an object containing the entire set of functions and/or
+      data values of a module.
+    </p>
+
+    <p>The syntax for exporting a default object looks like this:</p>
+
+    <pre><code class = "language-javascript">const resources = {
+  valueA,
+  valueB
+}
+export { resources as default };</code></pre>
+
+    <p>
+      With this syntax, the object containing the module’s resources is first
+      declared and then exported on the next line. At first glance, it looks
+      like the
+      <code>resources</code> object is being exported as a named export.
+      However, the clause <code>as default</code> renames the exported object to
+      <code>default</code>, a reserved identifier that can only be given to a
+      single exported value.
+    </p>
+
+    <p>
+      You may also see this shorthand syntax, where the value following
+      <code>export default</code> is the default value to be exported:
+    </p>
+
+    <pre><code class = "language-javascript">
+      const resources = {
+  valueA,
+  valueB
+}
+export default resources;</code></pre>
+    <p>The syntax for importing default exports is written like this:</p>
+    <h3>Importing the default resources</h3>
+    <pre><code class = "language-javascript">import importedResources from 'module.js';</code></pre>
+
+    <p>
+      Notice that the curly braces are gone from the import statement. This
+      syntax is actually shorthand for
+      <pre><code class = "language-javascript">import { default as importedResources } from 'module.js'</code></pre> and
+      the imported <code>default</code> value may be given any name the
+      programmer chooses.
+    </p>
+
+    <p>
+      It should be noted that if the <code>default</code> export is an object,
+      the values inside cannot be extracted until after the object is imported,
+      like so:
+    </p>
+
+    <pre><code class = "language-javascript">
+// This will work
+import resources from 'module.js'
+const { valueA, valueB } = resources;
+
+// This will not work...
+import { valueA, valueB } from 'module.js'</code></pre>
+
+<p>
+  Let’s return to the prior example. The <code>dom-functions.js</code> module
+  from before could be rewritten to use a default export like so:
+</p>
+
+<pre><code class = "language-javascript">/* dom-functions.js */
+const toggleHiddenElement = (domElement) =&gt; {
+    if (domElement.style.display === 'none') {
+      domElement.style.display = 'block';
+    } else {
+      domElement.style.display = 'none';
+    }
+}
+
+const changeToFunkyColor = (domElement) =&gt; {
+  const r = Math.random() * 255;
+  const g = Math.random() * 255;
+  const b = Math.random() * 255;
+
+  domElement.style.background = `rgb(${r}, ${g}, ${b})`;
+}
+
+const resources = {
+  toggleHiddenElement,
+  changeToFunkyColor
+};
+export default resources;</code></pre>
+
+<p>
+  This default export object can now be used within
+  <code>secret-messages.js</code> like so:
+</p>
+
+<pre><code class = "language-javascript">import domFunctions from '../modules/dom-functions.js';
+
+const { toggleHiddenElement, changeToFunkyColor } = domFunctions;
+
+const buttonElement = document.getElementById('secret-button');
+const pElement = document.getElementById('secret-p');
+
+buttonElement.addEventListener('click', () =&gt; {
+  toggleHiddenElement(pElement);
+  changeToFunkyColor(buttonElement);
+});</code></pre>
+
+<p>
+  Notice how <code>toggleHiddenElement</code> and
+  <code>changeToFunkyColor</code> are now methods of the imported object called
+  <code>domFunctions</code> and are extracted using ES6 destructuring syntax! It
+  should be noted that the identifier <code>domFunctions</code> can be chosen as
+  the programmer sees fit. If you recall, the syntax used in the snippet above is
+  shorthand for:
+</p>
+
+<pre><code class = "language-javascript">import { default as domFunctions } from '../modules/dom-functions.js';</code></pre>
+    <button
+      type="button"
+      class="btnback"
+      onclick="window.location.href = 'index.html'"
+    >
+      Back to starting page
+    </button>
+  </body>
+</html>
