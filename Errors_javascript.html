@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Javascript errors</h3>
+    <ul>
+      <li>
+        <code>ReferenceError</code>: when a variable or function cannot be
+        found.
+      </li>
+      <li>
+        <code>TypeError</code>: when a value is not a valid type, see the
+        example below:
+      </li>
+    </ul>
+
+    <pre><code class = "language-javascript">
+const reminder = 'Reduce, Reuse, Recycle';
+reminder = 'Save the world';
+// TypeError: Assignment to constant variable.
+console.log('This will never be printed!');</code></pre>
+
+    <h3>Constructing an Error</h3>
+
+    <p>
+      JavaScript errors are objects that have <code>name</code> and
+      <code>message</code> properties. Previously, we’ve seen how built-in
+      errors alert us about common mistakes in our code. But, what if we need an
+      error message that isn’t covered by the built-in errors? Let’s say we need
+      to inform a user that a string passed in as an argument is too short with
+      a custom message. This particular situation isn’t covered by a built-in
+      error type, but we can use the <code>Error</code> constructor to make our
+      own error objects with a message that is unique to our program!
+    </p>
+
+    <pre><code class = "language-javascript">console.log(Error('Your password is too weak.'));
+// Prints: Error: Your password is too weak.</code></pre>
+
+    <p>
+      The <code>Error</code> constructor takes a string argument, which becomes
+      the value of the error’s <code>message</code> property. In the code
+      snippet above, we used the <code>Error</code> constructor to create an
+      error object with the message <code>'Your password is too weak.'</code>
+    </p>
+
+    <p>
+      You might also see errors created with the <code>new</code> keyword. Both
+      methods will lead to the same functionality. Take a look:
+    </p>
+
+    <pre><code class = "language-javascript">console.log(new Error('Your password is too weak.'));
+// Prints: Error: Your password is too weak.</code></pre>
+
+    <p>
+      Keep in mind that creating an error is not the same as throwing an error.
+      A thrown error will cause the program to stop running.
+    </p>
+    <h3>The throw Keyword</h3>
+
+    <p>
+      Creating an error doesn’t cause our program to stop — remember, an error
+      must be thrown for it to halt the program.
+    </p>
+
+    <p>
+      To throw an error in JavaScript, we use the <code>throw</code> keyword
+      like so:
+    </p>
+
+    <pre><code class = "language-javascript">throw Error('Something wrong happened');
+// Error: Something wrong happened</code></pre>
+
+    <p>
+      When we use the <code>throw</code> keyword, the error is thrown, and the
+      code after the <code>throw</code> statement will not execute. Take for
+      example:
+    </p>
+
+    <pre><code class = "language-javascript">throw Error('Something wrong happened');
+// Error: Something wrong happened
+
+console.log('This will never run');</code></pre>
+
+    <p>
+      After <code>throw Error('Something wrong happened');</code> is executed
+      and the error object is thrown, the <code>console.log()</code> statement
+      will not run (just like when a built-in JavaScript error was thrown!).
+    </p>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to starting page
+    </button>
+  </body>
+</html>
