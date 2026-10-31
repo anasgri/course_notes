@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Introduction</h2>
+
+    <p>
+      A good test framework is
+      <em>fast, complete, reliable, isolated, maintainable, and expressive</em>.
+      In this lesson you will learn how to use Node's
+      <code>assert</code> library to write more <em>expressive</em> tests.
+    </p>
+
+    <p>
+      An expressive test is easy to read and descriptive, making it useful as a
+      form of documentation for your implementation code. One way to make a test
+      more expressive is clarifying its <em>verify</em> phase — the step where
+      expected outcome is compared to actual outcome.
+    </p>
+
+    <p>
+      Node.js provides a library called <code>assert</code> with methods that
+      help you write more expressive verification code. You can use the methods
+      in this library in place of conditional statements to write less code and
+      use human-readable language. It can be used within the Mocha testing
+      framework, and you will be using both throughout this lesson.
+    </p>
+    <h2>assert.ok</h2>
+
+    <p>
+      As a Node module, <code>assert</code> can be imported at the top of your
+      files with
+    </p>
+
+    <pre><code class="language-javascript">const assert = require('assert');
+</code></pre>
+
+    <p>
+      The functions in the <code>assert</code> library compare values and throw
+      errors as needed using one function call. The small, human-readable format
+      of the functions will help you make a more <em>expressive</em> test suite.
+    </p>
+
+    <pre><code class="language-javascript">assert.ok(6 - 1 === 5);
+</code></pre>
+
+    <p>
+      In this case <code>6 - 1 === 5</code> evaluates to <code>true</code>, so
+      no error is thrown.
+    </p>
+
+    <p>
+      If an argument passed to <code>assert.ok()</code> evaluates to
+      <code>false</code>, an <code>AssertionError</code> is thrown. The error
+      communicates to Mocha that a test has failed, and Mocha logs the error
+      message to the console.
+    </p>
+
+    <h2>assert.equal</h2>
+
+    <p>
+      You can use <code>assert.ok()</code> for most verifications, but sometimes
+      it can be difficult to determine the condition you are evaluating.
+    </p>
+
+    <p>Read the example code below. Will this assertion throw an error?</p>
+
+    <pre><code class="language-javascript">const landAnimals = ['giraffe', 'squirrel'];
+const waterAnimals = ['shark', 'stingray'];
+
+landAnimals.push('frog');
+waterAnimals.push('frog');
+
+assert.ok(landAnimals[2] == waterAnimals[2]);
+</code></pre>
+
+    <p>
+      The above assertion is checking for equality. In order to understand this
+      you must evaluate the entire expression within the parentheses of
+      <code>.ok()</code>.
+    </p>
+
+    <p>
+      You can instead use <code>assert.equal()</code> which does the
+      <code>==</code> comparison for us.
+    </p>
+
+    <p>In the example below, the two methods achieve the same outcome.</p>
+
+    <pre><code class="language-javascript">assert.ok(landAnimals[2] == waterAnimals[2]);
+assert.equal(landAnimals[2], waterAnimals[2]);
+</code></pre>
+
+    <p>
+      The second line is more <em>expressive:</em> instead of parsing the entire
+      statement, a reader only needs to read the first two words to know the
+      test is verifying equality!
+    </p>
+    <h2>assert.strictEqual</h2>
+
+    <p>Take a look at the code below. Will these assertions throw errors?</p>
+
+    <pre><code class="language-javascript">const a = 3;
+const b = '3';
+assert.ok(a == b);
+assert.ok(a === b);
+</code></pre>
+
+    <ul>
+      <li>
+        The first assertion will not throw an error because it uses loose
+        (<code>==</code>) equality. It performs a type conversion when comparing
+        two things.
+      </li>
+      <li>
+        The second will throw an error because it uses strict (<code>===</code>)
+        equality. It returns <code>false</code> if the types differ.
+      </li>
+    </ul>
+
+    <p>
+      If you need to be strict in evaluating equality, you can use
+      <code>assert.strictEqual()</code>.
+    </p>
+
+    <ul>
+      <li><code>assert.equal()</code> performs a <code>==</code> comparison</li>
+      <li>
+        <code>assert.strictEqual()</code> performs a <code>===</code> comparison
+      </li>
+    </ul>
+
+    <p>
+      Compare the following code to the first example. This code performs the
+      same verifications, but it is more <em>expressive</em>. Without parsing
+      any logic, a reader would know the intention of your tests by reading the
+      method names.
+    </p>
+
+    <pre><code class="language-javascript">const a = 3;
+const b = '3';
+assert.equal(a, b);
+assert.strictEqual(a, b);
+</code></pre>
+    <h2>assert.deepStrictEqual</h2>
+
+    <p>Do you think these assertions will throw errors?</p>
+
+    <pre><code class="language-javascript">const a = {relation: 'twin', age: '17'};
+const b = {relation: 'twin', age: '17'};
+assert.equal(a, b);
+assert.strictEqual(a, b);
+</code></pre>
+
+    <p>
+      Both assertions will throw an error because distinct objects are not
+      considered equal when using either loose or strict equality in JavaScript.
+    </p>
+
+    <p>
+      If we need to compare the values within two objects, we can use
+      <code>assert.deepStrictEqual()</code>. This method compares the values of
+      each object using strict (<code>===</code>) equality.
+    </p>
+
+    <p>The following code will not throw an error...</p>
+
+    <pre><code class="language-javascript">assert.deepStrictEqual(a, b);
+</code></pre>
+
+    <p>
+      ...and we can confirm by manually comparing each object's
+      <code>relation</code> and <code>age</code> properties.
+    </p>
+
+    <pre><code class="language-javascript">a.relation === b.relation;
+a.age === b.age;
+</code></pre>
+    <p>
+      In the last exercise, we used <code>deepStrictEqual()</code> to compare
+      the values of two objects with strict equality. Arrays are also objects,
+      so <code>deepStrictEqual()</code> also compares their values with strict
+      equality.
+    </p>
+
+    <pre><code class="language-javascript">const arr1 = [1, 2, 3];
+const arr2 = [1, 2, 3];
+const arr3 = [1, 2, '3'];
+
+assert.deepStrictEqual(arr1, arr2); // No error
+assert.deepStrictEqual(arr1, arr3); // Error: 1, 2, 3 !== 1, 2, '3'
+</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to starting page
+    </button>
+  </body>
+</html>

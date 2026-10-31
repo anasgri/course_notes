@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript testing</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>JavaScript testing</h3>
+    <p>
+      One way to automatically test the program is to use
+      <strong>end-to-end (browser) test.</strong>
+    </p>
+    <p>
+      It opens a real browser, acts like a user, and checks that the app behaves
+      correctly.
+    </p>
+    <p>Lets look at the code below</p>
+    <pre><code class = "language-javascript">
+it('accepts the customer name', () => {
+  const name = 'Hungry Person';
+
+  browser.url('/');
+  browser.setValue('#name', name);
+  browser.click('#submit-order');
+  browser.url('/');
+
+  assert.include(browser.getText('#deliver-to'), name);
+});
+    </code></pre>
+    <p><strong>The overall structure</strong></p>
+    <p>
+      <code>it(description, function)</code> defines one test. The text is a
+      human-readable description of what should happen: “it accepts the customer
+      name”. If the test fails, this is the label you’ll see in the output. The
+      function holds the actual steps.
+    </p>
+    <pre><code class = "language-javascript">
+    it('accepts the customer name', () => {
+  // ...test body...
+});
+</code></pre>
+    <p><strong>The three phases of a test</strong></p>
+
+    <p>Almost every test follows the same pattern: Arrange, Act, Assert.</p>
+    <p><strong>Arrange (set up the data)</strong></p>
+    <pre><code class = "language-javascript">const name = 'Hungry Person';</code></pre>
+    <p>
+      This just creates the value the test will use, so it can be reused later.
+      This is to mimic the user, that would provide their name
+    </p>
+    <p><strong>Act (do what a user would do)</strong></p>
+    <pre><code class = "language-javascript">
+browser.url('/');                    // open the home page
+browser.setValue('#name', name);     // type "Hungry Person" into the element with id="name"
+browser.click('#submit-order');      // click the button with id="submit-order"
+browser.url('/');                    // go back to the home page
+    </code></pre>
+    <p>
+      The #name and #submit-order are CSS selectors. The # means “find the
+      element with this id”. So the test is looking for something like
+      <code>&lt;input id="name"&gt;</code> and
+      <code>&lt;button id="submit-order"&lt;</code> in your HTML.
+    </p>
+    <p>
+      The browser object comes from a tool like WebdriverIO, which controls a
+      real browser.
+    </p>
+    <pre><code class = "language-javascript">
+assert.include(browser.getText('#deliver-to'), name);
+    </code></pre>
+    <p>
+      This reads the text from the element with id deliver-to and checks that it
+      includes “Hungry Person”. If it does, the test passes. If not, it fails.
+    </p>
+<h3>Setting up the project so that you can run the tests</h3>
+<ul>
+  <li>Create an empty folder and open VScode. Go to File -> Open folder</li>
+  <li>To create the package.json run <code>npm init -y</code>. 
+<p>You might see the following error</p>
+<pre><code class = "language-bash">
+npm : File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system. 
+For more information, see 
+about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
+At line:1 char:1
+</code></pre>
+<p>To resolve it run in the powershell</p>
+<pre><code class = "language-javascript">Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned</code></pre>
+  </li>
+<li>
+  <p>Install the testing tools.</p>
+
+<p>Installing packages adds them to package.json automatically, so you never have to type the dependency list by hand:</p>
+<pre><code class = "language-bash">
+  npm install --save-dev mocha chai
+</code></pre>
+</li>
+<li>To install and initialize tool run
+<pre><code class = "language-javascript">npm init wdio@latest</code></pre>
+<p>Yoiu will be asked the series of the questions
+<div class="term" role="log" aria-label="WebdriverIO configuration wizard output">
+  <div class="line"><span class="ok">✔</span> A project named "exapmle_project" was detected at "C:\Users\Akaar\Downloads\exapmle_project", correct? <span class="ans">Yes</span></div>
+  <div class="line"><span class="q">?</span> What type of testing would you like to do?</div>
+  <div class="line"><span class="ans">❯ E2E Testing - of Web or Mobile Applications</span></div>
+  <div class="line">  Component or Unit Testing - in the browser</div>
+  <div class="line"><span class="ok">✔</span> What type of testing would you like to do? <span class="ans">E2E Testing - of Web or Mobile Applications</span></div>
+  <div class="line"><span class="ok">✔</span> Where is your automation backend located? <span class="ans">On my local machine</span></div>
+  <div class="line"><span class="ok">✔</span> Which environment you would like to automate? <span class="ans">Web - web applications in the browser</span></div>
+  <div class="line"><span class="ok">✔</span> With which browser should we start? <span class="ans">Chrome</span></div>
+  <div class="line"><span class="ok">✔</span> Which framework do you want to use? <span class="ans">Mocha (https://mochajs.org/)</span></div>
+  <div class="line"><span class="ok">✔</span> Do you want to use Typescript to write tests? <span class="ans">No</span></div>
+  <div class="line"><span class="ok">✔</span> Do you want WebdriverIO to autogenerate some test files? <span class="ans">Yes</span></div>
+  <div class="line"><span class="ok">✔</span> What should be the location of your spec files? <span class="ans">C:\Users\Akaar\Downloads\exapmle_project\test\specs\**\*.js</span></div>
+  <div class="line"><span class="ok">✔</span> Do you want to use page objects (https://martinfowler.com/bliki/PageObject.html)? <span class="ans">No</span></div>
+  <div class="line"><span class="ok">✔</span> Set up coding agent support (AGENTS.md section and wdio-session skill)? <span class="ans">No</span></div>
+  <div class="line"><span class="ok">✔</span> Which reporter do you want to use? <span class="ans">spec</span></div>
+  <div class="line"><span class="ok">✔</span> Do you want to add a plugin to your test setup? - select none, just press enter</div>
+  <div class="line"><span class="ok">✔</span> Would you like to include Visual Testing to your setup? For more information see https://webdriver.io/docs/visual-testing <span class="ans">No</span></div>
+  <div class="line"><span class="ok">✔</span> Do you want to add a service to your test setup? Just press enter</div>
+  <div class="line"><span class="q">?</span> Do you want me to run `npm install` <span class="dim">Yes</span> <span class="cursor"></span></div>
+</div>
+</li>
+<li>Arrange the files and folders so that</li>
+<pre><code>
+  project/
+├── wdio.conf.js
+├── package.json
+├── index.html          ← your HTML (project root, or a public/ folder)
+└── test/
+    └── specs/
+        ├── example.e2e.js     ← generated example (can stay or be deleted)
+        └── heading.e2e.js     ← your heading test
+</code></pre>
+<li>
+<h3>3. The test needs to reach your HTML</h3>
+
+<p><code>browser.url('/')</code> opens the base URL, so the HTML has to be served at that address. You have two options:</p>
+
+<h4>Option A: Use <code>file://</code> (simplest for learning, no server)</h4>
+
+<p>In <code>wdio.conf.js</code>, set <code>baseUrl</code> to the full path of your HTML file's folder:</p>
+
+<pre><code class="language-javascript">baseUrl: 'file:///C:/Users/YourName/project/',
+</code></pre>
+
+<p>Use forward slashes, and replace the path with your real one. Then <code>browser.url('index.html')</code> opens your file. Note that <code>'/'</code> would show a folder listing instead, so use the filename.</p>
+
+<h4>Option B: Run a small local server</h4>
+
+<p>Install one with:</p>
+
+<pre><code class="language-bash">npm install --save-dev http-server
+</code></pre>
+
+<p>Add a script to <code>package.json</code>:</p>
+
+<pre><code class="language-json">"scripts": {
+  "start": "http-server -p 3000",
+  "test": "wdio run wdio.conf.js"
+}
+</code></pre>
+
+<p>Then run this in one terminal:</p>
+
+<pre><code class="language-bash">npm start
+</code></pre>
+
+<p>Set <code>baseUrl: 'http://localhost:3000'</code> in <code>wdio.conf.js</code>, and <code>browser.url('/')</code> will load your <code>index.html</code>. This matches the setup used for real apps, so I'd recommend it.</p>
+</li>
+</ul>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to starting page
+    </button>
+  </body>
+</html>

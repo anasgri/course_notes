@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing case study</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>Testing case study</h3>
+    <p>index.js file:</p>
+    <pre><code class = "language-javascript">
+// index.js file
+    // Define a rooster
+Rooster = {};
+
+// Return a morning rooster call
+Rooster.announceDawn = () => {
+  return 'moo!';
+}
+
+// Return hour as string
+// Throws Error if hour is not between 0 and 23 inclusive
+Rooster.timeAtDawn = (hour) => {
+  if (hour < 0 || hour > 23) {
+    throw new RangeError;
+  } else {
+    return hour.toString();
+  };
+}
+
+module.exports = Rooster;
+    </code></pre>
+    <p>index-test.js file</p>
+    <pre><code class = "language-javascript">
+    const assert = require('assert')
+const Rooster = require('../index.js');
+
+describe("Rooster", () => {
+  describe("announceDawn", () => {
+    it('returns a rooster call', () => {
+      const resultExpected = 'moo!';
+      const result = Rooster.announceDawn();
+      assert.equal(resultExpected, result);
+       })
+    it("returns its argument as a string", () => {
+      // input
+      const hourInput = 5;
+      const hourEpected = "5";
+      const dawnResult = Rooster.timeAtDawn(hourInput);
+      assert.equal(hourInput, hourEpected);
+    });
+
+    it("throws an error if passed a number less than 0", () => {
+      const expected = RangeError;
+      assert.throws(() => {Rooster.timeAtDawn(-1)}, expected);
+    })
+
+    it("throws an error if passed a number less than 0", () => {
+      const expected = RangeError;
+      assert.throws(() => {Rooster.timeAtDawn(25)}, expected);
+    })
+    
+  })
+})
+</code></pre>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to starting page
+    </button>
+  </body>
+</html>

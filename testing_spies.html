@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Testing spies</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>What are Spies?</h3>
+    <p>
+      In testing, a spy is a function that observes and records information
+      about another function’s calls including arguments, return value, the this
+      value, and exceptions thrown (if any). The information that is observed by
+      the spy can then be used in assertions for testing. As an example, let’s
+      say we are testing a top-secret application with a feature to receive a
+      message, display for 5 seconds, then delete it. We can wrap a spy around
+      this unit to keep track of how many messages were received, what the
+      messages said, if any errors were thrown, etc. Using its stealthy powers
+      of espionage, a spy won’t change anything about how the function operates,
+      it will just observe what happens.
+    </p>
+    <h3>What is Sinon?</h3>
+    <p>
+      There are multiple ways to use a spy, they can be anonymous functions or
+      they can wrap around existing methods in a program.
+    </p>
+    <p>
+      Our spy function will be wrapped around a method and, as we use the method
+      in our tests, will observe everything that happens involving that method.
+      We can think of a spy with a wiretap, taking notes on every interaction
+      that method has.
+    </p>
+    <p>
+      The following example demonstrates some basics of using the
+      <code>sinon.spy()</code> method to test the method of an object.
+    </p>
+
+    <pre><code class="language-javascript">const robot = {
+  greet(name){  // Unit being tested
+    return 'Hello ' + name;
+  }
+};
+
+test('greet should return hello codey', () => {
+  sinon.spy(robot, 'greet'); // Initialize the spy
+  robot.greet('codey'); // Call the method
+  expect(robot.greet.called).to.be.true;
+  expect(robot.greet.calledWith('codey')).to.be.true;
+  expect(robot.greet.returned('Hello codey')).to.be.true;
+  robot.greet.restore(); // Remove spy from wrapped method
+});
+</code></pre>
+
+    <p>
+      In the example above, the <code>sinon.spy()</code> method is used to wrap
+      the <code>robot</code> object's <code>.greet()</code> method. Doing so
+      adds a number of useful properties and methods that allow us to monitor
+      its behavior after we call <code>robot.greet('codey')</code>. Using a few
+      of these methods, we test if the <code>.greet()</code> method...
+    </p>
+
+    <ul>
+      <li>has been called using the <code>.called</code> property</li>
+      <li>
+        is called with the correct argument using the
+        <code>.calledWith()</code> method
+      </li>
+      <li>
+        returns what we expect it to return using the
+        <code>.returned()</code> property
+      </li>
+    </ul>
+
+    <p>
+      Finally, to ensure that the method returns to its original, un-spied-on
+      state, we use the <code>.restore()</code> method.
+    </p>
+    <h2>Summary</h2>
+
+    <p>
+      Spies are an incredibly useful tool that serves as a means for observing
+      and recording information about how our methods are used in tests. Though
+      there are a number of JavaScript libraries that provide spying
+      functionality, Sinon.js is well known and used widely, including at
+      Codecademy!
+    </p>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to starting page
+    </button>
+  </body>
+</html>

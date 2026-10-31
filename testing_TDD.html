@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test-driven development (TDD)</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-coy.css"
+      rel="stylesheet"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"
+    ></script>
+    <style>
+      .btnback {
+        background-color: #6495ed;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        margin-bottom: 100px;
+      }
+      .btnback:hover {
+        background-color: #4169e1;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Test-driven development (TDD)</h1>
+    <p>
+      Test-driven development (TDD) is a programming technique where you write
+      test code before implementation code. Test code is written to define the
+      desired behavior of your program. The test output provides descriptive
+      error messages that inform the implementation of your program.
+    </p>
+    <h2>The Red-Green-Refactor Cycle</h2>
+
+    <p>
+      One of the driving forces of TDD is the
+      <strong>red-green-refactor</strong> cycle. "Red" and "green" correspond to
+      the color of the text that our test framework produces in the terminal
+      while running the tests in our suite. Red signifies failing tests, and
+      green corresponds to passing tests.
+    </p>
+
+    <p>
+      Use this red, green, refactor diagram to help you as you read the steps
+      below:
+    </p>
+
+    <ul>
+      <li>
+        <strong>Red</strong> — Write tests that describe the intended behavior
+        of implementation code, then compare developer expectations with the
+        actual results of the implementation. The tests should always fail at
+        first because the implementation code for the desired behavior will be
+        written in response to the failing test.
+      </li>
+      <li>
+        <strong>Green</strong> — Write just enough implementation code to make
+        the test pass. The tests return <em>green</em> because the
+        implementation executes the intended behavior described by the test in
+        the <em>red</em> phase.
+      </li>
+      <li>
+        <strong>Refactor</strong> — Clean up and optimize code following the
+        characteristics of a good test. Refactoring involves actively
+        considering test and implementation code and making revisions to the
+        codebase. The tests are passing and should continue to pass throughout
+        this phase of the cycle.
+      </li>
+    </ul>
+    <h2>Running Mocha Tests</h2>
+
+    <p>
+      To run tests in Mocha, we can use the <code>mocha</code> command, followed
+      by one or more arguments indicating which file(s) to execute. Typically,
+      we put all of our tests in a directory called <code>test/</code>, and name
+      the testing file based on the implementation file. In the workspace, the
+      corresponding implementation and testing files are
+      <code>index.js</code> and <code>test/index_test.js</code>.
+    </p>
+
+    <p>
+      If we wanted to just run <code>test/index_test.js</code>, we could run the
+      following command in the terminal:
+    </p>
+
+    <pre><code class="language-bash">mocha test/index_test.js
+</code></pre>
+
+    <p>
+      The <code>mocha</code> command also accepts wildcards, which can be used
+      to target multiple files at once. For example, if we had a
+      <code>test/</code> folder with the following structure:
+    </p>
+
+    <pre><code class = "language-bash">test/
+-- index_test.js
+-- database
+-- -- db_test.js
+-- -- queries_test.js
+-- components
+-- -- toggle_test.js
+-- -- input_test.js
+</code></pre>
+
+    <p>
+      If we had to specify each testing file individually, the command would
+      become difficult to read and prone to errors. We can target all of the
+      testing files using the following command:
+    </p>
+    <pre><code class="language-bash">mocha test/**/*_test.js
+</code></pre>
+
+    <p>Let's break down how this file specification works:</p>
+
+    <ul>
+      <li>First, we target the <code>test/</code> directory.</li>
+      <li>
+        Within the <code>test/</code> directory, <code>**</code> will
+        recursively look through directories for files that match the remainder
+        of the file specification.
+      </li>
+      <li>
+        In the final portion, <code>*_test.js</code>, <code>*</code> will allow
+        any number of characters, meaning this can match any file name ending in
+        <code>_test.js</code>!
+      </li>
+    </ul>
+    <h2>Getting Into The Red I</h2>
+
+    <p>When we use the red, green, refactor cycle, we:</p>
+
+    <ol>
+      <li>write test code that fails</li>
+      <li>write implementation code to makes the test pass</li>
+      <li>consider refactoring the code</li>
+    </ol>
+
+    <p>
+      As you learn TDD, it may feel backward to intentionally write and run code
+      that will return errors. In TDD, we react to the error messages by
+      continually rewriting our implementation code so that it behaves in the
+      way our test specifies.
+    </p>
+
+    <p>
+      Imagine you were trying to create a method named
+      <code>initials</code> inside of an object named <code>Phrase</code>.
+    </p>
+
+    <p>
+      The desired behavior of <code>.initials()</code> is that it should return
+      the first letter of each word in a phrase that is passed to it as an
+      argument.
+    </p>
+
+    <h3>Step 1: Write The Test</h3>
+
+    <p>
+      The first step to writing a test with Mocha is to use
+      <code>describe()</code> and <code>it()</code> blocks to describe the
+      desired behavior of your code. It's very important for tests to thoroughly
+      describe the desired behavior with natural language. This will create the
+      most helpful error messages and make it easy for you to understand the
+      behavior that your test failed to execute.
+    </p>
+
+    <p>
+      Before running our test, we would use an assert statement to compare the
+      desired result of our method with the actual result.
+    </p>
+
+    <p>
+      The first step in developing this method would be writing a test like
+      this:
+    </p>
+    <pre><code class="language-javascript">describe('Phrase', () => {
+  describe('.initials', () => {
+    it('returns the first letter of each word in a phrase.', () => {
+      assert.strictEqual(Phrase.initials('Nelson Mandela'), 'NM');
+    })
+  })
+})
+</code></pre>
+
+    <h3>Step 2: Run the test</h3>
+
+    <p>
+      If we ran this test, we would get an error message like the following in
+      the terminal:
+    </p>
+
+    <pre><code class = "language-bash"> Phrase
+   .initials
+     1) returns the first letter of each word in a phrase.
+
+
+
+ 0 passing (6ms)
+ 1 failing
+
+ 1) Phrase .initials returns the first letter of each word in a phrase.:
+    ReferenceError: Phrase is not defined
+</code></pre>
+
+    <h3>Step 3: The test fails (yea!)</h3>
+    <p>
+      The error message tells us that the error is related to the
+      <code>Phrase.initials</code> code block. The
+      <code>ReferenceError</code> tells us that the error is thrown because we
+      don't have a <code>Phrase</code> object.
+    </p>
+    <h2>Red To Green I</h2>
+
+    <h3>Congrats, you're in the red!</h3>
+
+    <p>
+      The red error messages describe the failures of our implementation code,
+      allowing us to specifically address each issue that prevents our test from
+      passing.
+    </p>
+
+    <p>
+      Let's inspect the error message from our
+      <code>Phrase.initials()</code> example in the previous exercise:
+    </p>
+
+    <pre><code class = "language-bash"> Phrase
+   .initials
+     1) returns the first letter of each word in a phrase.
+
+
+
+ 0 passing (6ms)
+ 1 failing
+
+ 1) Phrase .initials returns the first letter of each word in a phrase.:
+    ReferenceError: Phrase is not defined
+</code></pre>
+
+    <p>
+      The error tells us that <code>Phrase</code> is not defined. This is
+      because we have not created an object named <code>Phrase</code> yet. Let's
+      do that now:
+    </p>
+    <pre><code class="language-javascript">const Phrase = {
+  initials() { }
+}
+</code></pre>
+
+    <p>Now when we run our test, we get the following error:</p>
+
+    <pre><code class = "language-bash"> Phrase
+   .initials
+     1) returns the first letter of each word in a phrase.
+
+
+
+ 0 passing (7ms)
+ 1 failing
+
+ 1) Phrase .initials returns the first letter of each word in a phrase.:
+    AssertionError: undefined == 'NM'
+</code></pre>
+
+    <p>
+      This is the first error that references the actual behavior of the
+      <code>.initials()</code> method.
+    </p>
+
+    <p>Remember, we wrote the following <code>assert()</code> statement:</p>
+
+    <pre><code class="language-javascript">assert.strictEqual(Phrase.initials('Nelson Mandela'), 'NM');
+</code></pre>
+    <p>
+      We expected the result of passing <code>'Nelson Mandela'</code> to
+      <code>Phrase.initials()</code> to be <code>'NM'</code>, but the actual
+      result was <code>undefined</code>. This is because our method has not been
+      programmed to return anything.
+    </p>
+
+    <p>
+      Following TDD, the next step would be writing the minimum possible
+      implementation code to make our test pass. In this example, that would
+      involve adding a line of implementation code so that
+      <code>.initials()</code> returns our expected result, which is
+      <code>'NM'</code>.
+    </p>
+
+    <p>
+      <em>The minimum possible implementation code to make the test pass:</em>
+    </p>
+
+    <pre><code class="language-javascript">const Phrase = {
+  initials(phr) {
+    return 'NM';
+  }
+}
+</code></pre>
+
+    <p>
+      Now our test would pass, and we would be in the green. But that doesn't
+      mean our method is working as intended. If we entered "Jody Williams", our
+      method would return <code>'NM'</code>, not <code>'JW'</code>. We will
+      address this issue when the time is right, but following TDD, now that we
+      have progressed from the <em>red</em> to the <em>green</em>, we will move
+      into the <em>refactor</em> phase.
+    </p>
+    <h2>Refactor I</h2>
+
+    <h3>Congrats you're in the green!</h3>
+
+    <p>
+      Once all your tests pass, you can confidently refactor your code —
+      restructure and improve it without changing its external behavior. The
+      confidence comes from knowing that our tests will catch us if we make a
+      misstep.
+    </p>
+
+    <p>
+      When refactoring, it's critical to test early and often — if our tests
+      turn red, then we know that something went wrong during the refactoring
+      process, and we can undo those changes.
+    </p>
+
+    <p>
+      A good place to start with refactoring is to restructure tests to reflect
+      the four phases of a good test: <em>setup</em>, <em>exercise</em>,
+      <em>verification</em>, and <em>teardown</em>.
+    </p>
+
+    <p>
+      Let's consider the test for our <code>Phrase.initials()</code> method. We
+      could rewrite the test with setup, exercise, and verification stages to
+      make it more expressive and maintainable.
+    </p>
+
+    <pre><code class="language-javascript">describe('Phrase', () => {
+  describe('.initials', () => {
+    it('returns the first letter of each word in a phrase.', () => {
+      // Setup
+      const inputName = 'Nelson Mandela';
+      const expectedInitials = 'NM';
+      // Exercise
+      const result = Phrase.initials(inputName);
+      // Verification
+      assert.strictEqual(result, expectedInitials);
+    });
+  });
+});
+</code></pre>
+    <p>
+      Here, we have re-written the same test, but we have created variables to
+      hold the values that we will use to test the behavior of
+      <code>.initials()</code>, and broken up the test into distinct phases,
+      which are marked by the comments in the code.
+    </p>
+
+    <p>
+      Now that we have refactored our test code, we can refactor our
+      implementation code. Here is the code we had before:
+    </p>
+
+    <pre><code class="language-javascript">const Phrase = {
+  initials(phr) {
+    return 'NM';
+  }
+}
+</code></pre>
+
+    <p>
+      In order to make our implementation code more expressive, we can change
+      the name of the input argument of <code>.initials()</code> like so:
+    </p>
+
+    <pre><code class="language-javascript">const Phrase = {
+  initials(inputName) {
+    return 'NM';
+  }
+}
+</code></pre>
+    <p>
+      Refactoring will look different for each project and each iteration of the
+      red-green-refactor cycle. In some cases, you may not need to refactor at
+      all! Regardless, you should consider how you can improve your code, and —
+      although it is optional — it can set you up for success moving forward.
+    </p>
+    <h2>Getting into the Red II</h2>
+
+    <p>
+      Congratulations, you have completed your first red-green-refactor cycle
+      using TDD! The next step is to repeat this cycle to build a more complete
+      implementation of the <code>initials</code> method.
+    </p>
+
+    <p>
+      Once you have a baseline test for your feature, you can start to write
+      additional test cases that force you to write better implementation code.
+    </p>
+
+    <p>
+      Let's consider the test suite for our <code>Phrase.initials</code> method.
+      We have one test that checks if
+      <code>Phrase.initial("Nelson Mandela")</code> returns <code>"NM"</code>.
+    </p>
+
+    <pre><code class="language-javascript">describe('Phrase', () => {
+  describe('.initials', () => {
+    it('returns the first letter of each word in a phrase.', () => {
+      const inputName = 'Nelson Mandela';
+      const expectedInitials = 'NM';
+      const result = Phrase.initials(inputName);
+      assert.strictEqual(result, expectedInitials);
+    });
+  });
+});
+</code></pre>
+
+    <p>
+      Let's write another test that pushes us to implement a
+      <code>Phrase.initials()</code> method that returns the first letter of
+      each word for <code>'Nelson Mandela'</code> and a different name.
+    </p>
+
+    <p>
+      To do this, we will add another <code>it</code> block to our code, and
+      inside the callback function, we will again follow the setup, exercise,
+      and verification phases for writing tests. This time we will write a test
+      based on the circumstance that the string passed to
+      <code>.initials()</code> has three names:
+      <code>'Juan Manuel Santos'</code>.
+    </p>
+    <p>We could write this second test for <code>.initials()</code> like so:</p>
+
+    <pre><code class="language-javascript">describe('Phrase', () => {
+  describe('.initials', () => {
+
+    // it() block with 'Nelson Mandela' test
+
+    it('returns the initials of a name', () => {
+      const nameInput = 'Juan Manuel Santos';
+      const expectedInitials = 'JMS';
+
+      const result = Phrase.initials(nameInput);
+
+      assert.strictEqual(result, expectedInitials);
+    });
+  });
+});
+</code></pre>
+
+    <p>
+      Although the new <code>it</code> block is similar to the existing example,
+      the two together force you to implement a method that will return initials
+      that pass both tests.
+    </p>
+
+    <p>
+      The idea of TDD is to continually build tests and loop through the
+      red-green-refactor cycle until you feel confident that your implementation
+      code performs as expected.
+    </p>
+    <h2>Red to Green II</h2>
+
+    <p>
+      Now that we have tests that cover more than one condition, it is time to
+      program the actual behavior that we want our
+      <code>.initials()</code> method to execute.
+    </p>
+
+    <p>
+      Let's think about the current state of <code>Phrase.initials()</code>. We
+      have one passing test and one failing test that raises the following error
+      when we run the test suite:
+    </p>
+
+    <pre><code class = "language-bash">  1) Phrase .initials returns the initials of a name:
+
+      AssertionError: 'NM' == 'JMS'
+      + expected - actual
+
+      -NM
+      +JMS
+</code></pre>
+
+    <p>
+      This is not surprising, considering our current implementation always
+      returns <code>'NM'</code>.
+    </p>
+
+    <p>
+      To write a more complete implementation that could get us back into the
+      green, we could write something like this:
+    </p>
+    <pre><code class="language-javascript">const Phrase = {
+  initials(inputName) {
+    // Create an empty array for initials
+    const initials = [];
+
+    // Create an array of strings
+    const words = inputName.split(" ");
+
+    // Iterate through the array of strings and push the first character of each to initials
+    words.forEach((word) => {
+      initials.push(word.charAt(0));
+    });
+
+    // Return the initials as one string
+    return initials.join("");
+  }
+}
+</code></pre>
+
+    <p>
+      This implementation will successfully pass the tests we have written. Each
+      additional test pushes us to build a complete implementation of the
+      <code>initials</code> method.
+    </p>
+    <h2>Edge Case</h2>
+
+    <p>
+      Now that we have written and refactored a few tests, it's time to consider
+      <strong>edge cases</strong>.
+    </p>
+
+    <p>
+      An edge case is a problem or situation that occurs only at an extreme
+      (maximum or minimum) operating parameter — you can think of these as cases
+      that require special consideration.
+    </p>
+
+    <p>
+      Take our <code>Phrase.initials()</code> example from earlier. What happens
+      if we pass <code>.initials()</code> a number instead of a string? We could
+      write a test and then implement code that responds to this behavior by
+      raising an error message instructing you to use only strings.
+    </p>
+
+    <p>
+      The test for throwing an error when a number is passed to
+      <code>Phrase.initials()</code> could be written like this:
+    </p>
+
+    <pre><code class="language-javascript">it('raises an error if the parameter passed in is not a string', () => {
+  // Setup
+  const nameInput = 14;
+
+  // Exercise
+  const exercise = () => { Phrase.initials(nameInput) };
+
+  // Verification
+  assert.throws(exercise, /only use string/);
+})
+</code></pre>
+    <p>
+      After getting our intended error message, we would write just enough
+      implementation code to pass the test. In this case, that would be adding
+      the following to <code>Phrase.initials()</code>:
+    </p>
+
+    <pre><code class="language-javascript">if (typeof inputName !== "string") {
+  throw new Error("ERROR: only use string");
+}
+</code></pre>
+
+    <p>The complete implementation code would now be back in the green:</p>
+
+    <pre><code class="language-javascript">
+const Phrase = {
+  initials(inputName) {
+    if (typeof inputName !== "string") {
+      throw new Error("ERROR: only use string");
+    }
+    const initials = [];
+    const words = inputName.split(" ");
+
+    words.forEach((word) => {
+      initials.push(word.charAt(0));
+    });
+
+    return initials.join("");
+  }
+}
+</code></pre>
+
+    <p>This is an example of creating a test for edge cases.</p>
+    <button class="btnback" onclick="window.location.href = 'index.html'">
+      Back to starting page
+    </button>
+  </body>
+</html>
